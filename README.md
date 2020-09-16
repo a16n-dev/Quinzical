@@ -1,4 +1,4 @@
-# project
+# epic project
 
 Use this repo for both Assignment 3 and also your final Project (as you will be in the same team). 
 
