@@ -1,0 +1,20 @@
+.button {
+    -fx-background-color: radial-gradient(focus-distance 10% , center 50% 30% , radius 80% , #E59D5C, #C17632);
+    -fx-text-fill: white;
+    -fx-border-width: 0 0 3px 0;
+    -fx-border-color: #AB7748;
+    -fx-border-radius: 5px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+    -fx-padding: 9px 24px 9px 24px;
+}
+
+.button:hover{
+    -fx-background-color: radial-gradient(focus-distance 10% , center 50% 30% , radius 80% , #FFCA9B, #D89252);
+}
+
+.background{
+    -fx-background-image: url("bg.png");
+    -fx-background-repeat: no-repeat;   
+    -fx-background-size: cover;
+    -fx-background-position: center center;
+}
