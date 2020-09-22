@@ -2,21 +2,22 @@ package quinzical;
 
 import java.io.IOException;
 
+import quinzical.application.RootController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
-import jeopardy.view.RootController;
 public class App extends Application {
 
     private Stage _stage;
-    private BorderPane rootLayout;
+    private VBox rootLayout;
 
     @Override
     public void start(Stage s) {
         this._stage = s;
-        this._stage.setTitle("Jeopardy");
+        this._stage.setTitle("Quinzical");
 
         initRootLayout();
     }
@@ -29,11 +30,11 @@ public class App extends Application {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(App.class.getResource("view/Root.fxml"));
-            rootLayout = (BorderPane) loader.load();
+            loader.setLocation(App.class.getResource("application/Root.fxml"));
+            rootLayout = loader.load();
 
             RootController controller = loader.getController();
-            controller.loadAppData(this);
+            // controller.loadAppData(this);
 
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
