@@ -12,9 +12,9 @@ import javafx.stage.Stage;
 
 public class RootController {
 
-    public Button button;
+	public Button buttonGame, buttonPractice;
     
-    public void handleButtonClick(ActionEvent event) throws IOException {
+    public void handleGameButtonClick(ActionEvent event) throws IOException {
     
     	Parent gameBoardView = FXMLLoader.load(getClass().getResource("GameBoard.fxml"));
     	Scene gameBoardScene = new Scene(gameBoardView, 700, 500);
@@ -23,6 +23,17 @@ public class RootController {
     	window.setScene(gameBoardScene);
     	window.show();
     
-    }    
+    } 
+    
+    public void handlePracticeButtonClick(ActionEvent event) throws IOException {
+        
+    	Parent PracticeScreenView = FXMLLoader.load(getClass().getResource("PracticeScreen.fxml"));
+    	Scene PracticeScreenScene = new Scene(PracticeScreenView, 700, 500);
+    	
+    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	window.setScene(PracticeScreenScene);
+    	window.show();
+    
+    }  
     
 }

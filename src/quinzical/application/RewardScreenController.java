@@ -25,7 +25,7 @@ public Button buttonGameBoard, buttonMenu;
     
     }  
 	
-public void handleButtonMenuClick(ActionEvent event) throws IOException {
+	public void handleButtonMenuClick(ActionEvent event) throws IOException {
 	    
     	Parent RootView = FXMLLoader.load(getClass().getResource("Root.fxml"));
     	Scene RootScene = new Scene(RootView, 700, 500);
