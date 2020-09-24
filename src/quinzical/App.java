@@ -2,11 +2,10 @@ package quinzical;
 
 import java.io.IOException;
 
-import quinzical.application.RootController;
+import quinzical.controller.RootController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 public class App extends Application {

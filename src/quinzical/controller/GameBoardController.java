@@ -1,4 +1,4 @@
-package quinzical.application;
+package quinzical.controller;
 
 import java.io.IOException;
 
@@ -10,19 +10,19 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.stage.Stage;
 
-public class AnswerScreenController {
-	
-	public Button button;
+public class GameBoardController {
+
+	public Button button1, button2, button3, button4, button5;
     
 	public void handleButtonClick(ActionEvent event) throws IOException {
 	    
-    	Parent RewardScreenView = FXMLLoader.load(getClass().getResource("RewardScreen.fxml"));
-    	Scene RewardScreenScene = new Scene(RewardScreenView, 700, 500);
+    	Parent AnswerScreenView = FXMLLoader.load(getClass().getResource("AnswerScreen.fxml"));
+    	Scene AnswerScreenScene = new Scene(AnswerScreenView, 700, 500);
     	
     	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	window.setScene(RewardScreenScene);
+    	window.setScene(AnswerScreenScene);
     	window.show();
     
-    }
-
+    }  
+	
 }

@@ -1,4 +1,4 @@
-package quinzical;
+package quinzical.model;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleIntegerProperty;

@@ -1,4 +1,4 @@
-package quinzical.application;
+package quinzical.controller;
 
 import java.io.IOException;
 
