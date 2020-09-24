@@ -6,6 +6,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import java.net.*?>
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="25.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.application.PracticeAnswerScreenController">
    <children>
@@ -26,4 +27,7 @@
       </HBox>
       <Button fx:id="button" mnemonicParsing="false" onAction="#handleButtonClick" text="Submit" />
    </children>
+   <stylesheets>
+      <URL value="@../resources/css/style.css" />
+  </stylesheets>
 </VBox>

@@ -5,8 +5,9 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.layout.VBox?>
+<?import java.net.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="25.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.application.PracticeScreenController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="25.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.PracticeScreenController">
    <children>
       <Label text="Please select a category to receive a practice question:">
          <VBox.margin>
@@ -24,4 +25,7 @@
          </VBox.margin>
       </Button>
    </children>
+   <stylesheets>
+      <URL value="@../resources/css/style.css" />
+  </stylesheets>
 </VBox>

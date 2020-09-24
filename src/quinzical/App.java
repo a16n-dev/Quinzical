@@ -3,6 +3,7 @@ package quinzical;
 import java.io.IOException;
 
 import quinzical.controller.RootController;
+import quinzical.controller.Views;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -29,7 +30,7 @@ public class App extends Application {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(App.class.getResource("application/Root.fxml"));
+            loader.setLocation(App.class.getResource(Views.ROOT));
             rootLayout = loader.load();
 
             RootController controller = loader.getController();
