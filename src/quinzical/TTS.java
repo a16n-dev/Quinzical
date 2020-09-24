@@ -23,4 +23,11 @@ public class TTS {
         }
         return tts;
     }
+
+    public void setVolume(int volume) {
+        this.volume = volume;
+    }
+    public int getVolume() {
+        return volume;
+    }
 }
