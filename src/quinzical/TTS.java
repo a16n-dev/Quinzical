@@ -24,6 +24,15 @@ public class TTS {
         return tts;
     }
 
+    /**
+     * Internal method used by the public speak function to handle the actual speaking
+     * of messages. The message which is spoken is the first in the queue. Speaking of
+     * messages runs in a separate thread. When a message has finished being spoken the
+     * message queue is checked to see whether there is another message which must be spoken.
+     * 
+     * Does not speak if there are no messages in the queue. Messages must be added to the
+     * queue with the speak method.
+     */
     private void speakNext() {
         Task<Void> task = new Task<Void>() {
 			@Override
@@ -51,6 +60,16 @@ public class TTS {
         new Thread(task).start();
     }
 
+    /**
+     * Add a message to the queue of messages to be spoken by espeak. If this is the first
+     * message within the queue, then the message will be immediately spoken. If it is not the
+     * first message, then the message will be spoken once the messages earlier in the queue have
+     * been spoken.
+     * 
+     * Calling this function does not guarantee that the message will be spoken; clearing the queue
+     * may remove the message before it is spoken.
+     * @param text
+     */
     public void speak(String text) {
         boolean alreadyRunning = processQueue.peek() != null;
 
@@ -59,6 +78,10 @@ public class TTS {
         if (!alreadyRunning) speakNext();
     }
 
+    /**
+     * Method to cancel all current TTS messages which were previously requested to be voiced, but have
+     * not yet completed.
+     */
     public void clearQueue() {
         processQueue.clear();
     }
