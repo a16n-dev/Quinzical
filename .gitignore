@@ -1,4 +1,5 @@
-# Compiled class file
+# Compiled class files
+/bin/
 *.class
 
 # Log file
@@ -24,3 +25,5 @@ hs_err_pid*
 
 # Editor files
 .vscode/
+/.classpath
+/.project
