@@ -30,7 +30,7 @@ public class App extends Application {
         try {
             // Load root layout from fxml file.
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(App.class.getResource(Views.ROOT));
+            loader.setLocation(App.class.getResource(Views.MAIN_MENU));
             rootLayout = loader.load();
 
             MainMenuController controller = loader.getController();

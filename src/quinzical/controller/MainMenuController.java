@@ -9,13 +9,18 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import quinzical.model.Game;
 
 public class MainMenuController {
 
 	public Button buttonGame, buttonPractice;
-    
+    /**
+	 * Starts a new game
+	 * @param event
+	 * @throws IOException
+	 */
     public void handleGameButtonClick(ActionEvent event) throws IOException {
-    
+
     	Parent gameBoardView = FXMLLoader.load(getClass().getResource("GameBoard.fxml"));
     	Scene gameBoardScene = new Scene(gameBoardView, 700, 500);
     	

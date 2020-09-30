@@ -2,7 +2,9 @@ package quinzical.util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Random;
+import java.util.stream.Collectors;
 
 import quinzical.model.Question;
 
@@ -28,7 +30,7 @@ public class QuestionBank {
 
     //Private constructor
     private QuestionBank(){
-        _questionBank = IOManager.loadQuestions(false);
+        _questionBank = IOManager.loadQuestions(true);
     }
 
     /**
@@ -49,7 +51,7 @@ public class QuestionBank {
         ArrayList<Question> questionList = new ArrayList<Question>(_questionBank.get(categoryName));
         
         //Throw an error if there are not enough unique questions to match the amount specified
-        if(questionList.size() > amount && !allowDuplicates){
+        if(questionList.size() < amount && !allowDuplicates){
             throw new IllegalArgumentException(
                 categoryName + " only has " + questionList.size() + " questions but " + amount + " was requested. Either add more questions to this category or allow duplicates");
         }
@@ -71,7 +73,7 @@ public class QuestionBank {
         return results;
     }
 
-        /**
+    /**
      * Gets a given amount of random questions from the specified category
      * @param categoryName a name of a category - case sensitive. If the category doesnt exist the method will throw an error
      * @param amount the number of questions to return. 
@@ -83,6 +85,40 @@ public class QuestionBank {
 
         //Get the list of categories and create a copy of the array so the original is not modified
         ArrayList<String> categoryList = getCategories();
+        
+        //Throw an error if there are not enough unique questions to match the amount specified
+        if(categoryList.size() > amount && !allowDuplicates){
+            throw new IllegalArgumentException(
+                categoryList + " only has " + categoryList.size() +
+             " questions but " + amount + " was requested. Either add more questions to this category or allow duplicates");
+        }
+
+        ArrayList<String> results = new ArrayList<String>();
+
+        for (int i = 0; i < amount; i++) {
+            int index = _rand.nextInt(categoryList.size());
+            //Get a random question and remove it from the list
+
+            if(allowDuplicates){
+                results.add(categoryList.get(index));
+            } else {
+                //Remove question from list so we dont get duplicates
+                results.add(categoryList.remove(index));
+            }
+        }
+
+        return results;
+    }
+
+    /**
+     * Overload for getRandomCategories to allow it to only select categories with a minimum number of questions
+     */
+    public ArrayList<String> getRandomCategories(int amount, boolean allowDuplicates, int minimumQuestions) throws IllegalArgumentException{
+        //Get arraylist of categories
+
+        //Get the list of categories and create a copy of the array so the original is not modified
+        List<String> categoryList = getCategories().stream()
+        .filter(p -> _questionBank.get(p).size() >= minimumQuestions).collect(Collectors.toList());
         
         //Throw an error if there are not enough unique questions to match the amount specified
         if(categoryList.size() > amount && !allowDuplicates){

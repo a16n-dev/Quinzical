@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import java.net.URL?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -8,7 +8,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
-<?import java.net.*?>
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.GameBoardController">
    <children>
@@ -17,7 +16,7 @@
          <font>
             <Font name="System Bold" size="20.0" />
          </font></Label>
-      <GridPane alignment="CENTER" VBox.vgrow="ALWAYS">
+      <GridPane fx:id="grid" alignment="CENTER" VBox.vgrow="ALWAYS">
         <columnConstraints>
           <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
             <ColumnConstraints halignment="CENTER" minWidth="10.0" prefWidth="100.0" />
@@ -33,128 +32,6 @@
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
-         <children>
-            <Label text="Fauna">
-               <font>
-                  <Font size="20.0" />
-               </font></Label>
-            <Label text="History" GridPane.columnIndex="1">
-               <font>
-                  <Font size="20.0" />
-               </font></Label>
-            <Label text="People" GridPane.columnIndex="2">
-               <font>
-                  <Font size="20.0" />
-               </font></Label>
-            <Label text="Places" GridPane.columnIndex="3">
-               <font>
-                  <Font size="20.0" />
-               </font></Label>
-            <Label text="Symbols" GridPane.columnIndex="4">
-               <font>
-                  <Font size="20.0" />
-               </font></Label>
-            <Button disable="true" mnemonicParsing="false" text="1000" GridPane.rowIndex="1">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button disable="true" layoutX="44.0" layoutY="43.0" mnemonicParsing="false" text="800" GridPane.rowIndex="2">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button disable="true" layoutX="44.0" layoutY="73.0" mnemonicParsing="false" text="600" GridPane.rowIndex="3">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button disable="true" layoutX="44.0" layoutY="103.0" mnemonicParsing="false" text="1000" GridPane.columnIndex="1" GridPane.rowIndex="1">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button disable="true" layoutX="164.0" layoutY="103.0" mnemonicParsing="false" text="400" GridPane.rowIndex="4">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button fx:id="button1" layoutX="44.0" layoutY="133.0" mnemonicParsing="false" onAction="#handleButtonClick" text="200" GridPane.rowIndex="5">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button disable="true" layoutX="169.0" layoutY="43.0" mnemonicParsing="false" text="1000" GridPane.columnIndex="4" GridPane.rowIndex="1">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button disable="true" layoutX="169.0" layoutY="43.0" mnemonicParsing="false" text="1000" GridPane.columnIndex="3" GridPane.rowIndex="1">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button disable="true" layoutX="169.0" layoutY="43.0" mnemonicParsing="false" text="1000" GridPane.columnIndex="2" GridPane.rowIndex="1">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button disable="true" mnemonicParsing="false" text="800" GridPane.columnIndex="1" GridPane.rowIndex="2">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button disable="true" mnemonicParsing="false" text="800" GridPane.columnIndex="2" GridPane.rowIndex="2">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button disable="true" mnemonicParsing="false" text="800" GridPane.columnIndex="3" GridPane.rowIndex="2">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button disable="true" mnemonicParsing="false" text="800" GridPane.columnIndex="4" GridPane.rowIndex="2">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button disable="true" mnemonicParsing="false" text="600" GridPane.columnIndex="1" GridPane.rowIndex="3">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button disable="true" mnemonicParsing="false" text="600" GridPane.columnIndex="2" GridPane.rowIndex="3">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button disable="true" mnemonicParsing="false" text="600" GridPane.columnIndex="3" GridPane.rowIndex="3">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button disable="true" mnemonicParsing="false" text="600" GridPane.columnIndex="4" GridPane.rowIndex="3">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button disable="true" mnemonicParsing="false" text="400" GridPane.columnIndex="1" GridPane.rowIndex="4">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button disable="true" mnemonicParsing="false" text="400" GridPane.columnIndex="2" GridPane.rowIndex="4">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button disable="true" mnemonicParsing="false" text="400" GridPane.columnIndex="3" GridPane.rowIndex="4">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button disable="true" mnemonicParsing="false" text="400" GridPane.columnIndex="4" GridPane.rowIndex="4">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button fx:id="button2" mnemonicParsing="false" onAction="#handleButtonClick" text="200" GridPane.columnIndex="1" GridPane.rowIndex="5">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button fx:id="button3" mnemonicParsing="false" onAction="#handleButtonClick" text="200" GridPane.columnIndex="2" GridPane.rowIndex="5">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button fx:id="button4" mnemonicParsing="false" onAction="#handleButtonClick" text="200" GridPane.columnIndex="3" GridPane.rowIndex="5">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-            <Button fx:id="button5" mnemonicParsing="false" onAction="#handleButtonClick" text="200" GridPane.columnIndex="4" GridPane.rowIndex="5">
-               <font>
-                  <Font size="15.0" />
-               </font></Button>
-         </children>
       </GridPane>
       <Region prefHeight="25.0" prefWidth="600.0" />
    </children>

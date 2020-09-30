@@ -7,7 +7,7 @@ import quinzical.util.QuestionBank;
  * This contains all of the logic that is common to both the practice and game modes
  */
 
-public class QuinzicalGame {
+public abstract class QuinzicalGame {
     private Question currentQuestion;
     protected QuestionBank questionBank = QuestionBank.getInstance();
 
@@ -24,4 +24,9 @@ public class QuinzicalGame {
     protected void setCurrentQuestion(Question question){
         currentQuestion = question;
     }
+
+    /**
+     * Method to start a new game
+     */
+    public abstract void newGame();
 }

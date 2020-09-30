@@ -8,7 +8,9 @@ public class Practice extends QuinzicalGame{
 
     private int _currentQuestionAttempts;
 
-    //Picks a random question from the selected category
+    /**
+     * Picks a random question from the selected category
+     */
     public void getRandomQuestion(){
         //Pick a random question
         setCurrentQuestion(questionBank.getRandomQuestions(_category, 1, false).get(0));
@@ -29,5 +31,11 @@ public class Practice extends QuinzicalGame{
     public int addAttempt(){
         _currentQuestionAttempts += 1;
         return _currentQuestionAttempts;
+    }
+
+    @Override
+    public void newGame() {
+        // TODO Auto-generated method stub
+
     }
 }
