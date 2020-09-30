@@ -21,7 +21,7 @@ public class IOManager {
      * @param reload Whether to reload from the default settings or load from the current active game
      * @return The state of the application based on the files
      */
-    public HashMap<String, ArrayList<Question>> loadQuestions(boolean reload) {
+    public static HashMap<String, ArrayList<Question>> loadQuestions(boolean reload) {
         HashMap<String, ArrayList<Question>> state = new HashMap<>();
 
         // choose the directory
@@ -69,7 +69,7 @@ public class IOManager {
      * Save the state to the file
      * @param state State to save
      */
-    public void saveQuestions(HashMap<String, ArrayList<Question>> state) {
+    public static void saveQuestions(HashMap<String, ArrayList<Question>> state) {
         String directory = "categories_current";
 
         for (String category : state.keySet()) {
@@ -93,7 +93,7 @@ public class IOManager {
      * Load the winnings from the file. If the file can't be found, return 0
      * @return The winnings
      */
-    public int loadWinnings() {
+    public static int loadWinnings() {
         File file = new File(".winnings");
         if(!file.exists()) {
             saveWinnings(0);
@@ -113,7 +113,7 @@ public class IOManager {
      * Save the winnings to the file
     * @param winnings The winnings to save
      */
-    public void saveWinnings(int winnings) {
+    public static void saveWinnings(int winnings) {
         Writer writer = null;
         try {
             writer = new BufferedWriter(new OutputStreamWriter(
