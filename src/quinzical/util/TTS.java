@@ -100,8 +100,8 @@ public class TTS {
         if (speed < 80) {
             this.speed = 80;
         }
-        else if (speed > 160) {
-            this.speed = 160;
+        else if (speed > 240) {
+            this.speed = 240;
         }
         else {
             this.speed = speed;
