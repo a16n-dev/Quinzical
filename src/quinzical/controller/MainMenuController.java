@@ -17,7 +17,8 @@ import quinzical.util.TTS;
 public class MainMenuController {
 
 	public Button buttonGame, buttonPractice;
-	public Slider sliderSpeech;
+	public Slider sliderSpeed;
+	public Slider sliderVolume;
     /**
 	 * Starts a new game
 	 * @param event
@@ -25,17 +26,19 @@ public class MainMenuController {
 	 */
 
 	public void initialize() {
-		sliderSpeech.setValue(TTS.getInstance().getSpeed());
+		sliderSpeed.setValue(TTS.getInstance().getSpeed());
+		sliderVolume.setValue(TTS.getInstance().getVolume());
 	}
 
     public void handleGameButtonClick(ActionEvent event) throws IOException {
+		TTS.getInstance().speak("hello test");
 
-    	Parent gameBoardView = FXMLLoader.load(getClass().getResource("GameBoard.fxml"));
-    	Scene gameBoardScene = new Scene(gameBoardView, 700, 500);
+    	// Parent gameBoardView = FXMLLoader.load(getClass().getResource("GameBoard.fxml"));
+    	// Scene gameBoardScene = new Scene(gameBoardView, 700, 500);
     	
-    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	window.setScene(gameBoardScene);
-    	window.show();
+    	// Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	// window.setScene(gameBoardScene);
+    	// window.show();
     
     } 
     
@@ -49,7 +52,11 @@ public class MainMenuController {
     	window.show();
 	}
 	
-	public void handleSpeechSliderChange(ObservableValue<Number> ovn, Number before, Number after) {
+	public void handleSpeechVolumeSliderChange(ObservableValue<Number> ovn, Number before, Number after) {
+		TTS.getInstance().setVolume(after.intValue());
+	}
+
+	public void handleSpeechSpeedSliderChange(ObservableValue<Number> ovn, Number before, Number after) {
 		TTS.getInstance().setSpeed(after.intValue());
 	}
     
