@@ -11,10 +11,12 @@ public class TTS {
     // singleton code
     private static TTS tts;
     private int volume;
+    private int speed;
 
     private TTS() {
         processQueue = new ArrayDeque<ProcessBuilder>();
         volume = 100;
+        speed = 160;
     }
 
     public static TTS getInstance() {
@@ -73,7 +75,7 @@ public class TTS {
     public void speak(String text) {
         boolean alreadyRunning = processQueue.peek() != null;
 
-        ProcessBuilder builder = new ProcessBuilder("espeak", "-x", text, "-a", Integer.toString(volume));
+        ProcessBuilder builder = new ProcessBuilder("espeak", "-x", text, "-a", Integer.toString(volume), "-s", Integer.toString(speed));
         processQueue.add(builder);
         if (!alreadyRunning) speakNext();
     }
@@ -86,10 +88,27 @@ public class TTS {
         processQueue.clear();
     }
 
+    // getters and setters
     public void setVolume(int volume) {
         this.volume = volume;
     }
     public int getVolume() {
         return volume;
     }
+
+    public void setSpeed(int speed) {
+        if (speed < 80) {
+            this.speed = 80;
+        }
+        else if (speed > 160) {
+            this.speed = 160;
+        }
+        else {
+            this.speed = speed;
+        }
+    }
+    public int getSpeed() {
+        return speed;
+    }
+
 }
