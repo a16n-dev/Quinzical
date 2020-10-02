@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import quinzical.controller.MainMenuController;
 import quinzical.controller.Views;
+import quinzical.model.User;
 import quinzical.util.Router;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -13,7 +14,6 @@ import javafx.stage.Stage;
 public class App extends Application {
 
     private Stage _stage;
-    private VBox rootLayout;
 
     @Override
     public void start(Stage s) {
@@ -22,6 +22,7 @@ public class App extends Application {
         //Setup router
         Router.setStage(s);
         Router.show(Views.MAIN_MENU);
+        attachListeners();
         s.show();
     }
 
@@ -32,5 +33,15 @@ public class App extends Application {
     //Helper functions to expose app data to controllers
     public Stage getStage() {
         return _stage;
+    }
+
+    private void attachListeners(){
+        _stage.widthProperty().addListener((obs, oldVal, newVal) -> {
+            User.getInstance().setPrefWidth(newVal);
+       });
+       
+       _stage.heightProperty().addListener((obs, oldVal, newVal) -> {
+        User.getInstance().setPrefHeight(newVal);
+       });
     }
 }

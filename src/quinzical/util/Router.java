@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import quinzical.App;
 import quinzical.controller.Views;
+import quinzical.model.User;
 
 public class Router {
 
@@ -28,8 +29,8 @@ public class Router {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(App.class.getResource(fxml.toString()));
             Parent view = (Parent) loader.load();
-
-            Scene scene = new Scene(view);
+            User user = User.getInstance();
+            Scene scene = new Scene(view, user.getPrefWidth(), user.getPrefHeight());
             stage.setScene(scene);
 
             //If it was all successful add screen to history

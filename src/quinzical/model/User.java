@@ -20,6 +20,10 @@ public class User implements Serializable{
 
     private List<String> _rewards = new ArrayList<String>();
 
+    private Number prefWidth;
+
+    private Number prefHeight;
+
     /**
      * @return the instance of the user class
      */
@@ -33,6 +37,11 @@ public class User implements Serializable{
             }
         }
         return user;
+    }
+
+    private User(){
+        prefWidth = 1000;
+        prefHeight = 800;
     }
 
     /**
@@ -68,5 +77,22 @@ public class User implements Serializable{
         }
     }
 
+    public int getPrefWidth(){
+        return prefWidth.intValue();
+    }
+
+    public int getPrefHeight(){
+        return prefHeight.intValue();
+    }
+
+    public void setPrefWidth(Number width){
+        prefWidth = width;
+        persist();
+    }
+
+    public void setPrefHeight(Number height){
+        prefWidth = height;
+        persist();
+    }
 
 }
