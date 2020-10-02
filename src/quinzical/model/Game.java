@@ -8,6 +8,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import quinzical.util.IOManager;
+import quinzical.util.State;
 
 /**
  * This model represents a game being played by the user.
@@ -67,7 +68,7 @@ public class Game extends QuinzicalGame implements Serializable {
     public static Game getInstance() {
         if (_instance == null) {
             // Attempt to read state from file
-            _instance = IOManager.readGameState();
+            _instance = IOManager.readState(State.GAME);
             if (_instance == null) {
                 _instance = new Game();
                 persist();
@@ -119,9 +120,9 @@ public class Game extends QuinzicalGame implements Serializable {
      */
     private static void persist() {
         if(_instance == null){
-            IOManager.clearGameState();
+            IOManager.clearState(State.GAME);
         } else {
-            IOManager.writeGameState();
+            IOManager.writeState(State.GAME, _instance);
         }
     }
 }

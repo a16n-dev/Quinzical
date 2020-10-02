@@ -35,9 +35,6 @@ public class App extends Application {
             loader.setLocation(App.class.getResource(Views.MAIN_MENU));
             rootLayout = loader.load();
 
-            MainMenuController controller = loader.getController();
-            // controller.loadAppData(this);
-
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
             _stage.setScene(scene);
@@ -51,5 +48,4 @@ public class App extends Application {
     public Stage getStage() {
         return _stage;
     }
-
 }

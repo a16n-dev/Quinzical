@@ -27,6 +27,7 @@ public class MainMenuController {
 	 */
 
 	public void initialize() {
+		System.out.println(TTS.getInstance().getSpeed());
 		sliderSpeed.setValue(TTS.getInstance().getSpeed());
 		sliderVolume.setValue(TTS.getInstance().getVolume());
 	}

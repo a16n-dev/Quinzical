@@ -1,14 +1,20 @@
 package quinzical.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+
+import quinzical.util.IOManager;
+import quinzical.util.State;
 
 /**
  * The user model is responsible for keeping track of the users rewards.
  * Should user be singleton? might be multiple users?
  * In this case the 'rewards' are in the form of strings, but this could be extended to its own class in the future
  */
-public class User {
+public class User implements Serializable{
+
+    private static final long serialVersionUID = -4964840915298617866L;
 
     private static User user;
 
@@ -19,7 +25,12 @@ public class User {
      */
     public static User getInstance() {
         if (user == null) {
-            user = new User();
+            // Attempt to read state from file
+            user = IOManager.readState(State.USER);
+            if (user == null) {
+                user = new User();
+                persist();
+            }
         }
         return user;
     }
@@ -38,6 +49,7 @@ public class User {
      */
     public void addReward(String reward) {
         _rewards.add(reward);
+        persist();
     }
 
     /**
@@ -46,6 +58,14 @@ public class User {
      */
     public void clearRewards(){
         _rewards = new ArrayList<String>();
+    }
+
+    private static void persist(){
+        if(user == null){
+            IOManager.clearState(State.USER);
+        } else {
+            IOManager.writeState(State.USER, user);
+        }
     }
 
 

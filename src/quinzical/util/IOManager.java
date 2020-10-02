@@ -148,22 +148,20 @@ public class IOManager {
     }
 
     /**
-     * Writes the current game instance to file.
+     *  Writes the specified object into the state variable.
      */
-    public static void writeGameState() {
+    public static void writeState(State state, Object obj) {
         try {
             Files.createDirectories(Paths.get(DATAPATH));
         } catch (Exception e) {};
-        System.out.println("Saving to file!");
-        Game game = Game.getInstance();
 
         try {
             // Saving of object in a file
-            FileOutputStream file = new FileOutputStream(DATAPATH + "game");
+            FileOutputStream file = new FileOutputStream(DATAPATH + state.getFileName());
             ObjectOutputStream out = new ObjectOutputStream(file);
 
             // Method for serialization of object
-            out.writeObject(game);
+            out.writeObject(obj);
 
             out.close();
             file.close();
@@ -175,32 +173,35 @@ public class IOManager {
     }
 
     /**
-     * @return the saved game instance, or null if no instance was found
+     * @return the object in state with the given name, or null if none exists
      */
-    public static Game readGameState() {
+    public static <T> T readState(State state) {
         try {
             // Reading the object from a file
-            FileInputStream file = new FileInputStream(DATAPATH + "game");
+            FileInputStream file = new FileInputStream(DATAPATH + state.getFileName());
             ObjectInputStream in = new ObjectInputStream(file);
 
             // Method for deserialization of object
-            Game game = (Game) in.readObject();
+            T obj = (T) in.readObject();
 
             in.close();
             file.close();
-            System.out.println("Found existing");
-            return game;
+            return obj;
 
         } 
         catch (Exception e) {
+            System.out.println(e.getMessage());
             return null;
         } 
     }
 
-    public static void clearGameState() {
+    /**
+     * Clears the specified state
+     * @param state @see quinzical.util.State
+     */
+    public static void clearState(State state) {
         try {
-            System.out.println("Game is null, deleting any saved data");
-            File f = new File(DATAPATH + "game");  
+            File f = new File(DATAPATH + state.getFileName());  
             f.delete();
             return;
         } catch (Exception e) {}
