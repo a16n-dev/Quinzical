@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.text.Normalizer;
 
 public class Question implements Serializable {
 
@@ -50,10 +51,15 @@ public class Question implements Serializable {
      */
     public boolean checkAnswer(String input) {
         
-        if(input.toLowerCase().equals(answer.get().toLowerCase())) {
+        if (sanitise(input) == sanitise(answer.get())) {
             return true;
         }
         return false;
+    }
+
+    private String sanitise(String str) {
+        str = Normalizer.normalize(str, Normalizer.Form.NFKD);
+        return str.toLowerCase().replaceAll("\\s+", "").replaceAll("\\p{M}", "");
     }
 
     /**
