@@ -50,9 +50,12 @@ public class Question implements Serializable {
      * @return Whether the answer was correct
      */
     public boolean checkAnswer(String input) {
-        
-        if (sanitise(input) == sanitise(answer.get())) {
-            return true;
+        String[] possibleAnswers = answer.get().split("/");
+
+        for (String answer : possibleAnswers) {
+            if (sanitise(input).equals(sanitise(answer))) {
+                return true;
+            }
         }
         return false;
     }
