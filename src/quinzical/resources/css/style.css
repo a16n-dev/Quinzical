@@ -16,5 +16,5 @@
     -fx-background-image: url("../images/bg.png");
     -fx-background-repeat: no-repeat;   
     -fx-background-size: cover;
-    -fx-background-position: center center;
+    -fx-background-position: center;
 }

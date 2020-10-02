@@ -7,6 +7,7 @@ public class Question {
     private SimpleIntegerProperty value;
     private SimpleStringProperty question;
     private SimpleStringProperty answer;
+    private boolean isAnswered = false;
 
     public Question(int value, String question, String answer) {
         this.value = new SimpleIntegerProperty(value);
@@ -30,6 +31,9 @@ public class Question {
      * @return Whether the answer was correct
      */
     public boolean checkAnswer(String input) {
+        //No matter if the answer was right or wrong the question is now been attempted
+        isAnswered = true;
+        
         if(input.toLowerCase().equals(answer.get().toLowerCase())) {
             return true;
         }
@@ -40,5 +44,9 @@ public class Question {
      */
     public String toString() {
         return Integer.toString(value.get()) + "," + question.get() + "," + answer.get();
+    }
+
+    public boolean isAnswered(){
+        return isAnswered;
     }
 }
