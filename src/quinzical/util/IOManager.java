@@ -11,6 +11,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -25,6 +27,8 @@ import quinzical.model.Question;
 public class IOManager {
 
     private static String DATAPATH = "./gamedata/";
+
+    //TODO: make sure datapath exists
 
     /**
      * Load the questions from the file
@@ -147,6 +151,9 @@ public class IOManager {
      * Writes the current game instance to file.
      */
     public static void writeGameState() {
+        try {
+            Files.createDirectories(Paths.get(DATAPATH));
+        } catch (Exception e) {};
         System.out.println("Saving to file!");
         Game game = Game.getInstance();
 
@@ -186,7 +193,6 @@ public class IOManager {
 
         } 
         catch (Exception e) {
-            System.out.println(e.getMessage());
             return null;
         } 
     }
@@ -197,8 +203,6 @@ public class IOManager {
             File f = new File(DATAPATH + "game");  
             f.delete();
             return;
-        } catch (Exception e) {
-            //TODO: handle exception
-        }
+        } catch (Exception e) {}
     }
 }

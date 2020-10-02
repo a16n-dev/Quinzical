@@ -39,7 +39,7 @@ public class GameBoardController {
 			// Place label
 			grid.add(new Label(category), i, 0);
 
-			//Place buttons
+			// Place buttons
 			ArrayList<Question> questions = game.getQuestionsByCategory(category);
 
 			for (int j = 0; j < questions.size(); j++) {
@@ -48,13 +48,18 @@ public class GameBoardController {
 				// Place label
 				Button button = new Button("$" + question.getValue());
 
-				//Add click events
-				button.setOnAction((event) -> {    
-					game.setCurrentQuestion(category, intJ);
-					Router.show(Views.ANSWER_SCREEN);
-				 });
+				if (question.isAnswered()) {
+					// Disable button if the question has been attempted
+					button.setDisable(true);
+				} else {
+					// Add click events
+					button.setOnAction((event) -> {
+						game.setCurrentQuestion(category, intJ);
+						Router.show(Views.ANSWER_SCREEN);
+					});
+				}
 
-				grid.add(button, i, j+1);
+				grid.add(button, i, j + 1);
 			}
 		}
 	}

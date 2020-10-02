@@ -3,6 +3,9 @@ package quinzical.model;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 import quinzical.util.IOManager;
 
@@ -54,7 +57,11 @@ public class Game extends QuinzicalGame implements Serializable {
      * @param index    the index of the question in the game board
      */
     public void setCurrentQuestion(String category, int index) {
-        setCurrentQuestion(_questions.get(category).get(index));
+        Question q = _questions.get(category).get(index);
+        setCurrentQuestion(q);
+        q.setAnswered(true);
+        persist();
+        System.out.println("The number of remaining questions is " + getRemainingQuestions());
     }
 
     public static Game getInstance() {
@@ -95,6 +102,19 @@ public class Game extends QuinzicalGame implements Serializable {
     }
 
     /**
+     * @return the number of questions the user still has to answer in the current game
+     */
+    public int getRemainingQuestions(){
+        int count = 0;
+        for (Map.Entry<String, ArrayList<Question>> entry : _questions.entrySet()) {
+            List<Question> rem = entry.getValue().stream().filter(p -> !p.isAnswered())
+            .collect(Collectors.toList());
+            count+=rem.size();
+        }
+        return count;
+    }
+
+    /**
      * Saves the current game instance to file, or deletes any game data if the instance is null.
      */
     private static void persist() {
@@ -102,7 +122,6 @@ public class Game extends QuinzicalGame implements Serializable {
             IOManager.clearGameState();
         } else {
             IOManager.writeGameState();
-
         }
     }
 }
