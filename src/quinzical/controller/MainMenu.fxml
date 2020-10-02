@@ -42,7 +42,8 @@
                </font>
             </Label>
             <Region />
-            <Slider value="50.0" />
+            <Slider fx:id="sliderSpeed" value="160.0" min="80.0" max="240.0" onValueChange="#handleSpeechSpeedSliderChange"/>
+            <Slider fx:id="sliderVolume" value="100.0" min="0.0" max="200.0" onValueChange="#handleSpeechVolumeSliderChange"/>
          </children>
          <VBox.margin>
             <Insets bottom="25.0" />

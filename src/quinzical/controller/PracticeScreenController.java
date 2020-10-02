@@ -22,7 +22,6 @@ public class PracticeScreenController {
     	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
     	window.setScene(PracticeAnswerScreenScene);
     	window.show();
-    
     }
 
 }
