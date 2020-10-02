@@ -12,6 +12,7 @@ public class TTS {
     private static TTS tts;
     private int volume;
     private int speed;
+    private boolean speaking = false;
 
     private TTS() {
         processQueue = new ArrayDeque<ProcessBuilder>();
@@ -36,27 +37,30 @@ public class TTS {
      * queue with the speak method.
      */
     private void speakNext() {
+        if (speaking) return;
+        speaking = true;
+
         Task<Void> task = new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
-                if(processQueue.peek() != null) {
-                    var builder = processQueue.poll();
-        
+                System.out.println("speaking new");
+                var builder = processQueue.poll();
+    
+                try {
+                    Process p = builder.start();
                     try {
-                        Process p = builder.start();
-                        try {
-                            p.waitFor();
-                            speakNext();
-                        }
-                        catch (InterruptedException e) {
-                            System.out.println(e);
-                        }
+                        p.waitFor();
+                        speaking = false;
+                        speakNext();
                     }
-                    catch (IOException e) {
-                        e.printStackTrace();
+                    catch (InterruptedException e) {
+                        System.out.println(e);
                     }
                 }
-				return null;
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
 			}
         };
         new Thread(task).start();
@@ -73,11 +77,9 @@ public class TTS {
      * @param text
      */
     public void speak(String text) {
-        boolean alreadyRunning = processQueue.peek() != null;
-
         ProcessBuilder builder = new ProcessBuilder("espeak", "-x", text, "-a", Integer.toString(volume), "-s", Integer.toString(speed));
         processQueue.add(builder);
-        if (!alreadyRunning) speakNext();
+        if (!speaking) speakNext();
     }
 
     /**
