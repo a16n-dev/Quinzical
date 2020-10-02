@@ -67,8 +67,10 @@ public class GameBoardController {
 	@FXML
 	public void handleGoBack(ActionEvent event) throws IOException {
 
-		game.endGame();
-		Router.show(Views.MAIN_MENU);
+		game.addScore(50);
+
+		// game.endGame();
+		// Router.show(Views.MAIN_MENU);
 
 	}
 

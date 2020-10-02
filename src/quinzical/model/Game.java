@@ -1,5 +1,8 @@
 package quinzical.model;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,6 +10,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javafx.beans.property.SimpleIntegerProperty;
 import quinzical.util.IOManager;
 import quinzical.util.State;
 
@@ -18,11 +22,15 @@ public class Game extends QuinzicalGame implements Serializable {
     private static final long serialVersionUID = -7700892048792888475L;
 
     private HashMap<String, ArrayList<Question>> _questions;
-    private int _score;
+
+    private transient SimpleIntegerProperty _score;
+
     private static Game _instance;
-    private static int questionCount = 5;
+
+    private static final int questionCount = 5;
 
     private Game() {
+        _score = new SimpleIntegerProperty();
         _questions = new HashMap<String, ArrayList<Question>>();
         // Pick 5 categories at random
         ArrayList<String> categories = questionBank.getRandomCategories(5, false);
@@ -32,22 +40,21 @@ public class Game extends QuinzicalGame implements Serializable {
             ArrayList<Question> questions = questionBank.getRandomQuestions(category, questionCount, false);
             _questions.put(category, questions);
         }
-
-        // Make sure the users score is 0
-        _score = 0;
     }
 
     /**
      * Adds to the score for the current game
      */
     public void addScore(int score) {
-        _score += score;
+        System.out.println(score);
+        _score.set(_score.intValue() + score);
+        System.out.println(_score.get());
     }
 
     /**
      * Returns the user's current score
      */
-    public int getScore() {
+    public SimpleIntegerProperty getScore() {
         return _score;
     }
 
@@ -124,5 +131,19 @@ public class Game extends QuinzicalGame implements Serializable {
         } else {
             IOManager.writeState(State.GAME, _instance);
         }
+    }
+
+    private void writeObject(ObjectOutputStream out) throws IOException {
+        out.defaultWriteObject();
+
+        Integer score = _score.getValue();
+        out.writeObject(score);
+    }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+
+        Integer score = (Integer) in.readObject();
+        _score = new SimpleIntegerProperty(score);
     }
 }
