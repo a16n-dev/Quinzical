@@ -12,6 +12,7 @@ import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 import quinzical.model.PracticeGame;
+import quinzical.util.Router;
 
 public class PracticeScreenController {
 	public VBox panel;
@@ -25,17 +26,9 @@ public class PracticeScreenController {
 			Button button = new Button(category);
 			button.setOnAction(event -> {
 				game.setCurrentCategory(category);
-				try {
-					Parent PracticeScreenView = FXMLLoader.load(getClass().getResource("PracticeAnswerScreen.fxml"));
-					Scene PracticeScreenScene = new Scene(PracticeScreenView, 700, 500);
-					
-					Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-					window.setScene(PracticeScreenScene);
-					window.show(); 
-				}
-				catch (IOException e) {
-					System.out.println(e);
-				}
+
+				Router.show(Views.PRACTICE_ANSWER_SCREEN);
+
 			});
 			panel.getChildren().add(button);
 		}

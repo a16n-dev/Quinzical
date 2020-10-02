@@ -10,22 +10,23 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import quinzical.App;
+import quinzical.controller.Views;
 
 public class Router {
 
     private static Stage stage;
 
     //Represents the history of the pages the user has visited
-    private static Deque<String> history = new ArrayDeque<String>();
+    private static Deque<Views> history = new ArrayDeque<Views>();
 
     /**
      * Sets the scene to show the specified fxml file
      * @param fxml the path to the fxml file, relative to App.java
      */
-    public static void show(String fxml) {
+    public static void show(Views fxml) {
         try {
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(App.class.getResource(fxml));
+            loader.setLocation(App.class.getResource(fxml.toString()));
             Parent view = (Parent) loader.load();
 
             Scene scene = new Scene(view);

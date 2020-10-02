@@ -21,27 +21,12 @@ public class App extends Application {
         this._stage.setTitle("Quinzical");
         //Setup router
         Router.setStage(s);
-        initRootLayout();
+        Router.show(Views.MAIN_MENU);
+        s.show();
     }
 
     public static void main(String[] args) {
         launch(args);
-    }
-
-    private void initRootLayout() {
-        try {
-            // Load root layout from fxml file.
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(App.class.getResource(Views.MAIN_MENU));
-            rootLayout = loader.load();
-
-            // Show the scene containing the root layout.
-            Scene scene = new Scene(rootLayout);
-            _stage.setScene(scene);
-            _stage.show();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     //Helper functions to expose app data to controllers

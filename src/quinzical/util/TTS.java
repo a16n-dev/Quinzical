@@ -1,6 +1,7 @@
 package quinzical.util;
 
 import java.io.IOException;
+import java.io.ObjectInputStream;
 import java.io.Serializable;
 import java.util.ArrayDeque;
 
@@ -11,7 +12,7 @@ public class TTS implements Serializable {
     private static final long serialVersionUID = -7165475779564908787L;
 
     // Transient as we do not want the queue to be persisted between sessions
-    private transient ArrayDeque<ProcessBuilder> processQueue = new ArrayDeque<ProcessBuilder>();
+    private transient ArrayDeque<ProcessBuilder> processQueue;
 
     // singleton code
     private static TTS tts;
@@ -20,6 +21,7 @@ public class TTS implements Serializable {
     private boolean speaking = false;
 
     private TTS() {
+        processQueue = new ArrayDeque<ProcessBuilder>();
         volume = 100;
         speed = 160;
     }
@@ -136,5 +138,11 @@ public class TTS implements Serializable {
             IOManager.writeState(State.TTS, tts);
         }
     }
+
+    private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
+        in.defaultReadObject();
+
+        processQueue = new ArrayDeque<ProcessBuilder>();
+    };
 
 }

@@ -1,8 +1,20 @@
 package quinzical.controller;
 
-public class Views {
-    public static final String MAIN_MENU = "controller/MainMenu.fxml";
-    public static final String ANSWER_SCREEN = "controller/AnswerScreen.fxml";
-    public static final String GAME_BOARD = "controller/GameBoard.fxml";
-    public static final String PRACTICE_SCREEN = "controller/PracticeScreen.fxml";
+public enum Views {
+    MAIN_MENU("controller/MainMenu.fxml"),
+    ANSWER_SCREEN("controller/AnswerScreen.fxml"),
+    GAME_BOARD("controller/GameBoard.fxml"),
+    PRACTICE_SCREEN("controller/PracticeScreen.fxml"),
+    PRACTICE_ANSWER_SCREEN("controller/PracticeAnswerScreen.fxml")
+    ;
+
+    private final String filePath;
+
+    private Views(String path){
+        filePath = path;
+    }
+
+    public String toString(){
+        return filePath;
+    }
 }
