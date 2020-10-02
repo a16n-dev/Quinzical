@@ -16,7 +16,7 @@ public class Game extends QuinzicalGame{
     private Game(){
         _questions = new HashMap<String, ArrayList<Question>>();
         //Pick 5 categories at random
-        ArrayList<String> categories = questionBank.getRandomCategories(1, false);
+        ArrayList<String> categories = questionBank.getRandomCategories(5, false);
         
         //For each category select 5 random questions
         for (String category : categories) {

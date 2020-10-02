@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import quinzical.controller.MainMenuController;
 import quinzical.controller.Views;
+import quinzical.util.Router;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -18,7 +19,8 @@ public class App extends Application {
     public void start(Stage s) {
         this._stage = s;
         this._stage.setTitle("Quinzical");
-
+        //Setup router
+        Router.setStage(s);
         initRootLayout();
     }
 

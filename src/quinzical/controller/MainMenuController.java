@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import quinzical.util.Router;
 import quinzical.util.TTS;
 
 public class MainMenuController {
@@ -31,25 +32,29 @@ public class MainMenuController {
 	}
 
     public void handleGameButtonClick(ActionEvent event) throws IOException {
-		TTS.getInstance().speak("hello test");
+		// TTS.getInstance().speak("hello test");
 
     	// Parent gameBoardView = FXMLLoader.load(getClass().getResource("GameBoard.fxml"));
     	// Scene gameBoardScene = new Scene(gameBoardView, 700, 500);
     	
     	// Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
     	// window.setScene(gameBoardScene);
-    	// window.show();
+		// window.show();
+		
+		Router.show(Views.GAME_BOARD);
     
     } 
     
     public void handlePracticeButtonClick(ActionEvent event) throws IOException {
         
-    	Parent PracticeScreenView = FXMLLoader.load(getClass().getResource("PracticeScreen.fxml"));
-    	Scene PracticeScreenScene = new Scene(PracticeScreenView, 700, 500);
+    	// Parent PracticeScreenView = FXMLLoader.load(getClass().getResource("PracticeScreen.fxml"));
+    	// Scene PracticeScreenScene = new Scene(PracticeScreenView, 700, 500);
     	
-    	Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	window.setScene(PracticeScreenScene);
-    	window.show();
+    	// Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+    	// window.setScene(PracticeScreenScene);
+		// window.show();
+		
+		Router.show(Views.PRACTICE_SCREEN);
 	}
 	
 	public void handleSpeechVolumeSliderChange(ObservableValue<Number> ovn, Number before, Number after) {

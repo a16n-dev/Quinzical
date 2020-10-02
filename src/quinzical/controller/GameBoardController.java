@@ -16,6 +16,7 @@ import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import quinzical.model.Game;
 import quinzical.model.Question;
+import quinzical.util.Router;
 
 public class GameBoardController {
 
@@ -42,9 +43,17 @@ public class GameBoardController {
 			ArrayList<Question> questions = game.getQuestionsByCategory(category);
 
 			for (int j = 0; j < questions.size(); j++) {
-				Question question = questions.get(j);
+				final Integer intJ = j;
+				Question question = questions.get(intJ);
 				// Place label
 				Button button = new Button("$" + question.getValue());
+
+				//Add click events
+				button.setOnAction((event) -> {    
+					game.setCurrentQuestion(category, intJ);
+					Router.show(Views.ANSWER_SCREEN);
+				 });
+
 				grid.add(button, i, j+1);
 			}
 		}

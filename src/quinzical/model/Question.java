@@ -31,6 +31,9 @@ public class Question {
     public String getAnswer() {
         return answer.get();
     }
+    public int getDifficulty() {
+        return difficulty.get();
+    }
     /**
      * Function to check whether the user's answer is correct
      * @param input The user's answer
