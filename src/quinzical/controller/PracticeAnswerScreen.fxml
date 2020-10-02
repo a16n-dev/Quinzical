@@ -8,24 +8,25 @@
 <?import javafx.scene.layout.VBox?>
 <?import java.net.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="25.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.application.PracticeAnswerScreenController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="25.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.PracticeAnswerScreenController" fx:id="parent">
    <children>
-      <Label text="Your clue is:">
+      <Label fx:id="header" text="Your clue is:">
          <VBox.margin>
             <Insets />
          </VBox.margin>
       </Label>
-      <Label text="This is the capital of New Zealand." />
-      <HBox alignment="CENTER" spacing="20.0">
+      <Label fx:id="labelHint" />
+      <HBox fx:id="answerContainer" alignment="CENTER" spacing="20.0">
          <children>
             <Label text="Please enter your answer: " />
-            <TextField />
+            <TextField fx:id="input" />
          </children>
          <VBox.margin>
             <Insets top="25.0" />
          </VBox.margin>
+         <Label fx:id="feedback" />
       </HBox>
-      <Button fx:id="button" mnemonicParsing="false" onAction="#handleButtonClick" text="Submit" />
+      <Button fx:id="button" mnemonicParsing="false" onAction="#onSubmit" text="Submit" />
    </children>
    <stylesheets>
       <URL value="@../resources/css/style.css" />
