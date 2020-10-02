@@ -12,6 +12,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import quinzical.model.Game;
 import quinzical.util.Router;
 import quinzical.util.TTS;
 
@@ -47,14 +48,6 @@ public class MainMenuController {
     } 
     
     public void handlePracticeButtonClick(ActionEvent event) throws IOException {
-        
-    	// Parent PracticeScreenView = FXMLLoader.load(getClass().getResource("PracticeScreen.fxml"));
-    	// Scene PracticeScreenScene = new Scene(PracticeScreenView, 700, 500);
-    	
-    	// Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	// window.setScene(PracticeScreenScene);
-		// window.show();
-		
 		Router.show(Views.PRACTICE_SCREEN);
 	}
 	
