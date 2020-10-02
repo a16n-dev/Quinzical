@@ -17,6 +17,7 @@ public class TTS implements Serializable {
     private static TTS tts;
     private int volume;
     private int speed;
+    private boolean speaking = false;
 
     private TTS() {
         volume = 100;
@@ -46,7 +47,11 @@ public class TTS implements Serializable {
      * to the queue with the speak method.
      */
     private void speakNext() {
+        if (speaking) return;
+        speaking = true;
+
         Task<Void> task = new Task<Void>() {
+<<<<<<< HEAD
             @Override
             protected Void call() throws Exception {
                 if (processQueue.peek() != null) {
@@ -66,6 +71,29 @@ public class TTS implements Serializable {
                 }
                 return null;
             }
+=======
+			@Override
+			protected Void call() throws Exception {
+                System.out.println("speaking new");
+                var builder = processQueue.poll();
+    
+                try {
+                    Process p = builder.start();
+                    try {
+                        p.waitFor();
+                        speaking = false;
+                        speakNext();
+                    }
+                    catch (InterruptedException e) {
+                        System.out.println(e);
+                    }
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+                return null;
+			}
+>>>>>>> 4b8d47cd76811dd8177b80158de30766a8f20ebf
         };
         new Thread(task).start();
     }
@@ -82,6 +110,7 @@ public class TTS implements Serializable {
      * @param text
      */
     public void speak(String text) {
+<<<<<<< HEAD
         boolean alreadyRunning = processQueue.peek() != null;
 
         ProcessBuilder builder = new ProcessBuilder("espeak", "-x", text, "-a", Integer.toString(volume), "-s",
@@ -89,6 +118,11 @@ public class TTS implements Serializable {
         processQueue.add(builder);
         if (!alreadyRunning)
             speakNext();
+=======
+        ProcessBuilder builder = new ProcessBuilder("espeak", "-x", text, "-a", Integer.toString(volume), "-s", Integer.toString(speed));
+        processQueue.add(builder);
+        if (!speaking) speakNext();
+>>>>>>> 4b8d47cd76811dd8177b80158de30766a8f20ebf
     }
 
     /**
