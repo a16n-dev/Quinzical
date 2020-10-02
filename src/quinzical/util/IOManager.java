@@ -9,6 +9,7 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import quinzical.model.Question;
 
@@ -41,7 +42,7 @@ public class IOManager {
                         String line;
                         while ((line = br.readLine()) != null) {
                             try {
-                                String[] parts = line.split("|");
+                                String[] parts = line.split("\\|");
                                 int difficulty = Integer.parseInt(parts[0]);
                                 String questionText = parts[1];
                                 String questionPrefix = parts[2];
