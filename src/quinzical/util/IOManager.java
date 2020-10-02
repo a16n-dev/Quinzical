@@ -41,11 +41,12 @@ public class IOManager {
                         String line;
                         while ((line = br.readLine()) != null) {
                             try {
-                                String[] parts = line.split(",");
-                                int value = Integer.parseInt(parts[0]);
+                                String[] parts = line.split("|");
+                                int difficulty = Integer.parseInt(parts[0]);
                                 String questionText = parts[1];
-                                String answer = parts[2];
-                                Question question = new Question(value, questionText, answer);
+                                String questionPrefix = parts[2];
+                                String answer = parts[3];
+                                Question question = new Question(difficulty, questionText, questionPrefix, answer);
 
                                 ArrayList<Question> questions = state.get(categoryName);
                                 if (questions == null) {

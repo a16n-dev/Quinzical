@@ -1,25 +1,31 @@
 package quinzical.model;
 
 import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class Question {
-    private SimpleIntegerProperty value;
+    private SimpleIntegerProperty difficulty;
     private SimpleStringProperty question;
+    private SimpleStringProperty questionPrefix;
     private SimpleStringProperty answer;
 
-    public Question(int value, String question, String answer) {
-        this.value = new SimpleIntegerProperty(value);
+    public Question(int difficulty, String question, String questionPrefix, String answer) {
+        this.difficulty = new SimpleIntegerProperty(difficulty);
         this.question = new SimpleStringProperty(question);
+        this.questionPrefix = new SimpleStringProperty(questionPrefix);
         this.answer = new SimpleStringProperty(answer);
     }
 
     // getters
     public int getValue() {
-        return value.get();
+        return difficulty.get() * 100;
     }
-    public String getQuestion() {
+    public String getHint() {
         return question.get();
+    }
+    public String questionPrefix() {
+        return questionPrefix.get();
     }
     public String getAnswer() {
         return answer.get();
@@ -39,6 +45,6 @@ public class Question {
      * Save the question to a string. This is useful for saving the question to a file
      */
     public String toString() {
-        return Integer.toString(value.get()) + "," + question.get() + "," + answer.get();
+        return String.join("|", new String[] {Integer.toString(difficulty.get()), question.get(), questionPrefix.get(), answer.get()});
     }
 }
