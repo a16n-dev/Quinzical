@@ -93,15 +93,12 @@ public class PracticeAnswerScreenController {
             header.setText("Correct");
             return;
         }
-        else {
-            TTS.getInstance().speak("The correct answer was " + question.getAnswer());
-            if (attemptNumber == 3) {
-                header.setText("The correct answer was:");
-            }
-        }
 
+        TTS.getInstance().speak("The correct answer was " + question.getHint());
+        if (attemptNumber == 3) {
+            header.setText("The correct answer was:");
+        }
         feedback.setText(correct ? "Correct" : "Incorrect." + (attemptNumber == 2 ? "The first character is: " + question.getAnswer().charAt(0) : ""));
-        TTS.getInstance().speak(question.getHint());
         attemptNumber ++;
     }
 }
