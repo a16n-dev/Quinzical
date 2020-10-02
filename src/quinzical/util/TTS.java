@@ -51,27 +51,6 @@ public class TTS implements Serializable {
         speaking = true;
 
         Task<Void> task = new Task<Void>() {
-<<<<<<< HEAD
-            @Override
-            protected Void call() throws Exception {
-                if (processQueue.peek() != null) {
-                    var builder = processQueue.poll();
-
-                    try {
-                        Process p = builder.start();
-                        try {
-                            p.waitFor();
-                            speakNext();
-                        } catch (InterruptedException e) {
-                            System.out.println(e);
-                        }
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                return null;
-            }
-=======
 			@Override
 			protected Void call() throws Exception {
                 System.out.println("speaking new");
@@ -93,7 +72,6 @@ public class TTS implements Serializable {
                 }
                 return null;
 			}
->>>>>>> 4b8d47cd76811dd8177b80158de30766a8f20ebf
         };
         new Thread(task).start();
     }
@@ -110,19 +88,9 @@ public class TTS implements Serializable {
      * @param text
      */
     public void speak(String text) {
-<<<<<<< HEAD
-        boolean alreadyRunning = processQueue.peek() != null;
-
-        ProcessBuilder builder = new ProcessBuilder("espeak", "-x", text, "-a", Integer.toString(volume), "-s",
-                Integer.toString(speed));
-        processQueue.add(builder);
-        if (!alreadyRunning)
-            speakNext();
-=======
         ProcessBuilder builder = new ProcessBuilder("espeak", "-x", text, "-a", Integer.toString(volume), "-s", Integer.toString(speed));
         processQueue.add(builder);
         if (!speaking) speakNext();
->>>>>>> 4b8d47cd76811dd8177b80158de30766a8f20ebf
     }
 
     /**
