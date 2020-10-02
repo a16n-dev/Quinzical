@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" styleClass="background" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.GameBoardController">
    <children>
       <StackPane VBox.vgrow="NEVER">
@@ -24,7 +23,7 @@
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding>
             </Label>
-            <Button mnemonicParsing="false" text="Quit Game" StackPane.alignment="CENTER_LEFT" />
+            <Button mnemonicParsing="false" onAction="#handleGoBack" text="Quit Game" StackPane.alignment="CENTER_LEFT" />
          </children>
          <VBox.margin>
             <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />

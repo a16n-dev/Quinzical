@@ -59,14 +59,11 @@ public class GameBoardController {
 		}
 	}
 
-	public void handleButtonClick(ActionEvent event) throws IOException {
+	@FXML
+	public void handleGoBack(ActionEvent event) throws IOException {
 
-		Parent AnswerScreenView = FXMLLoader.load(getClass().getResource("AnswerScreen.fxml"));
-		Scene AnswerScreenScene = new Scene(AnswerScreenView, 700, 500);
-
-		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		window.setScene(AnswerScreenScene);
-		window.show();
+		game.endGame();
+		Router.show(Views.MAIN_MENU);
 
 	}
 

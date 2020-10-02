@@ -3,14 +3,19 @@ package quinzical.util;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+
+import quinzical.model.Game;
 import quinzical.model.Question;
 
 /**
@@ -18,6 +23,9 @@ import quinzical.model.Question;
  * saving and loading questions and winnings)
  */
 public class IOManager {
+
+    private static String DATAPATH = "./gamedata/";
+
     /**
      * Load the questions from the file
      * 
@@ -132,6 +140,65 @@ public class IOManager {
             writer.close();
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    /**
+     * Writes the current game instance to file.
+     */
+    public static void writeGameState() {
+        System.out.println("Saving to file!");
+        Game game = Game.getInstance();
+
+        try {
+            // Saving of object in a file
+            FileOutputStream file = new FileOutputStream(DATAPATH + "game");
+            ObjectOutputStream out = new ObjectOutputStream(file);
+
+            // Method for serialization of object
+            out.writeObject(game);
+
+            out.close();
+            file.close();
+        }
+
+        catch (IOException ex) {
+            System.out.println(ex.getMessage());
+        }
+    }
+
+    /**
+     * @return the saved game instance, or null if no instance was found
+     */
+    public static Game readGameState() {
+        try {
+            // Reading the object from a file
+            FileInputStream file = new FileInputStream(DATAPATH + "game");
+            ObjectInputStream in = new ObjectInputStream(file);
+
+            // Method for deserialization of object
+            Game game = (Game) in.readObject();
+
+            in.close();
+            file.close();
+            System.out.println("Found existing");
+            return game;
+
+        } 
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        } 
+    }
+
+    public static void clearGameState() {
+        try {
+            System.out.println("Game is null, deleting any saved data");
+            File f = new File(DATAPATH + "game");  
+            f.delete();
+            return;
+        } catch (Exception e) {
+            //TODO: handle exception
         }
     }
 }
