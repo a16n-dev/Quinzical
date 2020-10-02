@@ -5,7 +5,8 @@ public enum Views {
     ANSWER_SCREEN("controller/AnswerScreen.fxml"),
     GAME_BOARD("controller/GameBoard.fxml"),
     PRACTICE_SCREEN("controller/PracticeScreen.fxml"),
-    PRACTICE_ANSWER_SCREEN("controller/PracticeAnswerScreen.fxml")
+    PRACTICE_ANSWER_SCREEN("controller/PracticeAnswerScreen.fxml"),
+    REWARD_SCREEN("controller/RewardScreen.fxml")
     ;
 
     private final String filePath;

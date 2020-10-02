@@ -21,7 +21,7 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField prefHeight="25.0" prefWidth="250.0" HBox.hgrow="ALWAYS">
+            <TextField fx:id="text" prefHeight="25.0" prefWidth="250.0" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="50.0" />
                </HBox.margin>
