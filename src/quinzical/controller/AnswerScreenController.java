@@ -32,7 +32,7 @@ public class AnswerScreenController {
 			game.addScore(game.getCurrentQuestion().getValue());
 		}
 		
-		String content = "Your current score is: " + game.getScore();
+		String content = "Your current score is: " + game.getScore().intValue();
 		
 		// Alert box to inform user of score and whether answer was correct
 		Alert alert = new Alert(AlertType.INFORMATION);
