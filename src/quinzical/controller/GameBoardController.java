@@ -44,7 +44,7 @@ public class GameBoardController {
 			for (int j = 0; j < questions.size(); j++) {
 				Question question = questions.get(j);
 				// Place label
-				Button button = new Button();
+				Button button = new Button("$" + question.getValue());
 				grid.add(button, i, j+1);
 			}
 		}
