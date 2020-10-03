@@ -78,14 +78,14 @@
                         <Pane maxHeight="48.0" minHeight="16.0" VBox.vgrow="ALWAYS" />
                         <VBox spacing="8.0" styleClass="panel">
                            <children>
-                              <Label text="Trophy Case" textFill="WHITE">
+                              <Label text="Medals" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="16.0" />
                                  </font>
                               </Label>
                               <HBox spacing="8.0">
                                  <children>
-                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="VIEW TROPHIES" HBox.hgrow="ALWAYS" />
+                                    <Button maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#handleViewTrophyCase" text="VIEW EARNED MEDALS" HBox.hgrow="ALWAYS" />
                                  </children>
                               </HBox>
                            </children>
@@ -143,7 +143,6 @@
             <HBox spacing="16.0" styleClass="panel">
                <children>
                   <Button mnemonicParsing="false" text="SETTINGS" />
-                  <Button mnemonicParsing="false" text="MY ACCOUNT" />
                </children>
                <padding>
                   <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />

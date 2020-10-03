@@ -21,8 +21,7 @@ public class App extends Application {
         // Setup router
         BorderPane container = (BorderPane) Router.loadFXML("controller/GameContainer.fxml");
 
-        User user = User.getInstance();
-        Scene scene = new Scene(container, user.getPrefWidth(), user.getPrefHeight());
+        Scene scene = new Scene(container, 1200, 800);
         s.setScene(scene);
 
         Router.setContainer(container);

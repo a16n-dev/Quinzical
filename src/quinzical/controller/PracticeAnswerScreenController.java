@@ -28,7 +28,8 @@ public class PracticeAnswerScreenController {
     private Question question;
     // public Button button;
     // public Button repeatHint;
-    // public Label feedback;
+    public Label hint;
+    public Label hintLetter;
     public TextField input;
     // public VBox parent;
     // public HBox answerContainer;
@@ -88,7 +89,7 @@ public class PracticeAnswerScreenController {
         if (game.getAttempts() == 3) {
             // header.setText("The correct answer was:");
         }
-        // feedback.setText(correct ? "Correct" : "Incorrect." + (game.getAttempts() == 2 ? "The first character is: " + question.getAnswer().charAt(0) : ""));
+        hint.setText(correct ? "Correct" : "Incorrect." + (game.getAttempts() == 1 ? "The first character is: " + question.getAnswer().charAt(0) : ""));
         game.addAttempt();
     }
 

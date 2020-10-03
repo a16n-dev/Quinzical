@@ -76,6 +76,10 @@ public class MainMenuController {
     public void handlePracticeGame() {
 		Router.show(Views.PRACTICE_SCREEN);
 	}
+
+	@FXML void handleViewTrophyCase(){
+		Router.show(Views.TROPHY_CASE);
+	}
 	
 	// public void handleSpeechVolumeSliderChange(ObservableValue<Number> ovn, Number before, Number after) {
 	// 	TTS.getInstance().setVolume(after.intValue());

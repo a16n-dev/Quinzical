@@ -24,7 +24,7 @@ public class GameTopBarController {
 	 */
 	public void initialize() {
 		//Hide the score if in practice mode
-		if(Router.getGameState() == 2){
+		if(Router.getGameState() != 1){
 			scoreCard.setVisible(false);
 			scoreCard.setManaged(false);
 		}else {

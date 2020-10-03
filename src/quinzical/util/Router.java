@@ -31,6 +31,9 @@ public class Router {
      */
     public static void show(Views fxml) {
 
+        //Clear the TTS queue
+        TTS.getInstance().clearQueue();
+
         // Update the game state
         switch(fxml){
             case ANSWER_SCREEN:

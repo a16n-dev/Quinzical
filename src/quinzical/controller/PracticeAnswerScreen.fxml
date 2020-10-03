@@ -90,32 +90,41 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <HBox alignment="CENTER_LEFT" maxWidth="600.0" spacing="8.0" styleClass="panel">
-               <children>
-                  <Label alignment="BOTTOM_LEFT" text="What is" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="input" onAction="#onSubmit" HBox.hgrow="ALWAYS">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                     <padding>
-                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                     </padding>
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </TextField>
-               </children>
+            <VBox alignment="CENTER" maxWidth="600.0" spacing="8.0" styleClass="panel">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
+               <children>
+                  <HBox alignment="CENTER_LEFT" maxWidth="600.0" spacing="8.0">
+                     <children>
+                        <Label alignment="BOTTOM_LEFT" text="What is" textFill="WHITE">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="input" onAction="#onSubmit" HBox.hgrow="ALWAYS">
+                           <HBox.margin>
+                              <Insets />
+                           </HBox.margin>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </HBox>
+                  <Label fx:id="hint" contentDisplay="RIGHT" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+               </children>
                <padding>
-                  <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
+                  <Insets bottom="16.0" left="32.0" right="32.0" top="32.0" />
                </padding>
-            </HBox>
+            </VBox>
             <Button fx:id="button" alignment="CENTER" mnemonicParsing="false" onAction="#onSubmit" text="Submit">
                <font>
                   <Font size="24.0" />

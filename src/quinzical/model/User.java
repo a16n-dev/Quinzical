@@ -41,6 +41,11 @@ public class User implements Serializable{
     private User(){
         prefWidth = 1000;
         prefHeight = 600;
+        _rewards.put(Reward.Diamond, 0);
+        _rewards.put(Reward.Platinum, 0);
+        _rewards.put(Reward.Gold, 0);
+        _rewards.put(Reward.Silver, 0);
+        _rewards.put(Reward.Bronze, 0);
     }
 
     /**
@@ -60,21 +65,17 @@ public class User implements Serializable{
     	
     	if (score == 7500) {
     		reward = Reward.Diamond;
-    		_rewards.compute(reward, (k, v) -> (v == null) ? 1 : v + 1);
     	} else if (score >= 6000) {
 			reward = Reward.Platinum;
-			_rewards.compute(reward, (k, v) -> (v == null) ? 1 : v + 1);
 		} else if (score >= 4500) {
 			reward = Reward.Gold;
-			_rewards.compute(reward, (k, v) -> (v == null) ? 1 : v + 1);
 		} else if (score >= 3000) {
 			reward = Reward.Silver;
-			_rewards.compute(reward, (k, v) -> (v == null) ? 1 : v + 1);
 		} else {
 			reward = Reward.Bronze;
-			_rewards.compute(reward, (k, v) -> (v == null) ? 1 : v + 1);
-		}
-
+			
+        }
+        _rewards.compute(reward, (k, v) -> (v == null) ? 1 : v + 1);
         persist();
         
         return reward;

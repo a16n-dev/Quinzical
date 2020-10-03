@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.TrophyCaseController">
+   <children>
+      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <center>
+            <HBox maxHeight="-Infinity" maxWidth="-Infinity" spacing="32.0">
+               <children>
+                  <StackPane maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="200.0" stylesheets="@../resources/css/style.css">
+                     <children>
+                        <AnchorPane styleClass="panel">
+                           <StackPane.margin>
+                              <Insets top="40.0" />
+                           </StackPane.margin>
+                        </AnchorPane>
+                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                           <children>
+                              <ImageView fitHeight="200.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/images/md_diamond.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Diamond" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Medals Awarded" textFill="#b5b5b5">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="diamond" text="3" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="16.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+                  <StackPane maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="200.0" stylesheets="@../resources/css/style.css">
+                     <children>
+                        <AnchorPane styleClass="panel">
+                           <StackPane.margin>
+                              <Insets top="40.0" />
+                           </StackPane.margin>
+                        </AnchorPane>
+                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                           <children>
+                              <ImageView fitHeight="200.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/images/md_platinum.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Platinum" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Medals Awarded" textFill="#b5b5b5">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="platinum" text="3" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="16.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+                  <StackPane maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="200.0" stylesheets="@../resources/css/style.css">
+                     <children>
+                        <AnchorPane styleClass="panel">
+                           <StackPane.margin>
+                              <Insets top="40.0" />
+                           </StackPane.margin>
+                        </AnchorPane>
+                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                           <children>
+                              <ImageView fitHeight="201.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/images/md_gold.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Gold" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Medals Awarded" textFill="#b5b5b5">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="gold" text="3" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="16.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+                  <StackPane maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="200.0" stylesheets="@../resources/css/style.css">
+                     <children>
+                        <AnchorPane styleClass="panel">
+                           <StackPane.margin>
+                              <Insets top="40.0" />
+                           </StackPane.margin>
+                        </AnchorPane>
+                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                           <children>
+                              <ImageView fitHeight="201.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/images/md_silver.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Silver" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Medals Awarded" textFill="#b5b5b5">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="silver" text="3" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="16.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+                  <StackPane maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="200.0" stylesheets="@../resources/css/style.css">
+                     <children>
+                        <AnchorPane styleClass="panel">
+                           <StackPane.margin>
+                              <Insets top="40.0" />
+                           </StackPane.margin>
+                        </AnchorPane>
+                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                           <children>
+                              <ImageView fitHeight="201.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/images/md_bronze.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Bronze" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Medals Awarded" textFill="#b5b5b5">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="bronze" text="3" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="16.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+               </children>
+            </HBox>
+         </center>
+         <top>
+            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+               <center>
+                  <Label text="Medals" textFill="WHITE" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="36.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets bottom="32.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </center>
+            </BorderPane>
+         </top>
+      </BorderPane>
+   </children>
+</AnchorPane>
