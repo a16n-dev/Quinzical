@@ -17,6 +17,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import quinzical.model.PracticeGame;
 import quinzical.model.Question;
+import quinzical.util.Router;
 import quinzical.util.TTS;
 
 public class PracticeAnswerScreenController {
@@ -59,33 +60,13 @@ public class PracticeAnswerScreenController {
 
             Button next = new Button("Another question.");
             next.setOnAction(event2 -> {
-                try {
-                    Parent PracticeScreenView = FXMLLoader.load(getClass().getResource("PracticeAnswerScreen.fxml"));
-                    Scene PracticeScreenScene = new Scene(PracticeScreenView, 700, 500);
-                    
-                    Stage window = (Stage)((Node)event2.getSource()).getScene().getWindow();
-                    window.setScene(PracticeScreenScene);
-                    window.show(); 
-                }
-                catch (IOException e) {
-                    System.out.println(e);
-                }
+                Router.show(Views.PRACTICE_ANSWER_SCREEN);
             });
             parent.getChildren().add(next);
 
             Button back = new Button("Return to menu.");
             back.setOnAction(event2 -> {
-                try {
-                    Parent PracticeScreenView = FXMLLoader.load(getClass().getResource("MainMenu.fxml"));
-                    Scene PracticeScreenScene = new Scene(PracticeScreenView, 700, 500);
-                    
-                    Stage window = (Stage)((Node)event2.getSource()).getScene().getWindow();
-                    window.setScene(PracticeScreenScene);
-                    window.show(); 
-                }
-                catch (IOException e) {
-                    System.out.println(e);
-                }
+                Router.show(Views.MAIN_MENU);
             });
             parent.getChildren().add(back);
         }

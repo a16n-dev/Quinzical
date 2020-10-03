@@ -32,10 +32,4 @@ public class Practice extends QuinzicalGame{
         _currentQuestionAttempts += 1;
         return _currentQuestionAttempts;
     }
-
-    @Override
-    public void newGame() {
-        // TODO Auto-generated method stub
-
-    }
 }

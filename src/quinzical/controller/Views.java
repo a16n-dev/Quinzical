@@ -23,7 +23,7 @@ import quinzical.components.Component;
  * The order is VIEW([center],[top],[right],[bottom],[left])
  */
 public enum Views {
-    MAIN_MENU("controller/MainMenu.fxml", Component.TITLE.path(), null, null, null),
+    MAIN_MENU("controller/MainMenu.fxml", null, null, null, null),
     ANSWER_SCREEN("controller/AnswerScreen.fxml", Component.GAME_TITLE.path(), null, null, null),
     GAME_BOARD("controller/GameBoard.fxml", Component.GAME_TITLE.path(), null, null, null),
     PRACTICE_SCREEN("controller/PracticeScreen.fxml", Component.TITLE.path(), null, null, null),

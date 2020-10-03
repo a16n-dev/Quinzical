@@ -5,6 +5,7 @@ import java.util.Observable;
 
 import javafx.beans.value.ObservableValue;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.Slider;
@@ -18,7 +19,12 @@ import quinzical.util.TTS;
 
 public class MainMenuController {
 
-	public Button buttonGame, buttonPractice;
+	@FXML
+	public Button newGame;
+	@FXML
+	public Button resumeGame;
+	@FXML
+	public Button practiceGame;
 	public Slider sliderSpeed;
 	public Slider sliderVolume;
     /**
@@ -28,9 +34,10 @@ public class MainMenuController {
 	 */
 
 	public void initialize() {
-		System.out.println(TTS.getInstance().getSpeed());
-		sliderSpeed.setValue(TTS.getInstance().getSpeed());
-		sliderVolume.setValue(TTS.getInstance().getVolume());
+		if(!Game.isInProgress()){
+			resumeGame.setVisible(false);
+			resumeGame.setManaged(false);
+		}
 	}
 
     public void handleGameButtonClick(ActionEvent event) throws IOException {
@@ -46,17 +53,29 @@ public class MainMenuController {
 		Router.show(Views.GAME_BOARD);
     
     } 
-    
-    public void handlePracticeButtonClick(ActionEvent event) throws IOException {
+	
+	@FXML
+    public void handleNewGame() {
+		Game.clearGame();
+		Router.show(Views.GAME_BOARD);
+	}
+
+	@FXML
+    public void handleResumeGame() {
+		Router.show(Views.GAME_BOARD);
+	}
+
+	@FXML
+    public void handlePracticeGame() {
 		Router.show(Views.PRACTICE_SCREEN);
 	}
 	
-	public void handleSpeechVolumeSliderChange(ObservableValue<Number> ovn, Number before, Number after) {
-		TTS.getInstance().setVolume(after.intValue());
-	}
+	// public void handleSpeechVolumeSliderChange(ObservableValue<Number> ovn, Number before, Number after) {
+	// 	TTS.getInstance().setVolume(after.intValue());
+	// }
 
-	public void handleSpeechSpeedSliderChange(ObservableValue<Number> ovn, Number before, Number after) {
-		TTS.getInstance().setSpeed(after.intValue());
-	}
+	// public void handleSpeechSpeedSliderChange(ObservableValue<Number> ovn, Number before, Number after) {
+	// 	TTS.getInstance().setSpeed(after.intValue());
+	// }
     
 }

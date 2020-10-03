@@ -21,12 +21,14 @@ public class App extends Application {
     @Override
     public void start(Stage s) {
         this._stage = s;
+        this._stage.setMinWidth(800);
+        this._stage.setMinHeight(600);
         this._stage.setTitle("Quinzical");
         // Setup router
         BorderPane container = (BorderPane) Router.loadFXML("controller/GameContainer.fxml");
 
         User user = User.getInstance();
-        Scene scene = new Scene(container);
+        Scene scene = new Scene(container, user.getPrefWidth(), user.getPrefHeight());
         s.setScene(scene);
 
         Router.setContainer(container);

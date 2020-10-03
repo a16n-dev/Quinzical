@@ -25,11 +25,5 @@ public class PracticeGame extends QuinzicalGame {
     }
     public void setRandomQuestion() {
         setCurrentQuestion(questionBank.getRandomQuestions(currentCategory, 1, false).get(0));
-    }
-
-    @Override
-    public void newGame() {
-        _instance = new PracticeGame();
-    }
-    
+    }   
 }
