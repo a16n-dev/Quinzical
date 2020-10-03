@@ -22,14 +22,14 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="text" prefHeight="25.0" prefWidth="250.0" HBox.hgrow="ALWAYS">
+            <TextField fx:id="input" onAction="#onSubmit" prefHeight="25.0" prefWidth="250.0" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="50.0" />
                </HBox.margin>
             </TextField>
          </children>
       </HBox>
-      <Button fx:id="button" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonClick" text="Submit">
+      <Button fx:id="button" alignment="CENTER" mnemonicParsing="false" onAction="#onSubmit" text="Submit">
          <font>
             <Font size="15.0" />
          </font>

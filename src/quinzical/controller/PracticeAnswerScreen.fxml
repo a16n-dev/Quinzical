@@ -19,7 +19,7 @@
       <HBox fx:id="answerContainer" alignment="CENTER" spacing="20.0">
          <children>
             <Label text="Please enter your answer: " />
-            <TextField fx:id="input" />
+            <TextField fx:id="input" onAction="#onSubmit" />
          </children>
          <VBox.margin>
             <Insets top="25.0" />
