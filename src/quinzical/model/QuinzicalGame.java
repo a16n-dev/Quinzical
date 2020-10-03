@@ -24,9 +24,4 @@ public abstract class QuinzicalGame {
     protected void setCurrentQuestion(Question question){
         currentQuestion = question;
     }
-
-    /**
-     * Method to start a new game
-     */
-    public abstract void newGame();
 }

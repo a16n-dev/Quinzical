@@ -30,10 +30,9 @@ public class Router {
     public static void show(Views fxml) {
 
             //Place the content into the container
-                container.setCenter(loadFXML(fxml.getCenter()));
+            container.setCenter(loadFXML(fxml.getCenter()));
             
-            
-                container.setTop(loadFXML(fxml.getTop()));
+            container.setTop(loadFXML(fxml.getTop()));
             
             if(fxml.getRight() != null){
                 container.setRight(loadFXML(fxml.getRight()));
@@ -62,20 +61,26 @@ public class Router {
         container = p;
     }
 
+    //TODO: Move this. This does not belong inside of the router class and should be moved to another util file.
+    //      Possibly IOmanager?
     public static Node loadFXML(String fxml) {
-        try {
-            FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(App.class.getResource(fxml.toString()));
-            Node node = (Node) loader.load();
-
-            return node;
-
-        } catch (Exception e) {
-            e.printStackTrace();
-            return null;
+        if(fxml != null){
+            try {
+                FXMLLoader loader = new FXMLLoader();
+                loader.setLocation(App.class.getResource(fxml.toString()));
+                Node node = (Node) loader.load();
+    
+                return node;
+    
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
         }
+        return null;
     }
 
+    //TODO: Move this. This does not belong inside of the router class and should be moved to another util file.
+    //      Possibly IOmanager?
     public static FXMLLoader manualLoad(String fxml) {
         try {
             FXMLLoader loader = new FXMLLoader();

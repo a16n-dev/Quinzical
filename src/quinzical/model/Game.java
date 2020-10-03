@@ -84,19 +84,21 @@ public class Game extends QuinzicalGame implements Serializable {
         return _instance;
     }
 
+    public static boolean isInProgress(){
+        return _instance != null;
+    }
+
     /**
      * Starts a new game
      */
-    @Override
-    public void newGame() {
-        System.out.println("Bruh");
+    public static void newGame() {
         _instance = new Game();
     }
 
     /**
      * Ends the current game
      */
-    public void endGame(){
+    public static void clearGame(){
         _instance = null;
         persist();
     }
