@@ -9,9 +9,14 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
+import quinzical.components.CategoryListItemController;
+import quinzical.components.Component;
 import quinzical.model.PracticeGame;
+import quinzical.util.QuestionBank;
 import quinzical.util.Router;
 
 public class PracticeScreenController {
@@ -23,14 +28,26 @@ public class PracticeScreenController {
 		game = PracticeGame.getInstance();
 		var categories = game.getCategories();
 		for (String category : categories) {
-			Button button = new Button(category);
-			button.setOnAction(event -> {
-				game.setCurrentCategory(category);
+			FXMLLoader loader = Router.manualLoad(Component.CATEGORY_LIST_ITEM.path());
+			try {
+				Node node = (Node) loader.load();
+			
 
-				Router.show(Views.PRACTICE_ANSWER_SCREEN);
+			CategoryListItemController controller = loader.getController();
+			controller.config(category, QuestionBank.getInstance().getQuestionsByCategory(category).size());
 
-			});
-			panel.getChildren().add(button);
+			// Button button = new Button(category);
+			// button.setOnAction(event -> {
+			// 	game.setCurrentCategory(category);
+
+			// 	Router.show(Views.PRACTICE_ANSWER_SCREEN);
+
+			// });
+			panel.getChildren().add(node);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		}
 	}
 }

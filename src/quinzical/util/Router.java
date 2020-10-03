@@ -29,9 +29,9 @@ public class Router {
     public static void show(Views fxml) {
 
             //Place the content into the container
-            if(fxml.getCenter() != null){
+            
                 container.setCenter(loadFXML(fxml.getCenter()));
-            }
+            
             
                 container.setTop(loadFXML(fxml.getTop()));
             
@@ -71,6 +71,19 @@ public class Router {
             return node;
 
         } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static FXMLLoader manualLoad(String fxml) {
+        try {
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(App.class.getResource(fxml.toString()));
+            return loader;
+
+        } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
     }

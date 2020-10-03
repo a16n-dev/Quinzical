@@ -1,26 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<?import java.net.*?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="25.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.PracticeScreenController">
+
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.PracticeScreenController">
    <children>
-      <Label text="Please select a category to receive a practice question:">
-         <VBox.margin>
-            <Insets top="50.0" />
-         </VBox.margin>
-      </Label>
-      <VBox fx:id="panel">
-         <VBox.margin>
-            <Insets left="25.0" right="25.0" />
-         </VBox.margin>
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label text="Please select a category to receive a practice question:">
+               <VBox.margin>
+                  <Insets top="50.0" />
+               </VBox.margin>
+            </Label>
+            <ScrollPane hbarPolicy="NEVER">
+               <content>
+                  <VBox fx:id="panel" alignment="CENTER" spacing="16.0" />
+               </content>
+            </ScrollPane>
+         </children>
+         <stylesheets>
+            <URL value="@../resources/css/style.css" />
+        </stylesheets>
       </VBox>
    </children>
-   <stylesheets>
-      <URL value="@../resources/css/style.css" />
-  </stylesheets>
-</VBox>
+</AnchorPane>

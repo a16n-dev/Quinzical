@@ -155,4 +155,8 @@ public class QuestionBank {
     public ArrayList<String> getCategories() {
         return new ArrayList<String>(_questionBank.keySet());
     }
+
+    public ArrayList<Question> getQuestionsByCategory(String category){
+        return _questionBank.get(category);
+    }
 }
