@@ -11,6 +11,7 @@
 
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" spacing="25.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.AnswerScreenController">
    <children>
+      <Label fx:id="labelHint" />
       <HBox alignment="CENTER" spacing="25.0">
          <children>
             <Label text="Please enter your answer:" HBox.hgrow="ALWAYS">
@@ -21,18 +22,19 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="text" prefHeight="25.0" prefWidth="250.0" HBox.hgrow="ALWAYS">
+            <TextField fx:id="input" onAction="#onSubmit" prefHeight="25.0" prefWidth="250.0" HBox.hgrow="ALWAYS">
                <HBox.margin>
                   <Insets right="50.0" />
                </HBox.margin>
             </TextField>
          </children>
       </HBox>
-      <Button fx:id="button" alignment="CENTER" mnemonicParsing="false" onAction="#handleButtonClick" text="Submit">
+      <Button fx:id="button" alignment="CENTER" mnemonicParsing="false" onAction="#onSubmit" text="Submit">
          <font>
             <Font size="15.0" />
          </font>
       </Button>
+      <Button fx:id="buttonUnsure" onAction="#onUnsure" text="Don't know" />
    </children>
    <stylesheets>
       <URL value="@../resources/css/style.css" />

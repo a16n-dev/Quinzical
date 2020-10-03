@@ -23,6 +23,7 @@ public class PracticeAnswerScreenController {
     private PracticeGame game;
     private Question question;
     public Button button;
+    public Button repeatHint;
     public Label labelHint;
     public Label feedback;
     public TextField input;
@@ -52,6 +53,7 @@ public class PracticeAnswerScreenController {
             parent.getChildren().remove(button);
             parent.getChildren().remove(input);
             parent.getChildren().remove(labelHint);
+            parent.getChildren().remove(repeatHint);
             answerContainer.getChildren().clear();
             answerContainer.getChildren().add(new Label(question.getAnswer()));
 
@@ -94,11 +96,14 @@ public class PracticeAnswerScreenController {
             return;
         }
 
-        TTS.getInstance().speak("The correct answer was " + question.getHint());
+        TTS.getInstance().speak(question.getHint());
         if (attemptNumber == 3) {
             header.setText("The correct answer was:");
         }
         feedback.setText(correct ? "Correct" : "Incorrect." + (attemptNumber == 2 ? "The first character is: " + question.getAnswer().charAt(0) : ""));
         attemptNumber ++;
+    }
+    public void onRepeatHint() {
+        TTS.getInstance().speak(question.getHint());
     }
 }
