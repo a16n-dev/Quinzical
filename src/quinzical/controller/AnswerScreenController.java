@@ -1,6 +1,7 @@
 package quinzical.controller;
 
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
@@ -17,9 +18,18 @@ public class AnswerScreenController {
 	
 	public Button button;
 	public Button buttonUnsure;
-	public Label labelHint;
+	
 	public TextField input;
 	public VBox textWrapper;
+
+	@FXML
+	public Label hintText;
+
+	@FXML
+	private Label categoryName;
+
+	@FXML
+	private Label ValueText;
     
 	// stores a reference to the current game being played
 	private Game game;
@@ -29,9 +39,13 @@ public class AnswerScreenController {
 		game = Game.getInstance();
 		question = game.getCurrentQuestion();
 		TTS.getInstance().speak(question.getHint());
-		labelHint.setText(question.getHint());
 
-		Macron.getInstance().bindToTextField(input, textWrapper);
+		//Fill text
+		categoryName.setText(game.getCurrentCategory());
+		ValueText.setText("$" + question.getValue());
+		hintText.setText(question.getHint());
+
+		// Macron.getInstance().bindToTextField(input, textWrapper);
 	}
 
 	public void onSubmit(ActionEvent event) {
@@ -70,5 +84,10 @@ public class AnswerScreenController {
 			"Answer was: " + question.getAnswer(),
 			"Your current score is: " + game.getScore().intValue()
 		);
+	}
+
+	@FXML
+	public void repeatClue(){
+		TTS.getInstance().speak(question.getHint());
 	}
 }

@@ -7,6 +7,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import quinzical.controller.Views;
 import quinzical.model.Game;
 import quinzical.util.Router;
@@ -15,12 +16,21 @@ public class GameTopBarController {
     @FXML
 	private Label scoreLabel;
 
+	@FXML
+	private HBox scoreCard;
+
 	/**
 	 * This method is called once the fxml has been loaded
 	 */
 	public void initialize() {
-		SimpleIntegerProperty score = Game.getInstance().getScore();
-		scoreLabel.textProperty().bind(Bindings.convert(score));
+		//Hide the score if in practice mode
+		if(Router.getGameState() == 2){
+			scoreCard.setVisible(false);
+			scoreCard.setManaged(false);
+		}else {
+			SimpleIntegerProperty score = Game.getInstance().getScore();
+			scoreLabel.textProperty().bind(Bindings.convert(score));	
+		}
 	}
 
 	@FXML

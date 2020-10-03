@@ -26,8 +26,8 @@ public enum Views {
     MAIN_MENU("controller/MainMenu.fxml", null, null, null, null),
     ANSWER_SCREEN("controller/AnswerScreen.fxml", Component.GAME_TITLE.path(), null, null, null),
     GAME_BOARD("controller/GameBoard.fxml", Component.GAME_TITLE.path(), null, null, null),
-    PRACTICE_SCREEN("controller/PracticeScreen.fxml", Component.TITLE.path(), null, null, null),
-    PRACTICE_ANSWER_SCREEN("controller/PracticeAnswerScreen.fxml", Component.TITLE.path(), null, null, null),
+    PRACTICE_SCREEN("controller/PracticeScreen.fxml", Component.GAME_TITLE.path(), null, null, null),
+    PRACTICE_ANSWER_SCREEN("controller/PracticeAnswerScreen.fxml", Component.GAME_TITLE.path(), null, null, null),
     REWARD_SCREEN("controller/RewardScreen.fxml", Component.TITLE.path(), null, null, null),
     ;
     private final String center;

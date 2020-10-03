@@ -19,6 +19,8 @@ public class Router {
 
     private static BorderPane container;
 
+    private static int gameState = 0; // 0 is menu, 1 is game, 2 is practice
+
     // Represents the history of the pages the user has visited
     private static Deque<Views> history = new ArrayDeque<Views>();
 
@@ -29,24 +31,43 @@ public class Router {
      */
     public static void show(Views fxml) {
 
-            //Place the content into the container
-            container.setCenter(loadFXML(fxml.getCenter()));
-            
-            container.setTop(loadFXML(fxml.getTop()));
-            
-            if(fxml.getRight() != null){
-                container.setRight(loadFXML(fxml.getRight()));
-            }
-            if(fxml.getBottom() != null){
-                container.setBottom(loadFXML(fxml.getBottom()));
-            }
-            if(fxml.getLeft() != null){
-                container.setLeft(loadFXML(fxml.getLeft()));
-            }
+        // Update the game state
+        switch(fxml){
+            case ANSWER_SCREEN:
+                gameState = 1;
+				break;
+            case GAME_BOARD:
+                gameState = 1;
+				break;
+            case MAIN_MENU:
+                gameState = 0;
+				break;
+            case PRACTICE_ANSWER_SCREEN:
+                gameState = 2;
+				break;
+            case PRACTICE_SCREEN:
+                gameState = 2;
+				break;
+            case REWARD_SCREEN:
+                gameState = 1;
+				break;
+			default:
+				break;
+        }
 
+        // Place the content into the container
+        container.setCenter(loadFXML(fxml.getCenter()));
 
-            // If it was all successful add screen to history
-            history.add(fxml);
+        container.setTop(loadFXML(fxml.getTop()));
+
+        container.setRight(loadFXML(fxml.getRight()));
+
+        container.setBottom(loadFXML(fxml.getBottom()));
+
+        container.setLeft(loadFXML(fxml.getLeft()));
+
+        // If it was all successful add screen to history
+        history.add(fxml);
 
     }
 
@@ -61,17 +82,18 @@ public class Router {
         container = p;
     }
 
-    //TODO: Move this. This does not belong inside of the router class and should be moved to another util file.
-    //      Possibly IOmanager?
+    // TODO: Move this. This does not belong inside of the router class and should
+    // be moved to another util file.
+    // Possibly IOmanager?
     public static Node loadFXML(String fxml) {
-        if(fxml != null){
+        if (fxml != null) {
             try {
                 FXMLLoader loader = new FXMLLoader();
                 loader.setLocation(App.class.getResource(fxml.toString()));
                 Node node = (Node) loader.load();
-    
+
                 return node;
-    
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -79,8 +101,9 @@ public class Router {
         return null;
     }
 
-    //TODO: Move this. This does not belong inside of the router class and should be moved to another util file.
-    //      Possibly IOmanager?
+    // TODO: Move this. This does not belong inside of the router class and should
+    // be moved to another util file.
+    // Possibly IOmanager?
     public static FXMLLoader manualLoad(String fxml) {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -91,5 +114,9 @@ public class Router {
             e.printStackTrace();
             return null;
         }
+    }
+
+    public static int getGameState(){
+        return gameState;
     }
 }

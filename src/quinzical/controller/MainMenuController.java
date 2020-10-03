@@ -41,17 +41,7 @@ public class MainMenuController {
 	}
 
     public void handleGameButtonClick(ActionEvent event) throws IOException {
-		// TTS.getInstance().speak("hello test");
-
-    	// Parent gameBoardView = FXMLLoader.load(getClass().getResource("GameBoard.fxml"));
-    	// Scene gameBoardScene = new Scene(gameBoardView, 700, 500);
-    	
-    	// Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-    	// window.setScene(gameBoardScene);
-		// window.show();
-		
 		Router.show(Views.GAME_BOARD);
-    
     } 
 	
 	@FXML

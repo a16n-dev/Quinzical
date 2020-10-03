@@ -2,33 +2,23 @@
 
 <?import java.net.URL?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.GameBoardController">
    <children>
-      <StackPane VBox.vgrow="NEVER">
-         <children>
-            <Label text="Question Board" StackPane.alignment="CENTER">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-               <padding>
-                  <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-               </padding>
-            </Label>
-            <Button mnemonicParsing="false" onAction="#handleGoBack" text="Quit Game" StackPane.alignment="CENTER_LEFT" />
-         </children>
-         <VBox.margin>
-            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
-         </VBox.margin>
-      </StackPane>
+      <Label text="Question Board">
+         <font>
+            <Font name="System Bold" size="20.0" />
+         </font>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
+      </Label>
       <Label text="Select a question to answer" />
       <GridPane fx:id="grid" alignment="CENTER" maxHeight="600.0" VBox.vgrow="ALWAYS">
         <columnConstraints>

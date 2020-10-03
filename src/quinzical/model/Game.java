@@ -29,6 +29,8 @@ public class Game extends QuinzicalGame implements Serializable {
 
     private static final int questionCount = 5;
 
+    private String currentCategory;
+
     private Game() {
         _score = new SimpleIntegerProperty();
         _questions = new HashMap<String, ArrayList<Question>>();
@@ -66,6 +68,7 @@ public class Game extends QuinzicalGame implements Serializable {
      */
     public void setCurrentQuestion(String category, int index) {
         Question q = _questions.get(category).get(index);
+        currentCategory = category;
         setCurrentQuestion(q);
         q.setAnswered(true);
         persist();
@@ -78,13 +81,13 @@ public class Game extends QuinzicalGame implements Serializable {
             _instance = IOManager.readState(State.GAME);
             if (_instance == null) {
                 _instance = new Game();
-                persist();
             }
         }
         return _instance;
     }
 
     public static boolean isInProgress(){
+        _instance = IOManager.readState(State.GAME);
         return _instance != null;
     }
 
@@ -122,6 +125,10 @@ public class Game extends QuinzicalGame implements Serializable {
             count+=rem.size();
         }
         return count;
+    }
+
+    public String getCurrentCategory(){
+        return currentCategory;
     }
 
     /**
