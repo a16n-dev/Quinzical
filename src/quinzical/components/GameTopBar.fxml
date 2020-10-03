@@ -43,6 +43,6 @@
       </HBox>
    </center>
    <right>
-      <Button mnemonicParsing="false" text="SETTINGS" BorderPane.alignment="CENTER" />
+      <Button mnemonicParsing="false" onAction="#showSettings" text="SETTINGS" BorderPane.alignment="CENTER" />
    </right>
 </BorderPane>

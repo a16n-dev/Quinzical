@@ -10,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import quinzical.controller.Views;
 import quinzical.model.Game;
+import quinzical.util.Modal;
 import quinzical.util.Router;
 
 public class GameTopBarController {
@@ -36,5 +37,10 @@ public class GameTopBarController {
 	@FXML
 	public void handleGoBack(ActionEvent event) throws IOException {
 		Router.show(Views.MAIN_MENU);
+	}
+
+	@FXML
+	public void showSettings(){
+		Modal.show();
 	}
 }

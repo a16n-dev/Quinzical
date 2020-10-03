@@ -142,7 +142,7 @@
             </GridPane>
             <HBox spacing="16.0" styleClass="panel">
                <children>
-                  <Button mnemonicParsing="false" text="SETTINGS" />
+                  <Button mnemonicParsing="false" onAction="#showSettings" text="SETTINGS" />
                </children>
                <padding>
                   <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />

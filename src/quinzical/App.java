@@ -2,10 +2,13 @@ package quinzical;
 
 import quinzical.controller.Views;
 import quinzical.model.User;
+import quinzical.util.Modal;
 import quinzical.util.Router;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
 public class App extends Application {
@@ -19,12 +22,13 @@ public class App extends Application {
         this._stage.setMinHeight(600);
         this._stage.setTitle("Quinzical");
         // Setup router
-        BorderPane container = (BorderPane) Router.loadFXML("controller/GameContainer.fxml");
+        StackPane container = (StackPane) Router.loadFXML("controller/GameContainer.fxml");
 
         Scene scene = new Scene(container, 1200, 800);
         s.setScene(scene);
 
-        Router.setContainer(container);
+        Router.setContainer((BorderPane) container.lookup("#content"));
+        Modal.setModalContainer((AnchorPane) container.lookup("#ModalContainer"));
         Router.show(Views.MAIN_MENU);
         attachListeners();
         s.show();

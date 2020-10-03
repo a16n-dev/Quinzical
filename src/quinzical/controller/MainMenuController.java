@@ -18,6 +18,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import quinzical.model.Game;
+import quinzical.util.Modal;
 import quinzical.util.Router;
 import quinzical.util.TTS;
 
@@ -77,8 +78,14 @@ public class MainMenuController {
 		Router.show(Views.PRACTICE_SCREEN);
 	}
 
-	@FXML void handleViewTrophyCase(){
+	@FXML 
+	public void handleViewTrophyCase(){
 		Router.show(Views.TROPHY_CASE);
+	}
+
+	@FXML
+	public void showSettings(){
+		Modal.show();
 	}
 	
 	// public void handleSpeechVolumeSliderChange(ObservableValue<Number> ovn, Number before, Number after) {
