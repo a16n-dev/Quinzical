@@ -2,7 +2,10 @@ package quinzical.controller;
 
 import java.io.IOException;
 
+import javafx.beans.binding.Binding;
+import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -23,23 +26,27 @@ import quinzical.util.TTS;
 public class PracticeAnswerScreenController {
     private PracticeGame game;
     private Question question;
-    public Button button;
-    public Button repeatHint;
-    public Label labelHint;
-    public Label feedback;
+    // public Button button;
+    // public Button repeatHint;
+    // public Label feedback;
     public TextField input;
-    public VBox parent;
-    public HBox answerContainer;
-    public Label header;
+    // public VBox parent;
+    // public HBox answerContainer;
+    // public Label header;
 
-    private int attemptNumber = 1;
-	
-	public void initialize() {
+    @FXML
+    public Label hintText;
+
+    @FXML
+    public Label AttemptCount;
+
+    public void initialize() {
         game = PracticeGame.getInstance();
         game.setRandomQuestion();
         question = game.getCurrentQuestion();
 
-        labelHint.setText(question.getHint());
+        hintText.setText(question.getHint());
+        AttemptCount.textProperty().bind(Bindings.convert(game.getRemainingAttempts()));
         TTS.getInstance().speak(question.getHint());
 	}
 
@@ -50,41 +57,46 @@ public class PracticeAnswerScreenController {
            after third incorrect attempt. */        
         boolean correct = question.checkAnswer(input.getText());
         
-        if (attemptNumber == 3 || correct) {
-            parent.getChildren().remove(button);
-            parent.getChildren().remove(input);
-            parent.getChildren().remove(labelHint);
-            parent.getChildren().remove(repeatHint);
-            answerContainer.getChildren().clear();
-            answerContainer.getChildren().add(new Label(question.getAnswer()));
+        // if (game.getAttempts() == 3 || correct) {
+        //     parent.getChildren().remove(button);
+        //     parent.getChildren().remove(input);
+        //     parent.getChildren().remove(labelHint);
+        //     parent.getChildren().remove(repeatHint);
+        //     answerContainer.getChildren().clear();
+        //     answerContainer.getChildren().add(new Label(question.getAnswer()));
 
-            Button next = new Button("Another question.");
-            next.setOnAction(event2 -> {
-                Router.show(Views.PRACTICE_ANSWER_SCREEN);
-            });
-            parent.getChildren().add(next);
+        //     Button next = new Button("Another question.");
+        //     next.setOnAction(event2 -> {
+        //         Router.show(Views.PRACTICE_ANSWER_SCREEN);
+        //     });
+        //     parent.getChildren().add(next);
 
-            Button back = new Button("Return to menu.");
-            back.setOnAction(event2 -> {
-                Router.show(Views.MAIN_MENU);
-            });
-            parent.getChildren().add(back);
-        }
+        //     Button back = new Button("Return to menu.");
+        //     back.setOnAction(event2 -> {
+        //         Router.show(Views.MAIN_MENU);
+        //     });
+        //     parent.getChildren().add(back);
+        // }
 
         if (correct) {
             TTS.getInstance().speak("correct");
-            header.setText("Correct");
+            // header.setText("Correct");
             return;
         }
 
         TTS.getInstance().speak(question.getHint());
-        if (attemptNumber == 3) {
-            header.setText("The correct answer was:");
+        if (game.getAttempts() == 3) {
+            // header.setText("The correct answer was:");
         }
-        feedback.setText(correct ? "Correct" : "Incorrect." + (attemptNumber == 2 ? "The first character is: " + question.getAnswer().charAt(0) : ""));
-        attemptNumber ++;
+        // feedback.setText(correct ? "Correct" : "Incorrect." + (game.getAttempts() == 2 ? "The first character is: " + question.getAnswer().charAt(0) : ""));
+        game.addAttempt();
     }
-    public void onRepeatHint() {
-        TTS.getInstance().speak(question.getHint());
+
+    @FXML
+	public void repeatClue(){
+		TTS.getInstance().speak(question.getHint());
     }
+    
+    @FXML
+    public void onUnsure(){}
 }

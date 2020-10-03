@@ -64,7 +64,7 @@ public class QuestionBank {
             int index = _rand.nextInt(filteredQs.size());
             // Get a random question and remove it from the list
 
-            results.add(filteredQs.get(index));
+            results.add(new Question(filteredQs.get(index)));
 
         }
 

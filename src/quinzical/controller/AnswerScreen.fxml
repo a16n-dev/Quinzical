@@ -16,7 +16,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.AnswerScreenController">
    <children>
-      <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" spacing="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane maxWidth="600.0">
                <children>
@@ -46,14 +46,14 @@
                   </Pane>
                </children>
             </AnchorPane>
-            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="600.0" styleClass="panel">
+            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="600.0" styleClass="panel">
                <center>
-                  <Label fx:id="hintText" text="&lt;Clue Texteeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee&gt;" textAlignment="CENTER" textFill="WHITE" wrapText="true" BorderPane.alignment="CENTER">
+                  <Label fx:id="hintText" maxHeight="1.7976931348623157E308" prefWidth="400.0" text="&lt;Clue Texteeeeeee eaea dweeeeeere" textAlignment="CENTER" textFill="WHITE" wrapText="true" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
                      <BorderPane.margin>
-                        <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
+                        <Insets bottom="32.0" top="32.0" />
                      </BorderPane.margin>
                   </Label>
                </center>

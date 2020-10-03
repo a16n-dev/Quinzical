@@ -43,7 +43,8 @@ public class AnswerScreenController {
 		//Fill text
 		categoryName.setText(game.getCurrentCategory());
 		ValueText.setText("$" + question.getValue());
-		hintText.setText(question.getHint());
+		String hint = question.getHint().substring(0, 1).toUpperCase() + question.getHint().substring(1);
+		hintText.setText(hint);
 
 		// Macron.getInstance().bindToTextField(input, textWrapper);
 	}

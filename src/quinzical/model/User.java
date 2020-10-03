@@ -40,7 +40,7 @@ public class User implements Serializable{
 
     private User(){
         prefWidth = 1000;
-        prefHeight = 800;
+        prefHeight = 600;
     }
 
     /**

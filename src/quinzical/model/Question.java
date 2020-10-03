@@ -25,6 +25,13 @@ public class Question implements Serializable {
         this.answer = new SimpleStringProperty(answer);
     }
 
+    public Question(Question q){
+        this.difficulty = q.difficulty;
+        this.question = q.question;
+        this.questionPrefix = q.questionPrefix;
+        this.answer = q.answer;
+    }
+
     // getters
     public int getValue() {
         return difficulty.get() * 100;
