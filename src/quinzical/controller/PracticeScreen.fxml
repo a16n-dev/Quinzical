@@ -1,31 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
 
-
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.PracticeScreenController">
    <children>
-      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" spacing="25.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="Please select a category to receive a practice question:">
-               <VBox.margin>
-                  <Insets top="50.0" />
-               </VBox.margin>
-            </Label>
-            <ScrollPane hbarPolicy="NEVER">
-               <content>
-                  <VBox fx:id="panel" alignment="CENTER" spacing="16.0" />
-               </content>
-            </ScrollPane>
+            <Label text="Choose a Category" />
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="600.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+               <children>
+                  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" layoutX="16.0" layoutY="33.0" maxHeight="1.7976931348623157E308" minHeight="0.0" prefHeight="0.0" styleClass="panel" stylesheets="@../resources/css/style.css" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <VBox fx:id="panel" alignment="CENTER" spacing="16.0">
+                           <padding>
+                              <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                           </padding>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+               <padding>
+                  <Insets left="16.0" right="16.0" top="16.0" />
+               </padding>
+            </AnchorPane>
          </children>
-         <stylesheets>
-            <URL value="@../resources/css/style.css" />
-        </stylesheets>
       </VBox>
    </children>
 </AnchorPane>

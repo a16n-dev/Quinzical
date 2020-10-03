@@ -8,6 +8,7 @@ import quinzical.model.User;
 import quinzical.util.Router;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
@@ -25,7 +26,7 @@ public class App extends Application {
         BorderPane container = (BorderPane) Router.loadFXML("controller/GameContainer.fxml");
 
         User user = User.getInstance();
-        Scene scene = new Scene(container, user.getPrefWidth(), user.getPrefHeight());
+        Scene scene = new Scene(container);
         s.setScene(scene);
 
         Router.setContainer(container);

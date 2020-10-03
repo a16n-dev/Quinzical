@@ -18,3 +18,40 @@
     -fx-background-size: cover;
     -fx-background-position: center;
 }
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
+
+.panel {
+    -fx-background-color: rgba(0,0,0,0.3);
+}
+
+.scroll-bar:horizontal, .scroll-bar:vertical{
+    -fx-background-color:rgba(0,0,0,0.2);
+    -fx-pref-width: 16.5;
+    -fx-padding: 3;
+}
+
+.increment-button, .decrement-button {
+    -fx-background-color: transparent;
+    -fx-border-color: transparent;
+}
+
+.scroll-bar:horizontal .track,
+.scroll-bar:vertical .track{
+    -fx-background-color:transparent;
+    -fx-border-color: transparent;
+    -fx-background-radius: 0;
+    -fx-pref-width: 16.5;
+    -fx-padding: 3;
+}
+
+.scroll-bar:horizontal .thumb,
+.scroll-bar:vertical .thumb {
+    -fx-background-color: white;
+}
+
+.listItem{
+    -fx-background-color: white;
+}
