@@ -56,9 +56,27 @@ public class User implements Serializable{
      * Adds a new reward for the user
      * @param reward a string representing the reward
      */
-    public void addReward(String reward) {
+    public String addReward(int score) {
+    	String reward;
+    	
+    	if (score == 7500) {
+    		reward = "Diamond";
+    	} else if (score >= 6000) {
+			reward = "Platinum";
+		} else if (score >= 4500) {
+			reward = "Gold";
+		} else if (score >= 3000) {
+			reward = "Silver";
+		} else {
+			reward = "Bronze";
+		}
+    	
+    	reward += " Medal";
+    	
         _rewards.add(reward);
         persist();
+        
+        return reward;
     }
 
     /**
