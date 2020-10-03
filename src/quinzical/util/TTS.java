@@ -49,13 +49,12 @@ public class TTS implements Serializable {
      * to the queue with the speak method.
      */
     private void speakNext() {
-        if (speaking) return;
+        if (speaking || processQueue.peek() == null) return;
         speaking = true;
 
         Task<Void> task = new Task<Void>() {
 			@Override
 			protected Void call() throws Exception {
-                System.out.println("speaking new");
                 var builder = processQueue.poll();
     
                 try {
