@@ -27,6 +27,7 @@
          <Label fx:id="feedback" />
       </HBox>
       <Button fx:id="button" mnemonicParsing="false" onAction="#onSubmit" text="Submit" />
+      <Button fx:id="buttonRepeat" onAction="#onRepeatHint" text="Repeat hint" />
    </children>
    <stylesheets>
       <URL value="@../resources/css/style.css" />
