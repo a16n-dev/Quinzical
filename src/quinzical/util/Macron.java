@@ -2,8 +2,10 @@ package quinzical.util;
 
 import java.util.HashMap;
 
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
+import javafx.scene.layout.VBox;
 
 public class Macron {
     private HashMap<String, String> vowels;
@@ -34,8 +36,12 @@ public class Macron {
         return builder.toString();
     }
 
-    public void bindToTextField(TextField input) {
-        registeredFields.put(input, new MacronData(input.getText()));
+    public void bindToTextField(TextField input, VBox wrapper) {
+        Label macronHint = new Label("Press the up arrow to add a macron!");
+        macronHint.setVisible(false);
+        wrapper.getChildren().add(macronHint);
+    
+        registeredFields.put(input, new MacronData(macronHint, input.getText()));
         input.setOnKeyTyped(e -> {
             var macronData = registeredFields.get(input);
             String macron = vowels.get(e.getCharacter());
@@ -54,9 +60,11 @@ public class Macron {
                     index = Math.min(oldText.length(), newText.length());
                 }
                 macronData.macronIndex = index;
+                macronData.showHint();
             }
             else {
                 macronData.macronIndex = -1;
+                macronData.hideHint();
             }
             macronData.text = input.getText();
         });
@@ -69,6 +77,7 @@ public class Macron {
                     input.setText(addMacron(input.getText(), macronData.macronIndex));
                     input.positionCaret(macronData.macronIndex + 1);
                     macronData.macronIndex = -1;
+                    macronData.hideHint();
                 }
             }
         });
@@ -78,13 +87,23 @@ public class Macron {
 class MacronData {
     public String text;
     public int macronIndex;
+    private Label hint;
 
-    public MacronData(String text, int macronIndex) {
+    public MacronData(Label hint, String text, int macronIndex) {
+        this.hint = hint;
         this.text = text;
         this.macronIndex = macronIndex;
     }
-    public MacronData(String text) {
+    public MacronData(Label hint, String text) {
+        this.hint = hint;
         this.text = text;
         this.macronIndex = -1;
+    }
+
+    public void showHint() {
+        hint.setVisible(true);
+    }
+    public void hideHint() {
+        hint.setVisible(false);
     }
 }

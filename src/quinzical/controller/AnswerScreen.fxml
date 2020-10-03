@@ -22,11 +22,13 @@
                   <Font size="20.0" />
                </font>
             </Label>
-            <TextField fx:id="input" onAction="#onSubmit" prefHeight="25.0" prefWidth="250.0" HBox.hgrow="ALWAYS">
-               <HBox.margin>
-                  <Insets right="50.0" />
-               </HBox.margin>
-            </TextField>
+            <VBox fx:id="textWrapper">
+               <TextField fx:id="input" onAction="#onSubmit" prefHeight="25.0" prefWidth="250.0" HBox.hgrow="ALWAYS">
+                  <HBox.margin>
+                     <Insets right="50.0" />
+                  </HBox.margin>
+               </TextField>
+            </VBox>
          </children>
       </HBox>
       <Button fx:id="button" alignment="CENTER" mnemonicParsing="false" onAction="#onSubmit" text="Submit">

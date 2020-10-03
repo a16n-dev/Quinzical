@@ -3,6 +3,7 @@ package quinzical.controller;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.VBox;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
@@ -18,6 +19,7 @@ public class AnswerScreenController {
 	public Button buttonUnsure;
 	public Label labelHint;
 	public TextField input;
+	public VBox textWrapper;
     
 	// stores a reference to the current game being played
 	private Game game;
@@ -29,7 +31,7 @@ public class AnswerScreenController {
 		TTS.getInstance().speak(question.getHint());
 		labelHint.setText(question.getHint());
 
-		Macron.getInstance().bindToTextField(input);
+		Macron.getInstance().bindToTextField(input, textWrapper);
 	}
 
 	public void onSubmit(ActionEvent event) {
