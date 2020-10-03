@@ -1,5 +1,6 @@
 package quinzical.util;
 
+import java.text.Normalizer;
 import java.util.HashMap;
 
 import javafx.scene.control.Label;
@@ -46,8 +47,8 @@ public class Macron {
             var macronData = registeredFields.get(input);
             String macron = vowels.get(e.getCharacter());
             if (macron != null) {
-                String oldText = registeredFields.get(input).text;
-                String newText = input.getText();
+                String oldText = sanitise(registeredFields.get(input).text);
+                String newText = sanitise(input.getText());
 
                 int index = -1;
                 for (int i = 0; i < Math.min(oldText.length(), newText.length()); i++) {
@@ -81,6 +82,11 @@ public class Macron {
                 }
             }
         });
+    }
+
+    private String sanitise(String str) {
+        str = Normalizer.normalize(str, Normalizer.Form.NFKD);
+        return str.toLowerCase().replaceAll("\\p{M}", "");
     }
 }
 
