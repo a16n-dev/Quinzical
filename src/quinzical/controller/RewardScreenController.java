@@ -26,7 +26,7 @@ public class RewardScreenController {
 		user = User.getInstance();
 		
 		int score = game.getScore().intValue();
-		String reward = user.addReward(score);
+		String reward = user.addReward(score).name() + " Medal";
 		
 		labelScore.setText("Final score: " + score);
 		labelMedal.setText("You have earned a " + reward + "!");
