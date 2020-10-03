@@ -1,8 +1,7 @@
 package quinzical.model;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
 
 import quinzical.util.IOManager;
 import quinzical.util.State;
@@ -18,7 +17,7 @@ public class User implements Serializable{
 
     private static User user;
 
-    private List<String> _rewards = new ArrayList<String>();
+    private HashMap<Reward, Integer> _rewards = new HashMap<Reward, Integer>();
 
     private Number prefWidth;
 
@@ -48,32 +47,34 @@ public class User implements Serializable{
      * Getter for user rewards
      * @return a copy of the users rewards, so that encapsulation is not broken
      */
-    public List<String> getRewards() {
-        return new ArrayList<String>(_rewards);
+    public HashMap<Reward, Integer> getRewards() {
+        return new HashMap<Reward, Integer>(_rewards);
     }
 
     /**
      * Adds a new reward for the user
      * @param reward a string representing the reward
      */
-    public String addReward(int score) {
-    	String reward;
+    public Reward addReward(int score) {
+    	Reward reward;
     	
     	if (score == 7500) {
-    		reward = "Diamond";
+    		reward = Reward.Diamond;
+    		_rewards.compute(reward, (k, v) -> (v == null) ? 1 : v + 1);
     	} else if (score >= 6000) {
-			reward = "Platinum";
+			reward = Reward.Platinum;
+			_rewards.compute(reward, (k, v) -> (v == null) ? 1 : v + 1);
 		} else if (score >= 4500) {
-			reward = "Gold";
+			reward = Reward.Gold;
+			_rewards.compute(reward, (k, v) -> (v == null) ? 1 : v + 1);
 		} else if (score >= 3000) {
-			reward = "Silver";
+			reward = Reward.Silver;
+			_rewards.compute(reward, (k, v) -> (v == null) ? 1 : v + 1);
 		} else {
-			reward = "Bronze";
+			reward = Reward.Bronze;
+			_rewards.compute(reward, (k, v) -> (v == null) ? 1 : v + 1);
 		}
-    	
-    	reward += " Medal";
-    	
-        _rewards.add(reward);
+
         persist();
         
         return reward;
@@ -84,7 +85,7 @@ public class User implements Serializable{
      * the user decides they want to reset their overall progress
      */
     public void clearRewards(){
-        _rewards = new ArrayList<String>();
+        _rewards = new HashMap<Reward, Integer>();
     }
 
     private static void persist(){
