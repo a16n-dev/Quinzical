@@ -20,7 +20,7 @@ public class AnswerScreenController {
 	public Button buttonUnsure;
 	
 	public TextField input;
-	public VBox textWrapper;
+	public VBox wrapper;
 
 	@FXML
 	public Label hintText;
@@ -46,7 +46,7 @@ public class AnswerScreenController {
 		String hint = question.getHint().substring(0, 1).toUpperCase() + question.getHint().substring(1);
 		hintText.setText(hint);
 
-		// Macron.getInstance().bindToTextField(input, textWrapper);
+		Macron.getInstance().bindToTextField(input, wrapper);
 	}
 
 	public void onSubmit(ActionEvent event) {

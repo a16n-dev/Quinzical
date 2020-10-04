@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyCode;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 
 public class Macron {
     private HashMap<String, String> vowels;
@@ -40,6 +42,8 @@ public class Macron {
     public void bindToTextField(TextField input, VBox wrapper) {
         Label macronHint = new Label("Press the up arrow to add a macron!");
         macronHint.setVisible(false);
+        macronHint.setFont(new Font(20));
+        macronHint.setTextFill(Color.rgb(255, 255, 255));
         wrapper.getChildren().add(macronHint);
     
         registeredFields.put(input, new MacronData(macronHint, input.getText()));

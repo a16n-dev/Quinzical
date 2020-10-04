@@ -20,6 +20,7 @@ import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import quinzical.model.PracticeGame;
 import quinzical.model.Question;
+import quinzical.util.Macron;
 import quinzical.util.Router;
 import quinzical.util.TTS;
 
@@ -31,7 +32,7 @@ public class PracticeAnswerScreenController {
     public Label hint;
     public Label hintLetter;
     public TextField input;
-    // public VBox parent;
+    public VBox wrapper;
     // public HBox answerContainer;
     // public Label header;
 
@@ -49,6 +50,8 @@ public class PracticeAnswerScreenController {
         hintText.setText(question.getHint());
         AttemptCount.textProperty().bind(Bindings.convert(game.getRemainingAttempts()));
         TTS.getInstance().speak(question.getHint());
+
+        Macron.getInstance().bindToTextField(input, wrapper);
 	}
 
 	public void onSubmit(ActionEvent event) throws IOException {
