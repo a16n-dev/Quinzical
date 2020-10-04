@@ -17,78 +17,6 @@
          <center>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" spacing="32.0">
                <children>
-                  <StackPane maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="200.0" stylesheets="@../resources/css/style.css">
-                     <children>
-                        <AnchorPane styleClass="panel">
-                           <StackPane.margin>
-                              <Insets top="40.0" />
-                           </StackPane.margin>
-                        </AnchorPane>
-                        <VBox alignment="TOP_CENTER" spacing="8.0">
-                           <children>
-                              <ImageView fitHeight="200.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../resources/images/md_diamond.png" />
-                                 </image>
-                              </ImageView>
-                              <Label text="Diamond" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label text="Medals Awarded" textFill="#b5b5b5">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="fxDiamond" text="3" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="36.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets bottom="16.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </VBox>
-                     </children>
-                  </StackPane>
-                  <StackPane maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="200.0" stylesheets="@../resources/css/style.css">
-                     <children>
-                        <AnchorPane styleClass="panel">
-                           <StackPane.margin>
-                              <Insets top="40.0" />
-                           </StackPane.margin>
-                        </AnchorPane>
-                        <VBox alignment="TOP_CENTER" spacing="8.0">
-                           <children>
-                              <ImageView fitHeight="200.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true">
-                                 <image>
-                                    <Image url="@../resources/images/md_platinum.png" />
-                                 </image>
-                              </ImageView>
-                              <Label text="Platinum" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="24.0" />
-                                 </font>
-                              </Label>
-                              <Label text="Medals Awarded" textFill="#b5b5b5">
-                                 <font>
-                                    <Font size="14.0" />
-                                 </font>
-                              </Label>
-                              <Label fx:id="fxPlatinum" text="3" textFill="WHITE">
-                                 <font>
-                                    <Font name="System Bold" size="36.0" />
-                                 </font>
-                                 <padding>
-                                    <Insets bottom="16.0" />
-                                 </padding>
-                              </Label>
-                           </children>
-                        </VBox>
-                     </children>
-                  </StackPane>
                   <StackPane maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="200.0" stylesheets="@../resources/css/style.css">
                      <children>
                         <AnchorPane styleClass="panel">
@@ -100,10 +28,10 @@
                            <children>
                               <ImageView fitHeight="201.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../resources/images/md_gold.png" />
+                                    <Image url="@../resources/images/md_bronze.png" />
                                  </image>
                               </ImageView>
-                              <Label text="Gold" textFill="WHITE">
+                              <Label text="Bronze" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
@@ -113,7 +41,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="fxGold" text="3" textFill="WHITE">
+                              <Label fx:id="fxBronze" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>
@@ -149,7 +77,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="fxSilver" text="3" textFill="WHITE">
+                              <Label fx:id="fxSilver" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>
@@ -172,10 +100,10 @@
                            <children>
                               <ImageView fitHeight="201.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../resources/images/md_bronze.png" />
+                                    <Image url="@../resources/images/md_gold.png" />
                                  </image>
                               </ImageView>
-                              <Label text="Bronze" textFill="WHITE">
+                              <Label text="Gold" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="24.0" />
                                  </font>
@@ -185,7 +113,79 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="fxBronze" text="3" textFill="WHITE">
+                              <Label fx:id="fxGold" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="16.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+                  <StackPane maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="200.0" stylesheets="@../resources/css/style.css">
+                     <children>
+                        <AnchorPane styleClass="panel">
+                           <StackPane.margin>
+                              <Insets top="40.0" />
+                           </StackPane.margin>
+                        </AnchorPane>
+                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                           <children>
+                              <ImageView fitHeight="200.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/images/md_platinum.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Platinum" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Medals Awarded" textFill="#b5b5b5">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="fxPlatinum" text="0" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="36.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets bottom="16.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                        </VBox>
+                     </children>
+                  </StackPane>
+                  <StackPane maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="200.0" stylesheets="@../resources/css/style.css">
+                     <children>
+                        <AnchorPane styleClass="panel">
+                           <StackPane.margin>
+                              <Insets top="40.0" />
+                           </StackPane.margin>
+                        </AnchorPane>
+                        <VBox alignment="TOP_CENTER" spacing="8.0">
+                           <children>
+                              <ImageView fitHeight="200.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../resources/images/md_diamond.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="Diamond" textFill="WHITE">
+                                 <font>
+                                    <Font name="System Bold" size="24.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Medals Awarded" textFill="#b5b5b5">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                              <Label fx:id="fxDiamond" text="0" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>
