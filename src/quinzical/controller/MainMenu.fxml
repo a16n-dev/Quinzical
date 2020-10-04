@@ -104,7 +104,9 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label text="Some information about the game mode" textFill="WHITE" wrapText="true" />
+                              <Label text="Answer 5 random questions each from 5 random categories. The categories cover a diverse range of topics from people to fauna" textFill="WHITE" wrapText="true" />
+                              <Label text="Questions range in value from $100 to $500" textFill="WHITE" wrapText="true" />
+                              <Label text="Earn medals for scoring as many points as you can" textFill="WHITE" wrapText="true" />
                            </children>
                            <padding>
                               <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
@@ -118,7 +120,8 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label text="Some information about the practice mode uwu" textFill="WHITE" wrapText="true" />
+                              <Label text="Choose any category and practice random questions from it" textFill="WHITE" wrapText="true" />
+                              <Label text="You get 3 attempts per question, with a hint on your third attempt" textFill="WHITE" wrapText="true" />
                            </children>
                            <padding>
                               <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />

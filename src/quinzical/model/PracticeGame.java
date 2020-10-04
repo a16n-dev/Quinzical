@@ -35,7 +35,7 @@ public class PracticeGame extends QuinzicalGame {
         _currentQuestionAttempts = 0;
         _remainingAttempts.set(3);
 
-        setCurrentQuestion(questionBank.getRandomQuestions(currentCategory, 1, false).get(0));
+        setCurrentQuestion(questionBank.getRandomQuestions(currentCategory, 1, true).get(0));
     }
 
     /**

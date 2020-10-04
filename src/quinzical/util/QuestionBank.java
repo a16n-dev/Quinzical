@@ -58,13 +58,22 @@ public class QuestionBank {
         for (int i = 0; i < amount; i++) {
             int difficulty = i + 1;
             // Get all questions with difficulty i
-            List<Question> filteredQs = questionList.stream().filter(p -> p.getDifficulty() == difficulty)
-                    .collect(Collectors.toList());
+            if(!allowDuplicates){
+                List<Question> filteredQs = questionList.stream().filter(p -> p.getDifficulty() == difficulty)
+                .collect(Collectors.toList());
 
             int index = _rand.nextInt(filteredQs.size());
             // Get a random question and remove it from the list
 
             results.add(new Question(filteredQs.get(index)));
+            } else {
+                
+            int index = _rand.nextInt(questionList.size());
+            // Get a random question and remove it from the list
+
+            results.add(new Question(questionList.get(index)));
+            }
+           
 
         }
 
