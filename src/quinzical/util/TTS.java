@@ -18,7 +18,7 @@ public class TTS implements Serializable {
     private static TTS tts;
     private int volume;
     private int speed;
-    private boolean speaking = false;
+    private transient boolean speaking = false;
 
     private TTS() {
         processQueue = new ArrayDeque<ProcessBuilder>();
@@ -33,6 +33,8 @@ public class TTS implements Serializable {
             if (tts == null) {
                 tts = new TTS();
                 persist();
+            } else {
+            	tts.init();
             }
         }
         return tts;
@@ -49,8 +51,10 @@ public class TTS implements Serializable {
      * to the queue with the speak method.
      */
     private void speakNext() {
-        if (speaking || processQueue.peek() == null)
-            return;
+        if (speaking || processQueue.peek() == null) {
+        	return;
+        }
+            
         speaking = true;
 
         Task<Void> task = new Task<Void>() {
@@ -91,8 +95,10 @@ public class TTS implements Serializable {
         ProcessBuilder builder = new ProcessBuilder("espeak", "-x", text, "-a", Integer.toString(volume), "-s",
                 Integer.toString(speed));
         processQueue.add(builder);
-        if (!speaking)
-            speakNext();
+        if (!speaking) {
+        	speakNext();
+        }
+            
     }
 
     /**
@@ -141,8 +147,14 @@ public class TTS implements Serializable {
 
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
-
-        processQueue = new ArrayDeque<ProcessBuilder>();
     };
+    
+    /**
+     * 
+     */
+    private void init() {
+    	processQueue = new ArrayDeque<ProcessBuilder>(); 
+    	speaking = false;
+    }
 
 }

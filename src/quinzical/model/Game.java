@@ -48,9 +48,7 @@ public class Game extends QuinzicalGame implements Serializable {
      * Adds to the score for the current game
      */
     public void addScore(int score) {
-        System.out.println(score);
         _score.set(_score.intValue() + score);
-        System.out.println(_score.get());
     }
 
     /**
@@ -72,7 +70,6 @@ public class Game extends QuinzicalGame implements Serializable {
         setCurrentQuestion(q);
         q.setAnswered(true);
         persist();
-        System.out.println("The number of remaining questions is " + getRemainingQuestions());
     }
 
     public static Game getInstance() {

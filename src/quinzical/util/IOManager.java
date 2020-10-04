@@ -165,7 +165,6 @@ public class IOManager {
         }
 
         catch (IOException ex) {
-            System.out.println(ex.getMessage());
         }
     }
 
@@ -186,7 +185,6 @@ public class IOManager {
             return obj;
 
         } catch (Exception e) {
-            System.out.println(e.getMessage());
             return null;
         }
     }
