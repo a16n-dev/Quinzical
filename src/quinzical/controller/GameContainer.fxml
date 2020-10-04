@@ -66,8 +66,8 @@
                                           </Label>
                                           <HBox alignment="CENTER_LEFT" spacing="16.0" GridPane.columnIndex="1">
                                              <children>
-                                                <Slider />
-                                                <Label text="100%" textFill="WHITE">
+                                                <Slider fx:id="sliderVolume" min="0" max="200" onValueChange="#handleSpeechVolumeSliderChange" onMouseReleased="#speakTest" />
+                                                <Label fx:id="labelVolume" text="100%" textFill="WHITE">
                                                    <font>
                                                       <Font size="18.0" />
                                                    </font>
@@ -76,8 +76,8 @@
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" spacing="16.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <children>
-                                                <Slider />
-                                                <Label text="100%" textFill="WHITE">
+                                                <Slider fx:id="sliderSpeed" min="80" max="240" onValueChange="#handleSpeechSpeedSliderChange" onMouseReleased="#speakTest"/>
+                                                <Label fx:id="labelSpeed" text="100%" textFill="WHITE">
                                                    <font>
                                                       <Font size="18.0" />
                                                    </font>
