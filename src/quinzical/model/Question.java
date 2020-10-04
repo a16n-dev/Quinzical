@@ -68,8 +68,8 @@ public class Question implements Serializable {
     }
 
     private String sanitise(String str) {
-        str = Normalizer.normalize(str, Normalizer.Form.NFKD);
-        return str.toLowerCase().replaceAll("\\s+", "").replaceAll("\\p{M}", "");
+        // str = Normalizer.normalize(str, Normalizer.Form.NFKD);
+        return str.toLowerCase().replaceAll("\\s+", "");
     }
 
     /**
