@@ -5,18 +5,18 @@ import java.util.ArrayList;
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class PracticeGame extends QuinzicalGame {
-    private static PracticeGame _instance;
-    private SimpleIntegerProperty _remainingAttempts = new SimpleIntegerProperty();
-    private int _currentQuestionAttempts = 0;
+    private static PracticeGame instance;
+    private SimpleIntegerProperty remainingAttempts = new SimpleIntegerProperty();
+    private int currentQuestionAttempts = 0;
 
     private PracticeGame() {
     }
 
     public static PracticeGame getInstance() {
-        if (_instance == null) {
-            _instance = new PracticeGame();
+        if (instance == null) {
+            instance = new PracticeGame();
         }
-        return _instance;
+        return instance;
     }
 
     private String currentCategory;
@@ -32,8 +32,8 @@ public class PracticeGame extends QuinzicalGame {
     public void setRandomQuestion() {
 
         // As question has changed also reset attempts
-        _currentQuestionAttempts = 0;
-        _remainingAttempts.set(3);
+        currentQuestionAttempts = 0;
+        remainingAttempts.set(3);
 
         setCurrentQuestion(questionBank.getRandomQuestions(currentCategory, 1, true).get(0));
     }
@@ -42,7 +42,7 @@ public class PracticeGame extends QuinzicalGame {
      * @return the number of attempts for the current question
      */
     public int getAttempts() {
-        return _currentQuestionAttempts;
+        return currentQuestionAttempts;
     }
 
     /**
@@ -50,11 +50,11 @@ public class PracticeGame extends QuinzicalGame {
      * returns the total number of attempts
      */
     public void addAttempt() {
-        _currentQuestionAttempts += 1;
-        _remainingAttempts.set(3 - _currentQuestionAttempts);
+        currentQuestionAttempts += 1;
+        remainingAttempts.set(3 - currentQuestionAttempts);
     }
 
     public SimpleIntegerProperty getRemainingAttempts() {
-        return _remainingAttempts;
+        return remainingAttempts;
     }
 }

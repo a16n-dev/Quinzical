@@ -75,6 +75,10 @@ public class Router {
         show(history.peek());
     }
 
+    /**
+     * Sets the container where content should be placed
+     * @param p A borderPane which should contain the content to display
+     */
     public static void setContainer(BorderPane p) {
         container = p;
     }
@@ -82,6 +86,11 @@ public class Router {
     // TODO: Move this. This does not belong inside of the router class and should
     // be moved to another util file.
     // Possibly IOmanager?
+    /**
+     * Loads the specified fxml file
+     * @param fxml the path to the fxml file
+     * @return a javafx node hierarchy
+     */
     public static Node loadFXML(String fxml) {
         if (fxml != null) {
             try {
@@ -101,6 +110,11 @@ public class Router {
     // TODO: Move this. This does not belong inside of the router class and should
     // be moved to another util file.
     // Possibly IOmanager?
+    /**
+     * Used when a reference to the controller is also required
+     * @param fxml the path to the fxml file
+     * @return the fxmlloader which can then be used to access the fxml as well as the controller object
+     */
     public static FXMLLoader manualLoad(String fxml) {
         try {
             FXMLLoader loader = new FXMLLoader();
@@ -113,6 +127,10 @@ public class Router {
         }
     }
 
+    /**
+     * 
+     * @return the current state of the game, 0 for menu, 1 for game, 2 for practice
+     */
     public static int getGameState() {
         return gameState;
     }
