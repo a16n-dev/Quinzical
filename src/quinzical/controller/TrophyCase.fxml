@@ -41,7 +41,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="diamond" text="3" textFill="WHITE">
+                              <Label fx:id="fxDiamond" text="3" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>
@@ -77,7 +77,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="platinum" text="3" textFill="WHITE">
+                              <Label fx:id="fxPlatinum" text="3" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>
@@ -113,7 +113,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="gold" text="3" textFill="WHITE">
+                              <Label fx:id="fxGold" text="3" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>
@@ -149,7 +149,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="silver" text="3" textFill="WHITE">
+                              <Label fx:id="fxSilver" text="3" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>
@@ -185,7 +185,7 @@
                                     <Font size="14.0" />
                                  </font>
                               </Label>
-                              <Label fx:id="bronze" text="3" textFill="WHITE">
+                              <Label fx:id="fxBronze" text="3" textFill="WHITE">
                                  <font>
                                     <Font name="System Bold" size="36.0" />
                                  </font>

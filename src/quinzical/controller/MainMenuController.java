@@ -8,7 +8,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
-import javafx.scene.control.Slider;
 import javafx.scene.control.Alert.AlertType;
 import quinzical.model.Game;
 import quinzical.util.Modal;
@@ -17,13 +16,7 @@ import quinzical.util.Router;
 public class MainMenuController {
 
 	@FXML
-	public Button newGame;
-	@FXML
-	public Button resumeGame;
-	@FXML
-	public Button practiceGame;
-	public Slider sliderSpeed;
-	public Slider sliderVolume;
+	private Button fxResume;
 
 	/**
 	 * Starts a new game
@@ -34,8 +27,8 @@ public class MainMenuController {
 
 	public void initialize() {
 		if (!Game.isInProgress()) {
-			resumeGame.setVisible(false);
-			resumeGame.setManaged(false);
+			fxResume.setVisible(false);
+			fxResume.setManaged(false);
 		}
 	}
 

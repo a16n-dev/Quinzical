@@ -5,7 +5,6 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import quinzical.model.Game;
@@ -15,23 +14,18 @@ import quinzical.util.Router;
 import quinzical.util.TTS;
 
 public class AnswerScreenController {
-
-	public Button button;
-	public Button buttonUnsure;
-
-	public TextField input;
-	public VBox wrapper;
-
 	@FXML
-	public Label hintText;
-
-	public Label labelPrefix;
-
+	private Label fxCategoryName;
 	@FXML
-	private Label categoryName;
-
+	private Label fxValueText;
 	@FXML
-	private Label valueText;
+	private Label fxHintText;
+	@FXML
+	private Label fxPrefix;
+	@FXML
+	private VBox fxWrapper;
+	@FXML
+	private TextField fxInput;
 
 	// stores a reference to the current game being played
 	private Game game;
@@ -43,17 +37,17 @@ public class AnswerScreenController {
 		TTS.getInstance().speak(question.getHint());
 
 		// Fill text
-		categoryName.setText(game.getCurrentCategory());
-		valueText.setText("$" + question.getValue());
-		labelPrefix.setText(question.getPrefix().substring(0, 1).toUpperCase() + question.getPrefix().substring(1));
+		fxCategoryName.setText(game.getCurrentCategory());
+		fxValueText.setText("$" + question.getValue());
+		fxPrefix.setText(question.getPrefix().substring(0, 1).toUpperCase() + question.getPrefix().substring(1));
 		String hint = question.getHint().substring(0, 1).toUpperCase() + question.getHint().substring(1);
-		hintText.setText(hint);
+		fxHintText.setText(hint);
 
-		Macron.getInstance().bindToTextField(input, wrapper);
+		Macron.getInstance().bindToTextField(fxInput, fxWrapper);
 	}
 
 	public void onSubmit(ActionEvent event) {
-		boolean correct = game.getCurrentQuestion().checkAnswer(input.getText());
+		boolean correct = game.getCurrentQuestion().checkAnswer(fxInput.getText());
 		// Check whether the user's answer is correct
 		if (correct) {
 			game.addScore(question.getValue());

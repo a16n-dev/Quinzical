@@ -3,7 +3,6 @@ package quinzical.controller;
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -14,10 +13,9 @@ import quinzical.util.Router;
 
 public class RewardScreenController {
 
-	public ImageView imageMedal;
-	public Button buttonMenu;
-	public Label labelScore;
-	public Label labelMedal;
+	private ImageView fxImageMedal;
+	private Label fxScore;
+	private Label fxMedal;
 
 	// stores a reference to the current game being played
 	private Game game;
@@ -30,8 +28,8 @@ public class RewardScreenController {
 		int score = game.getScore().intValue();
 		Reward reward = user.addReward(score);
 
-		labelScore.setText("Final score: " + score);
-		labelMedal.setText("You have earned a " + reward.name() + " Medal!");
+		fxScore.setText("Final score: " + score);
+		fxMedal.setText("You have earned a " + reward.name() + " Medal!");
 
 		Image image;
 		// Set image
@@ -55,7 +53,7 @@ public class RewardScreenController {
 				image = new Image(getClass().getResourceAsStream("../resources/images/md_bronze.png"));
 				break;
 		}
-		imageMedal.setImage(image);
+		fxImageMedal.setImage(image);
 	}
 
 	public void handleButtonMenuClick(ActionEvent event) throws IOException {

@@ -22,7 +22,7 @@
                <children>
                   <Pane styleClass="panel" stylesheets="@../resources/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                      <children>
-                        <Label fx:id="categoryName" text="Label" textFill="WHITE">
+                        <Label fx:id="fxCategoryName" text="Label" textFill="WHITE">
                            <padding>
                               <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                            </padding>
@@ -34,7 +34,7 @@
                   </Pane>
                   <Pane layoutX="10.0" layoutY="10.0" styleClass="panel" stylesheets="@../resources/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
-                        <Label fx:id="valueText" text="Label" textFill="WHITE">
+                        <Label fx:id="fxValueText" text="Label" textFill="WHITE">
                            <padding>
                               <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                            </padding>
@@ -48,7 +48,7 @@
             </AnchorPane>
             <BorderPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="600.0" styleClass="panel">
                <center>
-                  <Label fx:id="hintText" maxHeight="1.7976931348623157E308" prefWidth="400.0" text="&lt;Clue Texteeeeeee eaea dweeeeeere" textAlignment="CENTER" textFill="WHITE" wrapText="true" BorderPane.alignment="CENTER">
+                  <Label fx:id="fxHintText" maxHeight="1.7976931348623157E308" prefWidth="400.0" text="&lt;Clue Texteeeeeee eaea dweeeeeere" textAlignment="CENTER" textFill="WHITE" wrapText="true" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -97,13 +97,13 @@
             </Label>
             <HBox alignment="CENTER_LEFT" maxWidth="600.0" spacing="8.0" styleClass="panel">
                <children>
-                  <Label fx:id="labelPrefix" alignment="BOTTOM_LEFT" text="What is" textFill="WHITE">
+                  <Label fx:id="fxPrefix" alignment="BOTTOM_LEFT" text="What is" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
                   </Label>
-                  <VBox fx:id="wrapper">
-                     <TextField fx:id="input" onAction="#onSubmit" HBox.hgrow="ALWAYS">
+                  <VBox fx:id="fxWrapper">
+                     <TextField fx:id="fxInput" onAction="#onSubmit" HBox.hgrow="ALWAYS">
                         <HBox.margin>
                            <Insets />
                         </HBox.margin>
@@ -123,12 +123,12 @@
                   <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
                </padding>
             </HBox>
-            <Button fx:id="button" alignment="CENTER" mnemonicParsing="false" onAction="#onSubmit" text="Submit">
+            <Button fx:id="fxSubmit" alignment="CENTER" mnemonicParsing="false" onAction="#onSubmit" text="Submit">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="buttonUnsure" onAction="#onUnsure" text="Don't know" />
+            <Button fx:id="fxUnsure" onAction="#onUnsure" text="Don't know" />
          </children>
          <stylesheets>
             <URL value="@../resources/css/style.css" />

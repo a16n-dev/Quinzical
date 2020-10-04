@@ -2,7 +2,6 @@ package quinzical.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,7 +16,7 @@ import quinzical.util.Router;
 public class GameBoardController {
 
 	@FXML
-	private GridPane grid;
+	private GridPane fxGrid;
 
 	// stores a reference to the current game being played
 	private Game game;
@@ -37,7 +36,7 @@ public class GameBoardController {
 			Label label = new Label(category);
 			label.setTextFill(Color.web("#fff"));
 			label.setStyle("-fx-font: 16 arial;");
-			grid.add(label, i, 0);
+			fxGrid.add(label, i, 0);
 
 			// Place buttons
 			ArrayList<Question> questions = game.getQuestionsByCategory(category);
@@ -65,7 +64,7 @@ public class GameBoardController {
 						});
 					}
 
-					grid.add(button, i, pos);
+					fxGrid.add(button, i, pos);
 				}
 			}
 		}

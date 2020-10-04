@@ -11,15 +11,15 @@ public class CategoryListItemController {
     private String category;
 
     @FXML
-    private Label name;
+    private Label fxName;
 
     @FXML
-    private Label count;
+    private Label fxCount;
 
     public void config(String categoryName, int questionCount) {
         category = categoryName;
-        name.textProperty().set(categoryName);
-        count.textProperty().set(Integer.toString(questionCount));
+        fxName.textProperty().set(categoryName);
+        fxCount.textProperty().set(Integer.toString(questionCount));
     }
 
     @FXML

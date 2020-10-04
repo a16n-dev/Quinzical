@@ -9,23 +9,23 @@ import quinzical.model.User;
 
 public class TrophyCaseController {
     @FXML
-    public Label diamond;
+    private Label fxDiamond;
     @FXML
-    public Label platinum;
+    private Label fxPlatinum;
     @FXML
-    public Label gold;
+    private Label fxGold;
     @FXML
-    public Label silver;
+    private Label fxSilver;
     @FXML
-    public Label bronze;
+    private Label fxBronze;
 
     public void initialize() {
         HashMap<Reward, Integer> rewards = User.getInstance().getRewards();
         System.out.println(rewards);
-        diamond.setText(Integer.toString(rewards.get(Reward.Diamond)));
-        platinum.setText(Integer.toString(rewards.get(Reward.Platinum)));
-        gold.setText(Integer.toString(rewards.get(Reward.Gold)));
-        silver.setText(Integer.toString(rewards.get(Reward.Silver)));
-        bronze.setText(Integer.toString(rewards.get(Reward.Bronze)));
+        fxDiamond.setText(Integer.toString(rewards.get(Reward.Diamond)));
+        fxPlatinum.setText(Integer.toString(rewards.get(Reward.Platinum)));
+        fxGold.setText(Integer.toString(rewards.get(Reward.Gold)));
+        fxSilver.setText(Integer.toString(rewards.get(Reward.Silver)));
+        fxBronze.setText(Integer.toString(rewards.get(Reward.Bronze)));
     }
 }

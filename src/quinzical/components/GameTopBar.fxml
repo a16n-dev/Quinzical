@@ -15,7 +15,7 @@
       <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
    </padding>
    <center>
-      <HBox fx:id="scoreCard" alignment="CENTER_RIGHT" maxWidth="-Infinity" spacing="16.0" styleClass="panel" stylesheets="@../resources/css/style.css" BorderPane.alignment="CENTER">
+      <HBox fx:id="fxScoreCard" alignment="CENTER_RIGHT" maxWidth="-Infinity" spacing="16.0" styleClass="panel" stylesheets="@../resources/css/style.css" BorderPane.alignment="CENTER">
          <children>
             <Label alignment="CENTER_RIGHT" contentDisplay="CENTER" text="Score" textFill="WHITE">
                <font>
@@ -26,7 +26,7 @@
                   <Font name="System Bold" size="18.0" />
                </font>
                <graphic>
-                  <Label fx:id="scoreLabel" text="&lt;score&gt;" textFill="WHITE">
+                  <Label fx:id="fxScoreLabel" text="&lt;score&gt;" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>

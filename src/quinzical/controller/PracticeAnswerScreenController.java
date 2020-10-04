@@ -19,32 +19,28 @@ import quinzical.util.TTS;
 public class PracticeAnswerScreenController {
     private PracticeGame game;
     private Question question;
-    // public Button button;
-    // public Button repeatHint;
-    public Label hint;
-    public Label hintLetter;
-    public TextField input;
-    public VBox wrapper;
-    public Label labelPrefix;
-    // public HBox answerContainer;
-    // public Label header;
+    
+    public Label fxFeedback;
+    public TextField fxInput;
+    public VBox fxWrapper;
+    public Label fxPrefix;
 
     @FXML
-    public Label hintText;
+    public Label fxHint;
 
     @FXML
-    public Label AttemptCount;
+    public Label fxAttemptCount;
 
     public void initialize() {
         game = PracticeGame.getInstance();
         game.setRandomQuestion();
         question = game.getCurrentQuestion();
 
-        hintText.setText(question.getHint());
-        AttemptCount.textProperty().bind(Bindings.convert(game.getRemainingAttempts()));
-        labelPrefix.setText(question.getPrefix().substring(0, 1).toUpperCase() + question.getPrefix().substring(1));
+        fxHint.setText(question.getHint());
+        fxAttemptCount.textProperty().bind(Bindings.convert(game.getRemainingAttempts()));
+        fxPrefix.setText(question.getPrefix().substring(0, 1).toUpperCase() + question.getPrefix().substring(1));
         TTS.getInstance().speak(question.getHint());
-        Macron.getInstance().bindToTextField(input, wrapper);
+        Macron.getInstance().bindToTextField(fxInput, fxWrapper);
     }
 
     public void onSubmit(ActionEvent event) throws IOException {
@@ -54,7 +50,7 @@ public class PracticeAnswerScreenController {
          * first letter hint on third attempt, or show clue and answer after third
          * incorrect attempt.
          */
-        boolean correct = question.checkAnswer(input.getText());
+        boolean correct = question.checkAnswer(fxInput.getText());
 
         if (correct) {
             TTS.getInstance().speak("correct");
@@ -63,7 +59,7 @@ public class PracticeAnswerScreenController {
         }
 
         TTS.getInstance().speak(question.getHint());
-        hint.setText(correct ? "Correct"
+        fxFeedback.setText(correct ? "Correct"
                 : "Incorrect."
                         + (game.getAttempts() == 1 ? "The first character is: " + question.getAnswer().charAt(0) : ""));
         game.addAttempt();

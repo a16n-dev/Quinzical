@@ -2,6 +2,7 @@ package quinzical.controller;
 
 import java.io.IOException;
 
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.VBox;
@@ -12,7 +13,8 @@ import quinzical.util.QuestionBank;
 import quinzical.util.Router;
 
 public class PracticeScreenController {
-	public VBox panel;
+	@FXML
+	private VBox fxPanel;
 
 	private PracticeGame game;
 
@@ -34,9 +36,8 @@ public class PracticeScreenController {
 				// Router.show(Views.PRACTICE_ANSWER_SCREEN);
 
 				// });
-				panel.getChildren().add(node);
+				fxPanel.getChildren().add(node);
 			} catch (IOException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}

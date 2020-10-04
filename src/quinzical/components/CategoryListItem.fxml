@@ -12,7 +12,7 @@
    <children>
       <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label fx:id="name" text="CATEGORY" textFill="#4a4a4a" VBox.vgrow="ALWAYS">
+            <Label fx:id="fxName" text="CATEGORY" textFill="#4a4a4a" VBox.vgrow="ALWAYS">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
@@ -22,7 +22,7 @@
                   <Font size="14.0" />
                </font>
                <graphic>
-                  <Label fx:id="count" text="2" textFill="#808080">
+                  <Label fx:id="fxCount" text="2" textFill="#808080">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Label>

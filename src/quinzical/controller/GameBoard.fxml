@@ -23,7 +23,7 @@
                </padding>
             </Label>
             <Label text="Select a question to answer" textFill="WHITE" />
-            <GridPane fx:id="grid" alignment="CENTER" maxHeight="600.0" maxWidth="1000.0" VBox.vgrow="ALWAYS">
+            <GridPane fx:id="fxGrid" alignment="CENTER" maxHeight="600.0" maxWidth="1000.0" VBox.vgrow="ALWAYS">
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
                   <ColumnConstraints halignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />

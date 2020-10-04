@@ -8,10 +8,10 @@ import quinzical.util.Modal;
 import quinzical.util.TTS;
 
 public class ContainerController {
-    public Slider sliderVolume;
-    public Slider sliderSpeed;
-    public Label labelSpeed;
-    public Label labelVolume;
+    public Slider fxSliderVolume;
+    public Slider fxSliderSpeed;
+    public Label fxLabelSpeed;
+    public Label fxLabelVolume;
 
     @FXML
     public void hideModal() {
@@ -19,18 +19,18 @@ public class ContainerController {
     }
 
     public void initialize() {
-        sliderSpeed.setValue(TTS.getInstance().getSpeed());
-        sliderVolume.setValue(TTS.getInstance().getVolume());
+        fxSliderSpeed.setValue(TTS.getInstance().getSpeed());
+        fxSliderVolume.setValue(TTS.getInstance().getVolume());
     }
 
     public void handleSpeechVolumeSliderChange(ObservableValue<Number> ovn, Number before, Number after) {
         TTS.getInstance().setVolume(after.intValue());
-        labelVolume.setText(after.intValue() + "%");
+        fxLabelVolume.setText(after.intValue() + "%");
     }
 
     public void handleSpeechSpeedSliderChange(ObservableValue<Number> ovn, Number before, Number after) {
         TTS.getInstance().setSpeed(after.intValue());
-        labelSpeed.setText(after.intValue() + " WPS");
+        fxLabelSpeed.setText(after.intValue() + " WPS");
     }
 
     public void speakTest() {

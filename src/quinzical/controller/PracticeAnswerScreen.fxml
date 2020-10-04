@@ -21,7 +21,7 @@
                <center>
                   <HBox maxHeight="-Infinity" maxWidth="-Infinity" styleClass="panel">
                      <children>
-                        <Label fx:id="AttemptCount" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="3" textFill="WHITE">
+                        <Label fx:id="fxAttemptCount" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="3" textFill="WHITE">
                            <font>
                               <Font size="16.0" />
                            </font>
@@ -43,7 +43,7 @@
             </BorderPane>
             <BorderPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="600.0" styleClass="panel">
                <center>
-                  <Label fx:id="hintText" maxHeight="1.7976931348623157E308" prefWidth="400.0" text="&lt;Clue Texteeeeeee eaea dweeeeeere" textAlignment="CENTER" textFill="WHITE" wrapText="true" BorderPane.alignment="CENTER">
+                  <Label fx:id="fxHint" maxHeight="1.7976931348623157E308" prefWidth="400.0" text="" textAlignment="CENTER" textFill="WHITE" wrapText="true" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -97,13 +97,13 @@
                <children>
                   <HBox alignment="CENTER_LEFT" maxWidth="600.0" spacing="8.0">
                      <children>
-                        <Label fx:id="labelPrefix" alignment="BOTTOM_LEFT" text="What is" textFill="WHITE">
+                        <Label fx:id="fxPrefix" alignment="BOTTOM_LEFT" text="What is" textFill="WHITE">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <VBox fx:id="wrapper">
-                           <TextField fx:id="input" onAction="#onSubmit" HBox.hgrow="ALWAYS">
+                        <VBox fx:id="fxWrapper">
+                           <TextField fx:id="fxInput" onAction="#onSubmit" HBox.hgrow="ALWAYS">
                               <HBox.margin>
                                  <Insets />
                               </HBox.margin>
@@ -117,7 +117,7 @@
                         </VBox>
                      </children>
                   </HBox>
-                  <Label fx:id="hint" contentDisplay="RIGHT" textFill="WHITE">
+                  <Label fx:id="fxFeedback" contentDisplay="RIGHT" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -127,12 +127,12 @@
                   <Insets bottom="16.0" left="32.0" right="32.0" top="32.0" />
                </padding>
             </VBox>
-            <Button fx:id="button" alignment="CENTER" mnemonicParsing="false" onAction="#onSubmit" text="Submit">
+            <Button fx:id="fxSubmit" alignment="CENTER" mnemonicParsing="false" onAction="#onSubmit" text="Submit">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button fx:id="buttonUnsure" onAction="#onUnsure" text="Don't know" />
+            <Button fx:id="fxUnsure" onAction="#onUnsure" text="Don't know" />
          </children>
          <stylesheets>
             <URL value="@../resources/css/style.css" />
