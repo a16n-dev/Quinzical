@@ -63,47 +63,50 @@ public class PracticeAnswerScreenController {
 		   show first letter hint on third attempt, or show clue and answer 
            after third incorrect attempt. */        
         boolean correct = question.checkAnswer(input.getText());
-        
-        // if (game.getAttempts() == 3 || correct) {
-        //     parent.getChildren().remove(button);
-        //     parent.getChildren().remove(input);
-        //     parent.getChildren().remove(labelHint);
-        //     parent.getChildren().remove(repeatHint);
-        //     answerContainer.getChildren().clear();
-        //     answerContainer.getChildren().add(new Label(question.getAnswer()));
-
-        //     Button next = new Button("Another question.");
-        //     next.setOnAction(event2 -> {
-        //         Router.show(Views.PRACTICE_ANSWER_SCREEN);
-        //     });
-        //     parent.getChildren().add(next);
-
-        //     Button back = new Button("Return to menu.");
-        //     back.setOnAction(event2 -> {
-        //         Router.show(Views.MAIN_MENU);
-        //     });
-        //     parent.getChildren().add(back);
-        // }
 
         if (correct) {
             TTS.getInstance().speak("correct");
-            // header.setText("Correct");
+            handleAnswer(
+                "Congratulations",
+                "You answered correctly.",
+                question.getAnswer()
+            );
             return;
         }
 
         TTS.getInstance().speak(question.getHint());
-        if (game.getAttempts() == 3) {
-            // header.setText("The correct answer was:");
-        }
         hint.setText(correct ? "Correct" : "Incorrect." + (game.getAttempts() == 1 ? "The first character is: " + question.getAnswer().charAt(0) : ""));
         game.addAttempt();
+        if (game.getAttempts() == 3) {
+            handleAnswer(
+                "Oops!",
+                "Answer was: " + question.getAnswer(),
+                question.getHint()
+            );
+        }
     }
+
+    private void handleAnswer(String title, String header, String content) {
+		// Alert box to inform user of score and whether answer was correct
+		Alert alert = new Alert(AlertType.INFORMATION);
+    	alert.setTitle(title);
+    	alert.setHeaderText(header);
+    	alert.setContentText(content);
+    	alert.showAndWait();
+        
+        Router.show(Views.PRACTICE_ANSWER_SCREEN);
+	}
+
+	public void onUnsure() {
+		handleAnswer(
+			"Oops.",
+			"Answer was: " + question.getAnswer(),
+			question.getHint()
+		);
+	}
 
     @FXML
 	public void repeatClue(){
 		TTS.getInstance().speak(question.getHint());
     }
-    
-    @FXML
-    public void onUnsure(){}
 }
