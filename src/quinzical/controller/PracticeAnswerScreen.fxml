@@ -97,7 +97,7 @@
                <children>
                   <HBox alignment="CENTER_LEFT" maxWidth="600.0" spacing="8.0">
                      <children>
-                        <Label alignment="BOTTOM_LEFT" text="What is" textFill="WHITE">
+                        <Label fx:id="labelPrefix" alignment="BOTTOM_LEFT" text="What is" textFill="WHITE">
                            <font>
                               <Font size="24.0" />
                            </font>

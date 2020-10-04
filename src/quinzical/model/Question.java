@@ -39,7 +39,7 @@ public class Question implements Serializable {
     public String getHint() {
         return question.get();
     }
-    public String questionPrefix() {
+    public String getPrefix() {
         return questionPrefix.get();
     }
     public String getAnswer() {

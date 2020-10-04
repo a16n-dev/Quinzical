@@ -25,11 +25,13 @@ public class AnswerScreenController {
 	@FXML
 	public Label hintText;
 
+	public Label labelPrefix;
+
 	@FXML
 	private Label categoryName;
 
 	@FXML
-	private Label ValueText;
+	private Label valueText;
     
 	// stores a reference to the current game being played
 	private Game game;
@@ -42,7 +44,10 @@ public class AnswerScreenController {
 
 		//Fill text
 		categoryName.setText(game.getCurrentCategory());
-		ValueText.setText("$" + question.getValue());
+		valueText.setText("$" + question.getValue());
+		labelPrefix.setText(
+			question.getPrefix().substring(0, 1).toUpperCase() + question.getPrefix().substring(1)
+		);
 		String hint = question.getHint().substring(0, 1).toUpperCase() + question.getHint().substring(1);
 		hintText.setText(hint);
 

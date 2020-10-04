@@ -33,6 +33,7 @@ public class PracticeAnswerScreenController {
     public Label hintLetter;
     public TextField input;
     public VBox wrapper;
+    public Label labelPrefix;
     // public HBox answerContainer;
     // public Label header;
 
@@ -49,8 +50,10 @@ public class PracticeAnswerScreenController {
 
         hintText.setText(question.getHint());
         AttemptCount.textProperty().bind(Bindings.convert(game.getRemainingAttempts()));
+        labelPrefix.setText(
+			question.getPrefix().substring(0, 1).toUpperCase() + question.getPrefix().substring(1)
+		);
         TTS.getInstance().speak(question.getHint());
-
         Macron.getInstance().bindToTextField(input, wrapper);
 	}
 
