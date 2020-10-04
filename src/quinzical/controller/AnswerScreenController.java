@@ -50,7 +50,11 @@ public class AnswerScreenController {
 		boolean correct = game.getCurrentQuestion().checkAnswer(fxInput.getText());
 		// Check whether the user's answer is correct
 		if (correct) {
+			TTS.getInstance().speak("That is correct");
 			game.addScore(question.getValue());
+		} else {
+			TTS.getInstance().speak("That is incorrect");
+			TTS.getInstance().speak("The correct answer was " + question.getAnswer());
 		}
 
 		handleAnswer(correct ? "Congratulations!" : "Oops.",

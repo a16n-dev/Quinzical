@@ -58,13 +58,17 @@ public class PracticeAnswerScreenController {
             return;
         }
 
-        TTS.getInstance().speak(question.getHint());
+        TTS.getInstance().speak("Incorrect");
+        if(game.getAttempts() == 1) {
+        	TTS.getInstance().speak("The first character is: " + question.getAnswer().charAt(0));
+        }
         fxFeedback.setText(correct ? "Correct"
                 : "Incorrect."
                         + (game.getAttempts() == 1 ? "The first character is: " + question.getAnswer().charAt(0) : ""));
         game.addAttempt();
         if (game.getAttempts() == 3) {
             handleAnswer("Oops!", "Answer was: " + question.getAnswer(), question.getHint());
+            TTS.getInstance().speak("The correct answer was: " + question.getAnswer());
         }
     }
 

@@ -9,6 +9,7 @@ import quinzical.model.Game;
 import quinzical.model.Reward;
 import quinzical.model.User;
 import quinzical.util.Router;
+import quinzical.util.TTS;
 
 public class RewardScreenController {
 
@@ -35,6 +36,10 @@ public class RewardScreenController {
 		fxScore.setText("Final score: " + score);
 		fxMedal.setText("You have earned a " + reward.name() + " Medal!");
 
+		//Speak results to user
+		TTS.getInstance().speak("Your final score was " + score);
+		TTS.getInstance().speak("You have earned a " + reward.name() + " Medal!" ) ;
+		
 		// Set image
 		switch (reward) {
 			case Bronze:

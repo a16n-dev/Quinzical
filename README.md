@@ -1,16 +1,16 @@
 # SOFTENG 206 Assignment 3
 
-# Instructions to run the "Quinzical" application
+ **Author: Team 26**  
 
-# Author: Team 26
+## Instructions to run the "Quinzical" application
 
   1. Open a terminal window.
   
-  2. Navigate to the directory containing "quinzical.jar", "Quinzical.sh", and
+  2. Navigate to the directory containing "`quinzical.jar`", "`Quinzical.sh`", and
      the "categories" folder.
 
-       e.g. "cd /home/se2062020/eclipse-workspace/assignment-3-and-project-team-26/"
+       e.g. "`cd /home/se2062020/eclipse-workspace/assignment-3-and-project-team-26/`"
 
-  3. Run the "Quinzical.sh" script.
+  3. Run the "`Quinzical.sh`" script.
   
-       e.g. "./Quinzical.sh"
+       e.g. "`./Quinzical.sh`"

@@ -21,7 +21,6 @@ public class TrophyCaseController {
 
     public void initialize() {
         HashMap<Reward, Integer> rewards = User.getInstance().getRewards();
-        System.out.println(rewards);
         fxDiamond.setText(Integer.toString(rewards.get(Reward.Diamond)));
         fxPlatinum.setText(Integer.toString(rewards.get(Reward.Platinum)));
         fxGold.setText(Integer.toString(rewards.get(Reward.Gold)));
