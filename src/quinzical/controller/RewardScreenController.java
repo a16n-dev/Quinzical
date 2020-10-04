@@ -13,9 +13,14 @@ import quinzical.util.Router;
 
 public class RewardScreenController {
 
-	private ImageView fxImageMedal;
-	private Label fxScore;
-	private Label fxMedal;
+	public Label fxScore;
+	public Label fxMedal;
+
+	public ImageView fxDia;
+	public ImageView fxPlat;
+	public ImageView fxGold;
+	public ImageView fxSilver;
+	public ImageView fxBronze;
 
 	// stores a reference to the current game being played
 	private Game game;
@@ -31,29 +36,27 @@ public class RewardScreenController {
 		fxScore.setText("Final score: " + score);
 		fxMedal.setText("You have earned a " + reward.name() + " Medal!");
 
-		Image image;
 		// Set image
 		switch (reward) {
 			case Bronze:
-				image = new Image(getClass().getResourceAsStream("../resources/images/md_bronze.png"));
+				fxBronze.setVisible(true);
 				break;
 			case Diamond:
-				image = new Image(getClass().getResourceAsStream("../resources/images/md_diamond.png"));
+				fxDia.setVisible(true);
 				break;
 			case Gold:
-				image = new Image(getClass().getResourceAsStream("../resources/images/md_gold.png"));
+				fxGold.setVisible(true);
 				break;
 			case Platinum:
-				image = new Image(getClass().getResourceAsStream("../resources/images/md_platinum.png"));
+				fxPlat.setVisible(true);
 				break;
 			case Silver:
-				image = new Image(getClass().getResourceAsStream("../resources/images/md_silver.png"));
+				fxSilver.setVisible(true);
 				break;
 			default:
-				image = new Image(getClass().getResourceAsStream("../resources/images/md_bronze.png"));
+				fxBronze.setVisible(true);
 				break;
 		}
-		fxImageMedal.setImage(image);
 	}
 
 	public void handleButtonMenuClick(ActionEvent event) throws IOException {
