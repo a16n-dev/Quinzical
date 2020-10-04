@@ -13,6 +13,7 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import quinzical.model.Game;
 import quinzical.model.Question;
@@ -35,9 +36,12 @@ public class GameBoardController {
 		// Populate the gameboard grid
 		ArrayList<String> categories = game.getCategories();
 		for (int i = 0; i < categories.size(); i++) {
+			boolean available = true;
 			String category = categories.get(i);
 			// Place label
-			grid.add(new Label(category), i, 0);
+			Label label = new Label(category);
+			label.setTextFill(Color.web("#fff"));
+			grid.add(label, i, 0);
 
 			// Place buttons
 			ArrayList<Question> questions = game.getQuestionsByCategory(category);
@@ -48,10 +52,11 @@ public class GameBoardController {
 				// Place label
 				Button button = new Button("$" + question.getValue());
 
-				if (question.isAnswered()) {
+				if (question.isAnswered() || !available) {
 					// Disable button if the question has been attempted
 					button.setDisable(true);
 				} else {
+					available = false;
 					// Add click events
 					button.setOnAction((event) -> {
 						game.setCurrentQuestion(category, intJ);
