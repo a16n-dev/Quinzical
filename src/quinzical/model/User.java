@@ -7,11 +7,12 @@ import quinzical.util.IOManager;
 import quinzical.util.State;
 
 /**
- * The user model is responsible for keeping track of the users rewards.
- * Should user be singleton? might be multiple users?
- * In this case the 'rewards' are in the form of strings, but this could be extended to its own class in the future
+ * The user model is responsible for keeping track of the users rewards. Should
+ * user be singleton? might be multiple users? In this case the 'rewards' are in
+ * the form of strings, but this could be extended to its own class in the
+ * future
  */
-public class User implements Serializable{
+public class User implements Serializable {
 
     private static final long serialVersionUID = -4964840915298617866L;
 
@@ -38,7 +39,7 @@ public class User implements Serializable{
         return user;
     }
 
-    private User(){
+    private User() {
         prefWidth = 1000;
         prefHeight = 600;
         _rewards.put(Reward.Diamond, 0);
@@ -50,6 +51,7 @@ public class User implements Serializable{
 
     /**
      * Getter for user rewards
+     * 
      * @return a copy of the users rewards, so that encapsulation is not broken
      */
     public HashMap<Reward, Integer> getRewards() {
@@ -58,59 +60,60 @@ public class User implements Serializable{
 
     /**
      * Adds a new reward for the user
+     * 
      * @param reward a string representing the reward
      */
     public Reward addReward(int score) {
-    	Reward reward;
-    	
-    	if (score == 7500) {
-    		reward = Reward.Diamond;
-    	} else if (score >= 6000) {
-			reward = Reward.Platinum;
-		} else if (score >= 4500) {
-			reward = Reward.Gold;
-		} else if (score >= 3000) {
-			reward = Reward.Silver;
-		} else {
-			reward = Reward.Bronze;
-			
+        Reward reward;
+
+        if (score == 7500) {
+            reward = Reward.Diamond;
+        } else if (score >= 6000) {
+            reward = Reward.Platinum;
+        } else if (score >= 4500) {
+            reward = Reward.Gold;
+        } else if (score >= 3000) {
+            reward = Reward.Silver;
+        } else {
+            reward = Reward.Bronze;
+
         }
         _rewards.compute(reward, (k, v) -> (v == null) ? 1 : v + 1);
         persist();
-        
+
         return reward;
     }
 
     /**
-     * Removes all of the users obtained rewards. This could be used if
-     * the user decides they want to reset their overall progress
+     * Removes all of the users obtained rewards. This could be used if the user
+     * decides they want to reset their overall progress
      */
-    public void clearRewards(){
+    public void clearRewards() {
         _rewards = new HashMap<Reward, Integer>();
     }
 
-    private static void persist(){
-        if(user == null){
+    private static void persist() {
+        if (user == null) {
             IOManager.clearState(State.USER);
         } else {
             IOManager.writeState(State.USER, user);
         }
     }
 
-    public int getPrefWidth(){
+    public int getPrefWidth() {
         return prefWidth.intValue();
     }
 
-    public int getPrefHeight(){
+    public int getPrefHeight() {
         return prefHeight.intValue();
     }
 
-    public void setPrefWidth(Number width){
+    public void setPrefWidth(Number width) {
         prefWidth = width;
         persist();
     }
 
-    public void setPrefHeight(Number height){
+    public void setPrefHeight(Number height) {
         prefWidth = height;
         persist();
     }

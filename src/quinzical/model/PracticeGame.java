@@ -54,7 +54,7 @@ public class PracticeGame extends QuinzicalGame {
         _remainingAttempts.set(3 - _currentQuestionAttempts);
     }
 
-    public SimpleIntegerProperty getRemainingAttempts(){
+    public SimpleIntegerProperty getRemainingAttempts() {
         return _remainingAttempts;
     }
 }

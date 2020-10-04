@@ -36,9 +36,9 @@ public class QuestionBank {
     /**
      * Gets a given amount of random questions from the specified category
      * 
-     * @param categoryName    a name of a category - case sensitive. If the category
-     *                        doesnt exist it will throw an error
-     * @param amount          the number of questions to return.
+     * @param categoryName a name of a category - case sensitive. If the category
+     *                     doesnt exist it will throw an error
+     * @param amount       the number of questions to return.
      * @return a list of questions
      */
     public ArrayList<Question> getRandomQuestions(String categoryName, int amount, boolean allowDuplicates)
@@ -156,7 +156,7 @@ public class QuestionBank {
         return new ArrayList<String>(_questionBank.keySet());
     }
 
-    public ArrayList<Question> getQuestionsByCategory(String category){
+    public ArrayList<Question> getQuestionsByCategory(String category) {
         return _questionBank.get(category);
     }
 }

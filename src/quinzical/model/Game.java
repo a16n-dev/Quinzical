@@ -86,9 +86,9 @@ public class Game extends QuinzicalGame implements Serializable {
         return _instance;
     }
 
-    public static boolean isInProgress(){
+    public static boolean isInProgress() {
         _instance = IOManager.readState(State.GAME);
-        if(_instance != null){
+        if (_instance != null) {
             return !(_instance.getRemainingQuestions() == 0);
         } else {
             return false;
@@ -105,7 +105,7 @@ public class Game extends QuinzicalGame implements Serializable {
     /**
      * Ends the current game
      */
-    public static void clearGame(){
+    public static void clearGame() {
         _instance = null;
         persist();
     }
@@ -119,27 +119,28 @@ public class Game extends QuinzicalGame implements Serializable {
     }
 
     /**
-     * @return the number of questions the user still has to answer in the current game
+     * @return the number of questions the user still has to answer in the current
+     *         game
      */
-    public int getRemainingQuestions(){
+    public int getRemainingQuestions() {
         int count = 0;
         for (Map.Entry<String, ArrayList<Question>> entry : _questions.entrySet()) {
-            List<Question> rem = entry.getValue().stream().filter(p -> !p.isAnswered())
-            .collect(Collectors.toList());
-            count+=rem.size();
+            List<Question> rem = entry.getValue().stream().filter(p -> !p.isAnswered()).collect(Collectors.toList());
+            count += rem.size();
         }
         return count;
     }
 
-    public String getCurrentCategory(){
+    public String getCurrentCategory() {
         return currentCategory;
     }
 
     /**
-     * Saves the current game instance to file, or deletes any game data if the instance is null.
+     * Saves the current game instance to file, or deletes any game data if the
+     * instance is null.
      */
     private static void persist() {
-        if(_instance == null){
+        if (_instance == null) {
             IOManager.clearState(State.GAME);
         } else {
             IOManager.writeState(State.GAME, _instance);

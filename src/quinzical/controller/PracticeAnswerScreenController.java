@@ -2,22 +2,14 @@ package quinzical.controller;
 
 import java.io.IOException;
 
-import javafx.beans.binding.Binding;
 import javafx.beans.binding.Bindings;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
 import quinzical.model.PracticeGame;
 import quinzical.model.Question;
 import quinzical.util.Macron;
@@ -50,63 +42,53 @@ public class PracticeAnswerScreenController {
 
         hintText.setText(question.getHint());
         AttemptCount.textProperty().bind(Bindings.convert(game.getRemainingAttempts()));
-        labelPrefix.setText(
-			question.getPrefix().substring(0, 1).toUpperCase() + question.getPrefix().substring(1)
-		);
+        labelPrefix.setText(question.getPrefix().substring(0, 1).toUpperCase() + question.getPrefix().substring(1));
         TTS.getInstance().speak(question.getHint());
         Macron.getInstance().bindToTextField(input, wrapper);
-	}
+    }
 
-	public void onSubmit(ActionEvent event) throws IOException {
-		
-		/* Prompt user to try again after first and second incorrect attempts, 
-		   show first letter hint on third attempt, or show clue and answer 
-           after third incorrect attempt. */        
+    public void onSubmit(ActionEvent event) throws IOException {
+
+        /*
+         * Prompt user to try again after first and second incorrect attempts, show
+         * first letter hint on third attempt, or show clue and answer after third
+         * incorrect attempt.
+         */
         boolean correct = question.checkAnswer(input.getText());
 
         if (correct) {
             TTS.getInstance().speak("correct");
-            handleAnswer(
-                "Congratulations",
-                "You answered correctly.",
-                question.getAnswer()
-            );
+            handleAnswer("Congratulations", "You answered correctly.", question.getAnswer());
             return;
         }
 
         TTS.getInstance().speak(question.getHint());
-        hint.setText(correct ? "Correct" : "Incorrect." + (game.getAttempts() == 1 ? "The first character is: " + question.getAnswer().charAt(0) : ""));
+        hint.setText(correct ? "Correct"
+                : "Incorrect."
+                        + (game.getAttempts() == 1 ? "The first character is: " + question.getAnswer().charAt(0) : ""));
         game.addAttempt();
         if (game.getAttempts() == 3) {
-            handleAnswer(
-                "Oops!",
-                "Answer was: " + question.getAnswer(),
-                question.getHint()
-            );
+            handleAnswer("Oops!", "Answer was: " + question.getAnswer(), question.getHint());
         }
     }
 
     private void handleAnswer(String title, String header, String content) {
-		// Alert box to inform user of score and whether answer was correct
-		Alert alert = new Alert(AlertType.INFORMATION);
-    	alert.setTitle(title);
-    	alert.setHeaderText(header);
-    	alert.setContentText(content);
-    	alert.showAndWait();
-        
-        Router.show(Views.PRACTICE_ANSWER_SCREEN);
-	}
+        // Alert box to inform user of score and whether answer was correct
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle(title);
+        alert.setHeaderText(header);
+        alert.setContentText(content);
+        alert.showAndWait();
 
-	public void onUnsure() {
-		handleAnswer(
-			"Oops.",
-			"Answer was: " + question.getAnswer(),
-			question.getHint()
-		);
-	}
+        Router.show(Views.PRACTICE_ANSWER_SCREEN);
+    }
+
+    public void onUnsure() {
+        handleAnswer("Oops.", "Answer was: " + question.getAnswer(), question.getHint());
+    }
 
     @FXML
-	public void repeatClue(){
-		TTS.getInstance().speak(question.getHint());
+    public void repeatClue() {
+        TTS.getInstance().speak(question.getHint());
     }
 }

@@ -1,19 +1,13 @@
 package quinzical.util;
 
-import java.io.IOException;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
-import javafx.stage.Stage;
 import quinzical.App;
 import quinzical.controller.Views;
-import quinzical.model.User;
 
 public class Router {
 
@@ -31,31 +25,31 @@ public class Router {
      */
     public static void show(Views fxml) {
 
-        //Clear the TTS queue
+        // Clear the TTS queue
         TTS.getInstance().clearQueue();
 
         // Update the game state
-        switch(fxml){
+        switch (fxml) {
             case ANSWER_SCREEN:
                 gameState = 1;
-				break;
+                break;
             case GAME_BOARD:
                 gameState = 1;
-				break;
+                break;
             case MAIN_MENU:
                 gameState = 0;
-				break;
+                break;
             case PRACTICE_ANSWER_SCREEN:
                 gameState = 2;
-				break;
+                break;
             case PRACTICE_SCREEN:
                 gameState = 2;
-				break;
+                break;
             case REWARD_SCREEN:
                 gameState = 1;
-				break;
-			default:
-				break;
+                break;
+            default:
+                break;
         }
 
         // Place the content into the container
@@ -119,7 +113,7 @@ public class Router {
         }
     }
 
-    public static int getGameState(){
+    public static int getGameState() {
         return gameState;
     }
 }

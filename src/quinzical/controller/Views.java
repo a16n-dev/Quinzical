@@ -3,8 +3,10 @@ package quinzical.controller;
 import quinzical.components.Component;
 
 /**
- * An enum to display different views within the app. Each view can be programmed to set the content for a specific part of the display:
- *  =====================================
+ * An enum to display different views within the app. Each view can be
+ * programmed to set the content for a specific part of the display:
+ * 
+ *  *  =====================================
  * |                                   |
  * |                top                |
  * |                                   |
@@ -29,8 +31,8 @@ public enum Views {
     PRACTICE_SCREEN("controller/PracticeScreen.fxml", Component.GAME_TITLE.path(), null, null, null),
     PRACTICE_ANSWER_SCREEN("controller/PracticeAnswerScreen.fxml", Component.GAME_TITLE.path(), null, null, null),
     REWARD_SCREEN("controller/RewardScreen.fxml", Component.TITLE.path(), null, null, null),
-    TROPHY_CASE("controller/TrophyCase.fxml",Component.GAME_TITLE.path(),null,null,null)
-    ;
+    TROPHY_CASE("controller/TrophyCase.fxml", Component.GAME_TITLE.path(), null, null, null);
+
     private final String center;
     private final String top;
     private final String right;

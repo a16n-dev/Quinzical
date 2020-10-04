@@ -14,10 +14,8 @@ import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 
-import quinzical.model.Game;
 import quinzical.model.Question;
 
 /**
@@ -27,9 +25,6 @@ import quinzical.model.Question;
 public class IOManager {
 
     private static String DATAPATH = "./gamedata/";
-
-    //TODO: make sure datapath exists
-
     /**
      * Load the questions from the file
      * 
@@ -148,12 +143,14 @@ public class IOManager {
     }
 
     /**
-     *  Writes the specified object into the state variable.
+     * Writes the specified object into the state variable.
      */
     public static void writeState(State state, Object obj) {
         try {
             Files.createDirectories(Paths.get(DATAPATH));
-        } catch (Exception e) {};
+        } catch (Exception e) {
+        }
+        ;
 
         try {
             // Saving of object in a file
@@ -188,22 +185,23 @@ public class IOManager {
             file.close();
             return obj;
 
-        } 
-        catch (Exception e) {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
-        } 
+        }
     }
 
     /**
      * Clears the specified state
+     * 
      * @param state @see quinzical.util.State
      */
     public static void clearState(State state) {
         try {
-            File f = new File(DATAPATH + state.getFileName());  
+            File f = new File(DATAPATH + state.getFileName());
             f.delete();
             return;
-        } catch (Exception e) {}
+        } catch (Exception e) {
+        }
     }
 }

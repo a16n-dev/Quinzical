@@ -2,17 +2,9 @@ package quinzical.controller;
 
 import java.io.IOException;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
-import javafx.stage.Stage;
 import quinzical.components.CategoryListItemController;
 import quinzical.components.Component;
 import quinzical.model.PracticeGame;
@@ -31,23 +23,22 @@ public class PracticeScreenController {
 			FXMLLoader loader = Router.manualLoad(Component.CATEGORY_LIST_ITEM.path());
 			try {
 				Node node = (Node) loader.load();
-			
 
-			CategoryListItemController controller = loader.getController();
-			controller.config(category, QuestionBank.getInstance().getQuestionsByCategory(category).size());
+				CategoryListItemController controller = loader.getController();
+				controller.config(category, QuestionBank.getInstance().getQuestionsByCategory(category).size());
 
-			// Button button = new Button(category);
-			// button.setOnAction(event -> {
-			// 	game.setCurrentCategory(category);
+				// Button button = new Button(category);
+				// button.setOnAction(event -> {
+				// game.setCurrentCategory(category);
 
-			// 	Router.show(Views.PRACTICE_ANSWER_SCREEN);
+				// Router.show(Views.PRACTICE_ANSWER_SCREEN);
 
-			// });
-			panel.getChildren().add(node);
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+				// });
+				panel.getChildren().add(node);
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }

@@ -14,7 +14,7 @@ import quinzical.util.Modal;
 import quinzical.util.Router;
 
 public class GameTopBarController {
-    @FXML
+	@FXML
 	private Label scoreLabel;
 
 	@FXML
@@ -24,13 +24,13 @@ public class GameTopBarController {
 	 * This method is called once the fxml has been loaded
 	 */
 	public void initialize() {
-		//Hide the score if in practice mode
-		if(Router.getGameState() != 1){
+		// Hide the score if in practice mode
+		if (Router.getGameState() != 1) {
 			scoreCard.setVisible(false);
 			scoreCard.setManaged(false);
-		}else {
+		} else {
 			SimpleIntegerProperty score = Game.getInstance().getScore();
-			scoreLabel.textProperty().bind(Bindings.convert(score));	
+			scoreLabel.textProperty().bind(Bindings.convert(score));
 		}
 	}
 
@@ -40,7 +40,7 @@ public class GameTopBarController {
 	}
 
 	@FXML
-	public void showSettings(){
+	public void showSettings() {
 		Modal.show();
 	}
 }

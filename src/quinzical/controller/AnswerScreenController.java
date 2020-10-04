@@ -15,10 +15,10 @@ import quinzical.util.Router;
 import quinzical.util.TTS;
 
 public class AnswerScreenController {
-	
+
 	public Button button;
 	public Button buttonUnsure;
-	
+
 	public TextField input;
 	public VBox wrapper;
 
@@ -32,22 +32,20 @@ public class AnswerScreenController {
 
 	@FXML
 	private Label valueText;
-    
+
 	// stores a reference to the current game being played
 	private Game game;
 	private Question question;
-	
+
 	public void initialize() {
 		game = Game.getInstance();
 		question = game.getCurrentQuestion();
 		TTS.getInstance().speak(question.getHint());
 
-		//Fill text
+		// Fill text
 		categoryName.setText(game.getCurrentCategory());
 		valueText.setText("$" + question.getValue());
-		labelPrefix.setText(
-			question.getPrefix().substring(0, 1).toUpperCase() + question.getPrefix().substring(1)
-		);
+		labelPrefix.setText(question.getPrefix().substring(0, 1).toUpperCase() + question.getPrefix().substring(1));
 		String hint = question.getHint().substring(0, 1).toUpperCase() + question.getHint().substring(1);
 		hintText.setText(hint);
 
@@ -60,40 +58,35 @@ public class AnswerScreenController {
 		if (correct) {
 			game.addScore(question.getValue());
 		}
-		
-		handleAnswer(
-			correct ? "Congratulations!" : "Oops.",
-			correct ? "Correct" : "Answer was: " + question.getAnswer(),
-			"Your current score is: " + game.getScore().intValue()
-		);
+
+		handleAnswer(correct ? "Congratulations!" : "Oops.",
+				correct ? "Correct" : "Answer was: " + question.getAnswer(),
+				"Your current score is: " + game.getScore().intValue());
 	}
-	
+
 	private void handleAnswer(String title, String header, String content) {
 		// Alert box to inform user of score and whether answer was correct
 		Alert alert = new Alert(AlertType.INFORMATION);
-    	alert.setTitle(title);
-    	alert.setHeaderText(header);
-    	alert.setContentText(content);
-    	alert.showAndWait();
-    	
-    	// Navigate to the 'reward screen' only if all questions are answered
-    	if (game.getRemainingQuestions() == 0) {
+		alert.setTitle(title);
+		alert.setHeaderText(header);
+		alert.setContentText(content);
+		alert.showAndWait();
+
+		// Navigate to the 'reward screen' only if all questions are answered
+		if (game.getRemainingQuestions() == 0) {
 			Router.show(Views.REWARD_SCREEN);
-    	} else {
-    		Router.show(Views.GAME_BOARD);
+		} else {
+			Router.show(Views.GAME_BOARD);
 		}
 	}
 
 	public void onUnsure() {
-		handleAnswer(
-			"Oops.",
-			"Answer was: " + question.getAnswer(),
-			"Your current score is: " + game.getScore().intValue()
-		);
+		handleAnswer("Oops.", "Answer was: " + question.getAnswer(),
+				"Your current score is: " + game.getScore().intValue());
 	}
 
 	@FXML
-	public void repeatClue(){
+	public void repeatClue() {
 		TTS.getInstance().speak(question.getHint());
 	}
 }

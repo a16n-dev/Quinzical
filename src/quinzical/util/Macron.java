@@ -22,7 +22,7 @@ public class Macron {
         vowels.put("i", "ī");
         vowels.put("o", "ō");
         vowels.put("u", "ū");
-        
+
         registeredFields = new HashMap<>();
     }
 
@@ -32,7 +32,7 @@ public class Macron {
         }
         return instance;
     }
-    
+
     private String addMacron(String text, int index) {
         var builder = new StringBuilder(text);
         builder.setCharAt(index, vowels.get(Character.toString(text.charAt(index))).charAt(0));
@@ -45,7 +45,7 @@ public class Macron {
         macronHint.setFont(new Font(20));
         macronHint.setTextFill(Color.rgb(255, 255, 255));
         wrapper.getChildren().add(macronHint);
-    
+
         registeredFields.put(input, new MacronData(macronHint, input.getText()));
         input.setOnKeyTyped(e -> {
             var macronData = registeredFields.get(input);
@@ -66,8 +66,7 @@ public class Macron {
                 }
                 macronData.macronIndex = index;
                 macronData.showHint();
-            }
-            else {
+            } else {
                 macronData.macronIndex = -1;
                 macronData.hideHint();
             }
@@ -104,6 +103,7 @@ class MacronData {
         this.text = text;
         this.macronIndex = macronIndex;
     }
+
     public MacronData(Label hint, String text) {
         this.hint = hint;
         this.text = text;
@@ -113,6 +113,7 @@ class MacronData {
     public void showHint() {
         hint.setVisible(true);
     }
+
     public void hideHint() {
         hint.setVisible(false);
     }

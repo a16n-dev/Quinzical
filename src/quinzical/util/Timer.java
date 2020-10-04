@@ -8,7 +8,8 @@ import javafx.scene.control.Labeled;
 import javafx.util.Duration;
 
 /**
- * Util module which is given a labeled JavaFX element and turns it into a timer display.
+ * Util module which is given a labeled JavaFX element and turns it into a timer
+ * display.
  */
 public class Timer {
     private int maxTime;
@@ -20,15 +21,17 @@ public class Timer {
         this.element = element;
         this.maxTime = maxTime;
     }
+
     public Timer(Labeled element) {
         this.element = element;
         this.maxTime = 60;
     }
 
     /**
-     * Restart the timer from the maxTime. Decrements the time value displayed on the labeled element
-     * possessed by the timer every second until the timer has finished, at which the provided event
-     * is executed
+     * Restart the timer from the maxTime. Decrements the time value displayed on
+     * the labeled element possessed by the timer every second until the timer has
+     * finished, at which the provided event is executed
+     * 
      * @param event The event to be executed once the timer finishes
      */
     public void startTimer(EventHandler<ActionEvent> event) {
@@ -49,19 +52,21 @@ public class Timer {
     public void stopTimer() {
         timeline.stop();
     }
+
     /**
      * Pause the timer. Resuming is possible
      */
     public void pauseTimer() {
         timeline.pause();
     }
+
     /**
      * Resume the timer if it has been paused
      */
     public void resumeTimer() {
         timeline.play();
     }
-    
+
     public int getTime() {
         return currentTime;
     }

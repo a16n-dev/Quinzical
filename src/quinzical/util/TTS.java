@@ -49,30 +49,29 @@ public class TTS implements Serializable {
      * to the queue with the speak method.
      */
     private void speakNext() {
-        if (speaking || processQueue.peek() == null) return;
+        if (speaking || processQueue.peek() == null)
+            return;
         speaking = true;
 
         Task<Void> task = new Task<Void>() {
-			@Override
-			protected Void call() throws Exception {
+            @Override
+            protected Void call() throws Exception {
                 var builder = processQueue.poll();
-    
+
                 try {
                     Process p = builder.start();
                     try {
                         p.waitFor();
                         speaking = false;
                         speakNext();
-                    }
-                    catch (InterruptedException e) {
+                    } catch (InterruptedException e) {
                         System.out.println(e);
                     }
-                }
-                catch (IOException e) {
+                } catch (IOException e) {
                     e.printStackTrace();
                 }
                 return null;
-			}
+            }
         };
         new Thread(task).start();
     }
@@ -89,9 +88,11 @@ public class TTS implements Serializable {
      * @param text
      */
     public void speak(String text) {
-        ProcessBuilder builder = new ProcessBuilder("espeak", "-x", text, "-a", Integer.toString(volume), "-s", Integer.toString(speed));
+        ProcessBuilder builder = new ProcessBuilder("espeak", "-x", text, "-a", Integer.toString(volume), "-s",
+                Integer.toString(speed));
         processQueue.add(builder);
-        if (!speaking) speakNext();
+        if (!speaking)
+            speakNext();
     }
 
     /**
@@ -131,7 +132,7 @@ public class TTS implements Serializable {
      * Saves the current settings in state
      */
     private static void persist() {
-        if(tts == null){
+        if (tts == null) {
             IOManager.clearState(State.TTS);
         } else {
             IOManager.writeState(State.TTS, tts);

@@ -14,21 +14,21 @@ public class ContainerController {
     public Label labelVolume;
 
     @FXML
-    public void hideModal(){
+    public void hideModal() {
         Modal.hide();
     }
 
     public void initialize() {
-		sliderSpeed.setValue(TTS.getInstance().getSpeed());
-		sliderVolume.setValue(TTS.getInstance().getVolume());
-	}
+        sliderSpeed.setValue(TTS.getInstance().getSpeed());
+        sliderVolume.setValue(TTS.getInstance().getVolume());
+    }
 
     public void handleSpeechVolumeSliderChange(ObservableValue<Number> ovn, Number before, Number after) {
         TTS.getInstance().setVolume(after.intValue());
         labelVolume.setText(after.intValue() + "%");
-	}
+    }
 
-	public void handleSpeechSpeedSliderChange(ObservableValue<Number> ovn, Number before, Number after) {
+    public void handleSpeechSpeedSliderChange(ObservableValue<Number> ovn, Number before, Number after) {
         TTS.getInstance().setSpeed(after.intValue());
         labelSpeed.setText(after.intValue() + " WPS");
     }
