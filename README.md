@@ -14,8 +14,4 @@
   3. Run the "run.sh" script. 
   
        e.g. "./run.sh"
-	
-[Trello Board here](https://trello.com/b/aOkjf590)
-
-	
 
