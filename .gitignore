@@ -27,6 +27,8 @@ hs_err_pid*
 .vscode/
 /.classpath
 /.project
+.settings/
 
 #Game data
 gamedata/
+submit/

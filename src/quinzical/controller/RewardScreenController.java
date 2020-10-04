@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import quinzical.model.Game;
 import quinzical.model.Reward;
