@@ -11,6 +11,7 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -44,7 +45,7 @@ public class IOManager {
                 File[] files = (new File(directory)).listFiles();
                 for (File file : files) {
                     if (file.isFile()) {
-                        BufferedReader br = new BufferedReader(new FileReader(file));
+                        BufferedReader br = new BufferedReader(new FileReader(file,Charset.forName("UTF-8")));
                         String categoryName = file.getName();
                         String line;
                         while ((line = br.readLine()) != null) {
