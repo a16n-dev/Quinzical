@@ -104,9 +104,18 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label text="Answer questions from 5 random categories covering a diverse range of topics from people to fauna." textFill="WHITE" wrapText="true" />
-                              <Label text="Each category contains 5 randomly selected questions with values ranging from $100 to $500." textFill="WHITE" wrapText="true" />
-                              <Label text="Earn medals for scoring as many points as you can." textFill="WHITE" wrapText="true" />
+                              <Label text="Answer questions from 5 random categories covering a diverse range of topics from people to fauna." textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label text="Each category contains 5 randomly selected questions with values ranging from $100 to $500." textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label text="Earn medals for scoring as many points as you can." textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
                            </children>
                            <padding>
                               <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
@@ -120,8 +129,14 @@
                                     <Font name="System Bold" size="18.0" />
                                  </font>
                               </Label>
-                              <Label text="Choose any category and practice random questions from its question bank." textFill="WHITE" wrapText="true" />
-                              <Label text="You have 3 attempts per question and receive a hint on your third attempt." textFill="WHITE" wrapText="true" />
+                              <Label text="Choose any category and practice random questions from its question bank." textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
+                              <Label text="You have 3 attempts per question and receive a hint on your third attempt." textFill="WHITE" wrapText="true">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font></Label>
                            </children>
                            <padding>
                               <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
