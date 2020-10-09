@@ -92,13 +92,11 @@ public class TTS implements Serializable {
      * @param text
      */
     public void speak(String text) {
-        ProcessBuilder builder = new ProcessBuilder("espeak", "-x", text, "-a", Integer.toString(volume), "-s",
-                Integer.toString(speed));
+    	ProcessBuilder builder = new ProcessBuilder("espeak", "-a", Integer.toString(volume), "-s", Integer.toString(speed), text);
         processQueue.add(builder);
         if (!speaking) {
         	speakNext();
-        }
-            
+        }       
     }
 
     /**

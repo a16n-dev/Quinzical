@@ -67,8 +67,8 @@ public class PracticeAnswerScreenController {
                         + (game.getAttempts() == 1 ? "The first character is: " + question.getAnswer().charAt(0) : ""));
         game.addAttempt();
         if (game.getAttempts() == 3) {
+        	TTS.getInstance().speak("The correct answer was: " + question.getAnswer());
             handleAnswer("Oops!", "Answer was: " + question.getAnswer(), question.getHint());
-            TTS.getInstance().speak("The correct answer was: " + question.getAnswer());
         }
     }
 

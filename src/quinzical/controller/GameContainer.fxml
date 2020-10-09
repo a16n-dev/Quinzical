@@ -66,7 +66,7 @@
                                           </Label>
                                           <HBox alignment="CENTER_LEFT" spacing="16.0" GridPane.columnIndex="1">
                                              <children>
-                                                <Slider fx:id="fxSliderVolume" min="0" max="200" onValueChange="#handleSpeechVolumeSliderChange" onMouseReleased="#speakTest" />
+                                                <Slider fx:id="fxSliderVolume" max="200" min="0" onMouseReleased="#speakTest" onValueChange="#handleSpeechVolumeSliderChange" />
                                                 <Label fx:id="fxLabelVolume" text="100%" textFill="WHITE">
                                                    <font>
                                                       <Font size="18.0" />
@@ -76,7 +76,7 @@
                                           </HBox>
                                           <HBox alignment="CENTER_LEFT" spacing="16.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                              <children>
-                                                <Slider fx:id="fxSliderSpeed" min="80" max="240" onValueChange="#handleSpeechSpeedSliderChange" onMouseReleased="#speakTest"/>
+                                                <Slider fx:id="fxSliderSpeed" max="240" min="80" onMouseReleased="#speakTest" onValueChange="#handleSpeechSpeedSliderChange" />
                                                 <Label fx:id="fxLabelSpeed" text="100%" textFill="WHITE">
                                                    <font>
                                                       <Font size="18.0" />
@@ -86,6 +86,11 @@
                                           </HBox>
                                        </children>
                                     </GridPane>
+                                    <Label prefHeight="17.0" prefWidth="350.0" text="Default values are 100%" textFill="#e4e4e4">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
                                  </children>
                                  <padding>
                                     <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />

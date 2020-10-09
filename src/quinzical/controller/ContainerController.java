@@ -30,7 +30,7 @@ public class ContainerController {
 
     public void handleSpeechSpeedSliderChange(ObservableValue<Number> ovn, Number before, Number after) {
         TTS.getInstance().setSpeed(after.intValue());
-        fxLabelSpeed.setText(after.intValue() + " WPS");
+        fxLabelSpeed.setText(Math.round(((float)after.intValue() / 160) * 100) + "%");
     }
 
     public void speakTest() {
