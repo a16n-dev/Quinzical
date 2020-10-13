@@ -1,8 +1,13 @@
+.root {
+    -fx-orange-main: #C25955;
+    -fx-orange-light: #CE725B;  
+}
+
 .button {
-    -fx-background-color: radial-gradient(focus-distance 10% , center 50% 30% , radius 80% , #E59D5C, #C17632);
+    -fx-background-color: radial-gradient(focus-distance 10% , center 50% 30% , radius 80% , #CE725B, #C25955);
     -fx-text-fill: white;
     -fx-border-width: 0 0 3px 0;
-    -fx-border-color: #AB7748;
+    -fx-border-color: #AB3C39;
     -fx-border-radius: 5px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
     -fx-padding: 4px 8px 4px 8px;
@@ -13,6 +18,7 @@
 
 .button:hover{
     -fx-background-color: radial-gradient(focus-distance 10% , center 50% 30% , radius 80% , #FFCA9B, #D89252);
+    -fx-background-insets: 0;
 }
 
 .background{
@@ -29,9 +35,6 @@
 .panel {
     -fx-background-color: rgba(0,0,0,0.2);
     -fx-background-radius: 5px;
-    -fx-border-width: 1px;
-    -fx-border-color: rgba(255, 255, 255,0.3);
-    -fx-border-radius: 5px;
 }
 
 .scroll-bar:horizontal, .scroll-bar:vertical{

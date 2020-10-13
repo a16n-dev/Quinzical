@@ -45,7 +45,7 @@ public class IOManager {
                 File[] files = (new File(directory)).listFiles();
                 for (File file : files) {
                     if (file.isFile()) {
-                        BufferedReader br = new BufferedReader(new FileReader(file,Charset.forName("UTF-8")));
+                        BufferedReader br = new BufferedReader(new FileReader(file));
                         String categoryName = file.getName();
                         String line;
                         while ((line = br.readLine()) != null) {
