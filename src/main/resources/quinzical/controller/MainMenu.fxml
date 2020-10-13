@@ -34,7 +34,7 @@
                <children>
                   <ImageView fitHeight="88.0" fitWidth="270.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../resources/images/logo.png" />
+                        <Image url="@../images/logo.png" />
                      </image>
                   </ImageView>
                   <VBox maxWidth="500.0" GridPane.rowIndex="1">

@@ -22,27 +22,27 @@
          <children>
             <ImageView fx:id="fxPlat" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../resources/images/md_platinum.png" />
+                  <Image url="@../images/md_platinum.png" />
                </image>
             </ImageView>
             <ImageView fx:id="fxDia" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../resources/images/md_diamond.png" />
+                  <Image url="@../images/md_diamond.png" />
                </image>
             </ImageView>
             <ImageView fx:id="fxGold" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../resources/images/md_gold.png" />
+                  <Image url="@../images/md_gold.png" />
                </image>
             </ImageView>
             <ImageView fx:id="fxSilver" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../resources/images/md_silver.png" />
+                  <Image url="@../images/md_silver.png" />
                </image>
             </ImageView>
             <ImageView fx:id="fxBronze" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" visible="false">
                <image>
-                  <Image url="@../resources/images/md_bronze.png" />
+                  <Image url="@../images/md_bronze.png" />
                </image>
             </ImageView>
          </children>

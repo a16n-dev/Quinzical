@@ -59,7 +59,7 @@
                            <children>
                               <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../resources/images/SpeakIcon.png" />
+                                    <Image url="@../images/SpeakIcon.png" />
                                  </image>
                               </ImageView>
                               <Label text="REPEAT CLUE" textFill="WHITE" />

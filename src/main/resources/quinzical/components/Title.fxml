@@ -9,7 +9,7 @@
    <center>
       <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@../resources/images/logo.png" />
+            <Image url="@../images/logo.png" />
          </image>
          <BorderPane.margin>
             <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
