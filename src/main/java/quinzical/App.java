@@ -6,6 +6,7 @@ import quinzical.util.Modal;
 import quinzical.util.Router;
 import javafx.application.Application;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
@@ -21,6 +22,10 @@ public class App extends Application {
         this._stage.setMinWidth(800);
         this._stage.setMinHeight(600);
         this._stage.setTitle("Quinzical");
+
+        //Set app icon
+        s.getIcons().add(new Image(App.class.getResourceAsStream("images/favicon.png")));
+
         // Setup router
         StackPane container = (StackPane) Router.loadFXML("controller/GameContainer.fxml");
 
