@@ -16,7 +16,7 @@
 }
 
 .background{
-    -fx-background-image: url("../images/bg.png");
+    -fx-background-image: url("../images/background_lake_1.png");
     -fx-background-repeat: no-repeat;   
     -fx-background-size: cover;
     -fx-background-position: center;
@@ -58,4 +58,25 @@
 
 .listItem{
     -fx-background-color: white;
+}
+
+.titleBox{
+    -fx-background-image: url("../images/logo_new.png");
+    -fx-background-repeat: no-repeat;   
+    -fx-background-size: contain;
+    -fx-background-position: center;
+}
+
+.propRock{
+    -fx-background-image: url("../images/rock.png");
+    -fx-background-repeat: no-repeat;   
+    -fx-background-size: contain;
+    -fx-background-position: bottom;
+}
+
+.propShadow{
+    -fx-background-image: url("../avatar/base.png");
+    -fx-background-repeat: no-repeat;   
+    -fx-background-size: contain;
+    -fx-background-position: bottom;
 }

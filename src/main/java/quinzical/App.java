@@ -2,12 +2,10 @@ package quinzical;
 
 import quinzical.controller.Views;
 import quinzical.model.User;
-import quinzical.util.Modal;
 import quinzical.util.Router;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
@@ -19,7 +17,7 @@ public class App extends Application {
     @Override
     public void start(Stage s) {
         this._stage = s;
-        this._stage.setMinWidth(800);
+        this._stage.setMinWidth(1000);
         this._stage.setMinHeight(600);
         this._stage.setTitle("Quinzical");
 

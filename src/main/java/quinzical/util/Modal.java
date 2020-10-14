@@ -9,6 +9,8 @@ import quinzical.controller.Views;
 public class Modal {
 
     private static StackPane root;
+    
+    private static JFXDialog dialog;
 
     public static void init(StackPane pane) {
     	root = pane;
@@ -16,9 +18,12 @@ public class Modal {
     
     public static void show(Views view) {
     	Region content = (Region) Router.loadFXML(view.getCenter());
-        JFXDialog dialog = new JFXDialog();
+        dialog = new JFXDialog();
         dialog.setContent(content);
         dialog.show(root);
     }
     
+    public static void hide() {
+    	dialog.close();
+    }
 }
