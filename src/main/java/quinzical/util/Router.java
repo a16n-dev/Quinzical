@@ -3,9 +3,11 @@ package quinzical.util;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
+import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
+import javafx.util.Duration;
 import quinzical.App;
 import quinzical.controller.Views;
 
@@ -52,6 +54,11 @@ public class Router {
                 break;
         }
 
+        FadeTransition ft = new FadeTransition(Duration.millis(300), container);
+        ft.setFromValue(0);
+        ft.setToValue(1);
+        ft.play();
+
         // Place the content into the container
         container.setCenter(loadFXML(fxml.getCenter()));
 
@@ -65,7 +72,6 @@ public class Router {
 
         // If it was all successful add screen to history
         history.add(fxml);
-
     }
 
     public static void back() {

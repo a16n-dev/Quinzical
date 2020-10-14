@@ -80,6 +80,12 @@
     -fx-background-size: contain;
     -fx-background-position: bottom;
 }
+.propCoin{
+    -fx-background-image: url("../image/coin.png");
+    -fx-background-repeat: no-repeat;   
+    -fx-background-size: contain;
+    -fx-background-position: center;
+}
 
 /**
 Table stylings

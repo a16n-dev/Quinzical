@@ -3,6 +3,7 @@ package quinzical.controller;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import quinzical.util.Modal;
 import quinzical.util.TTS;
 
 public class SettingsController {
@@ -31,6 +32,10 @@ public class SettingsController {
     public void speakTest() {
         TTS.getInstance().clearQueue();
         TTS.getInstance().speak("Test");
+    }
+
+    public void handleClose(){
+        Modal.hide();
     }
 }
 

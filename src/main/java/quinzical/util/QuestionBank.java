@@ -73,8 +73,6 @@ public class QuestionBank {
 
             results.add(new Question(questionList.get(index)));
             }
-           
-
         }
 
         return results;

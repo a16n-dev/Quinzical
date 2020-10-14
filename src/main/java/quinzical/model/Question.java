@@ -91,7 +91,8 @@ public class Question implements Serializable {
      */
     public String toString() {
         return String.join("|", new String[] { Integer.toString(difficulty.get()), question.get(), questionPrefix.get(),
-                answer.get() });
+                answer.get() 
+        });
     }
 
     // Serializable methods for writing and reading from file
