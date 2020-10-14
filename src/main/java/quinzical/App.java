@@ -33,8 +33,8 @@ public class App extends Application {
         s.setScene(scene);
 
         Router.setContainer((BorderPane) container.lookup("#content"));
-        Modal.setModalContainer((AnchorPane) container.lookup("#ModalContainer"));
-        Modal.hide();
+//        Modal.setModalContainer((AnchorPane) container.lookup("#ModalContainer"));
+//        Modal.hide();
         Router.show(Views.MAIN_MENU);
         attachListeners();
         s.show();

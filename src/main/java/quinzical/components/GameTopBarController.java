@@ -41,6 +41,6 @@ public class GameTopBarController {
 
 	@FXML
 	public void showSettings() {
-		Modal.show();
+		Modal.show(Views.MODAL_SETTINGS);
 	}
 }

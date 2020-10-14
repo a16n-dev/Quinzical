@@ -72,7 +72,7 @@ public class MainMenuController {
 
 	@FXML
 	public void showSettings() {
-		Modal.show();
+		Modal.show(Views.MODAL_SETTINGS);
 	}
 
 	// public void handleSpeechVolumeSliderChange(ObservableValue<Number> ovn,

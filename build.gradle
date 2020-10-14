@@ -35,6 +35,9 @@ dependencies {
     compile 'org.openjfx:javafx-swing:14'
     compile 'org.openjfx:javafx-media:14'
     compile 'org.openjfx:javafx-web:14'
+    
+    //Material design components
+    compile 'com.jfoenix:jfoenix:9.0.10'
 }
 
 

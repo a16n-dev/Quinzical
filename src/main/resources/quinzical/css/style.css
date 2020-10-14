@@ -6,13 +6,7 @@
 .button {
     -fx-background-color: radial-gradient(focus-distance 10% , center 50% 30% , radius 80% , #CE725B, #C25955);
     -fx-text-fill: white;
-    -fx-border-width: 0 0 3px 0;
-    -fx-border-color: #AB3C39;
-    -fx-border-radius: 5px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
-    -fx-padding: 4px 8px 4px 8px;
     -fx-font-weight: bold;
-    -fx-text-transform: uppercase;
     -fx-font-size: 16px;
 }
 
