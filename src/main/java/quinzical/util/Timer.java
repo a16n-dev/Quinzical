@@ -41,8 +41,10 @@ public class Timer {
         timeline = new Timeline(new KeyFrame(Duration.seconds(tickPeriod), e -> {
             currentTime -= tickPeriod;
             fxElement.setText(String.valueOf((int) Math.ceil(currentTime)));
-            fxProgressLeft.setProgress(currentTime / maxTime);
-            fxProgressRight.setProgress(currentTime / maxTime);
+            double prog = currentTime / maxTime;
+            double shift = 0.07;
+            fxProgressLeft.setProgress((1 - shift) * prog + shift);
+            fxProgressRight.setProgress((1 - shift) * prog + shift);
         }));
         timeline.setCycleCount((int) (maxTime / tickPeriod));
         timeline.setOnFinished(event);
