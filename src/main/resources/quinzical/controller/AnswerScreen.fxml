@@ -4,6 +4,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -11,6 +12,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -90,6 +92,24 @@
                   <Insets bottom="16.0" />
                </VBox.margin>
             </BorderPane>
+            <StackPane prefWidth="200.0">
+               <children>
+                  <ProgressBar fx:id="fxProgressLeft" nodeOrientation="LEFT_TO_RIGHT" prefWidth="230.0" progress="1.0">
+                     <StackPane.margin>
+                        <Insets left="230.0" />
+                     </StackPane.margin>
+                  </ProgressBar>
+                  <ProgressBar fx:id="fxProgressRight" nodeOrientation="RIGHT_TO_LEFT" prefWidth="230.0" progress="1.0">
+                     <StackPane.margin>
+                        <Insets right="230.0" />
+                     </StackPane.margin>
+                  </ProgressBar>
+                  <Label fx:id="fxProgressLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: orange; -fx-background-radius: 15;" text="30" textAlignment="CENTER" textFill="WHITE" />
+               </children>
+               <VBox.margin>
+                  <Insets top="-30.0" />
+               </VBox.margin>
+            </StackPane>
             <Label text="Complete the Question:" textFill="WHITE">
                <font>
                   <Font size="20.0" />

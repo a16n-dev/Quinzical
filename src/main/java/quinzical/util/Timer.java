@@ -4,44 +4,47 @@ import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.control.Labeled;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.util.Duration;
 
 /**
- * Util module which is given a labeled JavaFX element and turns it into a timer
+ * Util module which is given a Label JavaFX element and turns it into a timer
  * display.
  */
 public class Timer {
+    private float tickPeriod = 0.01f;
     private int maxTime;
-    private int currentTime;
-    private Labeled element;
+    private float currentTime;
+    private Label fxElement;
+    private ProgressBar fxProgressLeft;
+    private ProgressBar fxProgressRight;
     private Timeline timeline;
 
-    public Timer(Labeled element, int maxTime) {
-        this.element = element;
+    public Timer(Label fxElement, ProgressBar fxProgressLeft, ProgressBar fxProgressRight, int maxTime) {
+        this.fxElement = fxElement;
+        this.fxProgressLeft = fxProgressLeft;
+        this.fxProgressRight = fxProgressRight;
         this.maxTime = maxTime;
-    }
-
-    public Timer(Labeled element) {
-        this.element = element;
-        this.maxTime = 60;
     }
 
     /**
      * Restart the timer from the maxTime. Decrements the time value displayed on
-     * the labeled element possessed by the timer every second until the timer has
+     * the Label element possessed by the timer every second until the timer has
      * finished, at which the provided event is executed
      * 
      * @param event The event to be executed once the timer finishes
      */
     public void startTimer(EventHandler<ActionEvent> event) {
         currentTime = maxTime;
-        element.setText(String.valueOf(currentTime));
-        timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
-            currentTime -= 1;
-            element.setText(String.valueOf(currentTime));
+        fxElement.setText(String.valueOf(currentTime));
+        timeline = new Timeline(new KeyFrame(Duration.seconds(tickPeriod), e -> {
+            currentTime -= tickPeriod;
+            fxElement.setText(String.valueOf((int) Math.ceil(currentTime)));
+            fxProgressLeft.setProgress(currentTime / maxTime);
+            fxProgressRight.setProgress(currentTime / maxTime);
         }));
-        timeline.setCycleCount(maxTime);
+        timeline.setCycleCount((int) (maxTime / tickPeriod));
         timeline.setOnFinished(event);
         timeline.play();
     }
@@ -67,7 +70,7 @@ public class Timer {
         timeline.play();
     }
 
-    public int getTime() {
+    public float getTime() {
         return currentTime;
     }
 }
