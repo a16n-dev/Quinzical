@@ -45,6 +45,25 @@
                         <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
                      </padding>
                   </VBox>
+                  <VBox maxWidth="1.7976931348623157E308" minWidth="300.0" spacing="8.0" style="-fx-background-radius: 5;" styleClass="panel">
+                     <children>
+                        <Label text="MULTIPLAYER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <HBox spacing="8.0">
+                           <children>
+                              <JFXButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="JOIN GAME" HBox.hgrow="ALWAYS" />
+                              <JFXButton fx:id="fxResume1" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="HOST GAME" HBox.hgrow="ALWAYS" />
+                           </children>
+                        </HBox>
+                        <JFXButton buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#handleViewLeaderboard" text="LEADERBOARDS" />
+                     </children>
+                     <padding>
+                        <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
+                     </padding>
+                  </VBox>
                   <VBox spacing="8.0" styleClass="panel">
                      <children>
                         <Label text="MY STUFF" textFill="WHITE">
@@ -54,7 +73,7 @@
                         </Label>
                         <HBox spacing="8.0">
                            <children>
-                              <JFXButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handlePracticeGame" text="VIEW MEDALS" HBox.hgrow="ALWAYS" />
+                              <JFXButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleViewTrophyCase" text="VIEW MEDALS" HBox.hgrow="ALWAYS" />
                               <JFXButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleResetProgress" text="RESET" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>

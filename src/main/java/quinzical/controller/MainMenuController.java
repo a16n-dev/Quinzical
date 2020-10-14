@@ -75,6 +75,11 @@ public class MainMenuController {
 	}
 	
 	@FXML
+	public void handleViewLeaderboard() {
+		Router.show(Views.LEADERBOARD);
+	}
+	
+	@FXML
 	public void handleResetProgress() {
 		String alertContent = (user.getInternationalUnlocked()) ? " and lock the international questions." : ".";
 		
