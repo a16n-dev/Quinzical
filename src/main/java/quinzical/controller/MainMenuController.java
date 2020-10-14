@@ -10,6 +10,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import quinzical.model.Game;
+import quinzical.model.User;
 import quinzical.util.Modal;
 import quinzical.util.Router;
 
