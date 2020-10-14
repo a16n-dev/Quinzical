@@ -19,7 +19,9 @@ public class User implements Serializable {
     private static User user;
 
     private HashMap<Reward, Integer> _rewards = new HashMap<Reward, Integer>();
-
+    
+    private boolean internationalUnlocked;
+    
     private Number prefWidth;
 
     private Number prefHeight;
@@ -39,14 +41,15 @@ public class User implements Serializable {
         return user;
     }
 
-    private User() {
-        prefWidth = 1000;
+    private User() {       
+    	prefWidth = 1000;
         prefHeight = 600;
+        internationalUnlocked = false;
         _rewards.put(Reward.Diamond, 0);
         _rewards.put(Reward.Platinum, 0);
         _rewards.put(Reward.Gold, 0);
         _rewards.put(Reward.Silver, 0);
-        _rewards.put(Reward.Bronze, 0);
+        _rewards.put(Reward.Bronze, 0);        
     }
 
     /**
@@ -60,8 +63,6 @@ public class User implements Serializable {
 
     /**
      * Adds a new reward for the user
-     * 
-     * @param reward a string representing the reward
      */
     public Reward addReward(int score) {
         Reward reward;
@@ -90,6 +91,17 @@ public class User implements Serializable {
      */
     public void clearRewards() {
         _rewards = new HashMap<Reward, Integer>();
+    }
+ 
+    public boolean getInternationalUnlocked() {
+    	return internationalUnlocked;
+    }
+    
+    /**
+     * Unlocks/locks the 'international questions' section.
+     */
+    public void setInternational(boolean unlock) {
+    	internationalUnlocked = unlock;
     }
 
     private static void persist() {

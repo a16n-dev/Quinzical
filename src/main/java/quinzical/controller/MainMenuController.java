@@ -14,6 +14,7 @@ import quinzical.util.Modal;
 import quinzical.util.Router;
 
 public class MainMenuController {
+	private User user;
 
 	@FXML
 	private Button fxResume;
@@ -26,6 +27,8 @@ public class MainMenuController {
 	 */
 
 	public void initialize() {
+		user = User.getInstance();
+		
 		if (!Game.isInProgress()) {
 			fxResume.setVisible(false);
 			fxResume.setManaged(false);
@@ -42,7 +45,7 @@ public class MainMenuController {
 			Alert alert = new Alert(AlertType.CONFIRMATION);
 			alert.setTitle("New Game");
 			alert.setHeaderText("Are you sure you want to start a new game?");
-			alert.setContentText("This will remove all progress in the current game");
+			alert.setContentText("This will remove all progress in the current game.");
 
 			Optional<ButtonType> result = alert.showAndWait();
 			if (result.get() == ButtonType.OK) {
@@ -68,6 +71,25 @@ public class MainMenuController {
 	@FXML
 	public void handleViewTrophyCase() {
 		Router.show(Views.TROPHY_CASE);
+	}
+	
+	@FXML
+	public void handleResetProgress() {
+		String alertContent = (user.getInternationalUnlocked()) ? " and lock the international questions." : ".";
+		
+		Alert alert = new Alert(AlertType.CONFIRMATION);
+		alert.setTitle("Reset Progress");
+		alert.setHeaderText("Are you sure you want to reset your progress?");
+		alert.setContentText("This will remove all your rewards" + alertContent);
+
+		Optional<ButtonType> result = alert.showAndWait();
+		if (result.get() == ButtonType.OK) {
+			user.clearRewards();
+			user.setInternational(false);
+						
+			// Game.clearGame();
+			// Need to refresh main menu?
+		}				
 	}
 
 	@FXML
