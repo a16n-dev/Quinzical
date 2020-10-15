@@ -64,7 +64,7 @@ public class Macron {
             int index = fxInput.getCaretPosition();
             Character macron = pairs.get(fxInput.getText().charAt(index - 1));
             if (index != 0 && macron != null) {
-                positionGUI(fxMacronPopup, computeTextWidth(fxInput.getText().substring(0, index)));
+                positionGUI(fxMacronPopup, computeTextWidth(fxInput.getText().substring(0, index)) - 6);
                 fxMacronLetter.setText(Character.toString(macron));
                 fxMacronPopup.setVisible(true);
             }
@@ -74,6 +74,12 @@ public class Macron {
         });
     }
 
+    /**
+     * Get the width of JavaFX text. Method taken from:
+     * https://stackoverflow.com/questions/41336447/determining-width-and-height-of-a-javafx-font/53206980
+     * @param text The text to compute the width of
+     * @return The width of the text
+     */
     private double computeTextWidth(String text) {
         double wrappingWidth = Double.MAX_VALUE;
         Font font = fxInput.getFont();
