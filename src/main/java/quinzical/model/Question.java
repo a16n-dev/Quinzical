@@ -8,6 +8,8 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
 
+import org.apache.xmlbeans.impl.common.Levenshtein;
+
 public class Question implements Serializable {
 
     private static final long serialVersionUID = -1945949962117279881L;
@@ -62,15 +64,20 @@ public class Question implements Serializable {
      * @param input The user's answer
      * @return Whether the answer was correct
      */
-    public boolean checkAnswer(String input) {
+    public Answer checkAnswer(String input) {
         String[] possibleAnswers = answer.get().split("/");
 
         for (String answer : possibleAnswers) {
-            if (sanitise(input).equals(sanitise(answer))) {
-                return true;
+            int distance = Levenshtein.distance(sanitise(input), sanitise(answer));
+
+            if (distance == 0) {
+                return Answer.CORRECT;
+            }
+            else if (distance < 3) {
+                return Answer.TYPO;
             }
         }
-        return false;
+        return Answer.INCORRECT;
     }
 
     private String sanitise(String str) {
