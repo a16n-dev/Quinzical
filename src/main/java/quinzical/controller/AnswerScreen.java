@@ -6,6 +6,7 @@ import javafx.scene.control.DialogEvent;
 import javafx.scene.control.Label;
 import quinzical.model.Question;
 import quinzical.model.QuinzicalGame;
+import quinzical.util.Router;
 import quinzical.util.TTS;
 import quinzical.model.Game;
 
@@ -50,9 +51,9 @@ public class AnswerScreen extends BaseAnswerScreen {
         public void handle(DialogEvent event) {
             // Navigate to the 'reward screen' only if all questions are answered
             if (game.getRemainingQuestions() == 0) {
-                finished(Views.REWARD_SCREEN);
+                Router.show(Views.REWARD_SCREEN, new AnswerScreen());
             } else {
-                finished(Views.GAME_BOARD);
+                Router.show(Views.GAME_BOARD, new AnswerScreen());
             }  
         }
     };

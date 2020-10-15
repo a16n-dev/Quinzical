@@ -99,11 +99,6 @@ public abstract class BaseAnswerScreen {
         }
     }
 
-    public void finished(Views view) {
-        timer.stop();
-        Router.show(view);
-    }
-
     public void showAlert(String title, String header, String content, EventHandler<DialogEvent> event) {
         Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle(title);

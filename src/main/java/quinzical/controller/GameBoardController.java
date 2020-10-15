@@ -60,7 +60,7 @@ public class GameBoardController {
 						// Add click events
 						button.setOnAction((event) -> {
 							game.setCurrentQuestion(category, intJ);
-							Router.show(Views.ANSWER_SCREEN);
+							Router.show(Views.ANSWER_SCREEN, new AnswerScreen());
 						});
 					}
 

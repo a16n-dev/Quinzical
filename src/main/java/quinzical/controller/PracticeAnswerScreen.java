@@ -7,6 +7,7 @@ import javafx.scene.control.DialogEvent;
 import javafx.scene.control.Label;
 import quinzical.model.PracticeGame;
 import quinzical.model.Question;
+import quinzical.util.Router;
 import quinzical.util.TTS;
 
 public class PracticeAnswerScreen extends BaseAnswerScreen {
@@ -60,7 +61,7 @@ public class PracticeAnswerScreen extends BaseAnswerScreen {
     private EventHandler<DialogEvent> onFinished = new EventHandler<DialogEvent>() {
         @Override
         public void handle(DialogEvent event) {
-            finished(Views.PRACTICE_ANSWER_SCREEN);
+            Router.show(Views.ANSWER_SCREEN, new PracticeAnswerScreen());
         }
     };
 }
