@@ -54,12 +54,12 @@ public abstract class BaseAnswerScreen {
         fxPrefix.setText(capitalise(question.getPrefix()));
         
         TTS.getInstance().speak(question.getHint());
-        Macron.getInstance().bindToTextField(fxInput, fxMacronLetter, fxMacronContainer);
+        Macron.getInstance().bind(fxInput, fxMacronLetter, fxMacronContainer);
         
         timer = Timer.getInstance();
         timer.set(fxProgressLabel, fxProgressLeft, fxProgressRight, 30);
 		timer.start(e -> {
-            submit();
+            submit(); // fix this so that it forces
         });
         
         Platform.runLater(new Runnable() {
