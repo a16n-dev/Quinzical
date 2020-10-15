@@ -47,16 +47,10 @@ public class MainMenuController {
 	@FXML
 	public void handleNewGame() {
 		if (Game.isInProgress()) {
-			Alert alert = new Alert(AlertType.CONFIRMATION);
-			alert.setTitle("New Game");
-			alert.setHeaderText("Are you sure you want to start a new game?");
-			alert.setContentText("This will remove all progress in the current game.");
-
-			Optional<ButtonType> result = alert.showAndWait();
-			if (result.get() == ButtonType.OK) {
+			Modal.confirmation("New Game","Are you sure you want to start a new game?", e -> {
 				Game.clearGame();
 				Router.show(Views.GAME_BOARD);
-			}
+			});
 		} else {
 			Game.clearGame();
 			Router.show(Views.GAME_BOARD);
@@ -86,7 +80,7 @@ public class MainMenuController {
 	@FXML
 	public void handleResetProgress() {
 		String alertContent = (user.getInternationalUnlocked()) ? " and lock the international questions." : ".";
-		
+
 		Alert alert = new Alert(AlertType.CONFIRMATION);
 		alert.setTitle("Reset Progress");
 		alert.setHeaderText("Are you sure you want to reset your progress?");
@@ -109,7 +103,7 @@ public class MainMenuController {
 
 	@FXML
 	public void showJoinGame() {
-		Modal.show(Views.MODAL_JOIN);
+		Modal.show(Views.MODAL_JOIN,600,300);
 	}
 
 	// public void handleSpeechVolumeSliderChange(ObservableValue<Number> ovn,

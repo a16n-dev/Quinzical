@@ -116,6 +116,7 @@ public class Router {
         }
         return null;
     }
+    
     public static Node loadFXML(String fxml) {
         return loadFXML(fxml, null);
     }
