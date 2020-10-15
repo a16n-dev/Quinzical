@@ -18,7 +18,7 @@ public class App extends Application {
     public void start(Stage s) {
         this._stage = s;
         this._stage.setMinWidth(1000);
-        this._stage.setMinHeight(600);
+        this._stage.setMinHeight(700);
         this._stage.setTitle("Quinzical");
 
         //Set app icon

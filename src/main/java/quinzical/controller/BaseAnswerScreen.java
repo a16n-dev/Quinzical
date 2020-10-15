@@ -13,10 +13,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import quinzical.model.QuinzicalGame;
 import quinzical.model.Answer;
 import quinzical.model.Question;
+import quinzical.util.AvatarFactory;
 import quinzical.util.Macron;
 import quinzical.util.TTS;
 import quinzical.util.Timer;
@@ -44,9 +46,17 @@ public abstract class BaseAnswerScreen {
 	@FXML
 	private ProgressBar fxProgressLeft;
 	@FXML
-	private Label fxProgressLabel;
+    private Label fxProgressLabel;
+    
+    @FXML
+    private StackPane avatarContainer;
 
     public void initialize() {
+
+        //Show avatar
+        AvatarFactory avatar = new AvatarFactory(avatarContainer);
+        avatar.render();
+
         onLoad();
         question = setQuestion();
         
