@@ -21,11 +21,22 @@ public class Timer {
     private ProgressBar fxProgressRight;
     private Timeline timeline;
 
-    public Timer(Label fxElement, ProgressBar fxProgressLeft, ProgressBar fxProgressRight, int maxTime) {
-        this.fxElement = fxElement;
-        this.fxProgressLeft = fxProgressLeft;
-        this.fxProgressRight = fxProgressRight;
-        this.maxTime = maxTime;
+    public static Timer instance;
+
+    private Timer () {}
+
+    public static Timer getInstance() {
+        if (instance == null) {
+            instance = new Timer();
+        }
+        return instance;
+    } 
+
+    public void set(Label fxElement, ProgressBar fxProgressLeft, ProgressBar fxProgressRight, int maxTime) {
+        instance.fxElement = fxElement;
+        instance.fxProgressLeft = fxProgressLeft;
+        instance.fxProgressRight = fxProgressRight;
+        instance.maxTime = maxTime;
     }
 
     /**
@@ -35,7 +46,7 @@ public class Timer {
      * 
      * @param event The event to be executed once the timer finishes
      */
-    public void startTimer(EventHandler<ActionEvent> event) {
+    public void start(EventHandler<ActionEvent> event) {
         currentTime = maxTime;
         fxElement.setText(String.valueOf(currentTime));
         timeline = new Timeline(new KeyFrame(Duration.seconds(tickPeriod), e -> {
@@ -54,21 +65,23 @@ public class Timer {
     /**
      * Stop the timer and reset the position to the beginning
      */
-    public void stopTimer() {
-        timeline.stop();
+    public void stop() {
+        if (timeline != null) {
+            timeline.stop();
+        }
     }
 
     /**
      * Pause the timer. Resuming is possible
      */
-    public void pauseTimer() {
+    public void pause() {
         timeline.pause();
     }
 
     /**
      * Resume the timer if it has been paused
      */
-    public void resumeTimer() {
+    public void resume() {
         timeline.play();
     }
 

@@ -25,10 +25,11 @@ public class Router {
      * 
      * @param fxml the path to the fxml file, relative to App.java
      */
-    public static void show(Views fxml) {
+    public static void show(Views fxml, Object controller) {
 
         // Clear the TTS queue
         TTS.getInstance().clearQueue();
+        Timer.getInstance().stop();
 
         // Update the game state
         switch (fxml) {
@@ -40,9 +41,6 @@ public class Router {
                 break;
             case MAIN_MENU:
                 gameState = 0;
-                break;
-            case PRACTICE_ANSWER_SCREEN:
-                gameState = 2;
                 break;
             case PRACTICE_SCREEN:
                 gameState = 2;
@@ -60,7 +58,7 @@ public class Router {
         ft.play();
 
         // Place the content into the container
-        container.setCenter(loadFXML(fxml.getCenter()));
+        container.setCenter(loadFXML(fxml.getCenter(), controller));
 
         container.setTop(loadFXML(fxml.getTop()));
 
@@ -72,6 +70,9 @@ public class Router {
 
         // If it was all successful add screen to history
         history.add(fxml);
+    }
+    public static void show(Views fxml) {
+        show(fxml, null);
     }
 
     public static void back() {
@@ -97,10 +98,13 @@ public class Router {
      * @param fxml the path to the fxml file
      * @return a javafx node hierarchy
      */
-    public static Node loadFXML(String fxml) {
+    public static Node loadFXML(String fxml, Object controller) {
         if (fxml != null) {
             try {
                 FXMLLoader loader = new FXMLLoader();
+                if (controller != null) {
+                    loader.setController(controller);
+                }
                 loader.setLocation(App.class.getResource(fxml.toString()));
                 Node node = (Node) loader.load();
 
@@ -111,6 +115,9 @@ public class Router {
             }
         }
         return null;
+    }
+    public static Node loadFXML(String fxml) {
+        return loadFXML(fxml, null);
     }
 
     // TODO: Move this. This does not belong inside of the router class and should

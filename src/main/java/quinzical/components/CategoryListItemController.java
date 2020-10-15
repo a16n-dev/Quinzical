@@ -1,6 +1,7 @@
 package quinzical.components;
 
 import javafx.scene.control.Label;
+import quinzical.controller.PracticeAnswerScreen;
 import quinzical.controller.Views;
 import quinzical.model.PracticeGame;
 import quinzical.util.Router;
@@ -25,6 +26,6 @@ public class CategoryListItemController {
     @FXML
     public void handleButtonPress() {
         PracticeGame.getInstance().setCurrentCategory(category);
-        Router.show(Views.PRACTICE_ANSWER_SCREEN);
+        Router.show(Views.ANSWER_SCREEN, new PracticeAnswerScreen());
     }
 }
