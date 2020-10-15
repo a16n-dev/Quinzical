@@ -12,6 +12,7 @@ import quinzical.controller.Views;
 import quinzical.model.Game;
 import quinzical.util.Modal;
 import quinzical.util.Router;
+import quinzical.util.Timer;
 
 public class GameTopBarController {
 	@FXML
@@ -36,6 +37,7 @@ public class GameTopBarController {
 
 	@FXML
 	public void handleGoBack(ActionEvent event) throws IOException {
+		Timer.getInstance().stop();
 		Router.show(Views.MAIN_MENU);
 	}
 
