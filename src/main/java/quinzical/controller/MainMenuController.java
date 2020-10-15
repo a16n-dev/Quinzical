@@ -9,8 +9,10 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
+import javafx.scene.layout.StackPane;
 import quinzical.model.Game;
 import quinzical.model.User;
+import quinzical.util.Avatar;
 import quinzical.util.Modal;
 import quinzical.util.Router;
 
@@ -20,20 +22,22 @@ public class MainMenuController {
 	@FXML
 	private Button fxResume;
 
-	/**
-	 * Starts a new game
-	 * 
-	 * @param event
-	 * @throws IOException
-	 */
+	@FXML
+	private StackPane avatarSlot;
 
 	public void initialize() {
+		//Store reference to user object
 		user = User.getInstance();
 		
+		//Check if resume button should be shown
 		if (!Game.isInProgress()) {
 			fxResume.setVisible(false);
 			fxResume.setManaged(false);
 		}
+
+		//Load avatar
+		Avatar avatar = new Avatar(avatarSlot);
+		avatar.render();
 	}
 
 	public void handleGameButtonClick(ActionEvent event) throws IOException {

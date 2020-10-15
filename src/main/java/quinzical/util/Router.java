@@ -15,7 +15,7 @@ public class Router {
 
     private static BorderPane container;
 
-    private static int gameState = 0; // 0 is menu, 1 is game, 2 is practice
+    private static int gameState = 0; // 0 is menu, 1 is game, 2 is practice, 3 is multiplayer
 
     // Represents the history of the pages the user has visited
     private static Deque<Views> history = new ArrayDeque<Views>();
