@@ -29,6 +29,10 @@ public class AnswerScreenController {
 	@FXML
 	private TextField fxInput;
 	@FXML
+	private Label fxMacronLetter;
+	@FXML
+	private VBox fxMacronContainer;
+	@FXML
 	private ProgressBar fxProgressRight;
 	@FXML
 	private ProgressBar fxProgressLeft;
@@ -59,7 +63,7 @@ public class AnswerScreenController {
 			}
 		});
 
-		Macron.getInstance().bindToTextField(fxInput, fxWrapper);
+		Macron.getInstance().bindToTextField(fxInput, fxMacronLetter, fxMacronContainer);
 	}
 
 	public void onSubmit(ActionEvent event) {

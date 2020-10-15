@@ -40,7 +40,7 @@ public class PracticeAnswerScreenController {
         fxAttemptCount.textProperty().bind(Bindings.convert(game.getRemainingAttempts()));
         fxPrefix.setText(question.getPrefix().substring(0, 1).toUpperCase() + question.getPrefix().substring(1));
         TTS.getInstance().speak(question.getHint());
-        Macron.getInstance().bindToTextField(fxInput, fxWrapper);
+        Macron.getInstance().bindToTextField(fxInput, new Label(), new VBox());
     }
 
     public void onSubmit(ActionEvent event) throws IOException {
