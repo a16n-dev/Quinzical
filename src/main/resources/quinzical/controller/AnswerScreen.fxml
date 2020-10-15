@@ -164,7 +164,7 @@
                               </VBox>
                            </children>
                            <StackPane.margin>
-                              <Insets top="-10.0" />
+                              <Insets left="-5.0" top="-15.0" />
                            </StackPane.margin>
                         </VBox>
                      </children>
