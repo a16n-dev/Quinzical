@@ -4,46 +4,54 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.PracticeAnswerScreenController">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.PracticeAnswerScreen">
    <children>
       <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <BorderPane>
-               <center>
-                  <HBox maxHeight="-Infinity" maxWidth="-Infinity" styleClass="panel">
+            <AnchorPane maxWidth="600.0">
+               <children>
+                  <Pane styleClass="panel" stylesheets="@../resources/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                      <children>
-                        <Label fx:id="fxAttemptCount" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="3" textFill="WHITE">
-                           <font>
-                              <Font size="16.0" />
-                           </font>
+                        <Label fx:id="fxCategoryName" text="Label" textFill="WHITE">
                            <padding>
-                              <Insets bottom="8.0" left="8.0" top="8.0" />
-                           </padding>
-                        </Label>
-                        <Label contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="Attempts Remaining" textFill="WHITE">
-                           <padding>
-                              <Insets bottom="8.0" left="4.0" right="8.0" top="8.0" />
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                            </padding>
                            <font>
                               <Font size="16.0" />
                            </font>
                         </Label>
                      </children>
-                  </HBox>
-               </center>
-            </BorderPane>
+                  </Pane>
+                  <Pane layoutX="10.0" layoutY="10.0" styleClass="panel" stylesheets="@../resources/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <Label fx:id="fxValueText" text="Label" textFill="WHITE">
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+            <Label fx:id="fxAttemptCount" text="Label" visible="false" />
             <BorderPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="600.0" styleClass="panel">
                <center>
-                  <Label fx:id="fxHint" maxHeight="1.7976931348623157E308" prefWidth="400.0" text="" textAlignment="CENTER" textFill="WHITE" wrapText="true" BorderPane.alignment="CENTER">
+                  <Label fx:id="fxHint" maxHeight="1.7976931348623157E308" prefWidth="400.0" text="&lt;Clue Texteeeeeee eaea dweeeeeere" textAlignment="CENTER" textFill="WHITE" wrapText="true" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -85,48 +93,65 @@
                   <Insets bottom="16.0" />
                </VBox.margin>
             </BorderPane>
+            <StackPane prefWidth="200.0">
+               <children>
+                  <ProgressBar fx:id="fxProgressLeft" nodeOrientation="LEFT_TO_RIGHT" prefWidth="230.0" progress="1.0">
+                     <StackPane.margin>
+                        <Insets left="230.0" />
+                     </StackPane.margin>
+                  </ProgressBar>
+                  <ProgressBar fx:id="fxProgressRight" nodeOrientation="RIGHT_TO_LEFT" prefWidth="230.0" progress="1.0">
+                     <StackPane.margin>
+                        <Insets right="230.0" />
+                     </StackPane.margin>
+                  </ProgressBar>
+                  <Label fx:id="fxProgressLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: orange; -fx-background-radius: 15;" text="30" textAlignment="CENTER" textFill="WHITE" />
+               </children>
+               <VBox.margin>
+                  <Insets top="-30.0" />
+               </VBox.margin>
+            </StackPane>
             <Label text="Complete the Question:" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
             </Label>
-            <VBox alignment="CENTER" maxWidth="600.0" spacing="8.0" styleClass="panel">
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
+            <HBox alignment="CENTER_LEFT" maxWidth="600.0" spacing="8.0" styleClass="panel">
                <children>
-                  <HBox alignment="CENTER_LEFT" maxWidth="600.0" spacing="8.0">
+                  <Label fx:id="fxPrefix" alignment="BOTTOM_LEFT" text="What is" textFill="WHITE">
+                     <font>
+                        <Font size="24.0" />
+                     </font>
+                  </Label>
+                  <StackPane alignment="CENTER_LEFT" prefWidth="200.0">
                      <children>
-                        <Label fx:id="fxPrefix" alignment="BOTTOM_LEFT" text="What is" textFill="WHITE">
+                        <VBox fx:id="fxMacronContainer">
+                           <children>
+                              <Label fx:id="fxMacronLetter" style="-fx-background-color: orange;" text="u" visible="false" />
+                           </children>
+                           <StackPane.margin>
+                              <Insets top="-20.0" />
+                           </StackPane.margin>
+                        </VBox>
+                        <TextField fx:id="fxInput" onAction="#onSubmit">
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
                            <font>
                               <Font size="24.0" />
                            </font>
-                        </Label>
-                        <VBox fx:id="fxWrapper">
-                           <TextField fx:id="fxInput" onAction="#onSubmit" HBox.hgrow="ALWAYS">
-                              <HBox.margin>
-                                 <Insets />
-                              </HBox.margin>
-                              <padding>
-                                 <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-                              </padding>
-                              <font>
-                                 <Font size="24.0" />
-                              </font>
-                           </TextField>
-                        </VBox>
+                        </TextField>
                      </children>
-                  </HBox>
-                  <Label fx:id="fxFeedback" contentDisplay="RIGHT" textFill="WHITE">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
+                  </StackPane>
                </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
                <padding>
-                  <Insets bottom="16.0" left="32.0" right="32.0" top="32.0" />
+                  <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
                </padding>
-            </VBox>
+            </HBox>
+            <Label fx:id="fxFeedback" text="Typo" visible="false" />
             <Button fx:id="fxSubmit" alignment="CENTER" mnemonicParsing="false" onAction="#onSubmit" text="Submit">
                <font>
                   <Font size="24.0" />
