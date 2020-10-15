@@ -5,6 +5,7 @@ import java.util.function.UnaryOperator;
 import com.jfoenix.controls.JFXTextField;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextFormatter.Change;
 import quinzical.util.Modal;
@@ -26,12 +27,17 @@ public class JoinGameController {
     @FXML
     public JFXTextField fxSlot5;
 
+    @FXML
+    public Label fxMessage;
+
     public void initialize() {
+        fxMessage.setText("");
         /**
          * Credit to: https://stackoverflow.com/questions/15159988/javafx-2-2-textfield-maxlength
          */
         UnaryOperator<Change> modifyChange = c -> {
             if (c.isContentChange()) {
+                c.setText(c.getControlNewText().toUpperCase());
                 int newLength = c.getControlNewText().length();
                 if (newLength > 1) {
                     // replace the input text with the last len chars
@@ -77,5 +83,23 @@ public class JoinGameController {
 
     public void handleClose(){
         Modal.hide();
+    }
+
+    private String getCode(){
+        return fxSlot1.textProperty().get() + 
+        fxSlot2.textProperty().get() + 
+        fxSlot3.textProperty().get() + 
+        fxSlot4.textProperty().get() + 
+        fxSlot5.textProperty().get(); 
+    }
+
+    @FXML
+    public void handleJoin(){
+        String code = getCode();
+        
+        //check if valid
+        if(code.length() < 5){
+            fxMessage.setText("Invalid code");
+        }
     }
 }
