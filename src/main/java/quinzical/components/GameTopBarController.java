@@ -38,7 +38,7 @@ public class GameTopBarController {
 	@FXML
 	public void handleGoBack(ActionEvent event) throws IOException {
 		Timer.getInstance().stop();
-		Router.show(Views.MAIN_MENU);
+		Router.navigateBack();
 	}
 
 	@FXML
