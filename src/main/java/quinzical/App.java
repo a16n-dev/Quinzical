@@ -34,7 +34,7 @@ public class App extends Application {
 //        Modal.setModalContainer((AnchorPane) container.lookup("#ModalContainer"));
 //        Modal.hide();
         Router.show(Views.MAIN_MENU);
-        attachListeners();
+        // attachListeners();
         s.show();
     }
 
@@ -47,13 +47,13 @@ public class App extends Application {
         return _stage;
     }
 
-    private void attachListeners() {
-        _stage.widthProperty().addListener((obs, oldVal, newVal) -> {
-            User.getInstance().setPrefWidth(newVal);
-        });
+    // private void attachListeners() {
+    //     _stage.widthProperty().addListener((obs, oldVal, newVal) -> {
+    //         User.getInstance().setPrefWidth(newVal);
+    //     });
 
-        _stage.heightProperty().addListener((obs, oldVal, newVal) -> {
-            User.getInstance().setPrefHeight(newVal);
-        });
-    }
+    //     _stage.heightProperty().addListener((obs, oldVal, newVal) -> {
+    //         User.getInstance().setPrefHeight(newVal);
+    //     });
+    // }
 }

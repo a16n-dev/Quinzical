@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXSpinner?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -54,7 +53,7 @@
                         </Label>
                         <HBox spacing="8.0">
                            <children>
-                              <JFXButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="JOIN GAME" HBox.hgrow="ALWAYS" />
+                              <JFXButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#showJoinGame" text="JOIN GAME" HBox.hgrow="ALWAYS" />
                               <JFXButton fx:id="fxResume1" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="HOST GAME" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
@@ -119,20 +118,20 @@
                      <children>
                         <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="16.0">
                            <VBox.margin>
-                              <Insets bottom="200.0" left="60.0" />
+                              <Insets bottom="180.0" left="60.0" />
                            </VBox.margin>
                            <children>
-                              <Button mnemonicParsing="false" text="CUSTOMISE" />
-                              <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+                              <JFXButton buttonType="RAISED" text="CUSTOMISE" />
+                              <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="8.0">
                                  <children>
                                     <ImageView fitHeight="98.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/coin.png" />
                                        </image>
                                     </ImageView>
-                                    <Label text="Label" textFill="WHITE">
+                                    <Label text="\$50" textFill="WHITE">
                                        <font>
-                                          <Font size="18.0" />
+                                          <Font name="System Bold" size="18.0" />
                                        </font>
                                     </Label>
                                  </children>

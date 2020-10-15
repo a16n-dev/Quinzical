@@ -3,6 +3,7 @@ package quinzical.model;
 import java.io.Serializable;
 import java.util.HashMap;
 
+import quinzical.util.AvatarFactory;
 import quinzical.util.IOManager;
 import quinzical.util.State;
 
@@ -21,10 +22,8 @@ public class User implements Serializable {
     private HashMap<Reward, Integer> _rewards = new HashMap<Reward, Integer>();
     
     private boolean internationalUnlocked;
-    
-    private Number prefWidth;
 
-    private Number prefHeight;
+    private transient AvatarFactory avatar;
 
     /**
      * @return the instance of the user class
@@ -42,8 +41,6 @@ public class User implements Serializable {
     }
 
     private User() {       
-    	prefWidth = 1000;
-        prefHeight = 600;
         internationalUnlocked = false;
         _rewards.put(Reward.Diamond, 0);
         _rewards.put(Reward.Platinum, 0);
@@ -110,24 +107,6 @@ public class User implements Serializable {
         } else {
             IOManager.writeState(State.USER, user);
         }
-    }
-
-    public int getPrefWidth() {
-        return prefWidth.intValue();
-    }
-
-    public int getPrefHeight() {
-        return prefHeight.intValue();
-    }
-
-    public void setPrefWidth(Number width) {
-        prefWidth = width;
-        persist();
-    }
-
-    public void setPrefHeight(Number height) {
-        prefWidth = height;
-        persist();
     }
 
 }

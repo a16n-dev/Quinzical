@@ -9,7 +9,7 @@ import quinzical.App;
  * This class handles the user's avatar and is responsible for rendering it
  * correctly
  */
-public class Avatar {
+public class AvatarFactory {
 
     /**
      * Reference to where avatar files are stored
@@ -47,7 +47,7 @@ public class Avatar {
      * Constructor
      * @param container the StackPane to place the avatar in
      */
-    public Avatar(StackPane container){
+    public AvatarFactory(StackPane container){
         init(container);
     }
 
@@ -56,7 +56,7 @@ public class Avatar {
      * @param container the StackPane to place the avatar in
      * @param scale the size in pixels of the avatar
      */
-    public Avatar(StackPane container, int scale){
+    public AvatarFactory(StackPane container, int scale){
         size = scale;
         init(container);
     }
@@ -82,12 +82,9 @@ public class Avatar {
             // fetch images
             // TODO put this in a background thread
             String ext = animated ? ".gif" : ".png";
-            fxBaseLayer.setImage(new Image(App.class.getResource(RESOURCE_PATH + "char_idle" + ext).toString(), size,
-                    size, true, true, true));
-            fxBodyLayer.setImage(new Image(App.class.getResource(RESOURCE_PATH + "mustache_idle" + ext).toString(),
-                    size, size, true, true, true));
-            fxHatLayer.setImage(new Image(App.class.getResource(RESOURCE_PATH + "beanie_idle" + ext).toString(), size,
-                    size, true, true, true));
+            fxBaseLayer.setImage(ImageLoader.loadImage(RESOURCE_PATH + "char_idle" + ext, size));
+            fxBodyLayer.setImage(ImageLoader.loadImage(RESOURCE_PATH + "mustache_idle" + ext, size));
+            fxHatLayer.setImage(ImageLoader.loadImage(RESOURCE_PATH + "beanie_idle" + ext, size));
             fxFrame.getChildren().setAll(fxBaseLayer, fxBodyLayer, fxHatLayer);
         } catch (Exception e) {
             System.out.println("Error, avatar frame not set");

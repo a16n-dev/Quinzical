@@ -34,7 +34,8 @@ public enum Views {
     TROPHY_CASE("controller/TrophyCase.fxml", Component.GAME_TITLE.path(), null, null, null),
     LEADERBOARD("controller/Leaderboard.fxml", Component.GAME_TITLE.path(), null, null, null),
     
-	MODAL_SETTINGS("controller/Settings.fxml", null, null, null, null),
+    MODAL_SETTINGS("controller/Settings.fxml", null, null, null, null),
+    MODAL_JOIN("controller/JoinGame.fxml", null, null, null, null),
 	;
 
     private final String center;

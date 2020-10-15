@@ -4,6 +4,7 @@ import com.jfoenix.controls.JFXDialog;
 
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
+import quinzical.components.FrostFactory;
 import quinzical.controller.Views;
 
 public class Modal {
@@ -17,9 +18,16 @@ public class Modal {
     }
     
     public static void show(Views view) {
-    	Region content = (Region) Router.loadFXML(view.getCenter());
+
+        Region content = (Region) Router.loadFXML(view.getCenter());
+
+        StackPane frosted = FrostFactory.freeze(root, content, 600, 400);
+
+        frosted.setMaxWidth(600);
+        frosted.setMaxHeight(400);
+
         dialog = new JFXDialog();
-        dialog.setContent(content);
+        dialog.setContent(frosted);
         dialog.show(root);
     }
     

@@ -12,7 +12,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
 import quinzical.model.Game;
 import quinzical.model.User;
-import quinzical.util.Avatar;
+import quinzical.util.AvatarFactory;
 import quinzical.util.Modal;
 import quinzical.util.Router;
 
@@ -36,7 +36,7 @@ public class MainMenuController {
 		}
 
 		//Load avatar
-		Avatar avatar = new Avatar(avatarSlot);
+		AvatarFactory avatar = new AvatarFactory(avatarSlot);
 		avatar.render();
 	}
 
@@ -105,6 +105,11 @@ public class MainMenuController {
 	@FXML
 	public void showSettings() {
 		Modal.show(Views.MODAL_SETTINGS);
+	}
+
+	@FXML
+	public void showJoinGame() {
+		Modal.show(Views.MODAL_JOIN);
 	}
 
 	// public void handleSpeechVolumeSliderChange(ObservableValue<Number> ovn,
