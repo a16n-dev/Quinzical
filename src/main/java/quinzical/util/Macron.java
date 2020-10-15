@@ -62,8 +62,8 @@ public class Macron {
 
         fxInput.setOnKeyReleased(e -> {
             int index = fxInput.getCaretPosition();
-            Character macron = pairs.get(fxInput.getText().charAt(index - 1));
-            if (index != 0 && macron != null) {
+            Character macron;
+            if (index != 0 && (macron = pairs.get(fxInput.getText().charAt(index - 1))) != null) {
                 positionGUI(fxMacronPopup, computeTextWidth(fxInput.getText().substring(0, index)) - 4);
                 fxMacronLetter.setText(Character.toString(macron));
                 fxMacronPopup.setVisible(true);
