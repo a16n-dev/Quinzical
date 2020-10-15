@@ -2,6 +2,8 @@ package quinzical.util;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
+import java.util.Map;
+import static java.util.Map.entry;
 
 import javafx.animation.FadeTransition;
 import javafx.fxml.FXMLLoader;
@@ -9,13 +11,29 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 import quinzical.App;
+import quinzical.controller.AnswerScreen;
 import quinzical.controller.Views;
 
 public class Router {
+    private static Map<Views, Views> navigationTree = Map.ofEntries(
+        entry(Views.GAME_BOARD, Views.MAIN_MENU),
+        entry(Views.ANSWER_SCREEN, Views.GAME_BOARD),
+        entry(Views.PRACTICE_SCREEN, Views.MAIN_MENU),
+        entry(Views.TROPHY_CASE, Views.MAIN_MENU),
+        entry(Views.LEADERBOARD, Views.MAIN_MENU)
+    );
+    public static void navigateBack() {
+        if (gameState == 2) {
+            Router.show(Views.PRACTICE_SCREEN);
+        }
+        else {
+            Router.show(navigationTree.get(history.peekLast()));
+        }   
+    }
 
     private static BorderPane container;
 
-    private static int gameState = 0; // 0 is menu, 1 is game, 2 is practice, 3 is multiplayer
+    private static int gameState = 0; // 0 is out of game, 1 is game, 2 is practice, 3 is multiplayer
 
     // Represents the history of the pages the user has visited
     private static Deque<Views> history = new ArrayDeque<Views>();
@@ -34,7 +52,7 @@ public class Router {
         // Update the game state
         switch (fxml) {
             case ANSWER_SCREEN:
-                gameState = 1;
+                gameState = controller instanceof AnswerScreen ? 1 : 2;
                 break;
             case GAME_BOARD:
                 gameState = 1;
@@ -43,11 +61,13 @@ public class Router {
                 gameState = 0;
                 break;
             case PRACTICE_SCREEN:
-                gameState = 2;
+                gameState = 0;
                 break;
             case REWARD_SCREEN:
                 gameState = 1;
                 break;
+            case TROPHY_CASE:
+                gameState = 0;
             default:
                 break;
         }
