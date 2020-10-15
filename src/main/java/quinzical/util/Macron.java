@@ -44,9 +44,6 @@ public class Macron {
 
     private String replaceWithMacron(String text, int index) {
         var builder = new StringBuilder(text);
-        System.out.println(index);
-        System.out.println(text);
-        System.out.println(pairs.get(text.charAt(index)));
         builder.setCharAt(index, pairs.get(text.charAt(index)));
         return builder.toString();
     }
@@ -82,7 +79,6 @@ public class Macron {
                     index = -1;
                     fxMacronContainer.setVisible(false);
                     oldText = newText;
-                    System.out.println("fuck you " + oldText);
                 }
             }   
         });
@@ -106,13 +102,10 @@ public class Macron {
     }
 
     private void positionGUI(Label fxLabel, double location) {
-        System.out.println(location);
         VBox.setMargin(fxLabel, new Insets(0, 0, 0, location + 13));
     }
 
     private int firstDifferenceIndex(String a, String b) {
-        System.out.println("-----");
-        System.out.println(a + " " + b);
         int i = -1;
         int smallestLength = Math.min(a.length(), b.length());
         for (int j = 0; j < smallestLength; j++) {
@@ -121,8 +114,6 @@ public class Macron {
                 break;
             }
         }
-        System.out.println(i == -1 ? smallestLength : i);
-        System.out.println("----");
         return i == -1 ? smallestLength : i;
     }
 
