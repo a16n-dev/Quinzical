@@ -38,7 +38,8 @@ public class Macron {
         return instance;
     }
 
-    public void bind(TextField fxInput, Label fxMacronLetter, VBox fxMacronContainer) {
+    public void bind(TextField fxInput, Label fxMacronLetter, VBox fxMacronPopup) {
+        fxMacronPopup.setVisible(false);
         this.fxInput = fxInput;
 
         fxInput.addEventFilter(KeyEvent.ANY, new EventHandler<KeyEvent>() {
@@ -52,7 +53,7 @@ public class Macron {
                     
                         if (pairs.get(atCursor) != null) {
                             fxInput.replaceText(index - 1, index, Character.toString(pairs.get(atCursor)));
-                            fxMacronLetter.setVisible(false);
+                            fxMacronPopup.setVisible(false);
                         }
                     }
                 }
@@ -62,13 +63,13 @@ public class Macron {
         fxInput.setOnKeyReleased(e -> {
             int index = fxInput.getCaretPosition();
             Character macron = pairs.get(fxInput.getText().charAt(index - 1));
-            if (index != 00 && macron != null) {
-                positionGUI(fxMacronLetter, computeTextWidth(fxInput.getText().substring(0, index)));
+            if (index != 0 && macron != null) {
+                positionGUI(fxMacronPopup, computeTextWidth(fxInput.getText().substring(0, index)));
                 fxMacronLetter.setText(Character.toString(macron));
-                fxMacronLetter.setVisible(true);
+                fxMacronPopup.setVisible(true);
             }
             else {
-                fxMacronLetter.setVisible(false);
+                fxMacronPopup.setVisible(false);
             }
         });
     }
@@ -90,7 +91,7 @@ public class Macron {
         return textWidth;
     }
 
-    private void positionGUI(Label fxLabel, double location) {
-        VBox.setMargin(fxLabel, new Insets(0, 0, 0, location));
+    private void positionGUI(VBox fxMacronPopup, double location) {
+        VBox.setMargin(fxMacronPopup, new Insets(0, 0, 0, location));
     }
 }

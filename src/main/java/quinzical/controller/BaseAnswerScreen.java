@@ -39,7 +39,7 @@ public abstract class BaseAnswerScreen {
     @FXML
     private Label fxMacronLetter;
     @FXML
-    private VBox fxMacronContainer;
+    private VBox fxMacronPopup;
 
     @FXML
 	private ProgressBar fxProgressRight;
@@ -64,12 +64,13 @@ public abstract class BaseAnswerScreen {
         fxPrefix.setText(capitalise(question.getPrefix()));
         
         TTS.getInstance().speak(question.getHint());
-        Macron.getInstance().bind(fxInput, fxMacronLetter, fxMacronContainer);
+        Macron.getInstance().bind(fxInput, fxMacronLetter, fxMacronPopup);
         
         timer = Timer.getInstance();
         timer.set(fxProgressLabel, fxProgressLeft, fxProgressRight, 30);
 		timer.start(e -> {
-            submit(); // fix this so that it forces
+            timer.stop();
+            // showAlert("Oops", "Answer was: " + question.getAnswer(), "Your current score is: " + game.getScore().intValue(), onFinished);
         });
         
         Platform.runLater(new Runnable() {
