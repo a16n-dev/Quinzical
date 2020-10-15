@@ -53,7 +53,7 @@ public class AnswerScreen extends BaseAnswerScreen {
             if (game.getRemainingQuestions() == 0) {
                 Router.show(Views.REWARD_SCREEN, new AnswerScreen());
             } else {
-                Router.show(Views.GAME_BOARD, new AnswerScreen());
+                Router.show(Views.GAME_BOARD);
             }  
         }
     };
