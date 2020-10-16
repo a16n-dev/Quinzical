@@ -12,7 +12,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import quinzical.components.FrostFactory;
 import quinzical.controller.ConfirmController;
-import quinzical.controller.Views;
+import quinzical.controller.View;
 
 public class Modal {
 
@@ -24,12 +24,12 @@ public class Modal {
         root = pane;
     }
 
-    public static void show(Views view) {
+    public static void show(View view) {
         Region content = (Region) Router.loadFXML(view.getCenter());
         makeDialog(content, 600, 400);
     }
 
-    public static void show(Views view, int width, int height) {
+    public static void show(View view, int width, int height) {
         Region content = (Region) Router.loadFXML(view.getCenter());
         makeDialog(content, width, height);
     }
@@ -50,7 +50,7 @@ public class Modal {
     }
 
     public static void confirmation(String title, String message, EventHandler<ActionEvent> event) {
-        FXMLLoader loader = Router.manualLoad(Views.MODAL_CONFIRM.getCenter());
+        FXMLLoader loader = Router.manualLoad(View.MODAL_CONFIRM.getCenter());
 
         try {
             Region content = loader.load();

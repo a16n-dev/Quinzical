@@ -52,7 +52,6 @@ public abstract class BaseAnswerScreen {
     private StackPane avatarContainer;
 
     public void initialize() {
-
         //Show avatar
         AvatarFactory avatar = new AvatarFactory(avatarContainer);
         avatar.render();

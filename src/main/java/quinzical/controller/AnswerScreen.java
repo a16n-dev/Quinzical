@@ -51,9 +51,9 @@ public class AnswerScreen extends BaseAnswerScreen {
         public void handle(DialogEvent event) {
             // Navigate to the 'reward screen' only if all questions are answered
             if (game.getRemainingQuestions() == 0) {
-                Router.show(Views.REWARD_SCREEN, new AnswerScreen());
+                Router.show(View.REWARD_SCREEN);
             } else {
-                Router.show(Views.GAME_BOARD);
+                Router.show(View.GAME_BOARD);
             }  
         }
     };

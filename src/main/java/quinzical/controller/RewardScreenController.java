@@ -66,7 +66,7 @@ public class RewardScreenController {
 	public void handleButtonMenuClick(ActionEvent event) throws IOException {
 		// Reset game
 		Game.clearGame();
-		Router.show(Views.MAIN_MENU);
+		Router.show(View.MAIN_MENU);
 
 	}
 

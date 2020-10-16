@@ -1,6 +1,6 @@
 package quinzical;
 
-import quinzical.controller.Views;
+import quinzical.controller.View;
 import quinzical.model.User;
 import quinzical.util.Router;
 import javafx.application.Application;
@@ -33,7 +33,7 @@ public class App extends Application {
         Router.setContainer((BorderPane) container.lookup("#content"));
 //        Modal.setModalContainer((AnchorPane) container.lookup("#ModalContainer"));
 //        Modal.hide();
-        Router.show(Views.MAIN_MENU);
+        Router.show(View.MAIN_MENU);
         // attachListeners();
         s.show();
     }
