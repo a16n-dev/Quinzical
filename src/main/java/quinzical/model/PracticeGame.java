@@ -19,13 +19,9 @@ public class PracticeGame extends QuinzicalGame {
         return instance;
     }
 
-    private String currentCategory;
+    private Category currentCategory;
 
-    public ArrayList<String> getCategories() {
-        return questionBank.getCategories();
-    }
-
-    public void setCurrentCategory(String category) {
+    public void setCurrentCategory(Category category) {
         currentCategory = category;
     }
 

@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Random;
 import java.util.stream.Collectors;
 
+import quinzical.model.Category;
 import quinzical.model.Question;
 
 /**
@@ -16,7 +17,7 @@ import quinzical.model.Question;
  */
 public class QuestionBank {
 
-    private HashMap<String, ArrayList<Question>> _questionBank;
+    private HashMap<String, Category> _questionBank;
     private Random _rand = new Random();
 
     private static QuestionBank instance;
@@ -41,17 +42,14 @@ public class QuestionBank {
      * @param amount       the number of questions to return.
      * @return a list of questions
      */
-    public ArrayList<Question> getRandomQuestions(String categoryName, int amount, boolean allowDuplicates)
+    public ArrayList<Question> getRandomQuestions(Category category, int amount, boolean allowDuplicates)
             throws IllegalArgumentException {
         // Get arraylist of questions
 
         // Check if category exists
-        if (!_questionBank.containsKey(categoryName)) {
-            throw new IllegalArgumentException("Category does not exist");
-        }
         // Get the list of questions and create a copy of the array so the original is
         // not modified
-        ArrayList<Question> questionList = new ArrayList<Question>(_questionBank.get(categoryName));
+        ArrayList<Question> questionList = new ArrayList<Question>(category.getQuestions());
 
         ArrayList<Question> results = new ArrayList<Question>();
 
@@ -88,12 +86,12 @@ public class QuestionBank {
      *                        questions must be unique
      * @return
      */
-    public ArrayList<String> getRandomCategories(int amount, boolean allowDuplicates) throws IllegalArgumentException {
+    public ArrayList<Category> getRandomCategories(int amount, boolean allowDuplicates) throws IllegalArgumentException {
         // Get arraylist of categories
 
         // Get the list of categories and create a copy of the array so the original is
         // not modified
-        ArrayList<String> categoryList = getCategories();
+        ArrayList<Category> categoryList = new ArrayList<Category>(getCategories());
 
         // Throw an error if there are not enough unique questions to match the amount
         // specified
@@ -102,7 +100,7 @@ public class QuestionBank {
                     + amount + " was requested. Either add more questions to this category or allow duplicates");
         }
 
-        ArrayList<String> results = new ArrayList<String>();
+        ArrayList<Category> results = new ArrayList<Category>();
 
         for (int i = 0; i < amount; i++) {
             int index = _rand.nextInt(categoryList.size());
@@ -123,14 +121,14 @@ public class QuestionBank {
      * Overload for getRandomCategories to allow it to only select categories with a
      * minimum number of questions
      */
-    public ArrayList<String> getRandomCategories(int amount, boolean allowDuplicates, int minimumQuestions)
+    public ArrayList<Category> getRandomCategories(int amount, boolean allowDuplicates, int minimumQuestions)
             throws IllegalArgumentException {
         // Get arraylist of categories
 
         // Get the list of categories and create a copy of the array so the original is
         // not modified
-        List<String> categoryList = getCategories().stream()
-                .filter(p -> _questionBank.get(p).size() >= minimumQuestions).collect(Collectors.toList());
+        List<Category> categoryList = getCategories().stream()
+                .filter(p -> p.getQuestions().size() >= minimumQuestions).collect(Collectors.toList());
 
         // Throw an error if there are not enough unique questions to match the amount
         // specified
@@ -139,7 +137,7 @@ public class QuestionBank {
                     + amount + " was requested. Either add more questions to this category or allow duplicates");
         }
 
-        ArrayList<String> results = new ArrayList<String>();
+        ArrayList<Category> results = new ArrayList<Category>();
 
         for (int i = 0; i < amount; i++) {
             int index = _rand.nextInt(categoryList.size());
@@ -159,11 +157,9 @@ public class QuestionBank {
     /**
      * @return a list of all categories
      */
-    public ArrayList<String> getCategories() {
-        return new ArrayList<String>(_questionBank.keySet());
-    }
-
-    public ArrayList<Question> getQuestionsByCategory(String category) {
-        return _questionBank.get(category);
+    public ArrayList<Category> getCategories() {
+        return (ArrayList<Category>) _questionBank.values()
+        .stream()
+        .collect(Collectors.toList());
     }
 }

@@ -42,9 +42,6 @@ public class Router {
             case MAIN_MENU:
                 gameState = 0;
                 break;
-            case PRACTICE_SCREEN:
-                gameState = 2;
-                break;
             case REWARD_SCREEN:
                 gameState = 1;
                 break;

@@ -49,7 +49,4 @@
       </StackPane>
       <Button fx:id="fxMenuButton" mnemonicParsing="false" onAction="#handleButtonMenuClick" text="BACK TO MAIN MENU" />
    </children>
-   <stylesheets>
-      <URL value="@../resources/css/style.css" />
-  </stylesheets>
 </VBox>

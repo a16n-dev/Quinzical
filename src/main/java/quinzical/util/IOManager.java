@@ -17,6 +17,7 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import quinzical.model.Category;
 import quinzical.model.Question;
 
 /**
@@ -33,8 +34,8 @@ public class IOManager {
      *               current active game
      * @return The state of the application based on the files
      */
-    public static HashMap<String, ArrayList<Question>> loadQuestions(boolean reload) {
-        HashMap<String, ArrayList<Question>> state = new HashMap<>();
+    public static HashMap<String, Category> loadQuestions(boolean reload) {
+        HashMap<String, Category> categoryList = new HashMap<>();
 
         // choose the directory
         String directory = (reload ? "categories" : "categories_current");
@@ -47,7 +48,9 @@ public class IOManager {
                     if (file.isFile()) {
                         BufferedReader br = new BufferedReader(new FileReader(file));
                         String categoryName = file.getName();
+                        Category category = new Category(categoryName,false);
                         String line;
+                        //Iterate over each question
                         while ((line = br.readLine()) != null) {
                             try {
                                 String[] parts = line.split("\\|");
@@ -57,17 +60,13 @@ public class IOManager {
                                 String answer = parts[3];
                                 Question question = new Question(difficulty, questionText, questionPrefix, answer);
 
-                                ArrayList<Question> questions = state.get(categoryName);
-                                if (questions == null) {
-                                    questions = new ArrayList<Question>();
-                                    state.put(categoryName, questions);
-                                }
-                                questions.add(question);
+                                category.addQuestion(question);
                             } catch (Exception e) {
                                 System.out.println(line + " is not a valid question");
                             }
                         }
                         br.close();
+                        categoryList.put(categoryName,category);
                     }
                 }
             }
@@ -79,7 +78,7 @@ public class IOManager {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        return state;
+        return categoryList;
     }
 
     /**

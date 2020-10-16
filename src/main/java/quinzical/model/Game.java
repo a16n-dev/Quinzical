@@ -35,12 +35,12 @@ public class Game extends QuinzicalGame implements Serializable {
         score = new SimpleIntegerProperty();
         questions = new HashMap<String, ArrayList<Question>>();
         // Pick 5 categories at random
-        ArrayList<String> categories = questionBank.getRandomCategories(5, false);
+        ArrayList<Category> categories = questionBank.getRandomCategories(5, false);
 
         // For each category select 5 random questions
-        for (String category : categories) {
+        for (Category category : categories) {
             ArrayList<Question> questionList = questionBank.getRandomQuestions(category, questionCount, false);
-            questions.put(category, questionList);
+            questions.put(category.getName(), questionList);
         }
     }
 

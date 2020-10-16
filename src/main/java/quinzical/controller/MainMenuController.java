@@ -64,7 +64,7 @@ public class MainMenuController {
 
 	@FXML
 	public void handlePracticeGame() {
-		Router.show(Views.PRACTICE_SCREEN);
+		Router.show(Views.SELECT_CATEGORY);
 	}
 
 	@FXML

@@ -28,11 +28,11 @@ public enum Views {
     MAIN_MENU("controller/MainMenu.fxml", null, null, null, null),
     ANSWER_SCREEN("controller/AnswerScreen.fxml", Component.GAME_TITLE.path(), null, null, null),
     GAME_BOARD("controller/GameBoard.fxml", Component.GAME_TITLE.path(), null, null, null),
-    PRACTICE_SCREEN("controller/PracticeScreen.fxml", Component.GAME_TITLE.path(), null, null, null),
     REWARD_SCREEN("controller/RewardScreen.fxml", Component.TITLE.path(), null, null, null),
     TROPHY_CASE("controller/TrophyCase.fxml", Component.GAME_TITLE.path(), null, null, null),
     LEADERBOARD("controller/Leaderboard.fxml", Component.GAME_TITLE.path(), null, null, null),
-    
+    SELECT_CATEGORY("controller/CategorySelect.fxml", Component.GAME_TITLE.path(), null, null, null),
+
     MODAL_SETTINGS("controller/Settings.fxml", null, null, null, null),
     MODAL_JOIN("controller/JoinGame.fxml", null, null, null, null),
     MODAL_CONFIRM("controller/Confirm.fxml", null, null, null, null)

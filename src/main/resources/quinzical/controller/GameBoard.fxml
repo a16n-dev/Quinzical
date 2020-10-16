@@ -44,9 +44,6 @@
                </padding>
             </GridPane>
          </children>
-         <stylesheets>
-            <URL value="@../resources/css/style.css" />
-        </stylesheets>
       </VBox>
    </children>
 </AnchorPane>

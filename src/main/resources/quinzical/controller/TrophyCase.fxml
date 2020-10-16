@@ -17,7 +17,7 @@
          <center>
             <HBox maxHeight="-Infinity" maxWidth="-Infinity" spacing="32.0">
                <children>
-                  <StackPane maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="200.0" stylesheets="@../resources/css/style.css">
+                  <StackPane maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="200.0">
                      <children>
                         <AnchorPane styleClass="panel">
                            <StackPane.margin>
@@ -53,7 +53,7 @@
                         </VBox>
                      </children>
                   </StackPane>
-                  <StackPane maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="200.0" stylesheets="@../resources/css/style.css">
+                  <StackPane maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="200.0" >
                      <children>
                         <AnchorPane styleClass="panel">
                            <StackPane.margin>
@@ -89,7 +89,7 @@
                         </VBox>
                      </children>
                   </StackPane>
-                  <StackPane maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="200.0" stylesheets="@../resources/css/style.css">
+                  <StackPane maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="200.0">
                      <children>
                         <AnchorPane styleClass="panel">
                            <StackPane.margin>
@@ -125,7 +125,7 @@
                         </VBox>
                      </children>
                   </StackPane>
-                  <StackPane maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="200.0" stylesheets="@../resources/css/style.css">
+                  <StackPane maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="200.0" >
                      <children>
                         <AnchorPane styleClass="panel">
                            <StackPane.margin>
@@ -161,7 +161,7 @@
                         </VBox>
                      </children>
                   </StackPane>
-                  <StackPane maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="200.0" stylesheets="@../resources/css/style.css">
+                  <StackPane maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="200.0" >
                      <children>
                         <AnchorPane styleClass="panel">
                            <StackPane.margin>

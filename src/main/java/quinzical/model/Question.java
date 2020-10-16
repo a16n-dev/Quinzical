@@ -13,10 +13,14 @@ import org.apache.xmlbeans.impl.common.Levenshtein;
 public class Question implements Serializable {
 
     private static final long serialVersionUID = -1945949962117279881L;
+
+    private String id;
+
     private transient SimpleIntegerProperty difficulty;
     private transient SimpleStringProperty question;
     private transient SimpleStringProperty questionPrefix;
     private transient SimpleStringProperty answer;
+    
     private boolean isAnswered = false;
 
     public Question(int difficulty, String question, String questionPrefix, String answer) {
@@ -135,4 +139,25 @@ public class Question implements Serializable {
         String answerS = (String) in.readObject();
         answer = new SimpleStringProperty(answerS);
     };
+
+    @Override
+    public boolean equals(Object o){
+        
+        if (this == o) {  
+            return true;  
+        } 
+        if (o instanceof Question) {
+            Question q = (Question) o;
+
+            if(this.id.equals(q.id)){
+                return true;
+            }
+
+        }
+        return false;
+    }
+
+    public String getId(){
+        return id;
+    }
 }

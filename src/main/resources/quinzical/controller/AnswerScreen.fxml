@@ -20,11 +20,11 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <VBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" prefWidth="600.0" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <AnchorPane maxWidth="600.0">
                <children>
-                  <Pane styleClass="panel" stylesheets="@../resources/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                  <Pane styleClass="panel" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                      <children>
                         <Label fx:id="fxCategoryName" text="Label" textFill="WHITE">
                            <padding>
@@ -36,7 +36,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane layoutX="10.0" layoutY="10.0" styleClass="panel" stylesheets="@../resources/css/style.css" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                  <Pane layoutX="10.0" layoutY="10.0" styleClass="panel" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
                      <children>
                         <Label fx:id="fxValueText" text="Label" textFill="WHITE">
                            <padding>
@@ -136,13 +136,13 @@
                               <Font size="24.0" />
                            </font>
                         </TextField>
-                        <VBox fx:id="fxMacronContainer" minHeight="20.0" minWidth="20.0">
+                        <VBox fx:id="fxMacronContainer" minHeight="20.0" minWidth="20.0" mouseTransparent="true">
                            <children>
                               <VBox fx:id="fxMacronPopup" fillWidth="false">
                                  <children>
                                     <VBox alignment="CENTER" fillWidth="false" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" style="-fx-background-radius: 2; -fx-background-color: white; -fx-border-radius: 1; -fx-border-color: #eee;">
                                        <children>
-                                          <Label fx:id="fxMacronLetter" maxHeight="-Infinity" maxWidth="16.0" minHeight="-Infinity" minWidth="16.0" prefHeight="16.0" prefWidth="16.0" text="e">
+                                          <Label fx:id="fxMacronLetter" maxHeight="-Infinity" maxWidth="16.0" minHeight="-Infinity" minWidth="16.0" prefHeight="20.0" prefWidth="16.0" text="e">
                                              <padding>
                                                 <Insets left="4.0" right="4.0" />
                                              </padding>
@@ -155,7 +155,7 @@
                                                 <Image url="@../images/macron_key.png" />
                                              </image>
                                              <VBox.margin>
-                                                <Insets bottom="2.0" top="2.0" />
+                                                <Insets bottom="2.0" />
                                              </VBox.margin>
                                           </ImageView>
                                        </children>
@@ -185,9 +185,6 @@
             </Button>
             <Button fx:id="fxUnsure" onAction="#onUnsure" text="Don't know" />
          </children>
-         <stylesheets>
-            <URL value="@../resources/css/style.css" />
-        </stylesheets>
          <padding>
             <Insets left="64.0" right="64.0" />
          </padding>
