@@ -9,45 +9,32 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 import quinzical.App;
-import quinzical.controller.Views;
+import quinzical.controller.PracticeScreenController;
+import quinzical.controller.View;
 
 public class Router {
-
+    // the container containing the entire application
     private static BorderPane container;
 
-    private static int gameState = 0; // 0 is menu, 1 is game, 2 is practice, 3 is multiplayer
-
     // Represents the history of the pages the user has visited
-    private static Deque<Views> history = new ArrayDeque<Views>();
+    private static Deque<View> history = new ArrayDeque<View>();
+
+    public static void navigateBack() {
+        System.out.println(history);
+        System.out.println(history.peekLast());
+        history.removeLast(); // current page
+        show(history.peekLast(), false); // show last page without adding to history
+        System.out.println(history.peekLast());
+    }
 
     /**
      * Sets the scene to show the specified fxml file
      * 
      * @param fxml the path to the fxml file, relative to App.java
      */
-    public static void show(Views fxml, Object controller) {
-
-        // Clear the TTS queue
+    public static void show(View fxml, boolean addToHistory) {
         TTS.getInstance().clearQueue();
         Timer.getInstance().stop();
-
-        // Update the game state
-        switch (fxml) {
-            case ANSWER_SCREEN:
-                gameState = 1;
-                break;
-            case GAME_BOARD:
-                gameState = 1;
-                break;
-            case MAIN_MENU:
-                gameState = 0;
-                break;
-            case REWARD_SCREEN:
-                gameState = 1;
-                break;
-            default:
-                break;
-        }
 
         FadeTransition ft = new FadeTransition(Duration.millis(300), container);
         ft.setFromValue(0);
@@ -55,28 +42,18 @@ public class Router {
         ft.play();
 
         // Place the content into the container
-        container.setCenter(loadFXML(fxml.getCenter(), controller));
-
+        container.setCenter(loadFXML(fxml.getCenter(), fxml.getController()));
         container.setTop(loadFXML(fxml.getTop()));
-
         container.setRight(loadFXML(fxml.getRight()));
-
         container.setBottom(loadFXML(fxml.getBottom()));
-
         container.setLeft(loadFXML(fxml.getLeft()));
 
-        // If it was all successful add screen to history
-        history.add(fxml);
+        if (addToHistory) {
+            history.add(fxml);
+        }
     }
-    public static void show(Views fxml) {
-        show(fxml, null);
-    }
-
-    public static void back() {
-        // First pop the current page off the stack
-        history.pop();
-        // Show the page on top of the stack
-        show(history.peek());
+    public static void show(View fxml) {
+        show(fxml, true);
     }
 
     /**
@@ -87,9 +64,6 @@ public class Router {
         container = p;
     }
 
-    // TODO: Move this. This does not belong inside of the router class and should
-    // be moved to another util file.
-    // Possibly IOmanager?
     /**
      * Loads the specified fxml file
      * @param fxml the path to the fxml file
@@ -113,14 +87,10 @@ public class Router {
         }
         return null;
     }
-    
     public static Node loadFXML(String fxml) {
         return loadFXML(fxml, null);
     }
-
-    // TODO: Move this. This does not belong inside of the router class and should
-    // be moved to another util file.
-    // Possibly IOmanager?
+    
     /**
      * Used when a reference to the controller is also required
      * @param fxml the path to the fxml file
@@ -139,10 +109,9 @@ public class Router {
     }
 
     /**
-     * 
-     * @return the current state of the game, 0 for menu, 1 for game, 2 for practice
+     * @return whether the game is in practice mode
      */
-    public static int getGameState() {
-        return gameState;
+    public static boolean isPracticeMode() {
+        return history.peekLast().getController() instanceof PracticeScreenController;
     }
 }

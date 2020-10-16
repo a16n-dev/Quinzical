@@ -41,7 +41,7 @@ public class MainMenuController {
 	}
 
 	public void handleGameButtonClick(ActionEvent event) throws IOException {
-		Router.show(Views.GAME_BOARD);
+		Router.show(View.GAME_BOARD);
 	}
 
 	@FXML
@@ -49,17 +49,17 @@ public class MainMenuController {
 		if (Game.isInProgress()) {
 			Modal.confirmation("New Game","Are you sure you want to start a new game?", e -> {
 				Game.clearGame();
-				Router.show(Views.GAME_BOARD);
+				Router.show(View.GAME_BOARD);
 			});
 		} else {
 			Game.clearGame();
-			Router.show(Views.GAME_BOARD);
+			Router.show(View.GAME_BOARD);
 		}
 	}
 
 	@FXML
 	public void handleResumeGame() {
-		Router.show(Views.GAME_BOARD);
+		Router.show(View.GAME_BOARD);
 	}
 
 	@FXML
@@ -69,12 +69,12 @@ public class MainMenuController {
 
 	@FXML
 	public void handleViewTrophyCase() {
-		Router.show(Views.TROPHY_CASE);
+		Router.show(View.TROPHY_CASE);
 	}
 	
 	@FXML
 	public void handleViewLeaderboard() {
-		Router.show(Views.LEADERBOARD);
+		Router.show(View.LEADERBOARD);
 	}
 	
 	@FXML
@@ -98,12 +98,12 @@ public class MainMenuController {
 
 	@FXML
 	public void showSettings() {
-		Modal.show(Views.MODAL_SETTINGS);
+		Modal.show(View.MODAL_SETTINGS);
 	}
 
 	@FXML
 	public void showJoinGame() {
-		Modal.show(Views.MODAL_JOIN,600,300);
+		Modal.show(View.MODAL_JOIN,600,300);
 	}
 
 	// public void handleSpeechVolumeSliderChange(ObservableValue<Number> ovn,

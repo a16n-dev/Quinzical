@@ -52,7 +52,6 @@ public abstract class BaseAnswerScreen {
     private StackPane avatarContainer;
 
     public void initialize() {
-
         //Show avatar
         AvatarFactory avatar = new AvatarFactory(avatarContainer);
         avatar.render();
@@ -69,8 +68,7 @@ public abstract class BaseAnswerScreen {
         timer = Timer.getInstance();
         timer.set(fxProgressLabel, fxProgressLeft, fxProgressRight, 30);
 		timer.start(e -> {
-            timer.stop();
-            // showAlert("Oops", "Answer was: " + question.getAnswer(), "Your current score is: " + game.getScore().intValue(), onFinished);
+            forceWrongAnswer();
         });
         
         Platform.runLater(new Runnable() {
@@ -79,10 +77,10 @@ public abstract class BaseAnswerScreen {
                 fxInput.requestFocus();
             }
         });
-
+        
         // timer, category name, value text, random question for practise, attempt count for practise
     }
-
+    
     abstract void onLoad();
     abstract Question setQuestion();
     
@@ -90,7 +88,7 @@ public abstract class BaseAnswerScreen {
     private void submit() {
         String userAnswer = fxInput.getText();
         Answer answer = question.checkAnswer(userAnswer);
-
+        
         if (answer == Answer.CORRECT) {
             onCorrectAnswer(question);
         }
@@ -109,7 +107,7 @@ public abstract class BaseAnswerScreen {
             }
         }
     }
-
+    
     public void showAlert(String title, String header, String content, EventHandler<DialogEvent> event) {
         Alert alert = new Alert(AlertType.INFORMATION);
 		alert.setTitle(title);
@@ -119,23 +117,29 @@ public abstract class BaseAnswerScreen {
         alert.setOnHidden(event);
         timer.stop();
     }
-
+    
+    private void forceWrongAnswer() {
+        timer.stop();
+        showAlert("Oops", "Answer was: " + question.getAnswer(), question.getHint(), e -> {
+            Router.navigateBack();
+        });
+    }
+    
     abstract void onCorrectAnswer(Question question);
     abstract void onWrongAnswer(Question question);
     
     private String capitalise(String s) {
         return s.substring(0, 1).toUpperCase() + s.substring(1);
     }
-
+    
     @FXML
     public void onSubmit(ActionEvent event) { submit(); }
-
+    
     @FXML
     public void onUnsure() {
-        hasTypoed = true; // make sure that it doesn't count as a typo
-        submit();
+        forceWrongAnswer();
     }
-
+    
     @FXML
 	public void repeatClue() {
 		TTS.getInstance().speak(question.getHint());

@@ -8,11 +8,10 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
-import quinzical.controller.Views;
+import quinzical.controller.View;
 import quinzical.model.Game;
 import quinzical.util.Modal;
 import quinzical.util.Router;
-import quinzical.util.Timer;
 
 public class GameTopBarController {
 	@FXML
@@ -26,7 +25,7 @@ public class GameTopBarController {
 	 */
 	public void initialize() {
 		// Hide the score if in practice mode
-		if (Router.getGameState() != 1) {
+		if (Router.isPracticeMode()) {
 			fxScoreCard.setVisible(false);
 			fxScoreCard.setManaged(false);
 		} else {
@@ -37,12 +36,11 @@ public class GameTopBarController {
 
 	@FXML
 	public void handleGoBack(ActionEvent event) throws IOException {
-		Timer.getInstance().stop();
-		Router.show(Views.MAIN_MENU);
+		Router.navigateBack();
 	}
 
 	@FXML
 	public void showSettings() {
-		Modal.show(Views.MODAL_SETTINGS);
+		Modal.show(View.MODAL_SETTINGS);
 	}
 }

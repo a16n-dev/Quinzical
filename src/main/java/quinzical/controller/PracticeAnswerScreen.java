@@ -61,7 +61,7 @@ public class PracticeAnswerScreen extends BaseAnswerScreen {
     private EventHandler<DialogEvent> onFinished = new EventHandler<DialogEvent>() {
         @Override
         public void handle(DialogEvent event) {
-            Router.show(Views.ANSWER_SCREEN, new PracticeAnswerScreen());
+            Router.show(View.PRACTICE_ANSWER_SCREEN, false);
         }
     };
 }
