@@ -10,7 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.DialogEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import quinzical.components.FrostFactory;
+import quinzical.components.FrostPane;
 import quinzical.controller.ConfirmController;
 import quinzical.controller.View;
 
@@ -35,7 +35,7 @@ public class Modal {
     }
 
     private static void makeDialog(Region content, double width, double height){
-        StackPane frosted = FrostFactory.freeze(root, content, width, height);
+        FrostPane frosted = new FrostPane(root, content, width, height);
 
         frosted.setMaxWidth(width);
         frosted.setMaxHeight(height);

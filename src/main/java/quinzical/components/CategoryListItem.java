@@ -3,9 +3,7 @@ package quinzical.components;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
-import quinzical.controller.View;
 import quinzical.model.Category;
-import quinzical.model.PracticeGame;
 import quinzical.util.Router;
 
 import java.io.IOException;
@@ -18,14 +16,29 @@ import javafx.fxml.FXMLLoader;
 
 public class CategoryListItem {
 
+    /**
+     * The category the element represents
+     */
     private Category category;
 
+    /**
+     * Boolean indicating if the category is part of the current selection
+     */
     private boolean isSelected;
 
+    /**
+     * Boolean indicating if the element should be disabled and unable to added to the selection
+     */
     private BooleanProperty disabled;
 
+    /**
+     * A reference to the list of selected categories that listeners can be attatched to
+     */
     private ObservableList<Category> categories;
 
+    /**
+     * The different style classes that can be applied to the element to reflect its state
+     */
     private enum Style {
         DEFAULT("listItem"),
         SELECTED("listItemSelected"),
@@ -51,6 +64,12 @@ public class CategoryListItem {
     @FXML
     private AnchorPane fxBase;
 
+    /**
+     * Configures the controller to correspond to a specific category
+     * @param categoryName the category the element represents
+     * @param isDisabled observable value indicating if the element should be disabled
+     * @param selectedCategories a reference to the observable list of categories
+     */
     private void config(Category categoryName, BooleanProperty isDisabled, ObservableList<Category> selectedCategories) {
         isSelected = false;
         categories = selectedCategories;
@@ -77,6 +96,9 @@ public class CategoryListItem {
         });
     }
 
+    /**
+     * On press should add the category to the selection unless it is disabled or already selected
+     */
     @FXML
     public void handleButtonPress() {
         if(!(disabled.get() || isSelected)){
@@ -85,6 +107,10 @@ public class CategoryListItem {
         
     }
 
+    /**
+     * Sets the style of the element to the given class
+     * @param style the style to apply
+     */
     private void setStyle(Style style){
         fxBase.getStyleClass().set(0,style.toString());
     }

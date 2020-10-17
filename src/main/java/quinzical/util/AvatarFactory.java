@@ -91,10 +91,7 @@ public class AvatarFactory {
         try {
             // fetch images
             // TODO put this in a background thread
-            String ext = animated ? ".gif" : ".png";
-
-            //Set scale
-            
+            String ext = animated ? ".gif" : ".png";          
 
             fxBaseLayer.setImage(ImageLoader.loadImage(RESOURCE_PATH + "char_idle" + ext));
             fxBodyLayer.setImage(ImageLoader.loadImage(RESOURCE_PATH + "mustache_idle" + ext));

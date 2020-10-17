@@ -5,7 +5,8 @@ package quinzical.components;
  * app
  */
 public enum Component {
-    TITLE("components/Title.fxml"), GAME_TITLE("components/GameTopBar.fxml"),
+    TITLE("components/Title.fxml"),
+    GAME_TITLE("components/GameTopBar.fxml"),
     CATEGORY_LIST_ITEM("components/CategoryListItem.fxml");
 
     private final String path;
