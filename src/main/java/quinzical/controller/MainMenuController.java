@@ -36,7 +36,7 @@ public class MainMenuController {
 		}
 
 		//Load avatar
-		AvatarFactory avatar = new AvatarFactory(avatarSlot);
+		AvatarFactory avatar = new AvatarFactory(avatarSlot, 300);
 		avatar.render();
 	}
 
@@ -49,11 +49,11 @@ public class MainMenuController {
 		if (Game.isInProgress()) {
 			Modal.confirmation("New Game","Are you sure you want to start a new game?", e -> {
 				Game.clearGame();
-				Router.show(View.GAME_BOARD);
+				Router.show(View.SELECT_CATEGORY_GAME);
 			});
 		} else {
 			Game.clearGame();
-			Router.show(View.GAME_BOARD);
+			Router.show(View.SELECT_CATEGORY_GAME);
 		}
 	}
 
@@ -64,7 +64,7 @@ public class MainMenuController {
 
 	@FXML
 	public void handlePracticeGame() {
-		Router.show(Views.SELECT_CATEGORY);
+		Router.show(View.SELECT_CATEGORY_PRACTICE);
 	}
 
 	@FXML

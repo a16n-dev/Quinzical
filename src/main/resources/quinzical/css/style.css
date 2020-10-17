@@ -1,6 +1,7 @@
 .root {
     -fx-orange-main: #C25955;
     -fx-orange-light: #CE725B;  
+    -fx-font-family: 'Roboto';
 }
 
 .button {
@@ -57,6 +58,22 @@
 }
 
 .listItem{
+    -fx-background-color: rgba(255,255,255,0.4);
+}
+
+.listItem:hover{
+    -fx-background-color: rgb(190, 190, 190);
+}
+
+.listItemSelected{
+    -fx-border-color: rgb(75, 212, 75);
+    -fx-border-width: 2;
+    -fx-border-radius: 5px;
+    -fx-background-color: white;
+}
+
+.listItemDisabled{
+    -fx-opacity: 0.5;
     -fx-background-color: white;
 }
 
@@ -86,6 +103,8 @@
     -fx-background-size: contain;
     -fx-background-position: center;
 }
+
+
 
 /**
 Table stylings
@@ -215,3 +234,4 @@ Table stylings
   .table-row-cell:odd:filled:selected {
     -fx-background: -fx-control-inner-background-alt ;
   }
+

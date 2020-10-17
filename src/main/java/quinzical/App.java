@@ -9,6 +9,7 @@ import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import jfxtras.resources.JFXtrasFontRoboto;
 
 public class App extends Application {
 
@@ -26,6 +27,9 @@ public class App extends Application {
 
         // Setup router
         StackPane container = (StackPane) Router.loadFXML("controller/GameContainer.fxml");
+
+        //Load fonts
+        JFXtrasFontRoboto.loadAll();
 
         Scene scene = new Scene(container, 1200, 800);
         s.setScene(scene);

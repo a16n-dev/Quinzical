@@ -25,12 +25,12 @@ public class GameTopBarController {
 	 */
 	public void initialize() {
 		// Hide the score if in practice mode
-		if (Router.isPracticeMode()) {
-			fxScoreCard.setVisible(false);
-			fxScoreCard.setManaged(false);
-		} else {
+		if (Router.isGameMode()) {
 			SimpleIntegerProperty score = Game.getInstance().getScore();
 			fxScoreLabel.textProperty().bind(Bindings.convert(score));
+		} else {
+			fxScoreCard.setVisible(false);
+			fxScoreCard.setManaged(false);
 		}
 	}
 

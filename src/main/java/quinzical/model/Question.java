@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.Serializable;
+import java.util.UUID;
 
 import org.apache.xmlbeans.impl.common.Levenshtein;
 
@@ -28,6 +29,7 @@ public class Question implements Serializable {
         this.question = new SimpleStringProperty(question);
         this.questionPrefix = new SimpleStringProperty(questionPrefix);
         this.answer = new SimpleStringProperty(answer);
+        this.id = UUID.randomUUID().toString();
     }
 
     public Question(Question q) {

@@ -32,6 +32,7 @@ public class QuestionBank {
     // Private constructor
     private QuestionBank() {
         _questionBank = IOManager.loadQuestions(true);
+        System.out.println("Bam");
     }
 
     /**

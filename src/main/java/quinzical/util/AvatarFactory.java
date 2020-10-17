@@ -1,5 +1,7 @@
 package quinzical.util;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
@@ -39,7 +41,7 @@ public class AvatarFactory {
     /**
      * Sets the image size
      */
-    private int size = 320;
+    private IntegerProperty size = new SimpleIntegerProperty(320);
 
     private boolean animated = true;
 
@@ -57,7 +59,7 @@ public class AvatarFactory {
      * @param scale the size in pixels of the avatar
      */
     public AvatarFactory(StackPane container, int scale){
-        size = scale;
+        size.set(scale);
         init(container);
     }
 
@@ -70,8 +72,16 @@ public class AvatarFactory {
     public void init(StackPane container) {
         fxFrame = container;
         fxBaseLayer = new ImageView();
+        fxBaseLayer.fitWidthProperty().bind(size);
+        fxBaseLayer.fitHeightProperty().bind(size);
+
         fxHatLayer = new ImageView();
+        fxHatLayer.fitWidthProperty().bind(size);
+        fxHatLayer.fitHeightProperty().bind(size);
+
         fxBodyLayer = new ImageView();
+        fxBodyLayer.fitWidthProperty().bind(size);
+        fxBodyLayer.fitHeightProperty().bind(size);
     }
 
     /**
@@ -82,9 +92,13 @@ public class AvatarFactory {
             // fetch images
             // TODO put this in a background thread
             String ext = animated ? ".gif" : ".png";
-            fxBaseLayer.setImage(ImageLoader.loadImage(RESOURCE_PATH + "char_idle" + ext, size));
-            fxBodyLayer.setImage(ImageLoader.loadImage(RESOURCE_PATH + "mustache_idle" + ext, size));
-            fxHatLayer.setImage(ImageLoader.loadImage(RESOURCE_PATH + "beanie_idle" + ext, size));
+
+            //Set scale
+            
+
+            fxBaseLayer.setImage(ImageLoader.loadImage(RESOURCE_PATH + "char_idle" + ext));
+            fxBodyLayer.setImage(ImageLoader.loadImage(RESOURCE_PATH + "mustache_idle" + ext));
+            fxHatLayer.setImage(ImageLoader.loadImage(RESOURCE_PATH + "beanie_idle" + ext));
             fxFrame.getChildren().setAll(fxBaseLayer, fxBodyLayer, fxHatLayer);
         } catch (Exception e) {
             System.out.println("Error, avatar frame not set");
@@ -108,6 +122,6 @@ public class AvatarFactory {
      * @param scale
      */
     public void setScale(int scale) {
-        size = scale;
+        size.set(scale);
     }
 }

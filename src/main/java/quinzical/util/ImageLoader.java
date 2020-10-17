@@ -8,10 +8,9 @@ public class ImageLoader {
 
     private static HashMap<String, Image> imageCache = new HashMap<String, Image>();
 
-    public static Image loadImage(String path, int size) {
+    public static Image loadImage(String path) {
         if(imageCache.get(path) == null){
-           Image image = new Image(App.class.getResource(path).toString(), size,
-           size, true, true, true);
+           Image image = new Image(App.class.getResource(path).toString(), true);
            imageCache.put(path, image);
         }
         return imageCache.get(path);

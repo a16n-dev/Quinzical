@@ -31,11 +31,9 @@ public class Game extends QuinzicalGame implements Serializable {
 
     private String currentCategory;
 
-    private Game() {
+    private Game(List<Category> categories) {
         score = new SimpleIntegerProperty();
         questions = new HashMap<String, ArrayList<Question>>();
-        // Pick 5 categories at random
-        ArrayList<Category> categories = questionBank.getRandomCategories(5, false);
 
         // For each category select 5 random questions
         for (Category category : categories) {
@@ -78,7 +76,7 @@ public class Game extends QuinzicalGame implements Serializable {
             // Attempt to read state from file
             instance = IOManager.readState(State.GAME);
             if (instance == null) {
-                instance = new Game();
+                return null;
             }
         }
         return instance;
@@ -96,8 +94,8 @@ public class Game extends QuinzicalGame implements Serializable {
     /**
      * Starts a new game
      */
-    public static void newGame() {
-        instance = new Game();
+    public static void newGame(List<Category> categories) {
+        instance = new Game(categories);
     }
 
     /**
