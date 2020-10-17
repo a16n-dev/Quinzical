@@ -1,5 +1,6 @@
 package quinzical.model;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -95,6 +96,14 @@ public class Category {
 
     public Question getQuestionById(String id){
         return questions.get(id);
+    }
+    
+    public List<String> getQuestionIds() {
+		return questions.keySet().stream().collect(Collectors.toList());
+	}
+    
+    public void removeQuestion(String id) {
+    	questions.remove(id);
     }
 
 }

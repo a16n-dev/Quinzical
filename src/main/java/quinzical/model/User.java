@@ -1,10 +1,13 @@
 package quinzical.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 
 import quinzical.util.AvatarFactory;
 import quinzical.util.IOManager;
+import quinzical.util.QuestionBank;
 import quinzical.util.State;
 
 /**
@@ -20,6 +23,10 @@ public class User implements Serializable {
     private static User user;
 
     private HashMap<Reward, Integer> _rewards = new HashMap<Reward, Integer>();
+    
+    private HashMap<String, List<String>> unattemptedQuestions;
+    
+    private int numberAttemptedCategories;
     
     private boolean internationalUnlocked;
 
@@ -40,13 +47,22 @@ public class User implements Serializable {
         return user;
     }
 
-    private User() {       
-        internationalUnlocked = false;
+    private User() {
+    	internationalUnlocked = false;
+    	numberAttemptedCategories = 0;
+    	
+    	// Store the ids of unattempted questions.
+    	QuestionBank questionBank = QuestionBank.getInstance();
+    	ArrayList<Category> categories = questionBank.getCategories();    	
+    	for (Category category : categories) {
+			unattemptedQuestions.put(category.getName(), category.getQuestionIds());
+		} 	
+    	
         _rewards.put(Reward.Diamond, 0);
         _rewards.put(Reward.Platinum, 0);
         _rewards.put(Reward.Gold, 0);
         _rewards.put(Reward.Silver, 0);
-        _rewards.put(Reward.Bronze, 0);        
+        _rewards.put(Reward.Bronze, 0);  
     }
 
     /**
@@ -95,10 +111,22 @@ public class User implements Serializable {
     }
     
     /**
-     * Unlocks/locks the 'international questions' section.
+     * Sets the locking status of the international questions section.
      */
     public void setInternational(boolean unlock) {
     	internationalUnlocked = unlock;
+    }
+    
+    public void attemptQuestion(String category, String id) {
+    	unattemptedQuestions.get(category).remove(id);
+    	
+    	if (unattemptedQuestions.get(category).isEmpty()) {
+    		numberAttemptedCategories ++;
+    	}
+    	
+    	if (numberAttemptedCategories >= 2) {
+    		setInternational(true);
+    	}
     }
 
     private static void persist() {
