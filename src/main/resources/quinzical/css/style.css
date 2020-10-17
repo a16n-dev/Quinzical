@@ -235,3 +235,12 @@ Table stylings
     -fx-background: -fx-control-inner-background-alt ;
   }
 
+/* Style progress bar */
+.progress-bar > .track{
+    -fx-background-color: rgba(0,0,0,0.4);
+}
+
+.progress-bar > .bar,
+.progress-bar:indeterminate > .bar{
+    -fx-background-color: -fx-orange-main;
+}

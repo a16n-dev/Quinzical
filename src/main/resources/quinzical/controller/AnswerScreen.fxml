@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import com.jfoenix.controls.JFXButton?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
@@ -108,10 +107,13 @@
                         <Insets right="230.0" />
                      </StackPane.margin>
                   </ProgressBar>
-                  <Label fx:id="fxProgressLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: orange; -fx-background-radius: 15;" text="30" textAlignment="CENTER" textFill="WHITE" />
+                  <Label fx:id="fxProgressLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: white; -fx-text-fill: -fx-orange-main; -fx-background-radius: 20;" text="30" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font></Label>
                </children>
                <VBox.margin>
-                  <Insets top="-30.0" />
+                  <Insets top="-16.0" />
                </VBox.margin>
             </StackPane>
             <Label text="Complete the Question:" textFill="WHITE">

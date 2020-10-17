@@ -5,7 +5,6 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
@@ -13,11 +12,16 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.TrophyCaseController">
    <children>
-      <BorderPane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-         <center>
-            <HBox maxHeight="-Infinity" maxWidth="-Infinity" spacing="32.0">
+      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label text="Medals" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="36.0" />
+               </font>
+            </Label>
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" spacing="32.0">
                <children>
-                  <StackPane maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="200.0">
+                  <StackPane maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                      <children>
                         <AnchorPane styleClass="panel">
                            <StackPane.margin>
@@ -53,7 +57,7 @@
                         </VBox>
                      </children>
                   </StackPane>
-                  <StackPane maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="200.0" >
+                  <StackPane maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                      <children>
                         <AnchorPane styleClass="panel">
                            <StackPane.margin>
@@ -89,7 +93,7 @@
                         </VBox>
                      </children>
                   </StackPane>
-                  <StackPane maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="200.0">
+                  <StackPane maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                      <children>
                         <AnchorPane styleClass="panel">
                            <StackPane.margin>
@@ -125,7 +129,7 @@
                         </VBox>
                      </children>
                   </StackPane>
-                  <StackPane maxWidth="1.7976931348623157E308" minWidth="180.0" prefWidth="200.0" >
+                  <StackPane maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                      <children>
                         <AnchorPane styleClass="panel">
                            <StackPane.margin>
@@ -161,7 +165,7 @@
                         </VBox>
                      </children>
                   </StackPane>
-                  <StackPane maxWidth="1.7976931348623157E308" minWidth="150.0" prefWidth="200.0" >
+                  <StackPane maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
                      <children>
                         <AnchorPane styleClass="panel">
                            <StackPane.margin>
@@ -199,21 +203,10 @@
                   </StackPane>
                </children>
             </HBox>
-         </center>
-         <top>
-            <BorderPane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
-               <center>
-                  <Label text="Medals" textFill="WHITE" BorderPane.alignment="CENTER">
-                     <font>
-                        <Font name="System Bold" size="36.0" />
-                     </font>
-                     <BorderPane.margin>
-                        <Insets bottom="32.0" />
-                     </BorderPane.margin>
-                  </Label>
-               </center>
-            </BorderPane>
-         </top>
-      </BorderPane>
+         </children>
+         <padding>
+            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+         </padding>
+      </VBox>
    </children>
 </AnchorPane>
