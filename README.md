@@ -1,4 +1,4 @@
-# SOFTENG 206 Assignment 3
+# SOFTENG 206 Project
 
  **Authors**  
 Alexander Nicholson  
