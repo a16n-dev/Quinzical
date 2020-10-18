@@ -129,10 +129,13 @@
                                           <Image url="@../images/coin.png" />
                                        </image>
                                     </ImageView>
-                                    <Label text="\$50" textFill="WHITE">
+                                    <Label contentDisplay="RIGHT" text="\$" textFill="WHITE">
                                        <font>
                                           <Font name="System Bold" size="18.0" />
                                        </font>
+                                       <graphic>
+                                          <Label fx:id="fxCoinDisplay" contentDisplay="RIGHT" text="Label" textFill="WHITE" />
+                                       </graphic>
                                     </Label>
                                  </children>
                               </HBox>

@@ -61,8 +61,6 @@ public class Modal {
                     hide();
                     event.handle(e);
                 });
-            } else {
-                System.out.println("Bruh");
             }
             makeDialog(content, 500, 300);
         } catch (IOException e) {

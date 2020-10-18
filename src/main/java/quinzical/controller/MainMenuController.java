@@ -8,6 +8,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
 import quinzical.model.Game;
@@ -25,6 +26,9 @@ public class MainMenuController {
 	@FXML
 	private StackPane avatarSlot;
 
+	@FXML 
+	private Label fxCoinDisplay;
+
 	public void initialize() {
 		//Store reference to user object
 		user = User.getInstance();
@@ -38,6 +42,9 @@ public class MainMenuController {
 		//Load avatar
 		AvatarFactory avatar = new AvatarFactory(avatarSlot, 300);
 		avatar.render();
+
+		//Display coins
+		fxCoinDisplay.setText(Integer.toString(user.getCoins()));
 	}
 
 	public void handleGameButtonClick(ActionEvent event) throws IOException {

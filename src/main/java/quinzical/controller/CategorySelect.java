@@ -35,7 +35,6 @@ public abstract class CategorySelect {
 
         // Retrieve list of all categories as an arrayList
         ArrayList<Category> categories = QuestionBank.getInstance().getCategories();
-        System.out.println(categories);
         for(Category c : categories){
             Region content = CategoryListItem.create(c, disableSelection, selectedCategories);
             if(c.isUserCreated()){

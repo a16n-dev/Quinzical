@@ -8,6 +8,7 @@ import javafx.scene.image.ImageView;
 import quinzical.model.Game;
 import quinzical.model.Reward;
 import quinzical.model.User;
+import quinzical.util.ImageLoader;
 import quinzical.util.Router;
 import quinzical.util.TTS;
 
@@ -16,11 +17,7 @@ public class RewardScreenController {
 	public Label fxScore;
 	public Label fxMedal;
 
-	public ImageView fxDia;
-	public ImageView fxPlat;
-	public ImageView fxGold;
-	public ImageView fxSilver;
-	public ImageView fxBronze;
+	public ImageView fxMedalImage;
 
 	// stores a reference to the current game being played
 	private Game game;
@@ -43,22 +40,21 @@ public class RewardScreenController {
 		// Set image
 		switch (reward) {
 			case Bronze:
-				fxBronze.setVisible(true);
+				fxMedalImage.setImage(ImageLoader.loadImage("images/md_bronze.png"));
 				break;
 			case Diamond:
-				fxDia.setVisible(true);
+				fxMedalImage.setImage(ImageLoader.loadImage("images/md_diamond.png"));
 				break;
 			case Gold:
-				fxGold.setVisible(true);
+				fxMedalImage.setImage(ImageLoader.loadImage("images/md_gold.png"));
 				break;
 			case Platinum:
-				fxPlat.setVisible(true);
+				fxMedalImage.setImage(ImageLoader.loadImage("images/md_platinum.png"));
 				break;
 			case Silver:
-				fxSilver.setVisible(true);
-				break;
+				fxMedalImage.setImage(ImageLoader.loadImage("images/md_silver.png"));
+			break;
 			default:
-				fxBronze.setVisible(true);
 				break;
 		}
 	}
