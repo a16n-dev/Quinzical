@@ -53,7 +53,10 @@ public class User implements Serializable {
     	
     	// Store the ids of unattempted questions.
     	QuestionBank questionBank = QuestionBank.getInstance();
-    	ArrayList<Category> categories = questionBank.getCategories();    	
+        ArrayList<Category> categories = questionBank.getCategories();    	
+        
+        unattemptedQuestions = new HashMap<String, List<String>>();
+
     	for (Category category : categories) {
 			unattemptedQuestions.put(category.getName(), category.getQuestionIds());
 		} 	

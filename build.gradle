@@ -42,7 +42,6 @@ dependencies {
     compile 'com.jfoenix:jfoenix:9.0.10'
 }
 
-
 application {
     // Define the main class for the application.
     mainClassName = 'quinzical.Launcher'
@@ -62,4 +61,10 @@ jar {
     from {
         configurations.runtimeClasspath.collect { it.isDirectory() ? it : zipTree(it) }
     }
+}
+
+compileJava {
+    options.compilerArgs += ["-encoding", "UTF-8"]
+    options.fork = true
+    options.forkOptions.executable = 'javac'
 }

@@ -43,7 +43,7 @@ public class AvatarFactory {
      */
     private IntegerProperty size = new SimpleIntegerProperty(320);
 
-    private boolean animated = true;
+    private boolean animated = false;
 
     /**
      * Constructor
