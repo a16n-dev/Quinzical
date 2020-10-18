@@ -76,6 +76,11 @@ public class MainMenuController {
 	public void handleViewLeaderboard() {
 		Router.show(View.LEADERBOARD);
 	}
+
+	@FXML
+	public void handleViewCustomCategories() {
+		Router.show(View.CUSTOM_CATEGORIES);
+	}
 	
 	@FXML
 	public void handleResetProgress() {

@@ -6,6 +6,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
@@ -19,6 +20,7 @@
                   <Font name="System Bold" size="36.0" />
                </font>
             </Label>
+            <Pane VBox.vgrow="ALWAYS" />
             <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" spacing="32.0">
                <children>
                   <StackPane maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="0.0" HBox.hgrow="ALWAYS">
@@ -203,6 +205,7 @@
                   </StackPane>
                </children>
             </HBox>
+            <Pane VBox.vgrow="ALWAYS" />
          </children>
          <padding>
             <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
