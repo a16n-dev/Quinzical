@@ -42,7 +42,13 @@ public class AnswerScreen extends BaseAnswerScreen {
     void onWrongAnswer(Question question) {
         TTS.getInstance().speak("That is incorrect");
         TTS.getInstance().speak("The correct answer was " + question.getAnswer());
-
+        
+        showAlert("Oops", "Answer was: " + question.getAnswer(), "Your current score is: " + game.getScore().intValue(), onFinished);
+    }
+    
+    @Override
+    void forceWrongAnswer(Question question)  {
+        TTS.getInstance().speak("The correct answer was " + question.getAnswer());
         showAlert("Oops", "Answer was: " + question.getAnswer(), "Your current score is: " + game.getScore().intValue(), onFinished);
     }
 

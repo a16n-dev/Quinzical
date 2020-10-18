@@ -58,6 +58,13 @@ public class PracticeAnswerScreen extends BaseAnswerScreen {
         fxFeedback.setVisible(true);
     }
 
+    @Override
+    void forceWrongAnswer(Question question)  {
+        showAlert("Oops", "Answer was: " + question.getAnswer(), question.getHint(), e -> {
+            Router.show(View.PRACTICE_ANSWER_SCREEN);
+        });
+    }
+
     private EventHandler<DialogEvent> onFinished = new EventHandler<DialogEvent>() {
         @Override
         public void handle(DialogEvent event) {
