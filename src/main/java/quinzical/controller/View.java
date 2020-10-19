@@ -38,7 +38,9 @@ public enum View {
 
     MODAL_SETTINGS("controller/Settings.fxml", null),
     MODAL_JOIN("controller/JoinGame.fxml", null),
-    MODAL_CONFIRM("controller/Confirm.fxml", null)
+    MODAL_CONFIRM("controller/Confirm.fxml", null),
+    MODAL_LOGIN("controller/Login.fxml", null),
+    MODAL_SIGNUP("controller/Signup.fxml", null),
 	;
 
     private final String center;

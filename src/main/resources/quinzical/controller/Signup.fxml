@@ -11,13 +11,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="modalContent" minHeight="300.0" minWidth="500.0" style="-fx-background-color: rgba(0,0,0,0.4);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.Login">
+<AnchorPane fx:id="modalContent" minHeight="300.0" minWidth="500.0" style="-fx-background-color: rgba(0,0,0,0.4);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.Signup">
    <children>
       <VBox spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Pane style="-fx-background-color: rgba(0,0,0,0.2);">
                <children>
-                  <Label text="Login" textFill="WHITE">
+                  <Label text="Create Account" textFill="WHITE">
                      <font>
                         <Font size="24.0" />
                      </font>
@@ -34,7 +34,7 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="fxUsermameField" />
+                  <TextField fx:id="fxUsername" />
                </children>
             </HBox>
             <HBox>
@@ -44,7 +44,17 @@
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <PasswordField fx:id="fxPasswordField" />
+                  <PasswordField fx:id="fxPassword" />
+               </children>
+            </HBox>
+            <HBox>
+               <children>
+                  <Label text="Repeat Password" textFill="WHITE">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Label>
+                  <PasswordField fx:id="fxPasswordRepeat" />
                </children>
             </HBox>
             <Label fx:id="fxMessage" textFill="WHITE">
@@ -55,9 +65,9 @@
             <Pane VBox.vgrow="ALWAYS" />
             <HBox alignment="TOP_RIGHT" spacing="16.0">
                <children>
-                  <JFXButton buttonType="RAISED" onAction="#handleClose" text="CANCEL" />
-                  <JFXButton buttonType="RAISED" onAction="#redirectNewAccount" text="CREATE AN ACCOUNT" />
-                  <JFXButton buttonType="RAISED" onAction="#handleSubmit" text="LOGIN" />
+                  <JFXButton fx:id="fxCancel" buttonType="RAISED" onAction="#handleCancel" text="CANCEL" />
+                  <JFXButton fx:id="fxLogin" buttonType="RAISED" onAction="#handleRedirectLogin" text="LOGIN" />
+                  <JFXButton fx:id="fxSubmit" buttonType="RAISED" onAction="#handleSubmit" text="CREATE ACCOUNT" />
                </children>
             </HBox>
          </children>

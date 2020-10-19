@@ -53,11 +53,11 @@
                         </Label>
                         <HBox spacing="8.0">
                            <children>
-                              <JFXButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#showJoinGame" text="JOIN GAME" HBox.hgrow="ALWAYS" />
-                              <JFXButton fx:id="fxResume1" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="HOST GAME" HBox.hgrow="ALWAYS" />
+                              <JFXButton fx:id="fxJoinGameButton" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#showJoinGame" text="JOIN GAME" HBox.hgrow="ALWAYS" />
+                              <JFXButton fx:id="fxHostGameButton" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="HOST GAME" HBox.hgrow="ALWAYS" />
                            </children>
                         </HBox>
-                        <JFXButton buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#handleViewLeaderboard" text="LEADERBOARDS" />
+                        <JFXButton fx:id="fxLeaderboardButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#handleViewLeaderboard" text="LEADERBOARDS" />
                      </children>
                      <padding>
                         <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
@@ -100,7 +100,7 @@
                   <VBox alignment="TOP_CENTER" StackPane.alignment="TOP_CENTER">
                      <children>
                         <Pane minHeight="50.0" VBox.vgrow="ALWAYS" />
-                        <StackPane fx:id="avatarSlot" alignment="TOP_CENTER" VBox.vgrow="NEVER">
+                        <StackPane fx:id="fxAvatarSlot" alignment="TOP_CENTER" VBox.vgrow="NEVER">
                            <VBox.margin>
                               <Insets bottom="270.0" left="60.0" />
                            </VBox.margin>
@@ -149,6 +149,8 @@
          <children>
             <JFXButton buttonType="RAISED" onAction="#showSettings" text="SETTINGS" />
             <JFXButton buttonType="RAISED" onAction="#handleViewCustomCategories" text="EDIT CUSTOM CATEGORIES" />
+            <Pane HBox.hgrow="ALWAYS" />
+            <JFXButton fx:id="fxAccountButton" buttonType="RAISED" onAction="#handleAccountButtonPress" text="NOT CONNECTED" />
          </children>
          <padding>
             <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />

@@ -3,6 +3,9 @@ package quinzical.controller;
 import java.io.IOException;
 import java.util.Optional;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.BooleanProperty;
+import javafx.beans.property.SimpleBooleanProperty;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -23,7 +26,31 @@ public class MainMenuController {
 	private Button fxResume;
 
 	@FXML
-	private StackPane avatarSlot;
+	private StackPane fxAvatarSlot;
+
+	@FXML
+	private Button fxAccountButton;
+
+	@FXML
+	private Button fxJoinGameButton;
+
+	@FXML
+	private Button fxHostGameButton;
+
+	@FXML
+	private Button fxLeaderboardButton;
+
+	/**
+	 * Represents if the user is logged into an account or not
+	 */
+	//TODO: Replace this with real logic
+	private BooleanProperty loggedIn = new SimpleBooleanProperty(true);
+
+
+	/**
+	 * Field to represent if the game has a connection to the internet. If online is false, multiplayer and other buttons are disabled.
+	 */
+	private BooleanProperty online = new SimpleBooleanProperty(true);
 
 	public void initialize() {
 		//Store reference to user object
@@ -36,13 +63,22 @@ public class MainMenuController {
 		}
 
 		//Load avatar
-		AvatarFactory avatar = new AvatarFactory(avatarSlot, 300);
+		AvatarFactory avatar = new AvatarFactory(fxAvatarSlot, 300);
 		avatar.render();
+
+		//Show correct button text for login/logout button
+		fxAccountButton.textProperty().bind(Bindings.createStringBinding(() -> {return (loggedIn.get() ? "LOGOUT" : "LOGIN");}, loggedIn));
+
+		//Bind online dependent buttons to be disabled when offline
+		fxJoinGameButton.disableProperty().bind(online.not());
+		fxHostGameButton.disableProperty().bind(online.not());
+		fxLeaderboardButton.disableProperty().bind(online.not());
+		fxAccountButton.disableProperty().bind(online.not());
 	}
 
-	public void handleGameButtonClick(ActionEvent event) throws IOException {
-		Router.show(View.GAME_BOARD);
-	}
+	// public void handleGameButtonClick(ActionEvent event) throws IOException {
+	// 	Router.show(View.GAME_BOARD);
+	// }
 
 	@FXML
 	public void handleNewGame() {
@@ -109,6 +145,26 @@ public class MainMenuController {
 	@FXML
 	public void showJoinGame() {
 		Modal.show(View.MODAL_JOIN,600,300);
+	}
+
+	@FXML
+	public void handleAccountButtonPress(){
+		//TODO: Add logic here to check if user is logged in
+		if(loggedIn.get()){
+			//If logged in
+
+			//Show logout confirmation dialog
+			Modal.confirmation("Logout", "Are you sure you want to logout?", e -> {
+				//TODO: Add logic to logout the user here
+				loggedIn.set(false);
+			});
+
+		} else {
+			//If not logged in
+
+			//If not logged in show login box
+			Modal.show(View.MODAL_LOGIN);
+		}
 	}
 
 	// public void handleSpeechVolumeSliderChange(ObservableValue<Number> ovn,
