@@ -11,8 +11,10 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
+import quinzical.model.Avatar;
 import quinzical.model.Game;
 import quinzical.model.User;
 import quinzical.util.AvatarFactory;
@@ -52,6 +54,9 @@ public class MainMenuController {
 	 */
 	private BooleanProperty online = new SimpleBooleanProperty(true);
 
+	@FXML 
+	private Label fxCoinDisplay;
+
 	public void initialize() {
 		//Store reference to user object
 		user = User.getInstance();
@@ -62,9 +67,15 @@ public class MainMenuController {
 			fxResume.setManaged(false);
 		}
 
+		
+
 		//Load avatar
-		AvatarFactory avatar = new AvatarFactory(fxAvatarSlot, 300);
-		avatar.render();
+		Avatar avatar = user.getAvatar();
+		AvatarFactory avatarFactory = new AvatarFactory(fxAvatarSlot, 300);
+		avatarFactory.set(avatar);
+
+		//Display coins
+		fxCoinDisplay.setText(Integer.toString(user.getCoins()));
 
 		//Show correct button text for login/logout button
 		fxAccountButton.textProperty().bind(Bindings.createStringBinding(() -> {return (loggedIn.get() ? "LOGOUT" : "LOGIN");}, loggedIn));
@@ -106,6 +117,8 @@ public class MainMenuController {
 	@FXML
 	public void handleViewTrophyCase() {
 		Router.show(View.TROPHY_CASE);
+		//TODO: delete this stupid test code
+		user.addCoins(500);
 	}
 	
 	@FXML
@@ -116,6 +129,11 @@ public class MainMenuController {
 	@FXML
 	public void handleViewCustomCategories() {
 		Router.show(View.CUSTOM_CATEGORIES);
+	}
+
+	@FXML
+	public void handleViewShop() {
+		Router.show(View.SHOP);
 	}
 	
 	@FXML

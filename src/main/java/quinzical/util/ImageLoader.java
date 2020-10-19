@@ -11,7 +11,8 @@ public class ImageLoader {
     public static Image loadImage(String path) {
         if(imageCache.get(path) == null){
            Image image = new Image(App.class.getResource(path).toString(), true);
-           imageCache.put(path, image);
+           return image;
+        //    imageCache.put(path, image);
         }
         return imageCache.get(path);
     }

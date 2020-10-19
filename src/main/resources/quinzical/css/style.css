@@ -77,6 +77,27 @@
     -fx-background-color: white;
 }
 
+.shopListItem{
+    -fx-background-color: rgba(0,0,0,0.4);
+    -fx-background-radius: 5;
+}
+
+.shopListItem:hover, .shopListItemSelected:hover{
+    -fx-background-color: rgba(160,160,120,0.2);
+}
+
+.shopListItemSelected{
+    -fx-border-color: rgb(75, 212, 75);
+    -fx-border-width: 2;
+    -fx-border-radius: 5px;
+    -fx-background-color: rgba(120,120,120,0.2);
+}
+
+.equippedItem:hover{
+    -fx-background-color: rgba(120,120,120,0.2);
+}
+
+
 .titleBox{
     -fx-background-image: url("../images/logo_new.png");
     -fx-background-repeat: no-repeat;   
@@ -103,8 +124,6 @@
     -fx-background-size: contain;
     -fx-background-position: center;
 }
-
-
 
 /**
 Table stylings
@@ -243,4 +262,25 @@ Table stylings
 .progress-bar > .bar,
 .progress-bar:indeterminate > .bar{
     -fx-background-color: -fx-orange-main;
+}
+
+/* Tab pane */
+ .tab-selected-line {
+    -fx-background-color: -fx-orange-main;
+}
+ .headers-region {
+    -fx-background-color: rgba(0,0,0,0.2);;
+}
+ .tab-header-background {
+    -fx-background-color: rgba(0,0,0,0.2);
+}
+ .control-buttons-tab{
+    -fx-background-color:white;
+}
+ .control-buttons-tab .tab-down-button{
+    -fx-background-color: #0059A9 ;
+}
+ *.tab-header-area {
+    
+    -fx-padding: 0 0 0 0;
 }

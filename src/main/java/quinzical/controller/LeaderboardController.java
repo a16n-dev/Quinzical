@@ -9,6 +9,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
 import quinzical.model.Ranking;
+import quinzical.model.User;
 
 public class LeaderboardController {
 
@@ -48,7 +49,8 @@ public class LeaderboardController {
 		initTable();
 		
 		//Show users own stats
-		fxTotalScore.setText("3300");
+		int score = User.getInstance().getTotalCoins();
+		fxTotalScore.setText(Integer.toString(score));
 		
 		//Make API call
 		
