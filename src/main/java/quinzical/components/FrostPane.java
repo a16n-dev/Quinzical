@@ -74,7 +74,7 @@ public class FrostPane extends StackPane {
         frostImage = background.snapshot(new SnapshotParameters(), null);
     }
 
-    private void setContent(Region content){
+    public void setContent(Region content){
         getChildren().set(2, content);
 
         Rectangle clipShape = new Rectangle(0, 0, setWidth, setHeight);

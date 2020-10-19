@@ -20,6 +20,8 @@ public class Modal {
 
     private static JFXDialog dialog;
 
+    private static FrostPane frosted;
+
     public static void init(StackPane pane) {
         root = pane;
     }
@@ -34,8 +36,13 @@ public class Modal {
         makeDialog(content, width, height);
     }
 
+    public static void redirect(View view){
+        Region content = (Region) Router.loadFXML(view.getCenter());
+        frosted.setContent(content);
+    }
+
     private static void makeDialog(Region content, double width, double height){
-        FrostPane frosted = new FrostPane(root, content, width, height);
+        frosted = new FrostPane(root, content, width, height);
 
         frosted.setMaxWidth(width);
         frosted.setMaxHeight(height);
