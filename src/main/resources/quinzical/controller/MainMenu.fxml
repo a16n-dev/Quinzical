@@ -121,10 +121,10 @@
                               <Insets bottom="180.0" left="60.0" />
                            </VBox.margin>
                            <children>
-                              <JFXButton buttonType="RAISED" text="CUSTOMISE" />
+                              <JFXButton buttonType="RAISED" onAction="#handleViewShop" text="SHOP" />
                               <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="8.0">
                                  <children>
-                                    <ImageView fitHeight="98.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                    <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../images/coin.png" />
                                        </image>

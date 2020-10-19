@@ -16,6 +16,7 @@ import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import quinzical.model.QuinzicalGame;
+import quinzical.model.User;
 import quinzical.model.Answer;
 import quinzical.model.Question;
 import quinzical.util.AvatarFactory;
@@ -54,8 +55,7 @@ public abstract class BaseAnswerScreen {
     public void initialize() {
         //Show avatar
         AvatarFactory avatar = new AvatarFactory(avatarContainer);
-        avatar.render();
-
+        avatar.set(User.getInstance().getAvatar());
         onLoad();
         question = setQuestion();
         

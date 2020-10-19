@@ -35,6 +35,7 @@ public enum View {
     SELECT_CATEGORY_GAME("controller/CategorySelect.fxml", Component.GAME_TITLE.path(), new CategorySelectGame()),
     SELECT_CATEGORY_PRACTICE("controller/CategorySelect.fxml", Component.GAME_TITLE.path(), new CategorySelectPractice()),
     CUSTOM_CATEGORIES("controller/ManageCategories.fxml", Component.GAME_TITLE.path()),
+    SHOP("controller/Shop.fxml", Component.GAME_TITLE.path()),
 
     MODAL_SETTINGS("controller/Settings.fxml", null),
     MODAL_JOIN("controller/JoinGame.fxml", null),

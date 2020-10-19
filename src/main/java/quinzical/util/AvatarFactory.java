@@ -6,6 +6,9 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import quinzical.App;
+import quinzical.avatar.Accessory;
+import quinzical.avatar.Hat;
+import quinzical.model.Avatar;
 
 /**
  * This class handles the user's avatar and is responsible for rendering it
@@ -38,12 +41,24 @@ public class AvatarFactory {
      */
     private ImageView fxHatLayer;
 
+    private Image fxBase;
+
+    private Image fxBody;
+
+    private Image fxHat;
+
+    private Hat savedHat;
+
+    private Accessory savedAccessory;
+
     /**
      * Sets the image size
      */
     private IntegerProperty size = new SimpleIntegerProperty(320);
 
     private boolean animated = false;
+
+    private String ext = ".png";
 
     /**
      * Constructor
@@ -71,6 +86,8 @@ public class AvatarFactory {
      */
     public void init(StackPane container) {
         fxFrame = container;
+        container.getChildren().setAll(new ImageView(), new ImageView(), new ImageView());
+
         fxBaseLayer = new ImageView();
         fxBaseLayer.fitWidthProperty().bind(size);
         fxBaseLayer.fitHeightProperty().bind(size);
@@ -82,34 +99,9 @@ public class AvatarFactory {
         fxBodyLayer = new ImageView();
         fxBodyLayer.fitWidthProperty().bind(size);
         fxBodyLayer.fitHeightProperty().bind(size);
-    }
 
-    /**
-     * Renders the avatar into the previously specified StackPane
-     */
-    public void render() {
-        try {
-            // fetch images
-            // TODO put this in a background thread
-            String ext = animated ? ".gif" : ".png";          
-
-            fxBaseLayer.setImage(ImageLoader.loadImage(RESOURCE_PATH + "char_idle" + ext));
-            fxBodyLayer.setImage(ImageLoader.loadImage(RESOURCE_PATH + "mustache_idle" + ext));
-            fxHatLayer.setImage(ImageLoader.loadImage(RESOURCE_PATH + "beanie_idle" + ext));
-            fxFrame.getChildren().setAll(fxBaseLayer, fxBodyLayer, fxHatLayer);
-        } catch (Exception e) {
-            System.out.println("Error, avatar frame not set");
-        }
-    }
-
-    /**
-     * Shorthand method for init() and render()
-     * 
-     * @param container the StackPane to display the avatar in
-     */
-    public void render(StackPane container) {
-        init(container);
-        render();
+        fxBaseLayer.setImage(ImageLoader.loadImage(RESOURCE_PATH + "char_idle" + ext));
+        fxFrame.getChildren().set(0, fxBaseLayer);
     }
 
     /**
@@ -120,5 +112,37 @@ public class AvatarFactory {
      */
     public void setScale(int scale) {
         size.set(scale);
+    }
+
+    public void set(Hat hat){
+        if(hat != savedHat){
+            if(hat != null){
+                fxHatLayer.setImage(ImageLoader.loadImage(RESOURCE_PATH + hat.getFile() + "_idle" + ext));
+                
+            } else if (hat == null){
+                fxHatLayer.setImage(null);
+            }
+            savedHat = hat;
+            fxFrame.getChildren().set(2, fxHatLayer);
+        }
+
+    }
+
+    public void set(Accessory accessory){
+        if(accessory != savedAccessory){
+            if(accessory != null){
+                fxBodyLayer.setImage(ImageLoader.loadImage(RESOURCE_PATH + accessory.getFile() + "_idle" + ext));
+                
+            } else if (accessory == null){
+                fxBodyLayer.setImage(null);
+            }
+            savedAccessory = accessory;
+            fxFrame.getChildren().set(1, fxBodyLayer);
+        }
+    }
+
+    public void set(Avatar avatar){
+        set(avatar.getHat());
+        set(avatar.getAccessory());
     }
 }

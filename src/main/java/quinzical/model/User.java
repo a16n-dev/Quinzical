@@ -30,11 +30,13 @@ public class User implements Serializable {
 
     private boolean internationalUnlocked;
 
-    private transient AvatarFactory avatar;
-
     private int coins;
 
     private int totalCoins;
+
+    private Avatar avatar;
+
+    private ArrayList<String> ownedItems;
 
     /**
      * @return the instance of the user class
@@ -55,7 +57,11 @@ public class User implements Serializable {
         internationalUnlocked = false;
         numberAttemptedCategories = 0;
 
-        // Store the ids of unattempted questions.
+        avatar = new Avatar();
+
+        ownedItems = new ArrayList<String>();
+
+        //Populate unattempted questions
         QuestionBank questionBank = QuestionBank.getInstance();
         ArrayList<Category> categories = questionBank.getCategories();
 
@@ -154,8 +160,8 @@ public class User implements Serializable {
      * Removes the given amount of coins from the user.
      * @return the number of coins the user has
     */
-    public int removeCoins(int amount){
-        coins -= amount;
+    public int setCoins(int amount){
+        coins = amount;
 
         persist();
 
@@ -178,6 +184,25 @@ public class User implements Serializable {
         return totalCoins;
     }
 
+    /**
+     * @return the avatar for the user, which can be modified
+     */
+    public Avatar getAvatar(){
+        return avatar;
+    }
+
+    /**
+     * @return a reference to the list of items the user owns, represented by their item ids
+     */
+    public ArrayList<String> getOwnedItems(){
+        return ownedItems;
+    }
+
+    public void setOwnedItems(List<String> items){
+        ownedItems = new ArrayList<String>(items);
+        persist();
+    }
+
     private static void persist() {
         if (user == null) {
             IOManager.clearState(State.USER);
@@ -185,5 +210,7 @@ public class User implements Serializable {
             IOManager.writeState(State.USER, user);
         }
     }
+
+
 
 }
