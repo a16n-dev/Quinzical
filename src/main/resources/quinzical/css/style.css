@@ -265,22 +265,12 @@ Table stylings
 }
 
 /* Tab pane */
- .tab-selected-line {
+.tab-selected-line {
     -fx-background-color: -fx-orange-main;
-}
- .headers-region {
-    -fx-background-color: rgba(0,0,0,0.2);;
 }
  .tab-header-background {
     -fx-background-color: rgba(0,0,0,0.2);
 }
- .control-buttons-tab{
-    -fx-background-color:white;
-}
- .control-buttons-tab .tab-down-button{
-    -fx-background-color: #0059A9 ;
-}
  *.tab-header-area {
-    
     -fx-padding: 0 0 0 0;
 }

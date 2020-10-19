@@ -146,6 +146,24 @@
                                     </AnchorPane>
                                  </children>
                               </VBox>
+                              <VBox alignment="TOP_CENTER" spacing="8.0">
+                                 <children>
+                                    <Label text="Eyes" textFill="WHITE">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <AnchorPane fx:id="fxEyesEquipped" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="58.0" prefWidth="58.0">
+                                       <children>
+                                          <ImageView fx:id="fxEyesSlot" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0" />
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="panel" />
+                                          <String fx:value="equippedItem" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
                            </children>
                         </HBox>
                         <StackPane>

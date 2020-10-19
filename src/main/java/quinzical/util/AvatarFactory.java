@@ -7,6 +7,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import quinzical.App;
 import quinzical.avatar.Accessory;
+import quinzical.avatar.Eyes;
 import quinzical.avatar.Hat;
 import quinzical.model.Avatar;
 
@@ -41,15 +42,21 @@ public class AvatarFactory {
      */
     private ImageView fxHatLayer;
 
+    private ImageView fxEyesLayer;
+
     private Image fxBase;
 
     private Image fxBody;
 
     private Image fxHat;
 
+    private Image fxEyes;
+
     private Hat savedHat;
 
     private Accessory savedAccessory;
+
+    private Eyes savedEyes;
 
     /**
      * Sets the image size
@@ -86,7 +93,7 @@ public class AvatarFactory {
      */
     public void init(StackPane container) {
         fxFrame = container;
-        container.getChildren().setAll(new ImageView(), new ImageView(), new ImageView());
+        container.getChildren().setAll(new ImageView(), new ImageView(), new ImageView(), new ImageView());
 
         fxBaseLayer = new ImageView();
         fxBaseLayer.fitWidthProperty().bind(size);
@@ -99,6 +106,10 @@ public class AvatarFactory {
         fxBodyLayer = new ImageView();
         fxBodyLayer.fitWidthProperty().bind(size);
         fxBodyLayer.fitHeightProperty().bind(size);
+
+        fxEyesLayer = new ImageView();
+        fxEyesLayer.fitWidthProperty().bind(size);
+        fxEyesLayer.fitHeightProperty().bind(size);
 
         fxBaseLayer.setImage(ImageLoader.loadImage(RESOURCE_PATH + "char_idle" + ext));
         fxFrame.getChildren().set(0, fxBaseLayer);
@@ -123,7 +134,7 @@ public class AvatarFactory {
                 fxHatLayer.setImage(null);
             }
             savedHat = hat;
-            fxFrame.getChildren().set(2, fxHatLayer);
+            fxFrame.getChildren().set(3, fxHatLayer);
         }
 
     }
@@ -141,8 +152,23 @@ public class AvatarFactory {
         }
     }
 
+    public void set(Eyes eyes){
+        if(eyes != savedEyes){
+            if(eyes != null){
+                fxEyesLayer.setImage(ImageLoader.loadImage(RESOURCE_PATH + eyes.getFile() + "_idle" + ext));
+                
+            } else if (eyes == null){
+                fxEyesLayer.setImage(null);
+            }
+            savedEyes = eyes;
+            fxFrame.getChildren().set(2, fxEyesLayer);
+        }
+
+    }
+
     public void set(Avatar avatar){
         set(avatar.getHat());
         set(avatar.getAccessory());
+        set(avatar.getEyes());
     }
 }

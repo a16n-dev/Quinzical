@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 import quinzical.avatar.Accessory;
 import quinzical.avatar.Cosmetic;
+import quinzical.avatar.Eyes;
 import quinzical.avatar.Hat;
 
 public class Avatar implements Serializable{
@@ -14,20 +15,25 @@ public class Avatar implements Serializable{
 
     private Accessory slotAccessory;
 
+    private Eyes slotEyes;
+
     public static enum Slot {
         HAT,
-        ACCESSORY
+        ACCESSORY,
+        EYES
     }
 
     
     public Avatar(){
         slotHat = null;
         slotAccessory = null;
+        slotEyes = null;
     }
 
-    public Avatar(Hat hat, Accessory accessory){
+    public Avatar(Hat hat, Accessory accessory, Eyes eyes){
         slotHat = hat;
         slotAccessory = accessory;
+        slotEyes = eyes;
     }
 
     public void setHat(Hat hat){
@@ -46,10 +52,22 @@ public class Avatar implements Serializable{
        return slotAccessory;
     }
 
+    public void setEyes(Eyes eyes){
+        slotEyes = eyes;
+    }
+
+    public Eyes getEyes(){
+        return slotEyes;
+     }
+
     public boolean isEquipped(Cosmetic c){
         if(c == null){
             return false;
         }
-        return ((slotHat != null && slotHat.equals(c)) || (slotAccessory != null && slotAccessory.equals(c)));
+        return (
+            (slotHat != null && slotHat.equals(c)) ||
+             (slotAccessory != null && slotAccessory.equals(c)) ||
+             (slotEyes != null && slotEyes.equals(c))
+             );
     }
 }

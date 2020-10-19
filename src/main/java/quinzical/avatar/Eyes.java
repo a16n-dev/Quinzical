@@ -2,8 +2,9 @@ package quinzical.avatar;
 
 import quinzical.model.Avatar.Slot;
 
-public enum Accessory implements Cosmetic {
-    MUSTACHE("mustache", "Mustache", 20),
+public enum Eyes implements Cosmetic {
+    SUNGLASSES("sunglasses", "Sunglasses", 100),
+    GLASSES("glasses", "Glasses", 50),
     ;
 
     private String fileName;
@@ -12,7 +13,7 @@ public enum Accessory implements Cosmetic {
 
     private int price;
 
-    private Accessory(String path, String name, int cost) {
+    private Eyes(String path, String name, int cost) {
         fileName = path;
         price = cost;
         displayName = name;
@@ -30,7 +31,7 @@ public enum Accessory implements Cosmetic {
 
     @Override
     public String getId() {
-        return "accessory_" + ordinal();
+        return "eyes_" + ordinal();
     }
 
     @Override
@@ -45,6 +46,6 @@ public enum Accessory implements Cosmetic {
 
     @Override
     public Slot getSlot() {
-        return Slot.ACCESSORY;
+        return Slot.EYES;
     }
 }

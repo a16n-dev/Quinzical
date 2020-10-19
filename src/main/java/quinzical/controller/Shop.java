@@ -25,6 +25,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import quinzical.avatar.Accessory;
 import quinzical.avatar.Cosmetic;
+import quinzical.avatar.Eyes;
 import quinzical.avatar.Hat;
 import quinzical.components.ShopListItem;
 import quinzical.model.Avatar;
@@ -33,9 +34,15 @@ import quinzical.util.AvatarFactory;
 import quinzical.util.ImageLoader;
 import quinzical.util.Modal;
 
+/**
+ * Controller class for the shop view. This handles allowing the user to preview and purchase new cosmetic items for their avatar, 
+ * using coins earned from games. It also allows the user to apply cosmetics they have purchased.
+ */
 public class Shop {
 
-    // FXML node references
+    /**
+     * See Shop.fxml for details on what each of these correspond to
+     */
     @FXML
     private JFXMasonryPane fxItemGridAll;
 
@@ -61,10 +68,16 @@ public class Shop {
     private ImageView fxHatSlot;
 
     @FXML
+    private ImageView fxEyesSlot;
+
+    @FXML
     private AnchorPane fxAccessoryEquipped;
 
     @FXML
     private AnchorPane fxHatEquipped;
+
+    @FXML
+    private AnchorPane fxEyesEquipped;
 
     /**
      * Stores a reference to the users avatar
@@ -83,18 +96,31 @@ public class Shop {
      */
     private ArrayList<Cosmetic> itemList;
 
+    /**
+     * The avatarFactory responsible for rendering the avatar
+     */
     private AvatarFactory avatarfactory;
 
+    /**
+     * Tracks if the user is previewing a cosmetic (ie they are viewing a cosmetic they do not own)
+     */
     private BooleanProperty isPreview;
-
+    /**
+     * Tracks what item the user currently has selected in the menu
+     */
     private ObjectProperty<Cosmetic> selectedItem;
 
     /**
      * The number of coins the user has
-     */
+    */
 
     private IntegerProperty coins;
 
+    /**
+     * This method runs when the screen is loaded and is responsible for all of the page setup
+     * This includes loading all cosmetics into the shop view and making sure the avatar is displaying
+     * the correct items
+     */
     public void initialize() {
         // Get data
         avatar = User.getInstance().getAvatar();
@@ -118,12 +144,6 @@ public class Shop {
 
         // Populate grid with items
         for (Cosmetic c : itemList) {
-            // Check if user owns item
-
-            // Region item = ShopListItem.create(c, selectedItem, e -> {
-            //     selectedItem.set(c);
-            // });
-
             fxItemGridAll.getChildren().add(ShopListItem.create(c, selectedItem, e -> {
                 selectedItem.set(c);
             }));
@@ -195,6 +215,11 @@ public class Shop {
         setEquipped();
     }
 
+    /**
+     * Equips the given cosmetic item onto the users avatar. This will be saved to even once the user leaves the 
+     * shop the item will still be equipped on the avatar
+     * @param item the cosmetic item to equip
+     */
     public void equip(Cosmetic item) {
         switch (item.getSlot()) {
             case ACCESSORY:
@@ -202,6 +227,9 @@ public class Shop {
                 break;
             case HAT:
                 avatar.setHat((Hat) item);
+                break;
+            case EYES:
+                avatar.setEyes((Eyes) item);
                 break;
             default:
                 break;
@@ -213,6 +241,10 @@ public class Shop {
         setEquipped();
     }
 
+    /**
+     * Unequips the specified cosmetic item. If the item specified is not currently equipped on the avatar then nothing will happen.
+     * @param item the cosmetic item to remove from the avtar
+     */
     public void unequip(Cosmetic item) {
         switch (item.getSlot()) {
             case ACCESSORY:
@@ -220,6 +252,9 @@ public class Shop {
                 break;
             case HAT:
                 avatar.setHat(null);
+                break;
+            case EYES:
+                avatar.setEyes(null);
                 break;
             default:
                 break;
@@ -229,35 +264,48 @@ public class Shop {
         setEquipped();
     }
 
+    /**
+     * Sets the avatar display to display only the cosmetics the avatar has equipped
+     */
     private void setEquipped() {
-        if (avatar.getHat() != null) {
-            fxHatSlot.setImage(ImageLoader.loadImage("avatar/" + avatar.getHat().getIcon()));
-            fxHatEquipped.setOnMouseClicked(e->{selectedItem.set(avatar.getHat());});
-
-            fxHatEquipped.getStyleClass().set(1,"equippedItem");
-        } else {
-            fxHatSlot.setImage(null);
-            fxHatEquipped.setOnMouseClicked(e->{});
-            fxHatEquipped.getStyleClass().set(1,"");
-        }
-        if (avatar.getAccessory() != null) {
-            fxAccessorySlot.setImage(ImageLoader.loadImage("avatar/" + avatar.getAccessory().getIcon()));
-            fxAccessoryEquipped.setOnMouseClicked(e->{selectedItem.set(avatar.getAccessory());});
-            fxAccessoryEquipped.getStyleClass().set(1,"equippedItem");
-        } else {
-            fxAccessorySlot.setImage(null);
-            fxAccessoryEquipped.setOnMouseClicked(e->{});
-            fxAccessoryEquipped.getStyleClass().set(1,"");
-        }
-        ;
+        setViewEquippedItem(avatar.getHat(), fxHatSlot,fxHatEquipped);
+        setViewEquippedItem(avatar.getAccessory(), fxAccessorySlot,fxAccessoryEquipped);
+        setViewEquippedItem(avatar.getEyes(), fxEyesSlot, fxEyesEquipped);
     }
 
+    /**
+     * Helper method for @see setEquipped() This sets the equipped item into the specified slot on the avatar. Note this does not equip the item, 
+     * but rather make sure the equipped item display is showing the correct items
+     * @param item the item to equip onto the avatar
+     * @param slot the slot to equip it in
+     * @param equippedSlot the container element for the slot, which handles the click events
+     */
+    private void setViewEquippedItem(Cosmetic item, ImageView slot, AnchorPane equippedSlot){
+        if (item != null) {
+            slot.setImage(ImageLoader.loadImage("avatar/" + item.getIcon()));
+            equippedSlot.setOnMouseClicked(e->{selectedItem.set(item);});
+            equippedSlot.getStyleClass().set(1,"equippedItem");
+        } else {
+            slot.setImage(null);
+            equippedSlot.setOnMouseClicked(e->{});
+            equippedSlot.getStyleClass().set(1,"");
+        }
+    }
+
+    /**
+     * Hides all elements in the owned item list that are not owned by the player.
+     */
     private void filterOwnedView(){
         fxItemGridOwned.getChildren().forEach( n ->{
-            n.setVisible(ownedItems.indexOf(n.getId()) != -1);
+            boolean visible = ownedItems.indexOf(n.getId()) != -1;
+            n.setVisible(visible);
+            n.setManaged(visible);
         });;
     }
 
+    /**
+     * Resets the avatar to display the equipped cosmetics only
+     */
     @FXML
     private void resetAvatar() {
         isPreview.set(false);
@@ -265,6 +313,10 @@ public class Shop {
         selectedItem.set(null);
     }
 
+    /**
+     * Allows the user to preview what an item will look like on their avatar.
+     * @param item the cosmetic item to preview
+     */
     private void previewItem(Cosmetic item) {
         isPreview.set(true);
         switch (item.getSlot()) {
@@ -274,12 +326,20 @@ public class Shop {
             case HAT:
                 avatarfactory.set((Hat) item);
                 break;
+            case EYES:
+                avatarfactory.set((Eyes) item);
+                break;
             default:
                 break;
         }
-        // avatarfactory.render();
     }
 
+    /**
+     * Handler for allowing the user to purchase an item. It will first prompt the user with a confirmation dialog asking
+     * them if they do want to buy the item. If they answer yes the item will be equipped and added to their purchased items and
+     * the correct amount of money will be removed from their balance
+     * @param item
+     */
     private void purchaseItem(Cosmetic item) {
         Modal.confirmation("Buy " + item.getName(),
                 "Are you sure you want to purchase " + item.getName() + " for $" + item.getPrice() + "?", e -> {
@@ -290,6 +350,10 @@ public class Shop {
                 });
     }
 
+    /**
+     * Helper function to retrieve a list of cosmetics and then sort them according to price
+     * @return an array list of all cosmetics, sorted by price
+     */
     private ArrayList<Cosmetic> getItemList() {
 
         ArrayList<Cosmetic> items = new ArrayList<Cosmetic>();
@@ -299,6 +363,9 @@ public class Shop {
 
         // Get accessories
         items.addAll(Arrays.asList(Accessory.values()));
+
+        // Get eyes
+        items.addAll(Arrays.asList(Eyes.values()));
 
         // Sort item list by price
         items.sort((Cosmetic c1, Cosmetic c2) -> c1.getPrice() - (c2.getPrice()));
