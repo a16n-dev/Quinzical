@@ -14,12 +14,16 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
+import quinzical.App;
 import quinzical.model.Avatar;
 import quinzical.model.Game;
 import quinzical.model.User;
 import quinzical.util.AvatarFactory;
 import quinzical.util.Modal;
 import quinzical.util.Router;
+import quinzical.util.Sound;
 
 public class MainMenuController {
 	private User user;
@@ -58,6 +62,7 @@ public class MainMenuController {
 	private Label fxCoinDisplay;
 
 	public void initialize() {
+
 		//Store reference to user object
 		user = User.getInstance();
 		
@@ -85,6 +90,8 @@ public class MainMenuController {
 		fxHostGameButton.disableProperty().bind(online.not());
 		fxLeaderboardButton.disableProperty().bind(online.not());
 		fxAccountButton.disableProperty().bind(online.not());
+
+		Sound.getInstance().playSound("ambient");
 	}
 
 	// public void handleGameButtonClick(ActionEvent event) throws IOException {
@@ -157,12 +164,17 @@ public class MainMenuController {
 
 	@FXML
 	public void showSettings() {
-		Modal.show(View.MODAL_SETTINGS);
+		Modal.show(View.MODAL_SETTINGS,500,600);
 	}
 
 	@FXML
 	public void showJoinGame() {
 		Modal.show(View.MODAL_JOIN,600,300);
+	}
+
+	@FXML
+	public void showHelp(){
+		Modal.show(View.MODAL_HELP, 800, 600);
 	}
 
 	@FXML
@@ -184,15 +196,5 @@ public class MainMenuController {
 			Modal.show(View.MODAL_LOGIN);
 		}
 	}
-
-	// public void handleSpeechVolumeSliderChange(ObservableValue<Number> ovn,
-	// Number before, Number after) {
-	// TTS.getInstance().setVolume(after.intValue());
-	// }
-
-	// public void handleSpeechSpeedSliderChange(ObservableValue<Number> ovn, Number
-	// before, Number after) {
-	// TTS.getInstance().setSpeed(after.intValue());
-	// }
 
 }

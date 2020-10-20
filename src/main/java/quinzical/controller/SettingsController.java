@@ -1,9 +1,12 @@
 package quinzical.controller;
 
+import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
+import javafx.scene.control.ToggleButton;
 import quinzical.util.Modal;
+import quinzical.util.Sound;
 import quinzical.util.TTS;
 
 public class SettingsController {
@@ -11,24 +14,45 @@ public class SettingsController {
   public Slider fxSliderSpeed;
   public Label fxLabelSpeed;
   public Label fxLabelVolume;
+
+  public Slider fxMusicVolume;
+  public Label fxMusicLabel;
+
+  public ToggleButton fxToggleAnimation;
 	
     public void initialize() {
-    	//Initialise modal
-    	
+        fxSliderVolume.valueProperty().addListener(new ChangeListener<Number>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                TTS.getInstance().setVolume(newValue.intValue());
+                fxLabelVolume.setText(newValue.intValue() + "%");
+            }
+        });
+
+        fxSliderSpeed.valueProperty().addListener(new ChangeListener<Number>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                TTS.getInstance().setSpeed(newValue.intValue());
+                fxLabelSpeed.setText(Math.round(((float)newValue.intValue() / 160) * 100) + "%");
+            }
+        });
+
+        fxMusicVolume.valueProperty().addListener(new ChangeListener<Number>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                Sound.getInstance().setVolume(newValue.intValue()/100.0);
+                fxMusicLabel.setText(Math.round((newValue.intValue())) + "%");
+            }
+        });
+
         fxSliderSpeed.setValue(TTS.getInstance().getSpeed());
         fxSliderVolume.setValue(TTS.getInstance().getVolume());
-    }
-    
-    public void handleSpeechVolumeSliderChange(ObservableValue<Number> ovn, Number before, Number after) {
-        TTS.getInstance().setVolume(after.intValue());
-        fxLabelVolume.setText(after.intValue() + "%");
+        fxMusicVolume.setValue(Sound.getInstance().getVolume() * 100);
     }
 
-    public void handleSpeechSpeedSliderChange(ObservableValue<Number> ovn, Number before, Number after) {
-        TTS.getInstance().setSpeed(after.intValue());
-        fxLabelSpeed.setText(Math.round(((float)after.intValue() / 160) * 100) + "%");
-    }
-    
     public void speakTest() {
         TTS.getInstance().clearQueue();
         TTS.getInstance().speak("Test");

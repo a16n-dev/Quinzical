@@ -1,7 +1,7 @@
 .root {
     -fx-orange-main: #C25955;
     -fx-orange-light: #CE725B;  
-    -fx-font-family: 'Roboto';
+    /* -fx-font-family: 'Roboto'; */
 }
 
 .button {
@@ -9,6 +9,11 @@
     -fx-text-fill: white;
     -fx-font-weight: bold;
     -fx-font-size: 16px;
+}
+
+.menuButton {
+    -fx-alignment: center-left;
+    -fx-padding:  0.4em 0.833333em 0.4em 6;
 }
 
 .button:hover{
@@ -306,4 +311,7 @@ Table stylings
 .titled-pane > .title > .arrow-button > .arrow {
     -fx-background-color: white;
     -fx-focus-color: transparent;
+}
+.slider {
+    -jfx-default-thumb:-fx-orange-light;
 }

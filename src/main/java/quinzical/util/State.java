@@ -5,7 +5,7 @@ package quinzical.util;
  * persisted
  */
 public enum State {
-    GAME("game"), USER("user"), TTS("tts"),;
+    GAME("game"), USER("user"), TTS("tts"), MUSIC("music");
 
     private final String fileName;
 
