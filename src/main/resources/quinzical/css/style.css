@@ -63,23 +63,29 @@
 }
 
 .listItem{
-    -fx-background-color: rgba(255,255,255,0.4);
+    -fx-background-color: rgba(0,0,0,0.4);
+    -fx-background-radius: 5;
 }
 
 .listItem:hover{
-    -fx-background-color: rgb(190, 190, 190);
+    -fx-background-color: rgba(160,160,120,0.2);
 }
 
 .listItemSelected{
-    -fx-border-color: rgb(75, 212, 75);
+    -fx-background-color: rgba(0,0,0,0.6);
+    -fx-border-color:-fx-orange-main;
     -fx-border-width: 2;
     -fx-border-radius: 5px;
-    -fx-background-color: white;
+}
+
+.listItemSelected:hover{
+    -fx-background-color: rgba(0,0,0,0.3);
 }
 
 .listItemDisabled{
     -fx-opacity: 0.5;
-    -fx-background-color: white;
+    -fx-background-color: rgba(0,0,0,0.4);
+    -fx-background-radius: 5;
 }
 
 .shopListItem{
@@ -125,6 +131,13 @@
 }
 .propCoin{
     -fx-background-image: url("../image/coin.png");
+    -fx-background-repeat: no-repeat;   
+    -fx-background-size: contain;
+    -fx-background-position: center;
+}
+
+.propLock{
+    -fx-background-image: url("../icon/lock_large.png");
     -fx-background-repeat: no-repeat;   
     -fx-background-size: contain;
     -fx-background-position: center;

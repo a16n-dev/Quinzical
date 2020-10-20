@@ -23,7 +23,7 @@ public class GameTopBarController {
 	/**
 	 * This method is called once the fxml has been loaded
 	 */
-	private void initialize() {
+	public void initialize() {
 		// Hide the score if in practice mode
 		if (Router.isGameMode()) {
 			SimpleIntegerProperty score = Game.getInstance().getScore();

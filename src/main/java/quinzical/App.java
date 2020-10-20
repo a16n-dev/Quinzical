@@ -3,6 +3,7 @@ package quinzical;
 import quinzical.controller.View;
 import quinzical.model.User;
 import quinzical.util.Router;
+import quinzical.util.Sound;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
@@ -42,6 +43,8 @@ public class App extends Application {
         Router.show(View.MAIN_MENU);
         // attachListeners();
         s.show();
+
+        Sound.getInstance().playSound("ambient");
     }
 
     public static void main(String[] args) {

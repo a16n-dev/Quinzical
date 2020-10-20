@@ -138,7 +138,7 @@
                               <Font size="24.0" />
                            </font>
                         </TextField>
-                        <VBox fx:id="fxMacronContainer" minHeight="20.0" minWidth="20.0" mouseTransparent="true">
+                        <VBox fx:id="fxMacronContainer" maxWidth="1.7976931348623157E308" minHeight="20.0" minWidth="20.0" mouseTransparent="true">
                            <children>
                               <VBox fx:id="fxMacronPopup" fillWidth="false">
                                  <children>
@@ -182,7 +182,7 @@
             <Label fx:id="fxFeedback" text="Typo" visible="false" />
             <Button fx:id="fxSubmit" alignment="CENTER" mnemonicParsing="false" onAction="#onSubmit" text="Submit">
                <font>
-                  <Font size="24.0" />
+                  <Font size="48.0" />
                </font>
             </Button>
             <Button fx:id="fxUnsure" onAction="#onUnsure" text="Don't know" />

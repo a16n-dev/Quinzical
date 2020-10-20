@@ -6,34 +6,42 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <VBox alignment="TOP_CENTER" minHeight="100.0" minWidth="600.0" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="Select Categories" textFill="WHITE">
+            <Label fx:id="fxTitle" text="SELECT CATEGORIES" textFill="WHITE">
                <font>
-                  <Font size="18.0" />
+                  <Font size="36.0" />
                </font>
             </Label>
-            <HBox maxHeight="150.0" maxWidth="1.7976931348623157E308" minHeight="110.0" minWidth="-Infinity" spacing="32.0" styleClass="panel" VBox.vgrow="ALWAYS">
+            <HBox fx:id="fxContainer" maxHeight="150.0" maxWidth="1.7976931348623157E308" minHeight="80.0" minWidth="-Infinity" spacing="32.0" styleClass="panel" VBox.vgrow="ALWAYS">
                <children>
-                  <HBox fx:id="fxSelectedList" spacing="16.0" HBox.hgrow="ALWAYS" />
-                  <VBox alignment="CENTER_LEFT">
-                     <children>
-                        <JFXButton fx:id="fxSubmit" buttonType="RAISED" onAction="#handleSubmit" text="Play" />
-                        <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
-                     </children>
-                  </VBox>
+                  <GridPane fx:id="fxSelected" hgap="8.0" HBox.hgrow="ALWAYS">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
                </children>
                <padding>
                   <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                </padding>
             </HBox>
+            <JFXButton fx:id="fxSubmit" buttonType="RAISED" minWidth="200.0" onAction="#handleSubmit" text="START GAME" />
             <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                <children>
                   <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="400.0" prefHeight="0.0" styleClass="panel" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">

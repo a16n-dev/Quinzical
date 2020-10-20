@@ -3,33 +3,44 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="fxBase" maxWidth="300.0" minWidth="200.0" onMousePressed="#handleButtonPress" style="-fx-background-radius: 5PX;" styleClass="listItem" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.components.CategoryListItem">
+<StackPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.components.CategoryListItem">
    <children>
-      <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <AnchorPane fx:id="fxBase" maxWidth="300.0" minWidth="200.0" onMousePressed="#handleButtonPress" style="-fx-background-radius: 5PX;" styleClass="listItem">
          <children>
-            <Label fx:id="fxName" text="CATEGORY" textFill="#4a4a4a" wrapText="true" VBox.vgrow="ALWAYS">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Label>
-            <Label text="questions" textFill="#9e9e9e" VBox.vgrow="ALWAYS">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <graphic>
-                  <Label fx:id="fxCount" text="2" textFill="#808080">
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="-Infinity" spacing="8.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <Label fx:id="fxName" text="CATEGORY" textFill="WHITE" wrapText="true" VBox.vgrow="ALWAYS">
                      <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font></Label>
-               </graphic>
-            </Label>
+                        <Font name="System Bold" size="18.0" />
+                     </font>
+                  </Label>
+                  <Label text="questions" textFill="WHITE" VBox.vgrow="ALWAYS">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <graphic>
+                        <Label fx:id="fxCount" text="2" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="12.0" />
+                           </font>
+                        </Label>
+                     </graphic>
+                  </Label>
+               </children>
+            </VBox>
          </children>
-      </VBox>
+         <padding>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </padding>
+      </AnchorPane>
+      <AnchorPane fx:id="fxLock" mouseTransparent="true">
+         <children>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.2" styleClass="propLock" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0" />
+         </children>
+      </AnchorPane>
    </children>
-   <padding>
-      <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
-   </padding>
-</AnchorPane>
+</StackPane>

@@ -64,6 +64,9 @@ public class CategoryListItem {
     @FXML
     private AnchorPane fxBase;
 
+    @FXML
+    private AnchorPane fxLock;
+
     /**
      * Configures the controller to correspond to a specific category
      * @param categoryName the category the element represents
@@ -94,6 +97,13 @@ public class CategoryListItem {
                 setStyle(Style.DISABLED);
             }
         });
+
+        if(category.isLocked()){
+            fxLock.setVisible(true);
+            setStyle(Style.DISABLED);
+        } else {
+            fxLock.setVisible(false);
+        }
     }
 
     /**
@@ -101,8 +111,10 @@ public class CategoryListItem {
      */
     @FXML
     public void handleButtonPress() {
-        if(!(disabled.get() || isSelected)){
+        if(!(disabled.get() || isSelected || category.isLocked())){
             categories.add(category);
+        } else if (isSelected){
+            categories.remove(category);
         }
         
     }

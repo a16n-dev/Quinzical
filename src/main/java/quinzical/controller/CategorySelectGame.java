@@ -6,7 +6,10 @@ import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Region;
+import quinzical.components.SelectedCategory;
 import quinzical.model.Category;
 import quinzical.model.Game;
 import quinzical.util.Router;
@@ -14,7 +17,7 @@ import quinzical.util.Router;
 public class CategorySelectGame extends CategorySelect {
 
     @FXML
-    private HBox fxSelectedList;
+    private GridPane fxSelected;
 
     @FXML
     private Button fxSubmit;
@@ -30,6 +33,10 @@ public class CategorySelectGame extends CategorySelect {
 
         fxSubmit.disableProperty().bind(getDisabled().not());
 
+        for(int i = selected.size(); i < 5; i++){
+            fxSelected.add(SelectedCategory.createTemplate(), i, 0);
+        }
+        
         selected.addListener((ListChangeListener<Category>)(c -> {
             if(selected.size() == SLOTS){
                 disableSelection(true);
@@ -37,15 +44,17 @@ public class CategorySelectGame extends CategorySelect {
                 disableSelection(false);
             }
 
-            fxSelectedList.getChildren().clear();
+            fxSelected.getChildren().clear();
 
             //Display arraylist
-            for(Category category : selected){
-                JFXButton button = new JFXButton(category.getName());
-                button.setOnAction(v -> {
-                    selected.remove(category);
-                });
-                fxSelectedList.getChildren().add(button);
+            for(int i = 0; i < selected.size(); i++){
+                Category category = selected.get(i);
+                Region content = SelectedCategory.create(category, selected);
+                fxSelected.add(content, i, 0);
+            }
+
+            for(int i = selected.size(); i < 5; i++){
+                fxSelected.add(SelectedCategory.createTemplate(), i, 0);
             }
         }));
     }

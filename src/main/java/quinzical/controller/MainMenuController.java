@@ -90,8 +90,6 @@ public class MainMenuController {
 		fxHostGameButton.disableProperty().bind(online.not());
 		fxLeaderboardButton.disableProperty().bind(online.not());
 		fxAccountButton.disableProperty().bind(online.not());
-
-		Sound.getInstance().playSound("ambient");
 	}
 
 	// public void handleGameButtonClick(ActionEvent event) throws IOException {
@@ -107,7 +105,7 @@ public class MainMenuController {
 			});
 		} else {
 			Game.clearGame();
-			Router.show(View.SELECT_CATEGORY_GAME);
+			Router.show(View.SELECT_CATEGORY_GAME, false);
 		}
 	}
 
