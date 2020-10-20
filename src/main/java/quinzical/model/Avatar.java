@@ -17,6 +17,8 @@ public class Avatar implements Serializable{
 
     private Eyes slotEyes;
 
+    private boolean forceDisableAnimation;
+
     public static enum Slot {
         HAT,
         ACCESSORY,
@@ -69,5 +71,13 @@ public class Avatar implements Serializable{
              (slotAccessory != null && slotAccessory.equals(c)) ||
              (slotEyes != null && slotEyes.equals(c))
              );
+    }
+
+    public void setforceDisableAnimation(boolean b){
+        forceDisableAnimation = b;
+    }
+
+    public boolean hasForceDisableAnimation(){
+        return forceDisableAnimation;
     }
 }

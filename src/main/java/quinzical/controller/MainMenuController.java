@@ -70,7 +70,7 @@ public class MainMenuController {
 
 		//Load avatar
 		Avatar avatar = user.getAvatar();
-		AvatarFactory avatarFactory = new AvatarFactory(fxAvatarSlot, 300);
+		AvatarFactory avatarFactory = new AvatarFactory(fxAvatarSlot, 300, true);
 		avatarFactory.set(avatar);
 
 		//Display coins

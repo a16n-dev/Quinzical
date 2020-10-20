@@ -190,6 +190,20 @@ public class User implements Serializable {
         return avatar;
     }
 
+    public void setAvatar(Avatar a){
+        avatar = a;
+        persist();
+    }
+
+    public void setforceDisableAnimation(boolean b){
+        avatar.setforceDisableAnimation(b);
+        persist();
+    }
+
+    public boolean hasForceDisableAnimation(){
+        return avatar.hasForceDisableAnimation();
+    }
+
     /**
      * @return a reference to the list of items the user owns, represented by their item ids
      */

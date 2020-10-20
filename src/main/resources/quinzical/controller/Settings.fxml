@@ -165,13 +165,22 @@
                </columnConstraints>
                <rowConstraints>
                   <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                  <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                </rowConstraints>
                <children>
                   <JFXToggleButton fx:id="fxToggleAnimation" contentDisplay="RIGHT" graphicTextGap="16.0" text="Enable Animation" textFill="WHITE" toggleColor="#c25955" toggleLineColor="#ce725b" unToggleLineColor="#575757">
                      <font>
                         <Font size="14.0" />
                      </font>
+                     <padding>
+                        <Insets bottom="-4.0" right="-4.0" top="-4.0" />
+                     </padding>
                   </JFXToggleButton>
+                  <Label prefHeight="17.0" prefWidth="350.0" text="Restart required for new settings to take effect" textFill="#e4e4e4" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                </children>
                <VBox.margin>
                   <Insets />

@@ -5,6 +5,7 @@ import javafx.beans.value.ObservableValue;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
+import quinzical.model.User;
 import quinzical.util.Modal;
 import quinzical.util.Sound;
 import quinzical.util.TTS;
@@ -48,9 +49,18 @@ public class SettingsController {
             }
         });
 
+        fxToggleAnimation.selectedProperty().addListener(new ChangeListener<Boolean>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) {
+                User.getInstance().setforceDisableAnimation(!newValue);
+            }
+        });
+
         fxSliderSpeed.setValue(TTS.getInstance().getSpeed());
         fxSliderVolume.setValue(TTS.getInstance().getVolume());
         fxMusicVolume.setValue(Sound.getInstance().getVolume() * 100);
+        fxToggleAnimation.setSelected(!User.getInstance().hasForceDisableAnimation());
     }
 
     public void speakTest() {
@@ -60,6 +70,7 @@ public class SettingsController {
 
     public void handleClose(){
         Modal.hide();
+
     }
 }
 

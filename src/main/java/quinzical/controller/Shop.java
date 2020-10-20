@@ -234,6 +234,7 @@ public class Shop {
         }
         // Update display
         avatarfactory.set(avatar);
+        User.getInstance().setAvatar(avatar);
         selectedItem.set(null);
         selectedItem.set(item);
         setEquipped();
@@ -258,6 +259,7 @@ public class Shop {
                 break;
         }
         // Update display
+        User.getInstance().setAvatar(avatar);
         selectedItem.set(null);
         setEquipped();
     }
