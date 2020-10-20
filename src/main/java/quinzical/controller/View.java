@@ -42,6 +42,7 @@ public enum View {
     MODAL_CONFIRM("controller/Confirm.fxml", null),
     MODAL_LOGIN("controller/Login.fxml", null),
     MODAL_SIGNUP("controller/Signup.fxml", null),
+    MODAL_HELP("controller/Help.fxml", null),
 	;
 
     private final String center;

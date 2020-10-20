@@ -3,7 +3,9 @@ package quinzical.avatar;
 import quinzical.model.Avatar.Slot;
 
 public enum Hat implements Cosmetic {
-    BEANIE("beanie", "Beanie", 50),;
+    BEANIE("beanie", "Beanie", 50),
+    FROG("frog", "Frog Hat", 500),
+    ;
 
     private String fileName;
 

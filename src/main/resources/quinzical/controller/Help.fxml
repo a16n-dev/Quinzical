@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" spacing="8.0" style="-fx-background-color: rgba(0,0,0,0.4);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.Help">
+   <children>
+      <HBox styleClass="panel">
+         <children>
+            <Label text="How to Play" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+         </children>
+         <padding>
+            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+         </padding>
+      </HBox>
+      <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxWidth="800.0" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+         <content>
+            <VBox spacing="8.0">
+               <children>
+                <TitledPane fx:id="p1" animated="false" text="Game Mode" textFill="WHITE">
+                     <content>
+                        <Label maxHeight="1.7976931348623157E308" text="In the game mode you pick 5 categories of your choice. You then get to answer 5 random questions from each those categories. You get 30 seconds per question, and if you answer it correctly you will be a awarded a number of points based on the value of the question and how long you took to answer. At the end of the game, you earn coins based on your score which you can spend in the shop, along with a trophy to display in your trophy case" wrapText="true">
+                           <padding>
+                              <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+                           </padding>
+                        </Label>
+                     </content>
+                </TitledPane>
+                <TitledPane fx:id="p2" animated="false" text="Practice Mode">
+                     <content>
+                        <Label maxHeight="1.7976931348623157E308" text="In practice mode you can pick a category of your choice and answer random questions. While there is a time limit, there is no score to worry about and you do not earn any coins for playing practice mode." wrapText="true">
+                           <padding>
+                              <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+                           </padding>
+                        </Label>
+                     </content>
+                </TitledPane>
+                  <TitledPane fx:id="p3" animated="false" text="Multiplayer">
+                     <content>
+                        <Label maxHeight="1.7976931348623157E308" text="To play multiplayer you need to make sure you are online and logged in. You can then join a friends game by clicking join game and entering the 5 digit game code they give you. Alternatively you can host your own game and then invite up to 4 friends to play with you by giving them your invite code. In multiplayer you answer a set amount of questions and the winner is the player who earns the most points." wrapText="true">
+                           <padding>
+                              <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+                           </padding>
+                        </Label>
+                     </content>
+                  </TitledPane>
+                  <TitledPane fx:id="p4" animated="false" text="Shop">
+                     <content>
+                        <Label maxHeight="1.7976931348623157E308" text="The shop allows you to spend coins that you earn on hats and other items for your avatar. This is also where you can change what hats your avatar is wearing and see what items you own. You only need to purchase an item once and it will be unlocked for the account currently logged in. If you login on another device you will see all of the items you have puchased transfered over" wrapText="true">
+                           <padding>
+                              <Insets bottom="24.0" left="24.0" right="24.0" top="24.0" />
+                           </padding>
+                        </Label>
+                     </content>
+                  </TitledPane>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
+      <VBox spacing="8.0">
+         <children>
+            <HBox alignment="CENTER">
+               <children>
+                  <JFXButton minWidth="200.0" onAction="#handleClose" text="CLOSE" />
+               </children>
+            </HBox>
+         </children>
+         <VBox.margin>
+            <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+         </VBox.margin>
+      </VBox>
+   </children>
+</VBox>

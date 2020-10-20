@@ -274,3 +274,36 @@ Table stylings
  *.tab-header-area {
     -fx-padding: 0 0 0 0;
 }
+
+/*Accordian*/
+.titled-pane > *.content{
+    -fx-background-color: rgba(0,0,0,0.2) ;
+    -fx-border-width: 0;
+}
+
+.titled-pane > *.content .label{
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+}
+
+.titled-pane .title {
+    -fx-background-color: rgba(0,0,0,0.4) ;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.titled-pane .title:hover {
+    -fx-background-color: rgba(100,100,100,0.4) ;
+    -fx-font-size: 18px;
+    -fx-font-weight: bold;
+}
+
+.titled-pane > .title > .text
+{
+    -fx-fill: WHITE;
+}
+
+.titled-pane > .title > .arrow-button > .arrow {
+    -fx-background-color: white;
+    -fx-focus-color: transparent;
+}

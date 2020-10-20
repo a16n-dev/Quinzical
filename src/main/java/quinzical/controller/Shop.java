@@ -144,10 +144,10 @@ public class Shop {
 
         // Populate grid with items
         for (Cosmetic c : itemList) {
-            fxItemGridAll.getChildren().add(ShopListItem.create(c, selectedItem, e -> {
+            fxItemGridAll.getChildren().add(ShopListItem.create(c, selectedItem, ownedItems, e -> {
                 selectedItem.set(c);
             }));
-            fxItemGridOwned.getChildren().add(ShopListItem.create(c, selectedItem, e -> {
+            fxItemGridOwned.getChildren().add(ShopListItem.create(c, selectedItem, ownedItems, e -> {
                 selectedItem.set(c);
             }));
         }

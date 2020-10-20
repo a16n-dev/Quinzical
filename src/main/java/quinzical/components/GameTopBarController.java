@@ -23,7 +23,7 @@ public class GameTopBarController {
 	/**
 	 * This method is called once the fxml has been loaded
 	 */
-	public void initialize() {
+	private void initialize() {
 		// Hide the score if in practice mode
 		if (Router.isGameMode()) {
 			SimpleIntegerProperty score = Game.getInstance().getScore();
@@ -35,12 +35,17 @@ public class GameTopBarController {
 	}
 
 	@FXML
-	public void handleGoBack(ActionEvent event) throws IOException {
+	private void handleGoBack(ActionEvent event) throws IOException {
 		Router.navigateBack();
 	}
 
 	@FXML
-	public void showSettings() {
+	private void showSettings() {
 		Modal.show(View.MODAL_SETTINGS);
+	}
+
+	@FXML
+	private void showHelp(){
+		Modal.show(View.MODAL_HELP, 800, 600);
 	}
 }

@@ -3,6 +3,9 @@
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
@@ -40,7 +43,34 @@
       </HBox>
    </center>
    <right>
-      <JFXButton buttonType="RAISED" onAction="#showSettings" text="SETTINGS" BorderPane.alignment="CENTER" />
+      <HBox spacing="16.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton buttonType="RAISED" contentDisplay="CENTER" onAction="#showSettings" text=" ">
+               <tooltip>
+                  <Tooltip text="Settings" />
+               </tooltip>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icon/settings'.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+            <JFXButton buttonType="RAISED" contentDisplay="CENTER" onAction="#showHelp" text=" ">
+               <tooltip>
+                  <Tooltip text="Help" />
+               </tooltip>
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../icon/help.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </JFXButton>
+         </children>
+      </HBox>
    </right>
    <left>
       <JFXButton buttonType="RAISED" onAction="#handleGoBack" text="BACK" BorderPane.alignment="CENTER" />
