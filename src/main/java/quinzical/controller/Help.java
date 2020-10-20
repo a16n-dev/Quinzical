@@ -8,6 +8,7 @@ import quinzical.util.Modal;
 
 /**
  * Controller for the help menu popup.
+ * 
  * @author Alexander Nicholson
  */
 public class Help {
@@ -24,16 +25,17 @@ public class Help {
     private static BooleanProperty p4Open = new SimpleBooleanProperty(true);
 
     @FXML
-    private void handleClose(){
+    private void handleClose() {
         Modal.hide();
     }
 
-    public void initialize(){
-        //Pane remembers which panes are expanded and collapsed between it being closed and opened again
+    public void initialize() {
+        // Pane remembers which panes are expanded and collapsed between it being closed
+        // and opened again
         p1.expandedProperty().bindBidirectional(p1Open);
         p2.expandedProperty().bindBidirectional(p2Open);
         p3.expandedProperty().bindBidirectional(p3Open);
         p4.expandedProperty().bindBidirectional(p4Open);
- 
+
     }
 }

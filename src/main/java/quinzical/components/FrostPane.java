@@ -1,6 +1,5 @@
 package quinzical.components;
 
-import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ReadOnlyDoubleProperty;
 import javafx.scene.Node;
 import javafx.scene.SnapshotParameters;
@@ -68,13 +67,14 @@ public class FrostPane extends StackPane {
 
     /**
      * Generates an image of the node tree contained in background
+     * 
      * @param background
      */
     private void snapshot(Node background) {
         frostImage = background.snapshot(new SnapshotParameters(), null);
     }
 
-    public void setContent(Region content){
+    public void setContent(Region content) {
         getChildren().set(2, content);
 
         Rectangle clipShape = new Rectangle(0, 0, setWidth, setHeight);
@@ -84,7 +84,7 @@ public class FrostPane extends StackPane {
     }
 
     private void renderFrost() {
-        
+
         frost = new ImageView(frostImage);
         frost.fitWidthProperty().bind(vw);
         frost.fitHeightProperty().bind(vh);
@@ -98,7 +98,7 @@ public class FrostPane extends StackPane {
         positionFrost();
     }
 
-    private void positionFrost(){
+    private void positionFrost() {
         Translate translate = new Translate();
 
         translate.setX(-((vw.get() - setWidth) / 2));

@@ -33,9 +33,10 @@ public class JoinGameController {
     public void initialize() {
         fxMessage.setText("");
         /**
-         * Credit to: https://stackoverflow.com/questions/15159988/javafx-2-2-textfield-maxlength
+         * Credit to:
+         * https://stackoverflow.com/questions/15159988/javafx-2-2-textfield-maxlength
          */
-        UnaryOperator<Change> modifyChange = c -> {
+        UnaryOperator<Change> modifyChange = (c -> {
             if (c.isContentChange()) {
                 c.setText(c.getControlNewText().toUpperCase());
                 int newLength = c.getControlNewText().length();
@@ -48,11 +49,11 @@ public class JoinGameController {
                     int oldLength = c.getControlText().length();
                     c.setRange(0, oldLength);
 
-                } 
+                }
                 if (newLength >= 1) {
-                    //move the cursor to the next input
+                    // move the cursor to the next input
                     String elemId = c.getControl().getId();
-                    
+
                     switch (elemId) {
                         case "fxSlot1":
                             fxSlot2.requestFocus();
@@ -72,33 +73,30 @@ public class JoinGameController {
                 }
             }
             return c;
-        };
+        });
 
-        fxSlot1.setTextFormatter(new TextFormatter(modifyChange));
-        fxSlot2.setTextFormatter(new TextFormatter(modifyChange));
-        fxSlot3.setTextFormatter(new TextFormatter(modifyChange));
-        fxSlot4.setTextFormatter(new TextFormatter(modifyChange));
-        fxSlot5.setTextFormatter(new TextFormatter(modifyChange));
+        fxSlot1.setTextFormatter(new TextFormatter<Change>(modifyChange));
+        fxSlot2.setTextFormatter(new TextFormatter<Change>(modifyChange));
+        fxSlot3.setTextFormatter(new TextFormatter<Change>(modifyChange));
+        fxSlot4.setTextFormatter(new TextFormatter<Change>(modifyChange));
+        fxSlot5.setTextFormatter(new TextFormatter<Change>(modifyChange));
     }
 
-    public void handleClose(){
+    public void handleClose() {
         Modal.hide();
     }
 
-    private String getCode(){
-        return fxSlot1.textProperty().get() + 
-        fxSlot2.textProperty().get() + 
-        fxSlot3.textProperty().get() + 
-        fxSlot4.textProperty().get() + 
-        fxSlot5.textProperty().get(); 
+    private String getCode() {
+        return fxSlot1.textProperty().get() + fxSlot2.textProperty().get() + fxSlot3.textProperty().get()
+                + fxSlot4.textProperty().get() + fxSlot5.textProperty().get();
     }
 
     @FXML
-    public void handleJoin(){
+    public void handleJoin() {
         String code = getCode();
-        
-        //check if valid
-        if(code.length() < 5){
+
+        // check if valid
+        if (code.length() < 5) {
             fxMessage.setText("Invalid code");
         }
     }

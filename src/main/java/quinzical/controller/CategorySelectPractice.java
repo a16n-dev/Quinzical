@@ -1,7 +1,5 @@
 package quinzical.controller;
 
-import com.jfoenix.controls.JFXButton;
-
 import javafx.application.Platform;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
@@ -32,8 +30,6 @@ public class CategorySelectPractice extends CategorySelect{
 
     @FXML
     private HBox fxContainer;
-
-    private final int SLOTS = 1;
 
     private ObservableList<Category> selected;
 

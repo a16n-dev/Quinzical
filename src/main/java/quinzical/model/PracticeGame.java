@@ -1,7 +1,5 @@
 package quinzical.model;
 
-import java.util.ArrayList;
-
 import javafx.beans.property.SimpleIntegerProperty;
 
 public class PracticeGame extends QuinzicalGame {

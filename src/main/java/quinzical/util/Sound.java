@@ -43,7 +43,6 @@ public class Sound implements Serializable{
 
     public void setVolume(double v){
         volume = v;
-        System.out.println("Set sound to " + v);
         mp.setVolume(v);
         persist();
     }

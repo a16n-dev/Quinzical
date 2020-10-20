@@ -7,7 +7,6 @@ import com.jfoenix.controls.JFXDialog;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.DialogEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import quinzical.components.FrostPane;

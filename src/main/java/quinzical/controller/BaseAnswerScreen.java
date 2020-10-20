@@ -1,24 +1,20 @@
 package quinzical.controller;
 
-import org.apache.xmlbeans.impl.common.Levenshtein;
-
-import quinzical.util.Router;
-import javafx.event.EventHandler;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.DialogEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.control.TextField;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import quinzical.model.QuinzicalGame;
-import quinzical.model.User;
 import quinzical.model.Answer;
 import quinzical.model.Question;
+import quinzical.model.User;
 import quinzical.util.AvatarFactory;
 import quinzical.util.Macron;
 import quinzical.util.TTS;

@@ -1,13 +1,10 @@
 package quinzical.controller;
 
-import com.jfoenix.controls.JFXButton;
-
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import quinzical.components.SelectedCategory;
 import quinzical.model.Category;

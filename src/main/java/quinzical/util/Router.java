@@ -10,7 +10,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 import quinzical.App;
 import quinzical.controller.CategorySelectGame;
-import quinzical.controller.CategorySelectPractice;
 import quinzical.controller.View;
 
 public class Router {

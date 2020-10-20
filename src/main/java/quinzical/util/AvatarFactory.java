@@ -2,10 +2,8 @@ package quinzical.util;
 
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleIntegerProperty;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import quinzical.App;
 import quinzical.avatar.Accessory;
 import quinzical.avatar.Eyes;
 import quinzical.avatar.Hat;
@@ -43,14 +41,6 @@ public class AvatarFactory {
     private ImageView fxHatLayer;
 
     private ImageView fxEyesLayer;
-
-    private Image fxBase;
-
-    private Image fxBody;
-
-    private Image fxHat;
-
-    private Image fxEyes;
 
     private Hat savedHat;
 

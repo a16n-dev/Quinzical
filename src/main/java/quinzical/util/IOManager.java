@@ -11,7 +11,6 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStreamWriter;
 import java.io.Writer;
-import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.ArrayList;
@@ -178,6 +177,7 @@ public class IOManager {
             ObjectInputStream in = new ObjectInputStream(file);
 
             // Method for deserialization of object
+            @SuppressWarnings("unchecked")
             T obj = (T) in.readObject();
 
             in.close();

@@ -4,11 +4,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.DialogEvent;
 import javafx.scene.control.Label;
+import quinzical.model.Game;
 import quinzical.model.Question;
-import quinzical.model.QuinzicalGame;
 import quinzical.util.Router;
 import quinzical.util.TTS;
-import quinzical.model.Game;
 
 public class AnswerScreen extends BaseAnswerScreen {
     @FXML
@@ -29,9 +28,9 @@ public class AnswerScreen extends BaseAnswerScreen {
     Question setQuestion() {
         return game.getCurrentQuestion();
     }
-    
+
     @Override
-    void onCorrectAnswer(Question question) {        
+    void onCorrectAnswer(Question question) {
         TTS.getInstance().speak("That is correct");
         game.addScore(question.getValue());
 
@@ -42,14 +41,16 @@ public class AnswerScreen extends BaseAnswerScreen {
     void onWrongAnswer(Question question) {
         TTS.getInstance().speak("That is incorrect");
         TTS.getInstance().speak("The correct answer was " + question.getAnswer());
-        
-        showAlert("Oops", "Answer was: " + question.getAnswer(), "Your current score is: " + game.getScore().intValue(), onFinished);
+
+        showAlert("Oops", "Answer was: " + question.getAnswer(), "Your current score is: " + game.getScore().intValue(),
+                onFinished);
     }
-    
+
     @Override
-    void forceWrongAnswer(Question question)  {
+    void forceWrongAnswer(Question question) {
         TTS.getInstance().speak("The correct answer was " + question.getAnswer());
-        showAlert("Oops", "Answer was: " + question.getAnswer(), "Your current score is: " + game.getScore().intValue(), onFinished);
+        showAlert("Oops", "Answer was: " + question.getAnswer(), "Your current score is: " + game.getScore().intValue(),
+                onFinished);
     }
 
     private EventHandler<DialogEvent> onFinished = new EventHandler<DialogEvent>() {
@@ -60,7 +61,7 @@ public class AnswerScreen extends BaseAnswerScreen {
                 Router.show(View.REWARD_SCREEN);
             } else {
                 Router.show(View.GAME_BOARD);
-            }  
+            }
         }
     };
 }

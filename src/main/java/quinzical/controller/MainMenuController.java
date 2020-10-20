@@ -1,29 +1,23 @@
 package quinzical.controller;
 
-import java.io.IOException;
 import java.util.Optional;
 
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Label;
-import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
-import quinzical.App;
 import quinzical.model.Avatar;
 import quinzical.model.Game;
 import quinzical.model.User;
 import quinzical.util.AvatarFactory;
 import quinzical.util.Modal;
 import quinzical.util.Router;
-import quinzical.util.Sound;
 
 public class MainMenuController {
 	private User user;

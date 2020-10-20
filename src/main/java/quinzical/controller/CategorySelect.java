@@ -1,15 +1,12 @@
 package quinzical.controller;
 
 import java.util.ArrayList;
-import java.util.Observable;
 
 import com.jfoenix.controls.JFXMasonryPane;
 
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
-import javafx.beans.value.ObservableBooleanValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;

@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import quinzical.util.AvatarFactory;
 import quinzical.util.IOManager;
 import quinzical.util.QuestionBank;
 import quinzical.util.State;

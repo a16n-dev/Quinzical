@@ -1,19 +1,16 @@
 package quinzical.components;
 
+import java.io.IOException;
+
+import javafx.collections.ObservableList;
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import quinzical.model.Category;
 import quinzical.util.Router;
-
-import java.io.IOException;
-
-import javafx.beans.property.BooleanProperty;
-import javafx.collections.ListChangeListener;
-import javafx.collections.ObservableList;
-import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 
 public class SelectedCategory {
 

@@ -1,18 +1,15 @@
 package quinzical;
 
-import quinzical.controller.View;
-import quinzical.model.User;
-import quinzical.util.Router;
-import quinzical.util.Sound;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.media.Media;
-import javafx.scene.media.MediaPlayer;
 import javafx.stage.Stage;
 import jfxtras.resources.JFXtrasFontRoboto;
+import quinzical.controller.View;
+import quinzical.util.Router;
+import quinzical.util.Sound;
 
 public class App extends Application {
 
