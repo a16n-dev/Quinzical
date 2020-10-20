@@ -23,8 +23,19 @@ public class Router {
     public static void navigateBack() {
         System.out.println(history);
         System.out.println(history.peekLast());
+
+        if (history.peekLast() == null) {
+            show(View.MAIN_MENU);
+            return;
+        }
         history.removeLast(); // current page
-        show(history.peekLast(), false); // show last page without adding to history
+
+        View lastPage = history.peekLast();
+        if (lastPage == null) {
+            show(View.MAIN_MENU);
+            return;
+        }
+        show(lastPage, false); // show last page without adding to history
         System.out.println(history.peekLast());
     }
 
