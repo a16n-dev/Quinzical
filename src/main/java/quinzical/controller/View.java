@@ -38,6 +38,8 @@ public enum View {
     CUSTOM_CATEGORIES("controller/ManageCategories.fxml", Component.GAME_TITLE.path()),
     SHOP("controller/Shop.fxml", Component.GAME_TITLE.path()),
 
+    LOBBY("controller/Lobby.fxml", Component.GAME_TITLE.path()),
+
     MODAL_SETTINGS("controller/Settings.fxml", null),
     MODAL_JOIN("controller/JoinGame.fxml", null),
     MODAL_CONFIRM("controller/Confirm.fxml", null),
