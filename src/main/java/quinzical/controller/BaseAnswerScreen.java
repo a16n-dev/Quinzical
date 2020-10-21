@@ -64,7 +64,7 @@ public abstract class BaseAnswerScreen {
         timer = Timer.getInstance();
         timer.set(fxProgressLabel, fxProgressLeft, fxProgressRight, 30);
 		timer.start(e -> {
-            forceWrongAnswer(question);
+            forceWrongAnswer(question, true);
         });
         
         Platform.runLater(new Runnable() {
@@ -116,7 +116,7 @@ public abstract class BaseAnswerScreen {
     
     abstract void onCorrectAnswer(Question question);
     abstract void onWrongAnswer(Question question);
-    abstract void forceWrongAnswer(Question question);    
+    abstract void forceWrongAnswer(Question question, boolean wasTimerExpire);    
     
     private String capitalise(String s) {
         return s.substring(0, 1).toUpperCase() + s.substring(1);
@@ -127,7 +127,7 @@ public abstract class BaseAnswerScreen {
     
     @FXML
     public void onUnsure() {
-        forceWrongAnswer(question);
+        forceWrongAnswer(question, false);
     }
     
     @FXML

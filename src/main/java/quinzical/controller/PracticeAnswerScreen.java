@@ -7,6 +7,7 @@ import javafx.scene.control.DialogEvent;
 import javafx.scene.control.Label;
 import quinzical.model.PracticeGame;
 import quinzical.model.Question;
+import quinzical.model.QuinzicalGame.Status;
 import quinzical.util.Router;
 import quinzical.util.TTS;
 
@@ -59,7 +60,12 @@ public class PracticeAnswerScreen extends BaseAnswerScreen {
     }
 
     @Override
-    void forceWrongAnswer(Question question)  {
+    void forceWrongAnswer(Question question, boolean wasTimerExpire)  {
+        if(wasTimerExpire){
+            game.setStatus(Status.OUT_OF_TIME);
+        } else {
+            game.setStatus(Status.SKIP);
+        }
         showAlert("Oops", "Answer was: " + question.getAnswer(), question.getHint(), e -> {
             Router.show(View.PRACTICE_ANSWER_SCREEN);
         });

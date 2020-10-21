@@ -170,6 +170,11 @@ public class MainMenuController {
 	}
 
 	@FXML
+	public void handleHostMultiplayer(){
+		Router.show(View.SELECT_CATEGORY_MULTIPLAYER);
+	}
+
+	@FXML
 	public void handleAccountButtonPress(){
 		//TODO: Add logic here to check if user is logged in
 		if(loggedIn.get()){

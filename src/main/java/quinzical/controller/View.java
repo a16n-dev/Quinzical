@@ -34,6 +34,7 @@ public enum View {
     LEADERBOARD("controller/Leaderboard.fxml", Component.GAME_TITLE.path()),
     SELECT_CATEGORY_GAME("controller/CategorySelect.fxml", Component.GAME_TITLE.path(), new CategorySelectGame()),
     SELECT_CATEGORY_PRACTICE("controller/CategorySelect.fxml", Component.GAME_TITLE.path(), new CategorySelectPractice()),
+    SELECT_CATEGORY_MULTIPLAYER("controller/CategorySelect.fxml", Component.GAME_TITLE.path(), new CategorySelectMultiplayer()),
     CUSTOM_CATEGORIES("controller/ManageCategories.fxml", Component.GAME_TITLE.path()),
     SHOP("controller/Shop.fxml", Component.GAME_TITLE.path()),
 

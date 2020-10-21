@@ -8,6 +8,27 @@ import quinzical.util.QuestionBank;
  */
 
 public abstract class QuinzicalGame {
+
+    public enum Status {
+        GAME_BOARD,
+        ANSWERING,
+        SUCCESS,
+        OUT_OF_TIME,
+        SKIP,
+        FAILURE,
+        REWARD
+    }
+
+    private Status status;
+
+    public void setStatus(Status s){
+        status = s;
+    }
+
+    public Status getStatus(){
+        return status;
+    }
+
     private Question currentQuestion;
     protected QuestionBank questionBank = QuestionBank.getInstance();
 
