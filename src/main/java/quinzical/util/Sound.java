@@ -20,11 +20,12 @@ public class Sound implements Serializable{
 
     private transient MediaPlayer mp;
 
-    private AudioClip ac = new AudioClip(App.class.getResource("sound/click.mp3").toString());
+    private static AudioClip ac;
 
     public Sound(){
         musicVolume = 1;
         effectVolume = 1;
+        ac = new AudioClip(App.class.getResource("sound/click.mp3").toString());
     }
 
     public void playEffect(String fileName){
@@ -44,9 +45,12 @@ public class Sound implements Serializable{
         if (sound == null) {
             // Attempt to read state from file
             sound = IOManager.readState(State.MUSIC);
+            
             if (sound == null) {
                 sound = new Sound();
                 persist();
+            } else {
+                ac = new AudioClip(App.class.getResource("sound/click.mp3").toString());
             }
         }
         return sound;

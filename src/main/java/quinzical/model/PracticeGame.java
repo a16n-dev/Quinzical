@@ -7,6 +7,8 @@ public class PracticeGame extends QuinzicalGame {
     private SimpleIntegerProperty remainingAttempts = new SimpleIntegerProperty();
     private int currentQuestionAttempts = 0;
 
+    private int streak;
+
     private PracticeGame() {
     }
 
@@ -50,5 +52,17 @@ public class PracticeGame extends QuinzicalGame {
 
     public SimpleIntegerProperty getRemainingAttempts() {
         return remainingAttempts;
+    }
+
+    public int getStreak(){
+        return streak;
+    }
+
+    public void addStreak(){
+        streak += 1;
+    }
+
+    public void clearStreak(){
+        streak = 0;
     }
 }

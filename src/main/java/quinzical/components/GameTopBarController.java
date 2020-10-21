@@ -8,6 +8,8 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
+import quinzical.App;
+import quinzical.App.GameState;
 import quinzical.controller.View;
 import quinzical.model.Game;
 import quinzical.util.Modal;
@@ -25,7 +27,7 @@ public class GameTopBarController {
 	 */
 	public void initialize() {
 		// Hide the score if in practice mode
-		if (Router.isGameMode()) {
+		if (App.getState() == GameState.GAME) {
 			SimpleIntegerProperty score = Game.getInstance().getScore();
 			fxScoreLabel.textProperty().bind(Bindings.convert(score));
 		} else {

@@ -1,12 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import quinzical.components.GameButton?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
-<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,12 +14,30 @@
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import quinzical.components.GameButton?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
+      <ImageView fitHeight="360.0" fitWidth="770.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-250.0" AnchorPane.rightAnchor="-200.0">
+         <image>
+            <Image url="@../images/rock.png" />
+         </image>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <StackPane fx:id="avatarContainer" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="20.0">
+         <children>
+            <ImageView fitHeight="280.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../avatar/blob_static.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
       <VBox alignment="CENTER" prefWidth="600.0" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <AnchorPane maxWidth="600.0">
+            <AnchorPane fx:id="fxBarGame" maxWidth="600.0">
                <children>
                   <Pane styleClass="panel" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
                      <children>
@@ -49,7 +65,27 @@
                   </Pane>
                </children>
             </AnchorPane>
-            <Label fx:id="fxAttemptCount" text="Label" visible="false" />
+            <HBox fx:id="fxBarPractice" alignment="CENTER">
+               <children>
+                  <HBox spacing="8.0" styleClass="panel">
+                     <children>
+                        <Label text="Remaining Attempts:" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="fxAttemptCount" text="Label" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </HBox>
             <BorderPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="600.0" styleClass="panel">
                <center>
                   <Label fx:id="fxHint" maxHeight="1.7976931348623157E308" prefWidth="400.0" text="&lt;Clue Texteeeeeee eaea dweeeeeere" textAlignment="CENTER" textFill="WHITE" wrapText="true" BorderPane.alignment="CENTER">
@@ -116,29 +152,41 @@
                   <Insets top="-16.0" />
                </VBox.margin>
             </StackPane>
-            <Label text="Complete the Question:" textFill="WHITE">
-               <font>
-                  <Font size="20.0" />
-               </font>
-            </Label>
-            <HBox alignment="CENTER_LEFT" maxWidth="600.0" spacing="8.0" styleClass="panel">
+            <VBox alignment="TOP_CENTER" maxWidth="600.0" spacing="8.0" styleClass="panel">
                <children>
-                  <Label fx:id="fxPrefix" alignment="BOTTOM_LEFT" text="What is" textFill="WHITE">
-                     <font>
-                        <Font size="24.0" />
-                     </font>
-                  </Label>
-                  <StackPane alignment="CENTER_LEFT" prefWidth="200.0">
+                  <HBox alignment="CENTER">
                      <children>
-                        <TextField fx:id="fxInput" onClick="#onSubmit">
+                        <Label text="Complete the Question:" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="16.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="fxPrefix" alignment="BOTTOM_LEFT" text="What is" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="fxPrefix1" alignment="BOTTOM_LEFT" text="..." textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <StackPane alignment="CENTER_LEFT" maxWidth="500.0">
+                     <children>
+                        <JFXTextField fx:id="fxInput" focusColor="#ce725b" maxWidth="500.0" onClick="#onSubmit" style="-fx-text-fill: white; -fx-background-color: rgba(0,0,0,0.2);" unFocusColor="WHITE">
                            <padding>
                               <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                            </padding>
                            <font>
                               <Font size="24.0" />
                            </font>
-                        </TextField>
-                        <VBox fx:id="fxMacronContainer" maxWidth="1.7976931348623157E308" minHeight="20.0" minWidth="20.0" mouseTransparent="true">
+                        </JFXTextField>
+                        <VBox fx:id="fxMacronContainer" maxWidth="500.0" minHeight="20.0" minWidth="20.0" mouseTransparent="true">
                            <children>
                               <VBox fx:id="fxMacronPopup" fillWidth="false">
                                  <children>
@@ -172,41 +220,17 @@
                      </children>
                   </StackPane>
                </children>
-               <VBox.margin>
-                  <Insets />
-               </VBox.margin>
                <padding>
-                  <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
+                  <Insets bottom="16.0" left="8.0" right="8.0" top="8.0" />
                </padding>
-            </HBox>
+            </VBox>
             <Label fx:id="fxFeedback" text="Typo" visible="false" />
-            <Button fx:id="fxSubmit" alignment="CENTER" mnemonicParsing="false" onClick="#onSubmit" text="Submit">
-               <font>
-                  <Font size="48.0" />
-               </font>
-            </Button>
-            <Button fx:id="fxUnsure" onClick="#onUnsure" text="Don't know" />
+            <GameButton fx:id="fxSubmit" onAction="#submit" text="SUBMIT" />
+            <GameButton fx:id="fxUnsure" text="DON'T KNOW" />
          </children>
          <padding>
             <Insets left="64.0" right="64.0" />
          </padding>
       </VBox>
-      <ImageView fitHeight="360.0" fitWidth="770.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-250.0" AnchorPane.rightAnchor="-200.0">
-         <image>
-            <Image url="@../images/rock.png" />
-         </image>
-         <viewport>
-            <Rectangle2D />
-         </viewport>
-      </ImageView>
-      <StackPane fx:id="avatarContainer" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="20.0">
-         <children>
-            <ImageView fitHeight="280.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@../avatar/blob_static.png" />
-               </image>
-            </ImageView>
-         </children>
-      </StackPane>
    </children>
 </AnchorPane>

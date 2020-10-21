@@ -47,7 +47,7 @@ public class GameBoardController {
 			for (int j = 0; j < questions.size(); j++) {
 				final Integer intJ = j;
 				Question question = questions.get(intJ);
-				// Place label
+				// Place button
 				Button button = new Button("$" + question.getValue());
 
 				button.setStyle("-fx-font: 16 arial;");
@@ -64,7 +64,7 @@ public class GameBoardController {
 						button.setOnAction((event) -> {
 							game.setCurrentQuestion(category, intJ);
 							user.attemptQuestion(category, question.getId());
-							Router.show(View.ANSWER_SCREEN);
+							Router.show(View.ANSWER_SCREEN, false);
 						});
 					}
 
@@ -72,10 +72,5 @@ public class GameBoardController {
 				}
 			}
 		}
-	}
-
-	@FXML
-	public void handleGoBack(ActionEvent event) throws IOException {
-		game.addScore(50);
 	}
 }

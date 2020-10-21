@@ -30,7 +30,7 @@ public enum View {
     GAME_BOARD("controller/GameBoard.fxml", Component.GAME_TITLE.path(),GameState.GAME),
     ANSWER_SCREEN("controller/AnswerScreen.fxml", Component.GAME_TITLE.path(), new AnswerScreen(),GameState.GAME),
     PRACTICE_ANSWER_SCREEN("controller/AnswerScreen.fxml", Component.GAME_TITLE.path(), new PracticeAnswerScreen(),GameState.PRACTICE),
-    REWARD_SCREEN("controller/RewardScreen.fxml", Component.TITLE.path(),GameState.GAME),
+    REWARD_SCREEN("controller/RewardScreen.fxml", Component.GAME_TITLE.path(), GameState.GAME),
     TROPHY_CASE("controller/TrophyCase.fxml", Component.GAME_TITLE.path(),GameState.MENU),
     LEADERBOARD("controller/Leaderboard.fxml", Component.GAME_TITLE.path(),GameState.MENU),
     SELECT_CATEGORY_GAME("controller/CategorySelect.fxml", Component.GAME_TITLE.path(), new CategorySelectGame(),GameState.MENU),

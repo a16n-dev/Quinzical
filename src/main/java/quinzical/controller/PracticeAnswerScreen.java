@@ -6,6 +6,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.DialogEvent;
 import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
 import quinzical.model.PracticeGame;
 import quinzical.model.Question;
 import quinzical.model.QuinzicalGame.Status;
@@ -17,14 +18,22 @@ public class PracticeAnswerScreen extends BaseAnswerScreen {
     private Label fxFeedback;
     @FXML
     private Label fxAttemptCount;
+
+    @FXML
+    private AnchorPane fxBarGame;
     
     private PracticeGame game;
 
     @Override
     void onLoad() {
         game = PracticeGame.getInstance();
+
+        game.setStatus(Status.ANSWERING);
+
         fxAttemptCount.textProperty().bind(Bindings.convert(game.getRemainingAttempts()));
-        fxAttemptCount.setVisible(true);
+
+        fxBarGame.setVisible(false);
+        fxBarGame.setManaged(false);
     }
 
     @Override
@@ -36,6 +45,8 @@ public class PracticeAnswerScreen extends BaseAnswerScreen {
     @Override
     void onCorrectAnswer(Question question) {
         TTS.getInstance().speak("correct");
+        game.addStreak();
+        game.setStatus(Status.SUCCESS);
         showAlert(onFinished);
     }
 
@@ -53,7 +64,10 @@ public class PracticeAnswerScreen extends BaseAnswerScreen {
         }
         else if (timesAttempted == 2) {
             TTS.getInstance().speak("The correct answer was: " + question.getAnswer());
+            game.clearStreak();
+            game.setStatus(Status.FAILURE);
             showAlert(onFinished);
+
             return;
         }
         game.addAttempt();
@@ -67,9 +81,7 @@ public class PracticeAnswerScreen extends BaseAnswerScreen {
         } else {
             game.setStatus(Status.SKIP);
         }
-        showAlert(e -> {
-            Router.show(View.PRACTICE_ANSWER_SCREEN);
-        });
+        showAlert(onFinished);
     }
 
     private EventHandler<Event> onFinished = new EventHandler<Event>() {

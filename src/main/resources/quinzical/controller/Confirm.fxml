@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import quinzical.components.GameButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -8,8 +7,9 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import quinzical.components.GameButton?>
 
-<AnchorPane fx:id="modalContent" minHeight="300.0" minWidth="500.0" style="-fx-background-color: rgba(0,0,0,0.4);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.ConfirmController">
+<AnchorPane fx:id="modalContent" maxHeight="300.0" maxWidth="500.0" minHeight="300.0" minWidth="500.0" style="-fx-background-color: rgba(0,0,0,0.4);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.ConfirmController">
    <children>
       <VBox spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -25,9 +25,9 @@
                   </Label>
                </children>
             </Pane>
-            <Pane VBox.vgrow="ALWAYS">
+            <Pane maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                <children>
-                  <Label fx:id="fxBody" text="Label" textFill="WHITE" wrapText="true">
+                  <Label fx:id="fxBody" maxWidth="468.0" text="Labeeeeeeeeeeeeeeeed asd ad adeasd ad awd asda wdasdawdas el" textFill="WHITE" wrapText="true">
                      <font>
                         <Font size="18.0" />
                      </font>
