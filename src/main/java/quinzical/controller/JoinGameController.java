@@ -1,14 +1,22 @@
 package quinzical.controller;
 
 import java.util.function.UnaryOperator;
+import java.util.regex.Pattern;
 
 import com.jfoenix.controls.JFXTextField;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import io.socket.emitter.Emitter;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextFormatter.Change;
+import quinzical.model.MultiplayerGame;
+import quinzical.util.Connect;
 import quinzical.util.Modal;
+import quinzical.util.Router;
 
 public class JoinGameController {
 
@@ -96,8 +104,35 @@ public class JoinGameController {
         String code = getCode();
 
         // check if valid
-        if (code.length() < 5) {
+        if (code.length() < 5 || Pattern.matches("[a-zA-Z]+", code)) {
             fxMessage.setText("Invalid code");
         }
+
+        Connect connect = Connect.getInstance();
+        // MultiplayerGame.startGame(null, true);
+        connect.forceConnect();
+        JSONObject json = new JSONObject();
+        try {
+            json.put("code", code);
+        } catch (JSONException e1) {
+            e1.printStackTrace();
+        }
+        connect.getSocket().emit("JOIN_LOBBY", json);
+        connect.getSocket().on("LOBBY_JOINED", new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                System.out.println(args[0].toString());
+                // try {
+                //     // JSONObject obj = new JSONObject(args[0].toString());
+                //     // int code = obj.getInt("code");
+                //     // MultiplayerGame.getInstance().setCode(code);
+                // } catch (JSONException e) {
+                //     e.printStackTrace();
+                // }
+                Router.show(View.LOBBY);
+			}
+        }).on("INVALID_LOBBY", e -> {
+            System.out.println("Invalid");
+        });
     }
 }
