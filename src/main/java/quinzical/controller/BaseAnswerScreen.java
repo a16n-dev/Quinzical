@@ -2,6 +2,7 @@ package quinzical.controller;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
@@ -17,6 +18,7 @@ import quinzical.model.Question;
 import quinzical.model.User;
 import quinzical.util.AvatarFactory;
 import quinzical.util.Macron;
+import quinzical.util.Modal;
 import quinzical.util.TTS;
 import quinzical.util.Timer;
 
@@ -104,13 +106,8 @@ public abstract class BaseAnswerScreen {
         }
     }
     
-    public void showAlert(String title, String header, String content, EventHandler<DialogEvent> event) {
-        Alert alert = new Alert(AlertType.INFORMATION);
-		alert.setTitle(title);
-		alert.setHeaderText(header);
-		alert.setContentText(content);
-		alert.show();
-        alert.setOnHidden(event);
+    public void showAlert(EventHandler<Event> event) {
+        Modal.show(View.MODAL_ANSWER_FEEDBACK, event);
         timer.stop();
     }
     

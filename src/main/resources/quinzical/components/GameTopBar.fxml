@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
+<?import quinzical.components.GameButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Tooltip?>
@@ -45,7 +45,7 @@
    <right>
       <HBox spacing="16.0" BorderPane.alignment="CENTER">
          <children>
-            <JFXButton buttonType="RAISED" contentDisplay="CENTER" onAction="#showSettings" text=" ">
+            <GameButton buttonType="RAISED" contentDisplay="CENTER" onClick="#showSettings" text=" ">
                <tooltip>
                   <Tooltip text="Settings" />
                </tooltip>
@@ -56,8 +56,8 @@
                      </image>
                   </ImageView>
                </graphic>
-            </JFXButton>
-            <JFXButton buttonType="RAISED" contentDisplay="CENTER" onAction="#showHelp" text=" ">
+            </GameButton>
+            <GameButton buttonType="RAISED" contentDisplay="CENTER" onClick="#showHelp" text=" ">
                <tooltip>
                   <Tooltip text="Help" />
                </tooltip>
@@ -68,11 +68,11 @@
                      </image>
                   </ImageView>
                </graphic>
-            </JFXButton>
+            </GameButton>
          </children>
       </HBox>
    </right>
    <left>
-      <JFXButton buttonType="RAISED" onAction="#handleGoBack" text="BACK" BorderPane.alignment="CENTER" />
+      <GameButton buttonType="RAISED" onClick="#handleGoBack" text="BACK" BorderPane.alignment="CENTER" />
    </left>
 </BorderPane>

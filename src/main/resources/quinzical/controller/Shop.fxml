@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
+<?import quinzical.components.GameButton?>
 <?import com.jfoenix.controls.JFXMasonryPane?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import java.lang.String?>
@@ -175,7 +175,7 @@
                               </StackPane>
                               <AnchorPane prefHeight="200.0" prefWidth="200.0">
                                  <children>
-                                    <JFXButton fx:id="fxResetButton" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onAction="#resetAvatar" prefHeight="35.0" prefWidth="35.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.0">
+                                    <GameButton fx:id="fxResetButton" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onClick="#resetAvatar" prefHeight="35.0" prefWidth="35.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.0">
                                        <graphic>
                                           <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
                                              <image>
@@ -185,12 +185,12 @@
                                        </graphic>
                                        <tooltip>
                                           <Tooltip text="Reset Preview" />
-                                       </tooltip></JFXButton>
+                                       </tooltip></GameButton>
                                  </children>
                               </AnchorPane>
                            </children>
                         </StackPane>
-                        <JFXButton fx:id="fxActionButton" maxWidth="1.7976931348623157E308" text="Action" />
+                        <GameButton fx:id="fxActionButton" maxWidth="1.7976931348623157E308" text="Action" />
                      </children>
                   </VBox>
                </children>

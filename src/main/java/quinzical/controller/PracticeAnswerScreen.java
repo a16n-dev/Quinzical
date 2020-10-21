@@ -1,6 +1,7 @@
 package quinzical.controller;
 
 import javafx.beans.binding.Bindings;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.DialogEvent;
@@ -35,7 +36,7 @@ public class PracticeAnswerScreen extends BaseAnswerScreen {
     @Override
     void onCorrectAnswer(Question question) {
         TTS.getInstance().speak("correct");
-        showAlert("Congratulations", "You answered correctly.", question.getAnswer(), onFinished);
+        showAlert(onFinished);
     }
 
     @Override
@@ -52,7 +53,7 @@ public class PracticeAnswerScreen extends BaseAnswerScreen {
         }
         else if (timesAttempted == 2) {
             TTS.getInstance().speak("The correct answer was: " + question.getAnswer());
-            showAlert("Oops!", "Answer was: " + question.getAnswer(), question.getHint(), onFinished);
+            showAlert(onFinished);
             return;
         }
         game.addAttempt();
@@ -66,14 +67,14 @@ public class PracticeAnswerScreen extends BaseAnswerScreen {
         } else {
             game.setStatus(Status.SKIP);
         }
-        showAlert("Oops", "Answer was: " + question.getAnswer(), question.getHint(), e -> {
+        showAlert(e -> {
             Router.show(View.PRACTICE_ANSWER_SCREEN);
         });
     }
 
-    private EventHandler<DialogEvent> onFinished = new EventHandler<DialogEvent>() {
+    private EventHandler<Event> onFinished = new EventHandler<Event>() {
         @Override
-        public void handle(DialogEvent event) {
+        public void handle(Event event) {
             Router.show(View.PRACTICE_ANSWER_SCREEN, false);
         }
     };

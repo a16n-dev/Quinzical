@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
+<?import quinzical.components.GameButton?>
 <?import com.jfoenix.controls.JFXSpinner?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -34,32 +34,32 @@
                         </Label>
                         <HBox spacing="8.0">
                            <children>
-                              <JFXButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleNewGame" styleClass="menuButton" text="NEW GAME" HBox.hgrow="ALWAYS">
+                              <GameButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onClick="#handleNewGame" styleClass="menuButton" text="NEW GAME" HBox.hgrow="ALWAYS">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icon/new_game.png" />
                                        </image>
                                     </ImageView>
-                                 </graphic></JFXButton>
-                              <JFXButton fx:id="fxResume" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleResumeGame" styleClass="menuButton" text="RESUME GAME" HBox.hgrow="ALWAYS">
+                                 </graphic></GameButton>
+                              <GameButton fx:id="fxResume" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onClick="#handleResumeGame" styleClass="menuButton" text="RESUME GAME" HBox.hgrow="ALWAYS">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icon/resume_game.png" />
                                        </image>
                                     </ImageView>
-                                 </graphic></JFXButton>
+                                 </graphic></GameButton>
                            </children>
                         </HBox>
-                        <JFXButton buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#handlePracticeGame" styleClass="menuButton" text="PRACTICE GAME">
+                        <GameButton buttonType="RAISED" maxWidth="1.7976931348623157E308" onClick="#handlePracticeGame" styleClass="menuButton" text="PRACTICE GAME">
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icon/practice.png" />
                                  </image>
                               </ImageView>
-                           </graphic></JFXButton>
+                           </graphic></GameButton>
                      </children>
                      <padding>
                         <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
@@ -74,32 +74,32 @@
                         </Label>
                         <HBox spacing="8.0">
                            <children>
-                              <JFXButton fx:id="fxJoinGameButton" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#showJoinGame" styleClass="menuButton" text="JOIN GAME" HBox.hgrow="ALWAYS">
+                              <GameButton fx:id="fxJoinGameButton" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onClick="#showJoinGame" styleClass="menuButton" text="JOIN GAME" HBox.hgrow="ALWAYS">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icon/person_add.png" />
                                        </image>
                                     </ImageView>
-                                 </graphic></JFXButton>
-                              <JFXButton fx:id="fxHostGameButton" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleHostMultiplayer" styleClass="menuButton" text="HOST GAME" HBox.hgrow="ALWAYS">
+                                 </graphic></GameButton>
+                              <GameButton fx:id="fxHostGameButton" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onClick="#handleHostMultiplayer" styleClass="menuButton" text="HOST GAME" HBox.hgrow="ALWAYS">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icon/people.png" />
                                        </image>
                                     </ImageView>
-                                 </graphic></JFXButton>
+                                 </graphic></GameButton>
                            </children>
                         </HBox>
-                        <JFXButton fx:id="fxLeaderboardButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onAction="#handleViewLeaderboard" styleClass="menuButton" text="LEADERBOARDS">
+                        <GameButton fx:id="fxLeaderboardButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onClick="#handleViewLeaderboard" styleClass="menuButton" text="LEADERBOARDS">
                            <graphic>
                               <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
                                     <Image url="@../icon/star.png" />
                                  </image>
                               </ImageView>
-                           </graphic></JFXButton>
+                           </graphic></GameButton>
                      </children>
                      <padding>
                         <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
@@ -114,14 +114,14 @@
                         </Label>
                         <HBox spacing="8.0">
                            <children>
-                              <JFXButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onAction="#handleViewTrophyCase" styleClass="menuButton" text="VIEW MEDALS" HBox.hgrow="ALWAYS">
+                              <GameButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onClick="#handleViewTrophyCase" styleClass="menuButton" text="VIEW MEDALS" HBox.hgrow="ALWAYS">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
                                           <Image url="@../icon/medal.png" />
                                        </image>
                                     </ImageView>
-                                 </graphic></JFXButton>
+                                 </graphic></GameButton>
                            </children>
                         </HBox>
                         
@@ -169,7 +169,7 @@
                               <Insets bottom="180.0" left="60.0" />
                            </VBox.margin>
                            <children>
-                              <JFXButton buttonType="RAISED" onAction="#handleViewShop" text="SHOP" />
+                              <GameButton buttonType="RAISED" onClick="#handleViewShop" text="SHOP" />
                               <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="8.0">
                                  <children>
                                     <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
@@ -198,15 +198,15 @@
       </HBox>
       <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="16.0" style="-fx-background-color: rgba(0,0,0,0.2);" styleClass="panel" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
-            <JFXButton buttonType="RAISED" onAction="#showSettings" styleClass="menuButton" text="SETTINGS">
+            <GameButton buttonType="RAISED" onClick="#showSettings" styleClass="menuButton" text="SETTINGS">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icon/settings.png" />
                      </image>
                   </ImageView>
-               </graphic></JFXButton>
-            <JFXButton buttonType="RAISED" onAction="#showHelp" styleClass="menuButton" text="HOW TO PLAY">
+               </graphic></GameButton>
+            <GameButton buttonType="RAISED" onClick="#showHelp" styleClass="menuButton" text="HOW TO PLAY">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -214,17 +214,17 @@
                      </image>
                   </ImageView>
                </graphic>
-            </JFXButton>
-            <JFXButton buttonType="RAISED" onAction="#handleViewCustomCategories" styleClass="menuButton" text="EDIT CUSTOM CATEGORIES">
+            </GameButton>
+            <GameButton buttonType="RAISED" onClick="#handleViewCustomCategories" styleClass="menuButton" text="EDIT CUSTOM CATEGORIES">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../icon/edit.png" />
                      </image>
                   </ImageView>
-               </graphic></JFXButton>
+               </graphic></GameButton>
             <Pane HBox.hgrow="ALWAYS" />
-            <JFXButton fx:id="fxAccountButton" buttonType="RAISED" onAction="#handleAccountButtonPress" styleClass="menuButton" text="NOT CONNECTED" />
+            <GameButton fx:id="fxAccountButton" buttonType="RAISED" onClick="#handleAccountButtonPress" styleClass="menuButton" text="NOT CONNECTED" />
          </children>
          <padding>
             <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />

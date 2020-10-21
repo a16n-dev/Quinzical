@@ -10,8 +10,20 @@ import jfxtras.resources.JFXtrasFontRoboto;
 import quinzical.controller.View;
 import quinzical.util.Router;
 import quinzical.util.Sound;
+import javafx.scene.input.MouseEvent;
 
 public class App extends Application {
+
+    public enum GameState {
+        MENU,
+        GAME,
+        PRACTICE,
+        MULTIPLAYER,
+        SHOP,
+        MODAL,
+    }
+
+    private static GameState gameState;
 
     private Stage _stage;
 
@@ -62,4 +74,13 @@ public class App extends Application {
     //         User.getInstance().setPrefHeight(newVal);
     //     });
     // }
+
+    public static void setState(GameState state){
+        System.out.println("setting state to " + state);
+        gameState = state;
+    }
+
+    public static GameState getState(){
+        return gameState;
+    }
 }

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
+<?import quinzical.components.GameButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Button?>
@@ -79,7 +79,7 @@
                   <Insets bottom="16.0" />
                </VBox.margin>
                <bottom>
-                  <JFXButton onAction="#repeatClue" text=" " BorderPane.alignment="CENTER">
+                  <GameButton onClick="#repeatClue" text=" " BorderPane.alignment="CENTER">
                      <graphic>
                         <HBox spacing="8.0">
                            <children>
@@ -92,7 +92,7 @@
                            </children>
                         </HBox>
                      </graphic>
-                  </JFXButton>
+                  </GameButton>
                </bottom>
             </BorderPane>
             <StackPane prefWidth="200.0">
@@ -130,7 +130,7 @@
                   </Label>
                   <StackPane alignment="CENTER_LEFT" prefWidth="200.0">
                      <children>
-                        <TextField fx:id="fxInput" onAction="#onSubmit">
+                        <TextField fx:id="fxInput" onClick="#onSubmit">
                            <padding>
                               <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                            </padding>
@@ -180,12 +180,12 @@
                </padding>
             </HBox>
             <Label fx:id="fxFeedback" text="Typo" visible="false" />
-            <Button fx:id="fxSubmit" alignment="CENTER" mnemonicParsing="false" onAction="#onSubmit" text="Submit">
+            <Button fx:id="fxSubmit" alignment="CENTER" mnemonicParsing="false" onClick="#onSubmit" text="Submit">
                <font>
                   <Font size="48.0" />
                </font>
             </Button>
-            <Button fx:id="fxUnsure" onAction="#onUnsure" text="Don't know" />
+            <Button fx:id="fxUnsure" onClick="#onUnsure" text="Don't know" />
          </children>
          <padding>
             <Insets left="64.0" right="64.0" />

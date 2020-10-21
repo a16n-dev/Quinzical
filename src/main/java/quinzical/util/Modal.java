@@ -5,8 +5,10 @@ import java.io.IOException;
 import com.jfoenix.controls.JFXDialog;
 
 import javafx.event.ActionEvent;
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.control.DialogEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import quinzical.components.FrostPane;
@@ -40,7 +42,14 @@ public class Modal {
         frosted.setContent(content);
     }
 
-    private static void makeDialog(Region content, double width, double height){
+    public static void show(View view, EventHandler<Event> event){
+        Region content = (Region) Router.loadFXML(view.getCenter());
+        JFXDialog d = makeDialog(content, 800, 500);
+        d.setOnDialogClosed(event);
+
+    }
+
+    private static JFXDialog makeDialog(Region content, double width, double height){
         frosted = new FrostPane(root, content, width, height);
 
         frosted.setMaxWidth(width);
@@ -49,6 +58,8 @@ public class Modal {
         dialog = new JFXDialog();
         dialog.setContent(frosted);
         dialog.show(root);
+
+        return dialog;
     }
 
     public static void hide() {

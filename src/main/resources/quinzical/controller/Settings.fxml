@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import quinzical.components.GameButton?>
 <?import com.jfoenix.controls.JFXSlider?>
 <?import com.jfoenix.controls.JFXToggleButton?>
 <?import javafx.geometry.Insets?>
@@ -26,14 +27,14 @@
                         <Font name="System Bold" size="18.0" />
                      </font>
                   </Label>
-                  <Button contentDisplay="GRAPHIC_ONLY" layoutX="64.0" layoutY="9.0" mnemonicParsing="false" onAction="#handleClose" text="Close" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                  <GameButton contentDisplay="GRAPHIC_ONLY" layoutX="64.0" layoutY="9.0" mnemonicParsing="false" onClick="#handleClose" text="Close" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                      <graphic>
                         <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../icon/close.png" />
                            </image>
                         </ImageView>
-                     </graphic></Button>
+                     </graphic></GameButton>
                </children>
                <padding>
                   <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
@@ -123,6 +124,7 @@
                      </columnConstraints>
                      <rowConstraints>
                         <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                      </rowConstraints>
                      <children>
                         <Label text="Music Volume" textFill="WHITE">
@@ -134,6 +136,21 @@
                            <children>
                               <JFXSlider fx:id="fxMusicVolume" blockIncrement="0.05" value="1.0" />
                               <Label fx:id="fxMusicLabel" text="100%" textFill="WHITE">
+                                 <font>
+                                    <Font size="14.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                        </HBox>
+                        <Label text="FX Volume" textFill="WHITE" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Label>
+                        <HBox alignment="CENTER_LEFT" spacing="16.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <children>
+                              <JFXSlider fx:id="fxEffectVolume" blockIncrement="0.05" value="1.0" />
+                              <Label fx:id="fxEffectLabel" text="100%" textFill="WHITE">
                                  <font>
                                     <Font size="14.0" />
                                  </font>

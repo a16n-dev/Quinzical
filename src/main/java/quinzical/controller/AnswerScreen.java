@@ -1,5 +1,6 @@
 package quinzical.controller;
 
+import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.DialogEvent;
@@ -36,33 +37,31 @@ public class AnswerScreen extends BaseAnswerScreen {
         TTS.getInstance().speak("That is correct");
         game.addScore(question.getValue());
         game.setStatus(Status.SUCCESS);
-        showAlert("Congratulations", "Correct", "Your current score is: " + game.getScore().intValue(), onFinished);
+        showAlert(onFinished);
     }
 
     @Override
     void onWrongAnswer(Question question) {
         TTS.getInstance().speak("That is incorrect");
         TTS.getInstance().speak("The correct answer was " + question.getAnswer());
-
-        showAlert("Oops", "Answer was: " + question.getAnswer(), "Your current score is: " + game.getScore().intValue(),
-                onFinished);
+        game.setStatus(Status.FAILURE);
+        showAlert(onFinished);
     }
 
     @Override
     void forceWrongAnswer(Question question, boolean wasTimerExpire) {
         TTS.getInstance().speak("The correct answer was " + question.getAnswer());
-        if(wasTimerExpire){
+        if (wasTimerExpire) {
             game.setStatus(Status.OUT_OF_TIME);
         } else {
             game.setStatus(Status.SKIP);
         }
-        showAlert("Oops", "Answer was: " + question.getAnswer(), "Your current score is: " + game.getScore().intValue(),
-                onFinished);
+        showAlert(onFinished);
     }
 
-    private EventHandler<DialogEvent> onFinished = new EventHandler<DialogEvent>() {
+    private EventHandler<Event> onFinished = new EventHandler<Event>() {
         @Override
-        public void handle(DialogEvent event) {
+        public void handle(Event event) {
             // Navigate to the 'reward screen' only if all questions are answered
             if (game.getRemainingQuestions() == 0) {
                 Router.show(View.REWARD_SCREEN);

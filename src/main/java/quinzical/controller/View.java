@@ -1,5 +1,6 @@
 package quinzical.controller;
 
+import quinzical.App.GameState;
 import quinzical.components.Component;
 
 /**
@@ -25,25 +26,26 @@ import quinzical.components.Component;
  * The order is VIEW([center],[top],[right],[bottom],[left])
  */
 public enum View {
-    MAIN_MENU("controller/MainMenu.fxml", null),
-    GAME_BOARD("controller/GameBoard.fxml", Component.GAME_TITLE.path()),
-    ANSWER_SCREEN("controller/AnswerScreen.fxml", Component.GAME_TITLE.path(), new AnswerScreen()),
-    PRACTICE_ANSWER_SCREEN("controller/AnswerScreen.fxml", Component.GAME_TITLE.path(), new PracticeAnswerScreen()),
-    REWARD_SCREEN("controller/RewardScreen.fxml", Component.TITLE.path()),
-    TROPHY_CASE("controller/TrophyCase.fxml", Component.GAME_TITLE.path()),
-    LEADERBOARD("controller/Leaderboard.fxml", Component.GAME_TITLE.path()),
-    SELECT_CATEGORY_GAME("controller/CategorySelect.fxml", Component.GAME_TITLE.path(), new CategorySelectGame()),
-    SELECT_CATEGORY_PRACTICE("controller/CategorySelect.fxml", Component.GAME_TITLE.path(), new CategorySelectPractice()),
-    SELECT_CATEGORY_MULTIPLAYER("controller/CategorySelect.fxml", Component.GAME_TITLE.path(), new CategorySelectMultiplayer()),
-    CUSTOM_CATEGORIES("controller/ManageCategories.fxml", Component.GAME_TITLE.path()),
-    SHOP("controller/Shop.fxml", Component.GAME_TITLE.path()),
+    MAIN_MENU("controller/MainMenu.fxml", null, GameState.MENU),
+    GAME_BOARD("controller/GameBoard.fxml", Component.GAME_TITLE.path(),GameState.GAME),
+    ANSWER_SCREEN("controller/AnswerScreen.fxml", Component.GAME_TITLE.path(), new AnswerScreen(),GameState.GAME),
+    PRACTICE_ANSWER_SCREEN("controller/AnswerScreen.fxml", Component.GAME_TITLE.path(), new PracticeAnswerScreen(),GameState.PRACTICE),
+    REWARD_SCREEN("controller/RewardScreen.fxml", Component.TITLE.path(),GameState.GAME),
+    TROPHY_CASE("controller/TrophyCase.fxml", Component.GAME_TITLE.path(),GameState.MENU),
+    LEADERBOARD("controller/Leaderboard.fxml", Component.GAME_TITLE.path(),GameState.MENU),
+    SELECT_CATEGORY_GAME("controller/CategorySelect.fxml", Component.GAME_TITLE.path(), new CategorySelectGame(),GameState.MENU),
+    SELECT_CATEGORY_PRACTICE("controller/CategorySelect.fxml", Component.GAME_TITLE.path(), new CategorySelectPractice(),GameState.MENU),
+    SELECT_CATEGORY_MULTIPLAYER("controller/CategorySelect.fxml", Component.GAME_TITLE.path(), new CategorySelectMultiplayer(),GameState.MENU),
+    CUSTOM_CATEGORIES("controller/ManageCategories.fxml", Component.GAME_TITLE.path(),GameState.MENU),
+    SHOP("controller/Shop.fxml", Component.GAME_TITLE.path(),GameState.SHOP),
 
-    MODAL_SETTINGS("controller/Settings.fxml", null),
-    MODAL_JOIN("controller/JoinGame.fxml", null),
-    MODAL_CONFIRM("controller/Confirm.fxml", null),
-    MODAL_LOGIN("controller/Login.fxml", null),
-    MODAL_SIGNUP("controller/Signup.fxml", null),
-    MODAL_HELP("controller/Help.fxml", null),
+    MODAL_SETTINGS("controller/Settings.fxml", null, GameState.MODAL),
+    MODAL_JOIN("controller/JoinGame.fxml", null, GameState.MODAL),
+    MODAL_CONFIRM("controller/Confirm.fxml", null, GameState.MODAL),
+    MODAL_LOGIN("controller/Login.fxml", null, GameState.MODAL),
+    MODAL_SIGNUP("controller/Signup.fxml", null, GameState.MODAL),
+    MODAL_HELP("controller/Help.fxml", null, GameState.MODAL),
+    MODAL_ANSWER_FEEDBACK("controller/AnswerScreenPopup.fxml", null, GameState.MODAL),
 	;
 
     private final String center;
@@ -52,30 +54,34 @@ public enum View {
     private final String bottom;
     private final String left;
     private final Object controller;
+    private final GameState gameState;
 
-    private View(String center, String top, String right, String bottom, String left, Object controller) {
+    private View(String center, String top, String right, String bottom, String left, Object controller, GameState state) {
         this.center = center;
         this.top = top;
         this.right = right;
         this.bottom = bottom;
         this.left = left;
         this.controller = controller;
+        this.gameState = state;
     }
-    private View(String center, String top) {
+    private View(String center, String top, GameState state) {
         this.center = center;
         this.top = top;
         this.right = null;
         this.bottom = null;
         this.left = null;
         this.controller = null;
+        this.gameState = state;
     }
-    private View(String center, String top, Object controller) {
+    private View(String center, String top, Object controller, GameState state) {
         this.center = center;
         this.top = top;
         this.right = null;
         this.bottom = null;
         this.left = null;
         this.controller = controller;
+        this.gameState = state;
     }
 
     public String getCenter() {
@@ -100,5 +106,9 @@ public enum View {
     
     public Object getController() {
         return controller;
+    }
+
+    public GameState getState(){
+        return gameState;    
     }
 }

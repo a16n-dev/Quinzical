@@ -44,6 +44,7 @@ public class Router {
      * @param fxml the path to the fxml file, relative to App.java
      */
     public static void show(View fxml, boolean addToHistory) {
+        App.setState(fxml.getState());
         TTS.getInstance().clearQueue();
         Timer.getInstance().stop();
 

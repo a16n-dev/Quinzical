@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
+<?import quinzical.components.GameButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
@@ -65,9 +65,9 @@
             <Pane VBox.vgrow="ALWAYS" />
             <HBox alignment="TOP_RIGHT" spacing="16.0">
                <children>
-                  <JFXButton fx:id="fxCancel" buttonType="RAISED" onAction="#handleCancel" text="CANCEL" />
-                  <JFXButton fx:id="fxLogin" buttonType="RAISED" onAction="#handleRedirectLogin" text="LOGIN" />
-                  <JFXButton fx:id="fxSubmit" buttonType="RAISED" onAction="#handleSubmit" text="CREATE ACCOUNT" />
+                  <GameButton fx:id="fxCancel" buttonType="RAISED" onClick="#handleCancel" text="CANCEL" />
+                  <GameButton fx:id="fxLogin" buttonType="RAISED" onClick="#handleRedirectLogin" text="LOGIN" />
+                  <GameButton fx:id="fxSubmit" buttonType="RAISED" onClick="#handleSubmit" text="CREATE ACCOUNT" />
                </children>
             </HBox>
          </children>

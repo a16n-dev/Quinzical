@@ -52,6 +52,6 @@
             </ImageView>
          </children>
       </StackPane>
-      <Button fx:id="fxMenuButton" mnemonicParsing="false" onAction="#handleButtonMenuClick" text="BACK TO MAIN MENU" />
+      <Button fx:id="fxMenuButton" mnemonicParsing="false" onClick="#handleButtonMenuClick" text="BACK TO MAIN MENU" />
    </children>
 </VBox>

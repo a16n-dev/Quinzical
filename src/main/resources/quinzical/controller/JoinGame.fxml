@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
+<?import quinzical.components.GameButton?>
 <?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
@@ -21,7 +21,7 @@
                         <Font name="System Bold" size="24.0" />
                      </font>
                   </Label>
-                  <JFXButton buttonType="RAISED" layoutX="460.0" layoutY="2.0" onAction="#handleClose" text="CLOSE" AnchorPane.rightAnchor="0.0" />
+                  <GameButton buttonType="RAISED" layoutX="460.0" layoutY="2.0" onClick="#handleClose" text="CLOSE" AnchorPane.rightAnchor="0.0" />
                </children>
             </AnchorPane>
             <Pane VBox.vgrow="ALWAYS" />
@@ -68,7 +68,7 @@
                </font>
             </Label>
             <Pane VBox.vgrow="ALWAYS" />
-            <JFXButton buttonType="RAISED" onAction="#handleJoin" text="CONNECT" />
+            <GameButton buttonType="RAISED" onClick="#handleJoin" text="CONNECT" />
          </children>
          <padding>
             <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />

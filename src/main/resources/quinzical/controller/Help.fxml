@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
+<?import quinzical.components.GameButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
@@ -71,7 +71,7 @@
          <children>
             <HBox alignment="CENTER">
                <children>
-                  <JFXButton minWidth="200.0" onAction="#handleClose" text="CLOSE" />
+                  <GameButton minWidth="200.0" onClick="#handleClose" text="CLOSE" />
                </children>
             </HBox>
          </children>

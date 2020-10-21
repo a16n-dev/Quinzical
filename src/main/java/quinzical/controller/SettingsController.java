@@ -19,6 +19,9 @@ public class SettingsController {
   public Slider fxMusicVolume;
   public Label fxMusicLabel;
 
+  public Slider fxEffectVolume;
+  public Label fxEffectLabel;
+
   public ToggleButton fxToggleAnimation;
 	
     public void initialize() {
@@ -49,6 +52,15 @@ public class SettingsController {
             }
         });
 
+        fxEffectVolume.valueProperty().addListener(new ChangeListener<Number>() {
+
+            @Override
+            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
+                Sound.getInstance().setEffectVolume(newValue.intValue()/100.0);
+                fxEffectLabel.setText(Math.round((newValue.intValue())) + "%");
+            }
+        });
+
         fxToggleAnimation.selectedProperty().addListener(new ChangeListener<Boolean>() {
 
             @Override
@@ -60,6 +72,7 @@ public class SettingsController {
         fxSliderSpeed.setValue(TTS.getInstance().getSpeed());
         fxSliderVolume.setValue(TTS.getInstance().getVolume());
         fxMusicVolume.setValue(Sound.getInstance().getVolume() * 100);
+        fxEffectVolume.setValue(Sound.getInstance().getEffectVolume() * 100);
         fxToggleAnimation.setSelected(!User.getInstance().hasForceDisableAnimation());
     }
 

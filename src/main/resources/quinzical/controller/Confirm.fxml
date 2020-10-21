@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXButton?>
+<?import quinzical.components.GameButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -39,8 +39,8 @@
             </Pane>
             <HBox alignment="TOP_RIGHT" spacing="16.0">
                <children>
-                  <JFXButton buttonType="RAISED" onAction="#handleCancel" text="CANCEL" />
-                  <JFXButton fx:id="fxConfirm" buttonType="RAISED" text="CONFIRM" />
+                  <GameButton buttonType="RAISED" onClick="#handleCancel" text="CANCEL" />
+                  <GameButton fx:id="fxConfirm" buttonType="RAISED" text="CONFIRM" />
                </children>
                <VBox.margin>
                   <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
