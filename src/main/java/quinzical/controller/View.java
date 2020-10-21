@@ -39,6 +39,7 @@ public enum View {
     CUSTOM_CATEGORIES("controller/ManageCategories.fxml", Component.GAME_TITLE.path(),GameState.MENU),
     SHOP("controller/Shop.fxml", Component.GAME_TITLE.path(),GameState.SHOP),
 
+    LOBBY("controller/Lobby.fxml", Component.GAME_TITLE.path(),GameState.MULTIPLAYER),
     MODAL_SETTINGS("controller/Settings.fxml", null, GameState.MODAL),
     MODAL_JOIN("controller/JoinGame.fxml", null, GameState.MODAL),
     MODAL_CONFIRM("controller/Confirm.fxml", null, GameState.MODAL),
