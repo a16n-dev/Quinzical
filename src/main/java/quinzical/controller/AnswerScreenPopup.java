@@ -61,7 +61,7 @@ public class AnswerScreenPopup {
             if(App.getState() == GameState.GAME){
 
                 fxAboveText.setText("You earned");
-                fxStatusText.setText("100 points");
+                fxStatusText.setText(Game.getInstance().getLastScore() + " points");
             }else if (App.getState() == GameState.PRACTICE){
                 fxAboveText.setText("Current streak:");
                 fxStatusText.setText(Integer.toString(PracticeGame.getInstance().getStreak()));

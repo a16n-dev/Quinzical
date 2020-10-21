@@ -13,6 +13,7 @@ import java.util.stream.Collectors;
 import javafx.beans.property.SimpleIntegerProperty;
 import quinzical.util.IOManager;
 import quinzical.util.State;
+import quinzical.util.Timer;
 
 /**
  * This model represents a game being played by the user.
@@ -31,6 +32,8 @@ public class Game extends QuinzicalGame implements Serializable {
 
     private String currentCategory;
 
+    private transient int lastScore;
+
     private Game(List<Category> categories) {
         score = new SimpleIntegerProperty();
         questions = new HashMap<String, ArrayList<Question>>();
@@ -47,7 +50,18 @@ public class Game extends QuinzicalGame implements Serializable {
      * @param amount the amount to add to the score
      */
     public void addScore(int amount) {
-        score.set(score.intValue() + amount);
+
+        float time = Timer.getInstance().getTime();
+
+        float multiplier = Math.min(time / 24, 1);
+
+        lastScore = Math.round(amount * multiplier);
+
+        score.set(score.intValue() + lastScore);
+    }
+
+    public int getLastScore(){
+        return lastScore;
     }
 
     /**

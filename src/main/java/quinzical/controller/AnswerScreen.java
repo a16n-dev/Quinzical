@@ -12,6 +12,7 @@ import quinzical.model.Question;
 import quinzical.model.QuinzicalGame.Status;
 import quinzical.util.Router;
 import quinzical.util.TTS;
+import quinzical.util.Timer;
 
 public class AnswerScreen extends BaseAnswerScreen {
     @FXML
@@ -44,6 +45,7 @@ public class AnswerScreen extends BaseAnswerScreen {
     @Override
     void onCorrectAnswer(Question question) {
         TTS.getInstance().speak("That is correct");
+
         game.addScore(question.getValue());
         game.setStatus(Status.SUCCESS);
         showAlert(onFinished);
