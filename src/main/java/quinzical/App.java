@@ -14,7 +14,6 @@ import quinzical.model.User;
 import quinzical.util.Modal;
 import quinzical.util.Router;
 import quinzical.util.Sound;
-import javafx.scene.input.MouseEvent;
 
 public class App extends Application {
 
@@ -42,19 +41,22 @@ public class App extends Application {
         // Load fonts
         JFXtrasFontRoboto.loadAll();
 
-        Scene scene = new Scene(container, User.getInstance().getPrefWidth().intValue(), User.getInstance().getPrefHeight().intValue());
+        Scene scene = new Scene(container, User.getInstance().getPrefWidth().intValue(),
+                User.getInstance().getPrefHeight().intValue());
         s.setScene(scene);
 
         Router.setContainer((BorderPane) container.lookup("#content"));
 
         Router.show(View.MAIN_MENU);
-        attachListeners();
         s.show();
 
         Sound.getInstance().playSound("ambient");
 
-        _stage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, e -> {
-            
+        scene.getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, e -> {
+
+            // When user wants to quit, save their preferred window size
+            User.getInstance().setPrefHeight(scene.heightProperty().get());
+            User.getInstance().setPrefWidth(scene.widthProperty().get());
 
             if (gameState == GameState.GAME) {
                 e.consume();
@@ -75,23 +77,7 @@ public class App extends Application {
         launch(args);
     }
 
-    // Helper functions to expose app data to controllers
-    public Stage getStage() {
-        return _stage;
-    }
-
-    private void attachListeners() {
-    _stage.getScene().widthProperty().addListener((obs, oldVal, newVal) -> {
-    User.getInstance().setPrefWidth(newVal);
-    });
-
-    _stage.getScene().heightProperty().addListener((obs, oldVal, newVal) -> {
-    User.getInstance().setPrefHeight(newVal);
-    });
-    }
-
     public static void setState(GameState state) {
-        System.out.println("setting state to " + state);
         gameState = state;
     }
 

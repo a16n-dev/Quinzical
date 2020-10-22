@@ -7,14 +7,16 @@ import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.ObjectPropertyBase;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.scene.Node;
 import quinzical.util.Sound;
 
 /**
  * A custom button to use that plays a sound when pressed
+ * This component has a custom property, onClick. whatever is passed to this
+ * will become the onAction property of the button
  */
 public class GameButton extends JFXButton {
-
+    
+    //The methods and fields here are setup so that onClick is a valid property, which javaFX uses reflection to determine
     private ObjectProperty<EventHandler<ActionEvent>> onClick = new ObjectPropertyBase<EventHandler<ActionEvent>>() {
         @Override
         protected void invalidated() {

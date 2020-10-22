@@ -9,6 +9,7 @@ import javafx.scene.layout.Region;
 import quinzical.components.SelectedCategory;
 import quinzical.model.Category;
 import quinzical.model.Game;
+import quinzical.util.QuestionBank;
 import quinzical.util.Router;
 
 public class CategorySelectGame extends CategorySelect {
@@ -60,6 +61,11 @@ public class CategorySelectGame extends CategorySelect {
     public void handleSubmit() {
         Game.newGame(selected);
         Router.show(View.GAME_BOARD);
+    }
+
+    @FXML
+    public void selectRandom(){
+        selected.setAll(QuestionBank.getInstance().getRandomCategories(5, false));
     }
 
     

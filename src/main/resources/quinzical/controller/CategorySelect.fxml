@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import quinzical.components.GameButton?>
 <?import com.jfoenix.controls.JFXMasonryPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -12,6 +13,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import quinzical.components.GameButton?>
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
@@ -22,7 +24,7 @@
                   <Font size="36.0" />
                </font>
             </Label>
-            <HBox fx:id="fxContainer" maxHeight="150.0" maxWidth="1.7976931348623157E308" minHeight="80.0" minWidth="-Infinity" spacing="32.0" styleClass="panel" VBox.vgrow="ALWAYS">
+            <HBox fx:id="fxContainer" maxHeight="150.0" maxWidth="1.7976931348623157E308" minHeight="80.0" styleClass="panel">
                <children>
                   <GridPane fx:id="fxSelected" hgap="8.0" HBox.hgrow="ALWAYS">
                     <columnConstraints>
@@ -41,7 +43,33 @@
                   <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
                </padding>
             </HBox>
-            <GameButton fx:id="fxSubmit" buttonType="RAISED" minWidth="200.0" onClick="#handleSubmit" text="START GAME" />
+            <AnchorPane>
+               <children>
+                  <GameButton fx:id="fxSubmit" buttonType="RAISED" minWidth="200.0" onClick="#handleSubmit" text="START GAME" AnchorPane.rightAnchor="0.0" />
+                  <HBox layoutX="-15.0" layoutY="-11.0" spacing="16.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <GameButton fx:id="fxClearSelection" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" onClick="#clearSelected">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icon/reset.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </GameButton>
+                        <GameButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" onClick="#selectRandom">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../icon/random.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </GameButton>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
             <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
                <children>
                   <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="400.0" prefHeight="0.0" styleClass="panel" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
