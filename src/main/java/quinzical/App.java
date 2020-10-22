@@ -10,6 +10,7 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import jfxtras.resources.JFXtrasFontRoboto;
 import quinzical.controller.View;
+import quinzical.model.User;
 import quinzical.util.Modal;
 import quinzical.util.Router;
 import quinzical.util.Sound;
@@ -41,14 +42,13 @@ public class App extends Application {
         // Load fonts
         JFXtrasFontRoboto.loadAll();
 
-        Scene scene = new Scene(container, 1200, 800);
+        Scene scene = new Scene(container, User.getInstance().getPrefWidth().intValue(), User.getInstance().getPrefHeight().intValue());
         s.setScene(scene);
 
         Router.setContainer((BorderPane) container.lookup("#content"));
-        // Modal.setModalContainer((AnchorPane) container.lookup("#ModalContainer"));
-        // Modal.hide();
+
         Router.show(View.MAIN_MENU);
-        // attachListeners();
+        attachListeners();
         s.show();
 
         Sound.getInstance().playSound("ambient");
@@ -80,15 +80,15 @@ public class App extends Application {
         return _stage;
     }
 
-    // private void attachListeners() {
-    // _stage.widthProperty().addListener((obs, oldVal, newVal) -> {
-    // User.getInstance().setPrefWidth(newVal);
-    // });
+    private void attachListeners() {
+    _stage.getScene().widthProperty().addListener((obs, oldVal, newVal) -> {
+    User.getInstance().setPrefWidth(newVal);
+    });
 
-    // _stage.heightProperty().addListener((obs, oldVal, newVal) -> {
-    // User.getInstance().setPrefHeight(newVal);
-    // });
-    // }
+    _stage.getScene().heightProperty().addListener((obs, oldVal, newVal) -> {
+    User.getInstance().setPrefHeight(newVal);
+    });
+    }
 
     public static void setState(GameState state) {
         System.out.println("setting state to " + state);

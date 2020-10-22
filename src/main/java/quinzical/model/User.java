@@ -10,10 +10,9 @@ import quinzical.util.QuestionBank;
 import quinzical.util.State;
 
 /**
- * The user model is responsible for keeping track of the users rewards. Should
- * user be singleton? might be multiple users? In this case the 'rewards' are in
- * the form of strings, but this could be extended to its own class in the
- * future
+ * The user model is reponsible for keeping track of all information related
+ * to a single user. This includes the users total score, owned items, and
+ * also some preferences such as 
  */
 public class User implements Serializable {
 
@@ -37,6 +36,10 @@ public class User implements Serializable {
 
     private ArrayList<String> ownedItems;
 
+    private Number prefWidth;
+
+    private Number prefHeight;
+
     /**
      * @return the instance of the user class
      */
@@ -58,9 +61,12 @@ public class User implements Serializable {
 
         avatar = new Avatar();
 
+        prefWidth = 1000;
+        prefHeight = 700;
+
         ownedItems = new ArrayList<String>();
 
-        //Populate unattempted questions
+        // Populate unattempted questions
         QuestionBank questionBank = QuestionBank.getInstance();
         ArrayList<Category> categories = questionBank.getCategories();
 
@@ -143,23 +149,25 @@ public class User implements Serializable {
     // Coin system
     /**
      * Adds the given amount of coins to the users coins
+     * 
      * @return the number of coins the user has
      */
-    public int addCoins(int amount){
+    public int addCoins(int amount) {
         coins += amount;
         totalCoins += amount;
 
         persist();
 
         return coins;
-        
+
     }
 
     /**
      * Removes the given amount of coins from the user.
+     * 
      * @return the number of coins the user has
-    */
-    public int setCoins(int amount){
+     */
+    public int setCoins(int amount) {
         coins = amount;
 
         persist();
@@ -169,53 +177,73 @@ public class User implements Serializable {
 
     /**
      * Returns how many coins the user currently has
+     * 
      * @return the number of coins the user currently has
      */
-    public int getCoins(){
+    public int getCoins() {
         return coins;
     }
 
     /**
      * Returns the users total coins earned
+     * 
      * @return the total number of coins the user has earned
      */
-    public int getTotalCoins(){
+    public int getTotalCoins() {
         return totalCoins;
     }
 
     /**
      * @return the avatar for the user, which can be modified
      */
-    public Avatar getAvatar(){
+    public Avatar getAvatar() {
         return avatar;
     }
 
-    public void setAvatar(Avatar a){
+    public void setAvatar(Avatar a) {
         avatar = a;
         persist();
     }
 
-    public void setforceDisableAnimation(boolean b){
+    /**
+     * Forces animation to be off for this user
+     * 
+     * @param b if true animation will be disabled
+     */
+    public void setforceDisableAnimation(boolean b) {
         avatar.setforceDisableAnimation(b);
         persist();
     }
 
-    public boolean hasForceDisableAnimation(){
+    /**
+     * 
+     * @return true if the user has animation disabled
+     */
+    public boolean hasForceDisableAnimation() {
         return avatar.hasForceDisableAnimation();
     }
 
     /**
-     * @return a reference to the list of items the user owns, represented by their item ids
+     * @return a reference to the list of items the user owns, represented by their
+     *         item ids
      */
-    public ArrayList<String> getOwnedItems(){
+    public ArrayList<String> getOwnedItems() {
         return ownedItems;
     }
 
-    public void setOwnedItems(List<String> items){
+    /**
+     * Sets the list of items the user owns
+     * 
+     * @param items a list of item ids the user owns
+     */
+    public void setOwnedItems(List<String> items) {
         ownedItems = new ArrayList<String>(items);
         persist();
     }
 
+    /**
+     * Writes the user instance to file
+     */
     private static void persist() {
         if (user == null) {
             IOManager.clearState(State.USER);
@@ -224,6 +252,22 @@ public class User implements Serializable {
         }
     }
 
+    public void setPrefWidth(Number w){
+        prefWidth = w;
+        persist();
+    }
 
+    public Number getPrefWidth(){
+        return prefWidth;
+    }
+
+    public void setPrefHeight(Number h){
+        prefHeight = h;
+        persist();
+    }
+
+    public Number getPrefHeight(){
+        return prefHeight;
+    }
 
 }
