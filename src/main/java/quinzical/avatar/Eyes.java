@@ -5,6 +5,7 @@ import quinzical.model.Avatar.Slot;
 public enum Eyes implements Cosmetic {
     SUNGLASSES("sunglasses", "Sunglasses", 100),
     GLASSES("glasses", "Glasses", 50),
+    EYEBROWS("eyebrows", "Eyebrows", 80),
     ;
 
     private String fileName;

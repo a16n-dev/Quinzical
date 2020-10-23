@@ -14,6 +14,7 @@ import quinzical.components.SelectedCategory;
 import quinzical.model.Category;
 import quinzical.model.MultiplayerGame;
 import quinzical.util.Connect;
+import quinzical.util.QuestionBank;
 import quinzical.util.Router;
 
 public class CategorySelectMultiplayer extends CategorySelect {
@@ -87,5 +88,10 @@ public class CategorySelectMultiplayer extends CategorySelect {
 
         // });
         // Router.show(View.LOBBY);
+    }
+
+    @FXML
+    public void selectRandom(){
+        selected.setAll(QuestionBank.getInstance().getRandomCategories(5, false));
     }
 }
