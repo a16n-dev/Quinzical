@@ -10,6 +10,8 @@ import java.io.Serializable;
 import java.util.UUID;
 
 import org.apache.xmlbeans.impl.common.Levenshtein;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 public class Question implements Serializable {
 
@@ -161,5 +163,30 @@ public class Question implements Serializable {
 
     public String getId(){
         return id;
+    }
+
+    public JSONObject toJSONObject() {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("difficulty", difficulty.getValue());
+            obj.put("question", question.getValue());
+            obj.put("questionPrefix", questionPrefix.getValue());
+            obj.put("answer", answer.getValue());
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return obj;
+    }
+    public static Question fromJSONObject(String raw) {
+        try {
+            // if this raises an error, there is a good chance that you need to convert the argument to a string before passing
+            JSONObject obj = new JSONObject(raw);
+            return new Question(obj.getInt("difficulty"), obj.getString("question"), obj.getString("questionPrefix"), obj.getString("answer"));
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
