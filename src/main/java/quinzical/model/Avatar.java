@@ -2,6 +2,9 @@ package quinzical.model;
 
 import java.io.Serializable;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import quinzical.avatar.Accessory;
 import quinzical.avatar.Cosmetic;
 import quinzical.avatar.Eyes;
@@ -79,5 +82,39 @@ public class Avatar implements Serializable{
 
     public boolean hasForceDisableAnimation(){
         return forceDisableAnimation;
+    }
+
+    public JSONObject toJSONObject() {
+        JSONObject obj = new JSONObject();
+        try {
+            obj.put("hat", slotHat == null ? null : slotHat.getFile());
+            obj.put("accessory", slotAccessory == null ? null : slotAccessory.getFile());
+            obj.put("eyes", slotEyes == null ? null : slotEyes.getFile());
+            
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return obj;
+    }
+    public static Avatar fromJSONObject(String raw) {
+        try {
+            // if this raises an error, there is a good chance that you need to convert the argument to a string before passing
+            JSONObject obj = new JSONObject(raw);
+
+            String hat = obj.getString("hat");
+            String accessory = obj.getString("accessory");
+            String eyes = obj.getString("eyes");
+
+            Hat slotHat = hat != null && hat.length() > 0 ? Hat.valueOf(hat) : null;
+            Accessory slotAccessory = accessory != null && accessory.length() > 0 ? Accessory.valueOf(accessory) : null;
+            Eyes slotEyes = eyes != null && eyes.length() > 0 ? Eyes.valueOf(eyes) : null;
+            
+            return new Avatar(slotHat, slotAccessory, slotEyes);
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
