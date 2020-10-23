@@ -23,10 +23,8 @@ import java.util.function.Function;
 
 import javax.naming.AuthenticationException;
 
-import com.fasterxml.jackson.core.JsonParseException;
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.JsonMappingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import javafx.application.Platform;
 import javafx.scene.control.Label;
@@ -42,8 +40,6 @@ public class UserConnect {
     private static final String BASEURL = "http://localhost:3000";
 
     private static final HttpClient client = HttpClient.newBuilder().version(Version.HTTP_1_1).build();
-
-    private static final ObjectMapper objectMapper = new ObjectMapper();
 
     /**
      * 
@@ -61,30 +57,30 @@ public class UserConnect {
         post("/register", map, (Function<HttpResponse<String>, Void>) (response -> {
             System.out.println(response.statusCode());
 
-            try {
-                if (response.statusCode() == 200) {
-                    // success
+            if (response.statusCode() == 200) {
+                // success
 
-                    // get response token
-                    Optional<String> token = response.headers().firstValue("auth-token");
-                    if(token.isPresent()){
-                        User.getInstance().setToken(token.get());
-                        User.getInstance().setName(username);
-                        Modal.hide();
-                        Platform.runLater(() -> {
-                            Router.show(View.MAIN_MENU, false);
-                        });
-                    }
-                } else if (response.statusCode() == 400) {
-                    Map<String, String> ResponseMap = objectMapper.readValue(response.body(), Map.class);
+                // get response token
+                Optional<String> token = response.headers().firstValue("auth-token");
+                if(token.isPresent()){
+                    User.getInstance().setToken(token.get());
+                    User.getInstance().setName(username);
+                    Modal.hide();
                     Platform.runLater(() -> {
-                        feedback.setText(ResponseMap.get("message"));
+                        Router.show(View.MAIN_MENU, false);
                     });
                 }
-            } catch (IOException e) {
-                Platform.runLater(() -> {
-                    feedback.setText("An error occurred");
-                });
+            } else if (response.statusCode() == 400) {
+                try {
+                    JSONObject obj = new JSONObject(response.body());
+                    String message = obj.getString("message");
+                    Platform.runLater(() -> {
+                        feedback.setText(message);
+                    });
+                }
+                catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
             return null;
         }));
@@ -107,30 +103,29 @@ public class UserConnect {
         post("/login", map, (Function<HttpResponse<String>, Void>) (response -> {
             System.out.println(response.statusCode());
             // Attempt to read response to map
-            try {
-                if (response.statusCode() == 200) {
-                    Optional<String> token = response.headers().firstValue("auth-token");
-                    if(token.isPresent()){
-                        User.getInstance().setToken(token.get());
-                        User.getInstance().setName(username);
-                        Modal.hide();
-                        Platform.runLater(() -> {
-                            Router.show(View.MAIN_MENU, false);
-                        });
-                        
-                    }
-                } else if (response.statusCode() == 400) {
-                    Map<String, String> ResponseMap = objectMapper.readValue(response.body(), Map.class);
-                    // Login failed
+            if (response.statusCode() == 200) {
+                Optional<String> token = response.headers().firstValue("auth-token");
+                if(token.isPresent()){
+                    User.getInstance().setToken(token.get());
+                    User.getInstance().setName(username);
+                    Modal.hide();
                     Platform.runLater(() -> {
-                        feedback.setText(ResponseMap.get("message"));
+                        Router.show(View.MAIN_MENU, false);
+                    });
+                    
+                }
+            } else if (response.statusCode() == 400) {
+                try {
+                    JSONObject obj = new JSONObject(response.body());
+                    String message = obj.getString("message");
+                    Platform.runLater(() -> {
+                        feedback.setText(message);
                     });
                 }
-
-            } catch (IOException e) {
-                Platform.runLater(() -> {
-                    feedback.setText("An error occurred");
-                });
+                catch (JSONException e) {
+                    e.printStackTrace();
+                }
+                // Login failed
             }
             return null;
         }));
@@ -163,19 +158,15 @@ public class UserConnect {
      * @param fn    callback function to handle the response
      */
     private static void post(String route, HashMap<String, String> body, Function<HttpResponse<String>, Void> fn) {
+        JSONObject requestBody = new JSONObject(body);
+        // String requestBody = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(body);
 
-        try {
-            String requestBody = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(body);
+        // create a request
+        var request = HttpRequest.newBuilder(URI.create(BASEURL + route)).POST(BodyPublishers.ofString(requestBody.toString()))
+                .header("Content-Type", "application/json").header("accept", "application/json").build();
 
-            // create a request
-            var request = HttpRequest.newBuilder(URI.create(BASEURL + route)).POST(BodyPublishers.ofString(requestBody))
-                    .header("Content-Type", "application/json").header("accept", "application/json").build();
-
-            // Send request
-            client.sendAsync(request, BodyHandlers.ofString()).thenApply(fn);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
+        // Send request
+        client.sendAsync(request, BodyHandlers.ofString()).thenApply(fn);
     }
 
 }

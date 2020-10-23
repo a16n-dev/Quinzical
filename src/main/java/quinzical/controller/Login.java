@@ -4,8 +4,6 @@ import java.io.IOException;
 
 import javax.naming.AuthenticationException;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
