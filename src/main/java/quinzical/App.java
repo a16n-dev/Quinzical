@@ -51,7 +51,7 @@ public class App extends Application {
         // attachListeners();
         s.show();
 
-        Sound.getInstance().playSound("ambient");
+        // Sound.getInstance().playSound("ambient");
 
         _stage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, e -> {
             
