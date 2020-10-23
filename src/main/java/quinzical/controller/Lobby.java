@@ -46,6 +46,10 @@ public class Lobby {
         connect.onMessage("GAME_OVER", e -> {
             System.out.println("ah yo man it's over");
         });
+
+        connect.onMessage("LOBBY_JOINED", e -> {
+            
+        });
     }
 
     public void onNextQuestion() {
