@@ -1,10 +1,12 @@
 package quinzical.controller;
 
+import java.util.ArrayList;
 import java.util.function.UnaryOperator;
 import java.util.regex.Pattern;
 
 import com.jfoenix.controls.JFXTextField;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -14,10 +16,12 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextFormatter.Change;
 import quinzical.model.MultiplayerGame;
+import quinzical.model.User;
 import quinzical.util.Connect;
 import quinzical.util.Modal;
 import quinzical.util.Multiplayer;
 import quinzical.util.Router;
+import quinzical.model.Member;
 
 public class JoinGameController {
 
@@ -102,13 +106,44 @@ public class JoinGameController {
 
     @FXML
     public void handleJoin() {
-        String code = getCode();
-
+        String codeString = getCode();
         // check if valid
-        if (code.length() < 5 || Pattern.matches("[a-zA-Z]+", code)) {
+        if (codeString.length() < 5 || Pattern.matches("[a-zA-Z]+", codeString)) {
             fxMessage.setText("Invalid code");
         }
+        int code = Integer.parseInt(codeString);
+        Connect connect = Connect.getInstance();
+        Member user = new Member(User.getInstance().getAvatar(), 0, User.getInstance().getName());
 
-        Multiplayer.joinLobby(code);
+        JSONObject json = new JSONObject();
+        try {
+            json.put("code", code);
+            json.put("user", user);
+        } catch (JSONException e1) {
+            e1.printStackTrace();
+        }
+
+        connect.emit("JOIN_LOBBY", json);
+        connect.onMessage("LOBBY_JOINED", args -> {
+            try {
+                JSONObject obj = new JSONObject(args[0].toString());
+                JSONArray membersRaw = obj.getJSONArray("members");
+                
+                ArrayList<Member> members = new ArrayList<Member>();
+                for (int i = 0; i < membersRaw.length(); i++) {
+                    members.add(Member.fromJSONObject(membersRaw.getString(i)));
+                }
+
+                MultiplayerGame.startGame(code, user);
+                MultiplayerGame.getInstance().updateMembers(members);
+                Router.show(View.LOBBY);
+            }
+            catch (JSONException e) {
+                e.printStackTrace();
+            }
+        });
+        connect.onMessage("INVALID_LOBBY", args -> {
+            System.out.println(": (");
+        });
     }
 }

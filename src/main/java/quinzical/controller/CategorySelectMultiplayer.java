@@ -17,8 +17,10 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import quinzical.components.SelectedCategory;
 import quinzical.model.Category;
+import quinzical.model.Member;
 import quinzical.model.MultiplayerGame;
 import quinzical.model.Question;
+import quinzical.model.User;
 import quinzical.util.Connect;
 import quinzical.util.QuestionBank;
 import quinzical.util.Router;
@@ -75,7 +77,8 @@ public class CategorySelectMultiplayer extends CategorySelect {
 
     @Override
     public void handleSubmit() {
-        MultiplayerGame.startGame(null, true);
+        Member user = new Member(User.getInstance().getAvatar(), 0, User.getInstance().getName(), true);
+        MultiplayerGame.startGame(null, user);
 
         // ArrayList<JSONObject> questions = new ArrayList<>();
         JSONArray questions = new JSONArray();
@@ -89,6 +92,7 @@ public class CategorySelectMultiplayer extends CategorySelect {
         JSONObject json = new JSONObject();
         try {
             json.put("questions", questions);
+            json.put("user", user.toJSONObject());
         }
         catch (JSONException e) {
             e.printStackTrace();

@@ -91,10 +91,16 @@ public class Lobby {
             System.out.println("ah yo man it's over");
         });
 
+<<<<<<< HEAD
         List<Member> mems = new ArrayList<Member>();
         mems.add(new Member(new Avatar(Hat.EGG, Accessory.MUSTACHE, Eyes.GLASSES), 69, true));
 
         renderAvatars(mems);
+=======
+        connect.onMessage("LOBBY_JOINED", e -> {
+            
+        });
+>>>>>>> 66ef0100af2f08a03537a8475346c82606e59d0f
     }
 
     public void onNextQuestion() {

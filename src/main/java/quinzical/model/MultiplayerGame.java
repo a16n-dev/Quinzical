@@ -23,12 +23,16 @@ public class MultiplayerGame extends QuinzicalGame {
         return instance;
     }
     
-    public static void startGame(Integer code, boolean isHost) {
+    public static void startGame(Integer code, Member user) {
         instance = new MultiplayerGame();
         instance.code = code;
-        instance.isHost = isHost;
-        instance.local = new Member(User.getInstance().getAvatar(), 0, isHost);
+        instance.isHost = user.isHost();
+        instance.local = user;
         instance.members.add(instance.local);
+    }
+
+    public void updateMembers(ArrayList<Member> members) {
+        this.members = members;
     }
 
     public void setCode(int code) {
