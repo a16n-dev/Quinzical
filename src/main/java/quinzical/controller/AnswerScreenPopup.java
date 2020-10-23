@@ -10,6 +10,7 @@ import javafx.scene.image.ImageView;
 import quinzical.App;
 import quinzical.App.GameState;
 import quinzical.model.Game;
+import quinzical.model.MultiplayerGame;
 import quinzical.model.PracticeGame;
 import quinzical.model.QuinzicalGame;
 import quinzical.model.QuinzicalGame.Status;
@@ -48,9 +49,12 @@ public class AnswerScreenPopup {
                 fxButton.setText("VIEW REWARDS");
             }
                
-        } else {
+        } else if (App.getState() == GameState.PRACTICE) {
             status = PracticeGame.getInstance().getStatus();
             game = PracticeGame.getInstance();
+        } else {
+            status = MultiplayerGame.getInstance().getStatus();
+            game = MultiplayerGame.getInstance();
         }
 
         if(status == Status.SUCCESS){
@@ -65,6 +69,9 @@ public class AnswerScreenPopup {
             }else if (App.getState() == GameState.PRACTICE){
                 fxAboveText.setText("Current streak:");
                 fxStatusText.setText(Integer.toString(PracticeGame.getInstance().getStreak()));
+            }
+            else if (App.getState() == GameState.MULTIPLAYER) {
+                fxAboveText.setText("");
             }
         } else if (status == Status.FAILURE){
             fxSymbol.setImage(ImageLoader.loadImage("images/feedback_incorrect.png"));

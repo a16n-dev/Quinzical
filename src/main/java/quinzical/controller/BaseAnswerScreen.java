@@ -88,7 +88,7 @@ public abstract class BaseAnswerScreen {
         timer = Timer.getInstance();
         timer.set(fxProgressLabel, fxProgressLeft, fxProgressRight, 30);
         timer.start(e -> {
-            forceWrongAnswer(question, true);
+            timerExpire();
         });
 
         Platform.runLater(new Runnable() {
@@ -109,7 +109,6 @@ public abstract class BaseAnswerScreen {
     private boolean hasTypoed = false;
 
     private void submit() {
-
         String userAnswer = fxInput.getText();
         Answer answer = question.checkAnswer(userAnswer);
 
@@ -127,6 +126,10 @@ public abstract class BaseAnswerScreen {
                 fxFeedback.setText("Typo");
             }
         }
+    }
+
+    protected void timerExpire() {
+        forceWrongAnswer(question, true);
     }
 
     public void showAlert(EventHandler<Event> event) {
