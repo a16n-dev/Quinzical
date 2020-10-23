@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import com.jfoenix.controls.JFXMasonryPane;
 
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.collections.FXCollections;
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.layout.Region;
 import quinzical.components.CategoryListItem;
+import quinzical.components.GameButton;
 import quinzical.model.Category;
 import quinzical.util.QuestionBank;
 
@@ -22,6 +24,9 @@ public abstract class CategorySelect {
     @FXML
     private JFXMasonryPane fxUserCategoryContainer;
 
+    @FXML
+    private GameButton fxClearSelection;
+
     private ObservableList<Category> selectedCategories;
 
     private BooleanProperty disableSelection;
@@ -29,6 +34,10 @@ public abstract class CategorySelect {
     public void initialize() {
         disableSelection = new SimpleBooleanProperty();
         selectedCategories = FXCollections.observableArrayList();
+
+        fxClearSelection.disableProperty().bind(Bindings.createBooleanBinding(() -> {
+            return selectedCategories.size() == 0;
+        }, selectedCategories));
 
         // Retrieve list of all categories as an arrayList
         ArrayList<Category> categories = QuestionBank.getInstance().getCategories();
@@ -57,5 +66,10 @@ public abstract class CategorySelect {
 
     @FXML
     public abstract void handleSubmit();
+
+    @FXML
+    public void clearSelected(){
+        selectedCategories.clear();
+    }
 
 }

@@ -19,6 +19,7 @@ public enum Eyes implements Cosmetic {
         displayName = name;
     }
 
+    //Getters and setters
     @Override
     public String getFile() {
         return fileName;

@@ -6,6 +6,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import quinzical.util.Modal;
+import quinzical.util.UserConnect;
 
 public class Signup {
     
@@ -44,7 +45,7 @@ public class Signup {
         } else if (!password.equals(passwordRepeat)){
             fxMessage.setText("Passwords do not match");   
         }else {
-            //Input is valid
+            UserConnect.signUp(username, password, fxMessage);
         }
     }
 

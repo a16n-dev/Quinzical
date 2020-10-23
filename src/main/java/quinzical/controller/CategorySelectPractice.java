@@ -15,6 +15,7 @@ import javafx.scene.layout.Region;
 import quinzical.components.SelectedCategory;
 import quinzical.model.Category;
 import quinzical.model.PracticeGame;
+import quinzical.util.QuestionBank;
 import quinzical.util.Router;
 
 public class CategorySelectPractice extends CategorySelect{
@@ -81,5 +82,10 @@ public class CategorySelectPractice extends CategorySelect{
     private void setContent(Node node){
         fxSelected.add(node, 0, 0);
         GridPane.setColumnSpan(node, 5);
+    }
+
+    @FXML
+    public void selectRandom(){
+        selected.setAll(QuestionBank.getInstance().getRandomCategories(1, false));
     }
 }

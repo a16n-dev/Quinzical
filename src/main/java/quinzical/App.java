@@ -8,12 +8,11 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import jfxtras.resources.JFXtrasFontRoboto;
 import quinzical.controller.View;
+import quinzical.model.User;
 import quinzical.util.Modal;
 import quinzical.util.Router;
 import quinzical.util.Sound;
-import javafx.scene.input.MouseEvent;
 
 public class App extends Application {
 
@@ -38,23 +37,22 @@ public class App extends Application {
         // Setup router
         StackPane container = (StackPane) Router.loadFXML("controller/GameContainer.fxml");
 
-        // Load fonts
-        JFXtrasFontRoboto.loadAll();
-
-        Scene scene = new Scene(container, 1200, 800);
+        Scene scene = new Scene(container, User.getInstance().getPrefWidth().intValue(),
+                User.getInstance().getPrefHeight().intValue());
         s.setScene(scene);
 
         Router.setContainer((BorderPane) container.lookup("#content"));
-        // Modal.setModalContainer((AnchorPane) container.lookup("#ModalContainer"));
-        // Modal.hide();
+
         Router.show(View.MAIN_MENU);
-        // attachListeners();
         s.show();
 
         // Sound.getInstance().playSound("ambient");
 
-        _stage.getScene().getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, e -> {
-            
+        scene.getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, e -> {
+
+            // When user wants to quit, save their preferred window size
+            User.getInstance().setPrefHeight(scene.heightProperty().get());
+            User.getInstance().setPrefWidth(scene.widthProperty().get());
 
             if (gameState == GameState.GAME) {
                 e.consume();
@@ -75,23 +73,7 @@ public class App extends Application {
         launch(args);
     }
 
-    // Helper functions to expose app data to controllers
-    public Stage getStage() {
-        return _stage;
-    }
-
-    // private void attachListeners() {
-    // _stage.widthProperty().addListener((obs, oldVal, newVal) -> {
-    // User.getInstance().setPrefWidth(newVal);
-    // });
-
-    // _stage.heightProperty().addListener((obs, oldVal, newVal) -> {
-    // User.getInstance().setPrefHeight(newVal);
-    // });
-    // }
-
     public static void setState(GameState state) {
-        System.out.println("setting state to " + state);
         gameState = state;
     }
 

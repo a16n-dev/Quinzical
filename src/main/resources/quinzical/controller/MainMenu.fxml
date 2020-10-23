@@ -215,7 +215,7 @@
             <Pane maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
          </children>
       </HBox>
-      <HBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="16.0" style="-fx-background-color: rgba(0,0,0,0.2);" styleClass="panel" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+      <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="16.0" style="-fx-background-color: rgba(0,0,0,0.2);" styleClass="panel" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
          <children>
             <GameButton buttonType="RAISED" onClick="#showSettings" styleClass="menuButton" text="SETTINGS">
                <graphic>
@@ -243,6 +243,11 @@
                   </ImageView>
                </graphic></GameButton>
             <Pane HBox.hgrow="ALWAYS" />
+            <Label fx:id="fxUserStatus" text="Label" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
             <GameButton fx:id="fxAccountButton" buttonType="RAISED" onClick="#handleAccountButtonPress" styleClass="menuButton" text="NOT CONNECTED">
                <graphic>
                   <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">

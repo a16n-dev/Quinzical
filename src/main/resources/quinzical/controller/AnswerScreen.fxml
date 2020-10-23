@@ -178,7 +178,7 @@
                   </HBox>
                   <StackPane alignment="CENTER_LEFT" maxWidth="500.0">
                      <children>
-                        <JFXTextField fx:id="fxInput" focusColor="#ce725b" maxWidth="500.0" onClick="#onSubmit" style="-fx-text-fill: white; -fx-background-color: rgba(0,0,0,0.2);" unFocusColor="WHITE">
+                        <JFXTextField fx:id="fxInput" focusColor="#ce725b" maxWidth="500.0" onAction="#onSubmit" style="-fx-text-fill: white; -fx-background-color: rgba(0,0,0,0.2);" unFocusColor="WHITE">
                            <padding>
                               <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                            </padding>
@@ -225,8 +225,8 @@
                </padding>
             </VBox>
             <Label fx:id="fxFeedback" text="Typo" visible="false" />
-            <GameButton fx:id="fxSubmit" onAction="#submit" text="SUBMIT" />
-            <GameButton fx:id="fxUnsure" text="DON'T KNOW" />
+            <GameButton fx:id="fxSubmit" onAction="#onSubmit" text="SUBMIT" />
+            <GameButton fx:id="fxUnsure" onAction="#onUnsure" text="DON'T KNOW" />
          </children>
          <padding>
             <Insets left="64.0" right="64.0" />
