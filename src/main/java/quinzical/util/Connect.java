@@ -5,6 +5,8 @@ import java.net.URISyntaxException;
 import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
+import javafx.application.Platform;
+import quinzical.controller.View;
 
 public class Connect {
     private static Connect instance;
@@ -14,23 +16,18 @@ public class Connect {
     public static Connect getInstance() {
         if (instance == null) {
             instance = new Connect();
+            instance.makeConnection();
         }
         return instance;
     }
 
     private Socket socket;
 
-    public void forceConnect() {
+    public void forceReconnect() {
         if (socket != null) {
             socket.disconnect();
         }
         makeConnection();
-    }
-    public Socket getSocket() {
-        if (socket == null) {
-            makeConnection();
-        }
-        return socket;
     }
 
     private void makeConnection() {
@@ -54,5 +51,23 @@ public class Connect {
             // TODO Auto-generated catch block
             e1.printStackTrace();
         }
+    }
+
+    public void onMessage(String type, Message message) {
+        socket.off(type);
+        socket.on(type, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                Platform.runLater(new Runnable() {
+                    @Override
+                    public void run() {
+                        message.run(args);
+                    }
+                });
+            }
+        });
+    }
+    public void emit(String type, Object data) {
+        socket.emit(type, data);
     }
 }
