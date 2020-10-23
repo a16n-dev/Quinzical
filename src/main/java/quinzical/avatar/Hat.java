@@ -7,6 +7,7 @@ public enum Hat implements Cosmetic {
     FROG("frog", "Frog Hat", 500),
     STRAW_HAT("straw_hat", "Straw Hat", 200),
     ROAD_CONE("road_cone", "Road Cone", 150),
+    EGG("egg", "Egg", 130),
     ;
 
     private String fileName;
