@@ -4,15 +4,19 @@ import java.util.ArrayList;
 
 public class MultiplayerGame extends QuinzicalGame {
     private ArrayList<Member> members;
-    private String host;
+    private boolean isHost;
     
     private Integer code;
     private Member local;
+    private boolean hasStarted;
+    private boolean roundOver;
     
     private static MultiplayerGame instance;
 
     private MultiplayerGame() {
         members = new ArrayList<Member>();
+        hasStarted = false;
+        roundOver = true;
     }
     
     public static MultiplayerGame getInstance() {
@@ -22,6 +26,7 @@ public class MultiplayerGame extends QuinzicalGame {
     public static void startGame(Integer code, boolean isHost) {
         instance = new MultiplayerGame();
         instance.code = code;
+        instance.isHost = isHost;
         instance.local = new Member(User.getInstance().getAvatar(), 0, isHost);
         instance.members.add(instance.local);
     }
@@ -32,11 +37,27 @@ public class MultiplayerGame extends QuinzicalGame {
     public int getCode() {
         return code;
     }
+    public boolean isHost() {
+        return isHost;
+    }
     public int getLocalScore() {
         return local.getScore();
     }
     public void adjustLocalScore(int score) {
         local.setScore(local.getScore() + score);
+    }
+    public boolean hasStarted() {
+        return hasStarted;
+    }
+
+    public void setCurrentQuestion(Question question) {
+        super.setCurrentQuestion(question);
+    }
+    public void setRoundOver(boolean roundOver) {
+        this.roundOver = roundOver;
+    }
+    public boolean mayProgress() {
+        return roundOver && isHost;
     }
 }
 

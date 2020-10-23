@@ -1,8 +1,15 @@
 package quinzical.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Optional;
+import java.util.stream.Stream;
+
 import org.json.*;
 
 import io.socket.emitter.Emitter;
+import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -13,6 +20,7 @@ import javafx.scene.layout.Region;
 import quinzical.components.SelectedCategory;
 import quinzical.model.Category;
 import quinzical.model.MultiplayerGame;
+import quinzical.model.Question;
 import quinzical.util.Connect;
 import quinzical.util.QuestionBank;
 import quinzical.util.Router;
@@ -70,26 +78,38 @@ public class CategorySelectMultiplayer extends CategorySelect {
     @Override
     public void handleSubmit() {
         MultiplayerGame.startGame(null, true);
-        Connect.getInstance().forceConnect();
-        Connect.getInstance().getSocket().emit("CREATE_LOBBY", MultiplayerGame.getInstance());
-        Connect.getInstance().getSocket().on("LOBBY_ID", e -> {
+
+        // ArrayList<JSONObject> questions = new ArrayList<>();
+        JSONArray questions = new JSONArray();
+
+        for (Category category : selected) {
+            for (Question question : category.getQuestions()) {
+                questions.put(question.toJSONObject());
+            }
+        }
+
+        JSONObject json = new JSONObject();
+        try {
+            json.put("questions", questions);
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        Connect connect = Connect.getInstance();
+        // maybe we want to send the questions a bit later once the user has decided on the number of questions and stuff
+        connect.emit("CREATE_LOBBY", json);
+        connect.onMessage("LOBBY_ID", args -> {
             try {
-                JSONObject obj = new JSONObject(e[0].toString());
+                JSONObject obj = new JSONObject(args[0].toString());
                 int code = obj.getInt("code");
                 MultiplayerGame.getInstance().setCode(code);
             } catch (JSONException err) {
                 err.printStackTrace();
             }
-            // Router.show(View.LOBBY)
+            Router.show(View.LOBBY);
         });
-        // Connect.getInstance().getSocket().on("LOBBY_ID", e -> {
-        //     JSONObject obj = (JSONObject) e[0];
-        //     System.out.println(obj);
-
-        // });
-        // Router.show(View.LOBBY);
     }
-
     @FXML
     public void selectRandom(){
         selected.setAll(QuestionBank.getInstance().getRandomCategories(5, false));
