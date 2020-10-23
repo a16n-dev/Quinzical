@@ -107,7 +107,7 @@
                   </VBox>
                   <VBox spacing="8.0" styleClass="panel">
                      <children>
-                        <Label text="MY STUFF" textFill="WHITE">
+                        <Label text="REWARDS" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -122,6 +122,15 @@
                                        </image>
                                     </ImageView>
                                  </graphic></GameButton>
+                              <GameButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onClick="#handleViewTrophyCase" styleClass="menuButton" text="SHOP" HBox.hgrow="ALWAYS">
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../icon/shop.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </GameButton>
                            </children>
                         </HBox>
                         

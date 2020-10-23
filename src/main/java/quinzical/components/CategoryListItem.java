@@ -4,6 +4,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import quinzical.model.Category;
+import quinzical.model.User;
 import quinzical.util.Router;
 
 import java.io.IOException;
@@ -31,6 +32,11 @@ public class CategoryListItem {
      * the selection
      */
     private BooleanProperty disabled;
+
+    /**
+     * 
+     */
+    private boolean locked;
 
     /**
      * A reference to the list of selected categories that listeners can be
@@ -82,6 +88,7 @@ public class CategoryListItem {
         categories = selectedCategories;
         disabled = isDisabled;
         category = categoryName;
+        locked = !User.getInstance().getInternationalUnlocked() && categoryName.getName().equals("International");
         fxName.textProperty().set(category.getName());
         fxCount.textProperty().set(Integer.toString(category.getQuestions().size()));
 
@@ -92,7 +99,7 @@ public class CategoryListItem {
                 setStyle(Style.SELECTED);
             } else {
                 isSelected = false;
-                setStyle(Style.DEFAULT);
+                setStyle(locked ? Style.DISABLED : Style.DEFAULT);
             }
         }));
 
@@ -102,7 +109,7 @@ public class CategoryListItem {
             }
         });
 
-        if (category.isLocked()) {
+        if (locked) {
             fxLock.setVisible(true);
             setStyle(Style.DISABLED);
         } else {
@@ -116,7 +123,7 @@ public class CategoryListItem {
      */
     @FXML
     public void handleButtonPress() {
-        if (!(disabled.get() || isSelected || category.isLocked())) {
+        if (!(disabled.get() || isSelected || locked)) {
             categories.add(category);
         } else if (isSelected) {
             categories.remove(category);

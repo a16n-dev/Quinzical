@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import quinzical.model.Category;
 import quinzical.model.Question;
+import quinzical.model.User;
 
 /**
  * Helper class which serves as a link between the IOManager reading questions
@@ -86,12 +87,12 @@ public class QuestionBank {
      *                        questions must be unique
      * @return
      */
-    public ArrayList<Category> getRandomCategories(int amount, boolean allowDuplicates) throws IllegalArgumentException {
+    public List<Category> getRandomCategories(int amount, boolean allowDuplicates) throws IllegalArgumentException {
         // Get arraylist of categories
 
         // Get the list of categories and create a copy of the array so the original is
         // not modified
-        ArrayList<Category> categoryList = new ArrayList<Category>(getCategories());
+        List<Category> categoryList = new ArrayList<Category>(getCategories());
 
         // Throw an error if there are not enough unique questions to match the amount
         // specified
@@ -99,6 +100,13 @@ public class QuestionBank {
             throw new IllegalArgumentException(categoryList + " only has " + categoryList.size() + " questions but "
                     + amount + " was requested. Either add more questions to this category or allow duplicates");
         }
+
+        //If international is locked then remove it from options
+        if(!User.getInstance().getInternationalUnlocked()){
+            categoryList = categoryList.stream().filter(p -> !p.getName().equals("International"))
+            .collect(Collectors.toList());
+        }
+
 
         ArrayList<Category> results = new ArrayList<Category>();
 
