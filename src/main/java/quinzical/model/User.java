@@ -40,6 +40,13 @@ public class User implements Serializable {
 
     private Number prefHeight;
 
+    private String name;
+
+    /**
+     * This is the token that indicates if the user is logged in or not
+     */
+    private String token;
+
     /**
      * @return the instance of the user class
      */
@@ -268,6 +275,23 @@ public class User implements Serializable {
 
     public Number getPrefHeight(){
         return prefHeight;
+    }
+
+    public void setToken(String authToken){
+        token = authToken;
+        persist();
+    }
+
+    public String getToken(){
+        return token;
+    }
+
+    public void setName(String username){
+        name = username;
+    }
+
+    public String getName(){
+        return name;
     }
 
 }

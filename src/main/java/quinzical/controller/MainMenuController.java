@@ -40,12 +40,8 @@ public class MainMenuController {
 	@FXML
 	private Button fxLeaderboardButton;
 
-	/**
-	 * Represents if the user is logged into an account or not
-	 */
-	//TODO: Replace this with real logic
-	private BooleanProperty loggedIn = new SimpleBooleanProperty(true);
-
+	@FXML
+	private Label fxUserStatus;
 
 	/**
 	 * Field to represent if the game has a connection to the internet. If online is false, multiplayer and other buttons are disabled.
@@ -67,7 +63,6 @@ public class MainMenuController {
 		}
 
 		
-
 		//Load avatar
 		Avatar avatar = user.getAvatar();
 		AvatarFactory avatarFactory = new AvatarFactory(fxAvatarSlot, 300, true);
@@ -77,7 +72,8 @@ public class MainMenuController {
 		fxCoinDisplay.setText(Integer.toString(user.getCoins()));
 
 		//Show correct button text for login/logout button
-		fxAccountButton.textProperty().bind(Bindings.createStringBinding(() -> {return (loggedIn.get() ? "LOGOUT" : "LOGIN");}, loggedIn));
+		fxAccountButton.setText(user.getToken() == null ? "LOGIN" : "LOGOUT");
+		fxUserStatus.setText(user.getToken() == null ? "Not logged in" : "Logged in as " + user.getName());
 
 		//Bind online dependent buttons to be disabled when offline
 		fxJoinGameButton.disableProperty().bind(online.not());
@@ -116,8 +112,6 @@ public class MainMenuController {
 	@FXML
 	public void handleViewTrophyCase() {
 		Router.show(View.TROPHY_CASE);
-		//TODO: delete this stupid test code
-		user.addCoins(500);
 	}
 	
 	@FXML
@@ -133,25 +127,6 @@ public class MainMenuController {
 	@FXML
 	public void handleViewShop() {
 		Router.show(View.SHOP);
-	}
-	
-	@FXML
-	public void handleResetProgress() {
-		String alertContent = (user.getInternationalUnlocked()) ? " and lock the international questions." : ".";
-
-		Alert alert = new Alert(AlertType.CONFIRMATION);
-		alert.setTitle("Reset Progress");
-		alert.setHeaderText("Are you sure you want to reset your progress?");
-		alert.setContentText("This will remove all your rewards" + alertContent);
-
-		Optional<ButtonType> result = alert.showAndWait();
-		if (result.get() == ButtonType.OK) {
-			user.clearRewards();
-			user.setInternational(false);
-						
-			// Game.clearGame();
-			// Need to refresh main menu?
-		}				
 	}
 
 	@FXML
@@ -176,19 +151,16 @@ public class MainMenuController {
 
 	@FXML
 	public void handleAccountButtonPress(){
-		//TODO: Add logic here to check if user is logged in
-		if(loggedIn.get()){
-			//If logged in
-
-			//Show logout confirmation dialog
+		if(user.getToken() != null){
+			//If logged in show logout confirmation dialog to logout
 			Modal.confirmation("Logout", "Are you sure you want to logout?", e -> {
-				//TODO: Add logic to logout the user here
-				loggedIn.set(false);
+				//Logout the user
+				User.getInstance().setToken(null);
+				User.getInstance().setName(null);
+				fxAccountButton.setText("LOGIN");
+				fxUserStatus.setText("Not logged in");
 			});
-
 		} else {
-			//If not logged in
-
 			//If not logged in show login box
 			Modal.show(View.MODAL_LOGIN);
 		}

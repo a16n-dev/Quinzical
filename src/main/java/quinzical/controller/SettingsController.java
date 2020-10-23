@@ -2,6 +2,7 @@ package quinzical.controller;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
@@ -83,7 +84,18 @@ public class SettingsController {
 
     public void handleClose(){
         Modal.hide();
-
     }
+
+    @FXML
+	public void handleResetProgress() {
+		String alertContent = (User.getInstance().getInternationalUnlocked()) ? " and lock the international questions." : ".";
+
+        Modal.confirmation("Reset Progress", "Are you sure you want to reset your progress? This will remove all your rewards" + alertContent, e -> {
+
+			User.getInstance().clearRewards();
+			User.getInstance().setInternational(false);
+        });
+    }				
+	
 }
 

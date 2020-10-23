@@ -8,7 +8,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
-import jfxtras.resources.JFXtrasFontRoboto;
 import quinzical.controller.View;
 import quinzical.model.User;
 import quinzical.util.Modal;
@@ -37,9 +36,6 @@ public class App extends Application {
 
         // Setup router
         StackPane container = (StackPane) Router.loadFXML("controller/GameContainer.fxml");
-
-        // Load fonts
-        JFXtrasFontRoboto.loadAll();
 
         Scene scene = new Scene(container, User.getInstance().getPrefWidth().intValue(),
                 User.getInstance().getPrefHeight().intValue());

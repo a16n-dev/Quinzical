@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import quinzical.components.GameButton?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
+<?import quinzical.components.GameButton?>
 
 <AnchorPane fx:id="modalContent" minHeight="300.0" minWidth="500.0" style="-fx-background-color: rgba(0,0,0,0.4);" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.Signup">
    <children>
@@ -27,49 +30,57 @@
                   </Label>
                </children>
             </Pane>
-            <HBox>
+            <VBox VBox.vgrow="ALWAYS">
                <children>
-                  <Label text="Username" textFill="WHITE">
+                  <GridPane vgap="16.0">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="150.0" minWidth="10.0" prefWidth="100.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" maxWidth="250.0" minWidth="10.0" prefWidth="250.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                     <children>
+                        <Label text="Username" textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="password" textFill="WHITE" GridPane.rowIndex="1">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <Label text="Repeat Password" textFill="WHITE" GridPane.rowIndex="2">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="fxPasswordRepeat" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <TextField fx:id="fxUsername" GridPane.columnIndex="1" />
+                        <PasswordField fx:id="fxPassword" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                     </children>
+                  </GridPane>
+                  <Label fx:id="fxMessage" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="fxUsername" />
+                  <Pane VBox.vgrow="ALWAYS" />
+                  <HBox alignment="TOP_RIGHT" spacing="16.0">
+                     <children>
+                        <GameButton fx:id="fxCancel" buttonType="RAISED" onClick="#handleCancel" text="CANCEL" />
+                        <GameButton fx:id="fxLogin" buttonType="RAISED" onClick="#handleRedirectLogin" text="LOGIN" />
+                        <GameButton fx:id="fxSubmit" buttonType="RAISED" onClick="#handleSubmit" text="CREATE ACCOUNT" />
+                     </children>
+                  </HBox>
                </children>
-            </HBox>
-            <HBox>
-               <children>
-                  <Label text="password" textFill="WHITE">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <PasswordField fx:id="fxPassword" />
-               </children>
-            </HBox>
-            <HBox>
-               <children>
-                  <Label text="Repeat Password" textFill="WHITE">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </Label>
-                  <PasswordField fx:id="fxPasswordRepeat" />
-               </children>
-            </HBox>
-            <Label fx:id="fxMessage" textFill="WHITE">
-               <font>
-                  <Font size="18.0" />
-               </font>
-            </Label>
-            <Pane VBox.vgrow="ALWAYS" />
-            <HBox alignment="TOP_RIGHT" spacing="16.0">
-               <children>
-                  <GameButton fx:id="fxCancel" buttonType="RAISED" onClick="#handleCancel" text="CANCEL" />
-                  <GameButton fx:id="fxLogin" buttonType="RAISED" onClick="#handleRedirectLogin" text="LOGIN" />
-                  <GameButton fx:id="fxSubmit" buttonType="RAISED" onClick="#handleSubmit" text="CREATE ACCOUNT" />
-               </children>
-            </HBox>
+               <VBox.margin>
+                  <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+               </VBox.margin>
+            </VBox>
          </children>
       </VBox>
    </children>
