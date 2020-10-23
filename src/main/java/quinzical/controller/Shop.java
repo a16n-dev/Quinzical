@@ -25,6 +25,7 @@ import quinzical.avatar.Accessory;
 import quinzical.avatar.Cosmetic;
 import quinzical.avatar.Eyes;
 import quinzical.avatar.Hat;
+import quinzical.components.GameButton;
 import quinzical.components.ShopListItem;
 import quinzical.model.Avatar;
 import quinzical.model.User;
@@ -57,7 +58,7 @@ public class Shop {
     private JFXButton fxResetButton;
 
     @FXML
-    private JFXButton fxActionButton;
+    private GameButton fxActionButton;
 
     @FXML
     private ImageView fxAccessorySlot;
@@ -178,12 +179,12 @@ public class Shop {
                     if (avatar.isEquipped(c)) {
                         // if equipped
                         fxActionButton.setText("Unequip " + c.getName());
-                        fxActionButton.setOnAction(e -> unequip(c));
+                        fxActionButton.setOnClick(e -> unequip(c));
 
                     } else {
                         // if not equipped
                         fxActionButton.setText("Equip " + c.getName());
-                        fxActionButton.setOnAction(e -> equip(c));
+                        fxActionButton.setOnClick(e -> equip(c));
                     }
 
                 } else {
@@ -193,7 +194,7 @@ public class Shop {
                         // If user can afford
                         fxActionButton.setText("Purchase " + c.getName() + " for $" + c.getPrice());
                         fxActionButton.setDisable(false);
-                        fxActionButton.setOnAction(e -> purchaseItem(c));
+                        fxActionButton.setOnClick(e -> purchaseItem(c));
 
                     } else {
                         // If user is poor

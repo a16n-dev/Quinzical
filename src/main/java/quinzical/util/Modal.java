@@ -12,6 +12,7 @@ import javafx.scene.control.DialogEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import quinzical.components.FrostPane;
+import quinzical.controller.Alert;
 import quinzical.controller.ConfirmController;
 import quinzical.controller.View;
 
@@ -78,6 +79,22 @@ public class Modal {
                     hide();
                     event.handle(e);
                 });
+            }
+            makeDialog(content, 500, 300);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void alert(String title, String message) {
+        FXMLLoader loader = Router.manualLoad(View.MODAL_ALERT.getCenter());
+
+        try {
+            Region content = loader.load();
+
+            Alert controller = loader.getController();
+            if (controller != null) {
+                controller.init(title, message);
             }
             makeDialog(content, 500, 300);
         } catch (IOException e) {

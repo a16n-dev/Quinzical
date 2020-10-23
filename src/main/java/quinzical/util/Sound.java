@@ -58,7 +58,9 @@ public class Sound implements Serializable{
 
     public void setVolume(double v){
         musicVolume = v;
-        mp.setVolume(v);
+        if(mp != null){
+            mp.setVolume(v);
+        }
         persist();
     }
 

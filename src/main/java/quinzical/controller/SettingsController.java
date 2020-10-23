@@ -39,8 +39,8 @@ public class SettingsController {
 
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                TTS.getInstance().setSpeed(newValue.intValue());
-                fxLabelSpeed.setText(Math.round(((float)newValue.intValue() / 160) * 100) + "%");
+                TTS.getInstance().setSpeed((int)(newValue.intValue()/ 1.6));
+                fxLabelSpeed.setText(newValue.intValue() + "%");
             }
         });
 
@@ -70,7 +70,7 @@ public class SettingsController {
             }
         });
 
-        fxSliderSpeed.setValue(TTS.getInstance().getSpeed());
+        fxSliderSpeed.setValue(TTS.getInstance().getSpeed() * 1.6);
         fxSliderVolume.setValue(TTS.getInstance().getVolume());
         fxMusicVolume.setValue(Sound.getInstance().getVolume() * 100);
         fxEffectVolume.setValue(Sound.getInstance().getEffectVolume() * 100);

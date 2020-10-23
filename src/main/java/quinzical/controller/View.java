@@ -48,6 +48,7 @@ public enum View {
     MODAL_SIGNUP("controller/Signup.fxml", null, GameState.MODAL),
     MODAL_HELP("controller/Help.fxml", null, GameState.MODAL),
     MODAL_ANSWER_FEEDBACK("controller/AnswerScreenPopup.fxml", null, GameState.MODAL),
+    MODAL_ALERT("controller/Alert.fxml",null, GameState.MODAL),
 	;
 
     private final String center;

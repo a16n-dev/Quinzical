@@ -46,7 +46,7 @@ public class App extends Application {
         Router.show(View.MAIN_MENU);
         s.show();
 
-        // Sound.getInstance().playSound("ambient");
+        Sound.getInstance().playSound("ambient");
 
         scene.getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, e -> {
 
@@ -64,6 +64,8 @@ public class App extends Application {
                                 System.out.println(e1.getStackTrace());
                             }
                         });
+            } else {
+                Platform.exit();
             }
         });
 

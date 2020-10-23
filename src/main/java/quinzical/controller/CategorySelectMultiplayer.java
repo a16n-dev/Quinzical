@@ -8,8 +8,6 @@ import java.util.stream.Stream;
 
 import org.json.*;
 
-import io.socket.emitter.Emitter;
-import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -47,7 +45,7 @@ public class CategorySelectMultiplayer extends CategorySelect {
 
         fxSubmit.disableProperty().bind(getDisabled().not());
 
-        fxSubmit.setText("Create lobby");
+        fxSubmit.setText("CREATE LOBBY");
 
         for (int i = selected.size(); i < 5; i++) {
             fxSelected.add(SelectedCategory.createTemplate(), i, 0);
