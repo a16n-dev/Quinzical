@@ -19,7 +19,7 @@
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="panel">
                      <children>
                         <Label text="Your invite code is" textFill="WHITE" />
-                        <Label text="AAAAA" textFill="WHITE" />
+                        <Label fx:id="fxCode" text="AAAAA" textFill="WHITE" />
                      </children>
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" styleClass="panel">
@@ -64,7 +64,7 @@
                   </VBox>
                </children>
             </HBox>
-            <GameButton buttonType="RAISED" text="DO A THING!" textFill="WHITE" />
+            <GameButton fx:id="fxNextQuestion" buttonType="RAISED" text="DO A THING!" textFill="WHITE" onClick="#onNextQuestion" />
          </children>
       </VBox>
    </children>

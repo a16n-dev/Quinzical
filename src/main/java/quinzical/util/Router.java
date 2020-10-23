@@ -68,6 +68,10 @@ public class Router {
         show(fxml, true);
     }
 
+    public static boolean currentViewIs(View view) {
+        return history.peekLast() == view;
+    }
+
     /**
      * Sets the container where content should be placed
      * @param p A borderPane which should contain the content to display
