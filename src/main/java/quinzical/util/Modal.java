@@ -11,10 +11,10 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.DialogEvent;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
-import quinzical.components.FrostPane;
-import quinzical.controller.Alert;
-import quinzical.controller.ConfirmController;
 import quinzical.controller.View;
+import quinzical.controller.component.FrostPane;
+import quinzical.controller.modal.Alert;
+import quinzical.controller.modal.Confirm;
 
 public class Modal {
 
@@ -73,7 +73,7 @@ public class Modal {
         try {
             Region content = loader.load();
 
-            ConfirmController controller = loader.getController();
+            Confirm controller = loader.getController();
             if (controller != null) {
                 controller.init(title, message, e -> {
                     hide();

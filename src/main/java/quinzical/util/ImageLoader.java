@@ -9,17 +9,9 @@ public class ImageLoader {
     private static HashMap<String, Image> imageCache = new HashMap<String, Image>();
 
     public static Image loadImage(String path) {
-        String ext = path.substring(path.lastIndexOf("."));
-        if(ext.equals(".gif") && false){
-            if(imageCache.get(path) == null){
-                Image image = new Image(App.class.getResource(path).toString(), true);
-                imageCache.put(path, image);
-            }
-            return imageCache.get(path);
-        } else {
+        String ext = path.substring(path.lastIndexOf("."));            
             Image image = new Image(App.class.getResource(path).toString(), true);
             return image;
         }
-
     }
-}
+

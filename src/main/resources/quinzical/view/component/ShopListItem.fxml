@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<VBox fx:id="fxBase" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="80.0" minWidth="100.0" prefHeight="80.0" prefWidth="100.0" spacing="8.0" styleClass="shopListItem" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.component.ShopListItem">
+   <children>
+      <StackPane>
+         <children>
+            <ImageView fx:id="fxImage" fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true" />
+            <Label fx:id="fxPrice" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+         </children>
+      </StackPane>
+      <Label fx:id="fxText" text="Label" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+   </children>
+</VBox>

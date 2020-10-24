@@ -6,7 +6,6 @@ import io.socket.client.IO;
 import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import javafx.application.Platform;
-import quinzical.controller.View;
 import quinzical.model.User;
 
 public class Connect {

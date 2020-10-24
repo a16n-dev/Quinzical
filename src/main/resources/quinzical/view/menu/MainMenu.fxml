@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXSpinner?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import quinzical.controller.component.GameButton?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.menu.MainMenu">
+   <children>
+      <HBox layoutX="-3.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="1000.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Pane maxWidth="1.7976931348623157E308" minWidth="50.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+            <VBox maxWidth="500.0" minWidth="350.0" spacing="24.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Pane minHeight="100.0" minWidth="200.0" styleClass="titleBox">
+                     <VBox.margin>
+                        <Insets top="32.0" />
+                     </VBox.margin>
+                  </Pane>
+                  <VBox maxWidth="1.7976931348623157E308" minWidth="300.0" spacing="8.0" style="-fx-background-radius: 5;" styleClass="panel">
+                     <children>
+                        <Label text="SINGLEPLAYER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <HBox spacing="8.0">
+                           <children>
+                              <GameButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onClick="#handleNewGame" styleClass="menuButton" text="NEW GAME" HBox.hgrow="ALWAYS">
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../icon/new_game.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></GameButton>
+                              <GameButton fx:id="fxResume" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onClick="#handleResumeGame" styleClass="menuButton" text="RESUME GAME" HBox.hgrow="ALWAYS">
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../icon/resume_game.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></GameButton>
+                           </children>
+                        </HBox>
+                        <GameButton buttonType="RAISED" maxWidth="1.7976931348623157E308" onClick="#handlePracticeGame" styleClass="menuButton" text="PRACTICE GAME">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icon/practice.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></GameButton>
+                     </children>
+                     <padding>
+                        <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
+                     </padding>
+                  </VBox>
+                  <VBox maxWidth="1.7976931348623157E308" minWidth="300.0" spacing="8.0" style="-fx-background-radius: 5;" styleClass="panel">
+                     <children>
+                        <Label text="MULTIPLAYER" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <HBox spacing="8.0">
+                           <children>
+                              <GameButton fx:id="fxJoinGameButton" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onClick="#showJoinGame" styleClass="menuButton" text="JOIN GAME" HBox.hgrow="ALWAYS">
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../icon/person_add.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></GameButton>
+                              <GameButton fx:id="fxHostGameButton" buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onClick="#handleHostMultiplayer" styleClass="menuButton" text="HOST GAME" HBox.hgrow="ALWAYS">
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../icon/people.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></GameButton>
+                           </children>
+                        </HBox>
+                        <GameButton fx:id="fxLeaderboardButton" buttonType="RAISED" maxWidth="1.7976931348623157E308" onClick="#handleViewLeaderboard" styleClass="menuButton" text="LEADERBOARDS">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icon/star.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic></GameButton>
+                     </children>
+                     <padding>
+                        <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
+                     </padding>
+                  </VBox>
+                  <VBox spacing="8.0" styleClass="panel">
+                     <children>
+                        <Label text="REWARDS" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Label>
+                        <HBox spacing="8.0">
+                           <children>
+                              <GameButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onClick="#handleViewTrophyCase" styleClass="menuButton" text="VIEW MEDALS" HBox.hgrow="ALWAYS">
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../icon/medal.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic></GameButton>
+                              <GameButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onClick="#handleViewShop" styleClass="menuButton" text="SHOP" HBox.hgrow="ALWAYS">
+                                 <graphic>
+                                    <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                       <image>
+                                          <Image url="@../../icon/shop.png" />
+                                       </image>
+                                    </ImageView>
+                                 </graphic>
+                              </GameButton>
+                           </children>
+                        </HBox>
+                        
+                                                   </children>
+                     <padding>
+                        <Insets bottom="8.0" left="12.0" right="12.0" top="8.0" />
+                     </padding>
+                  </VBox>
+               </children>
+            </VBox>
+            <Pane maxWidth="100.0" minWidth="0.0" HBox.hgrow="ALWAYS" />
+            <StackPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minHeight="-Infinity" prefHeight="700.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <VBox alignment="TOP_CENTER" prefHeight="200.0" prefWidth="100.0">
+                     <children>
+                        <Pane maxHeight="1.7976931348623157E308" minHeight="0.0" VBox.vgrow="ALWAYS" />
+                        <ImageView fitHeight="360.0" fitWidth="770.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../images/rock.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </VBox>
+                  <VBox alignment="TOP_CENTER" StackPane.alignment="TOP_CENTER">
+                     <children>
+                        <Pane minHeight="50.0" VBox.vgrow="ALWAYS" />
+                        <StackPane fx:id="fxAvatarSlot" alignment="TOP_CENTER" VBox.vgrow="NEVER">
+                           <VBox.margin>
+                              <Insets bottom="270.0" left="60.0" />
+                           </VBox.margin>
+                           <children>
+                              <JFXSpinner>
+                                 <StackPane.margin>
+                                    <Insets bottom="100.0" />
+                                 </StackPane.margin>
+                              </JFXSpinner>
+                           </children>
+                        </StackPane>
+                     </children>
+                  </VBox>
+                  <VBox fx:id="square" alignment="BOTTOM_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="${square.width}" StackPane.alignment="BOTTOM_CENTER">
+                     <children>
+                        <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="16.0">
+                           <VBox.margin>
+                              <Insets bottom="180.0" left="60.0" />
+                           </VBox.margin>
+                           <children>
+                              <HBox spacing="8.0" styleClass="panel">
+                                 <children>
+                                    <GameButton buttonType="RAISED" onClick="#handleViewShop" text="SHOP">
+                                       <graphic>
+                                          <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../icon/shop.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                    </GameButton>
+                                    <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="4.0">
+                                       <children>
+                                          <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../images/coin.png" />
+                                             </image>
+                                          </ImageView>
+                                          <Label contentDisplay="RIGHT" text="\$" textFill="WHITE">
+                                             <font>
+                                                <Font name="System Bold" size="24.0" />
+                                             </font>
+                                             <graphic>
+                                                <Label fx:id="fxCoinDisplay" contentDisplay="RIGHT" text="Label" textFill="WHITE">
+                                                   <font>
+                                                      <Font name="System Bold" size="24.0" />
+                                                   </font>
+                                                </Label>
+                                             </graphic>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </padding>
+                              </HBox>
+                           </children>
+                        </HBox>
+                     </children>
+                  </VBox>
+               </children>
+            </StackPane>
+            <Pane maxWidth="1.7976931348623157E308" minWidth="0.0" prefWidth="100.0" HBox.hgrow="ALWAYS" />
+         </children>
+      </HBox>
+      <HBox alignment="CENTER_LEFT" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="16.0" style="-fx-background-color: rgba(0,0,0,0.2);" styleClass="panel" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+         <children>
+            <GameButton buttonType="RAISED" onClick="#showSettings" styleClass="menuButton" text="SETTINGS">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../icon/settings.png" />
+                     </image>
+                  </ImageView>
+               </graphic></GameButton>
+            <GameButton buttonType="RAISED" onClick="#showHelp" styleClass="menuButton" text="HOW TO PLAY">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../icon/help.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </GameButton>
+            <GameButton buttonType="RAISED" onClick="#handleViewCustomCategories" styleClass="menuButton" text="EDIT CUSTOM CATEGORIES">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../icon/edit.png" />
+                     </image>
+                  </ImageView>
+               </graphic></GameButton>
+            <Pane HBox.hgrow="ALWAYS" />
+            <Label fx:id="fxUserStatus" text="Label" textFill="WHITE">
+               <font>
+                  <Font size="18.0" />
+               </font>
+            </Label>
+            <GameButton fx:id="fxAccountButton" buttonType="RAISED" onClick="#handleAccountButtonPress" styleClass="menuButton" text="NOT CONNECTED">
+               <graphic>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../icon/person.png" />
+                     </image>
+                  </ImageView>
+               </graphic></GameButton>
+         </children>
+         <padding>
+            <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+         </padding>
+      </HBox>
+   </children>
+</AnchorPane>

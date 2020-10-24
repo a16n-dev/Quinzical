@@ -1,28 +1,17 @@
 package quinzical.util;
 
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
 import java.net.URI;
-import java.net.URL;
 import java.net.http.HttpClient;
-import java.net.http.HttpRequest;
-import java.net.http.HttpResponse;
 import java.net.http.HttpClient.Version;
+import java.net.http.HttpRequest;
 import java.net.http.HttpRequest.BodyPublishers;
-import java.net.http.HttpResponse.BodyHandler;
+import java.net.http.HttpResponse;
 import java.net.http.HttpResponse.BodyHandlers;
-import java.net.http.HttpResponse.BodySubscriber;
-import java.net.http.HttpResponse.ResponseInfo;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Optional;
 import java.util.function.Function;
-
-import javax.naming.AuthenticationException;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -41,7 +30,6 @@ public class UserConnect {
 
     private static final String BASEURL = "http://13.210.217.144:3000";
     // private static final String BASEURL = "http://localhost:3000";
-
 
     private static final HttpClient client = HttpClient.newBuilder().version(Version.HTTP_1_1).build();
 
@@ -133,7 +121,8 @@ public class UserConnect {
         }));
     }
 
-    public static void getLeaderboardData(Function<List<Ranking>, Void> tableHandler,Function<Integer, Void> rankHandler) {
+    public static void getLeaderboardData(Function<List<Ranking>, Void> tableHandler,
+            Function<Integer, Void> rankHandler) {
 
         String token = User.getInstance().getToken();
 
@@ -168,7 +157,6 @@ public class UserConnect {
                             rankHandler.apply(rank);
                         });
 
-
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
@@ -189,17 +177,18 @@ public class UserConnect {
         map.put("score", Integer.toString(score));
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(BASEURL + "/updatescore"))
-        .PUT(BodyPublishers.ofString(new JSONObject(map).toString())).header("Content-Type", "application/json")
-        .header("auth-token", User.getInstance().getToken()).header("accept", "application/json").build();
+                .PUT(BodyPublishers.ofString(new JSONObject(map).toString())).header("Content-Type", "application/json")
+                .header("auth-token", User.getInstance().getToken()).header("accept", "application/json").build();
 
-        client.sendAsync(request, BodyHandlers.ofString()).thenApply((Function<HttpResponse<String>, Void>) (response -> {
-            if(response.statusCode() == 200 ){
-                System.out.println("Score updated!");
-            } else {
-                System.out.println("Failure!");
-            }
-            return null;
-        }));
+        client.sendAsync(request, BodyHandlers.ofString())
+                .thenApply((Function<HttpResponse<String>, Void>) (response -> {
+                    if (response.statusCode() == 200) {
+                        System.out.println("Score updated!");
+                    } else {
+                        System.out.println("Failure!");
+                    }
+                    return null;
+                }));
     }
 
     /**

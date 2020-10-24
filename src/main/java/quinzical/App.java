@@ -40,7 +40,7 @@ public class App extends Application {
         s.getIcons().add(new Image(App.class.getResourceAsStream("images/favicon.png")));
 
         // Setup router
-        StackPane container = (StackPane) Router.loadFXML("controller/GameContainer.fxml");
+        StackPane container = (StackPane) Router.loadFXML("view/component/GameContainer.fxml");
 
         Scene scene = new Scene(container, User.getInstance().getPrefWidth().intValue(),
                 User.getInstance().getPrefHeight().intValue());

@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTextField?>
+<?import javafx.geometry.Insets?>
+<?import javafx.geometry.Rectangle2D?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import quinzical.controller.component.GameButton?>
+
+<AnchorPane minWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <ImageView fitHeight="360.0" fitWidth="770.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-250.0" AnchorPane.rightAnchor="-200.0">
+         <image>
+            <Image url="@../../images/rock.png" />
+         </image>
+         <viewport>
+            <Rectangle2D />
+         </viewport>
+      </ImageView>
+      <StackPane fx:id="avatarContainer" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="20.0">
+         <children>
+            <ImageView fitHeight="280.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../../avatar/blob_static.png" />
+               </image>
+            </ImageView>
+         </children>
+      </StackPane>
+      <VBox alignment="CENTER" prefWidth="600.0" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <AnchorPane fx:id="fxBarGame" maxWidth="600.0">
+               <children>
+                  <Pane styleClass="panel" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0">
+                     <children>
+                        <Label fx:id="fxCategoryName" text="Label" textFill="WHITE">
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Pane layoutX="10.0" layoutY="10.0" styleClass="panel" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0">
+                     <children>
+                        <Label fx:id="fxValueText" text="Label" textFill="WHITE">
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+               </children>
+            </AnchorPane>
+            <HBox fx:id="fxBarPractice" alignment="CENTER">
+               <children>
+                  <HBox spacing="8.0" styleClass="panel">
+                     <children>
+                        <Label text="Remaining Attempts:" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="fxAttemptCount" text="Label" textFill="WHITE">
+                           <font>
+                              <Font size="16.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </HBox>
+            <BorderPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="600.0" styleClass="panel">
+               <center>
+                  <Label fx:id="fxHint" maxHeight="1.7976931348623157E308" prefWidth="400.0" text="&lt;Clue Texteeeeeee eaea dweeeeeere" textAlignment="CENTER" textFill="WHITE" wrapText="true" BorderPane.alignment="CENTER">
+                     <font>
+                        <Font name="System Bold" size="24.0" />
+                     </font>
+                     <BorderPane.margin>
+                        <Insets bottom="32.0" top="32.0" />
+                     </BorderPane.margin>
+                  </Label>
+               </center>
+               <top>
+                  <AnchorPane BorderPane.alignment="CENTER">
+                     <children>
+                        <Label text="Clue" textFill="#c17632" AnchorPane.leftAnchor="0.0">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </AnchorPane>
+               </top>
+               <padding>
+                  <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="16.0" />
+               </VBox.margin>
+               <bottom>
+                  <GameButton onClick="#repeatClue" text=" " BorderPane.alignment="CENTER">
+                     <graphic>
+                        <HBox spacing="8.0">
+                           <children>
+                              <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/SpeakIcon.png" />
+                                 </image>
+                              </ImageView>
+                              <Label text="REPEAT CLUE" textFill="WHITE" />
+                           </children>
+                        </HBox>
+                     </graphic>
+                  </GameButton>
+               </bottom>
+            </BorderPane>
+            <StackPane prefWidth="200.0">
+               <children>
+                  <ProgressBar fx:id="fxProgressLeft" nodeOrientation="LEFT_TO_RIGHT" prefWidth="230.0" progress="1.0">
+                     <StackPane.margin>
+                        <Insets left="230.0" />
+                     </StackPane.margin>
+                  </ProgressBar>
+                  <ProgressBar fx:id="fxProgressRight" nodeOrientation="RIGHT_TO_LEFT" prefWidth="230.0" progress="1.0">
+                     <StackPane.margin>
+                        <Insets right="230.0" />
+                     </StackPane.margin>
+                  </ProgressBar>
+                  <Label fx:id="fxProgressLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="40.0" prefWidth="40.0" style="-fx-background-color: white; -fx-text-fill: -fx-orange-main; -fx-background-radius: 20;" text="30" textAlignment="CENTER" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="18.0" />
+                     </font></Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="-16.0" />
+               </VBox.margin>
+            </StackPane>
+            <VBox alignment="TOP_CENTER" maxWidth="600.0" spacing="8.0" styleClass="panel">
+               <children>
+                  <HBox alignment="CENTER">
+                     <children>
+                        <Label text="Complete the Question:" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets right="16.0" />
+                           </HBox.margin>
+                        </Label>
+                        <Label fx:id="fxPrefix" alignment="BOTTOM_LEFT" text="What is" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="fxPrefix1" alignment="BOTTOM_LEFT" text="..." textFill="WHITE">
+                           <font>
+                              <Font size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <StackPane alignment="CENTER_LEFT" maxWidth="500.0">
+                     <children>
+                        <JFXTextField fx:id="fxInput" focusColor="#ce725b" maxWidth="500.0" onAction="#onSubmit" style="-fx-text-fill: white; -fx-background-color: rgba(0,0,0,0.2);" unFocusColor="WHITE">
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </JFXTextField>
+                        <VBox fx:id="fxMacronContainer" maxWidth="500.0" minHeight="20.0" minWidth="20.0" mouseTransparent="true">
+                           <children>
+                              <VBox fx:id="fxMacronPopup" fillWidth="false">
+                                 <children>
+                                    <VBox alignment="CENTER" fillWidth="false" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" style="-fx-background-radius: 2; -fx-background-color: white; -fx-border-radius: 1; -fx-border-color: #eee;">
+                                       <children>
+                                          <Label fx:id="fxMacronLetter" maxHeight="-Infinity" maxWidth="16.0" minHeight="-Infinity" minWidth="16.0" prefHeight="20.0" prefWidth="16.0" text="e">
+                                             <padding>
+                                                <Insets left="4.0" right="4.0" />
+                                             </padding>
+                                             <font>
+                                                <Font size="14.0" />
+                                             </font>
+                                          </Label>
+                                          <ImageView fitHeight="10.0" fitWidth="10.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../images/macron_key.png" />
+                                             </image>
+                                             <VBox.margin>
+                                                <Insets bottom="2.0" />
+                                             </VBox.margin>
+                                          </ImageView>
+                                       </children>
+                                    </VBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                           <StackPane.margin>
+                              <Insets left="-5.0" top="-15.0" />
+                           </StackPane.margin>
+                        </VBox>
+                     </children>
+                  </StackPane>
+               </children>
+               <padding>
+                  <Insets bottom="16.0" left="8.0" right="8.0" top="8.0" />
+               </padding>
+            </VBox>
+            <Label fx:id="fxFeedback" text="Typo" visible="false" />
+            <GameButton fx:id="fxSubmit" onAction="#onSubmit" text="SUBMIT" />
+            <GameButton fx:id="fxUnsure" onAction="#onUnsure" text="DON'T KNOW" />
+         </children>
+         <padding>
+            <Insets left="64.0" right="64.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

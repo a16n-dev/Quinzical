@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import quinzical.controller.component.GameButton?>
+<?import com.jfoenix.controls.JFXMasonryPane?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.Tooltip?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.menu.Shop">
+   <children>
+      <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <StackPane maxWidth="1200.0">
+               <children>
+                  <Label text="SHOP" textFill="WHITE">
+                     <font>
+                        <Font size="36.0" />
+                     </font>
+                  </Label>
+                  <AnchorPane>
+                     <children>
+                        <HBox alignment="CENTER" spacing="8.0" styleClass="panel" AnchorPane.rightAnchor="0.0">
+                           <children>
+                              <ImageView fitHeight="38.0" fitWidth="38.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../images/coin.png" />
+                                 </image>
+                              </ImageView>
+                              <Label contentDisplay="RIGHT" text="\$" textFill="WHITE">
+                                 <graphic>
+                                    <Label fx:id="fxCoinsDisplay" text="&lt;&gt;" textFill="WHITE">
+                                       <font>
+                                          <Font name="System Bold" size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </graphic>
+                                 <font>
+                                    <Font size="18.0" />
+                                 </font>
+                              </Label>
+                           </children>
+                           <padding>
+                              <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                           </padding>
+                        </HBox>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </StackPane>
+            <HBox maxHeight="1.7976931348623157E308" maxWidth="1200.0" minWidth="-Infinity" VBox.vgrow="ALWAYS">
+               <padding>
+                  <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+               </padding>
+               <children>
+                  <VBox maxWidth="600.0" spacing="16.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox />
+                        <JFXTabPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: transparent;" VBox.vgrow="ALWAYS">
+                           <tabs>
+                              <Tab text="ALL ITEMS">
+                                <content>
+                                  <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+                                       <children>
+                                          <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="400.0" prefHeight="0.0" styleClass="panel" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <content>
+                                                <JFXMasonryPane fx:id="fxItemGridAll" HSpacing="8.0" VSpacing="8.0" cellHeight="100.0" cellWidth="100.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" />
+                                             </content>
+                                             <padding>
+                                                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                             </padding>
+                                          </ScrollPane>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </Tab>
+                              <Tab text="OWNED ITEMS">
+                                 <content>
+                                    <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0">
+                                       <children>
+                                          <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="400.0" prefHeight="0.0" styleClass="panel" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                             <content>
+                                                <JFXMasonryPane fx:id="fxItemGridOwned" HSpacing="8.0" VSpacing="8.0" cellHeight="100.0" cellWidth="100.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="100.0" />
+                                             </content>
+                                             <padding>
+                                                <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                             </padding>
+                                          </ScrollPane>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                           </tabs>
+                        </JFXTabPane>
+                     </children>
+                  </VBox>
+                  <Pane maxWidth="200.0" minWidth="16.0" HBox.hgrow="ALWAYS" />
+                  <VBox maxWidth="600.0" spacing="16.0" HBox.hgrow="ALWAYS">
+                     <children>
+                        <HBox alignment="CENTER" spacing="16.0">
+                           <children>
+                              <VBox alignment="TOP_CENTER" spacing="8.0">
+                                 <children>
+                                    <Label text="Hat" textFill="WHITE">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <AnchorPane fx:id="fxHatEquipped" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="58.0" prefWidth="58.0">
+                                       <children>
+                                          <ImageView fx:id="fxHatSlot" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0" />
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="panel" />
+                                          <String fx:value="equippedItem" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" spacing="8.0">
+                                 <children>
+                                    <Label text="Accessory" textFill="WHITE">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <AnchorPane fx:id="fxAccessoryEquipped" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="58.0" prefWidth="58.0">
+                                       <children>
+                                          <ImageView fx:id="fxAccessorySlot" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0" />
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="panel" />
+                                          <String fx:value="equippedItem" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                              <VBox alignment="TOP_CENTER" spacing="8.0">
+                                 <children>
+                                    <Label text="Eyes" textFill="WHITE">
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                    <AnchorPane fx:id="fxEyesEquipped" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="58.0" prefWidth="58.0">
+                                       <children>
+                                          <ImageView fx:id="fxEyesSlot" fitHeight="42.0" fitWidth="42.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="8.0" AnchorPane.leftAnchor="8.0" AnchorPane.rightAnchor="8.0" AnchorPane.topAnchor="8.0" />
+                                       </children>
+                                       <styleClass>
+                                          <String fx:value="panel" />
+                                          <String fx:value="equippedItem" />
+                                       </styleClass>
+                                    </AnchorPane>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </HBox>
+                        <StackPane>
+                           <children>
+                              <StackPane fx:id="fxAvatarDisplay" styleClass="panel">
+                                 <padding>
+                                    <Insets bottom="32.0" left="32.0" right="32.0" top="32.0" />
+                                 </padding>
+                              </StackPane>
+                              <AnchorPane prefHeight="200.0" prefWidth="200.0">
+                                 <children>
+                                    <GameButton fx:id="fxResetButton" contentDisplay="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onClick="#resetAvatar" prefHeight="35.0" prefWidth="35.0" AnchorPane.leftAnchor="8.0" AnchorPane.topAnchor="8.0">
+                                       <graphic>
+                                          <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../../icon/reset.png" />
+                                             </image>
+                                          </ImageView>
+                                       </graphic>
+                                       <tooltip>
+                                          <Tooltip text="Reset Preview" />
+                                       </tooltip></GameButton>
+                                 </children>
+                              </AnchorPane>
+                           </children>
+                        </StackPane>
+                        <GameButton fx:id="fxActionButton" maxWidth="1.7976931348623157E308" text="Action" />
+                     </children>
+                  </VBox>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets bottom="20.0" left="80.0" right="80.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>

@@ -9,8 +9,8 @@ import javafx.scene.Node;
 import javafx.scene.layout.BorderPane;
 import javafx.util.Duration;
 import quinzical.App;
-import quinzical.controller.CategorySelectGame;
 import quinzical.controller.View;
+import quinzical.controller.menu.CategorySelectGame;
 
 public class Router {
     // the container containing the entire application

@@ -1,55 +1,52 @@
 package quinzical.controller;
 
 import quinzical.App.GameState;
-import quinzical.components.Component;
+import quinzical.controller.component.Component;
+import quinzical.controller.game.AnswerScreen;
+import quinzical.controller.game.MultiplayerAnswerScreen;
+import quinzical.controller.game.PracticeAnswerScreen;
+import quinzical.controller.menu.CategorySelectGame;
+import quinzical.controller.menu.CategorySelectMultiplayer;
+import quinzical.controller.menu.CategorySelectPractice;
 
 /**
  * An enum to display different views within the app. Each view can be
- * programmed to set the content for a specific part of the display:
- * 
- *  *  =====================================
- * |                                   |
- * |                top                |
- * |                                   |
- * =====================================
- * |        |                |         |
- * |        |                |         |
- * |  left  |     center     |  right  |
- * |        |                |         |
- * |        |                |         |
- * =====================================
- * |                                   |
- * |              bottom               |
- * |                                   |
- * =====================================
- * 
- * The order is VIEW([center],[top],[right],[bottom],[left])
+ * programmed to set the content for a specific part of the display
  */
 public enum View {
-    MAIN_MENU("controller/MainMenu.fxml", null, GameState.MENU),
-    GAME_BOARD("controller/GameBoard.fxml", Component.GAME_TITLE.path(),GameState.GAME),
-    ANSWER_SCREEN("controller/AnswerScreen.fxml", Component.GAME_TITLE.path(), new AnswerScreen(),GameState.GAME),
-    PRACTICE_ANSWER_SCREEN("controller/AnswerScreen.fxml", Component.GAME_TITLE.path(), new PracticeAnswerScreen(),GameState.PRACTICE),
-    MULTIPLAYER_ANSWER_SCREEN("controller/AnswerScreen.fxml", Component.GAME_TITLE.path(), new MultiplayerAnswerScreen(), GameState.MULTIPLAYER),
-    REWARD_SCREEN("controller/RewardScreen.fxml", Component.GAME_TITLE.path(), GameState.GAME),
-    TROPHY_CASE("controller/TrophyCase.fxml", Component.GAME_TITLE.path(),GameState.MENU),
-    LEADERBOARD("controller/Leaderboard.fxml", Component.GAME_TITLE.path(),GameState.MENU),
-    SELECT_CATEGORY_GAME("controller/CategorySelect.fxml", Component.GAME_TITLE.path(), new CategorySelectGame(),GameState.MENU),
-    SELECT_CATEGORY_PRACTICE("controller/CategorySelect.fxml", Component.GAME_TITLE.path(), new CategorySelectPractice(),GameState.MENU),
-    SELECT_CATEGORY_MULTIPLAYER("controller/CategorySelect.fxml", Component.GAME_TITLE.path(), new CategorySelectMultiplayer(),GameState.MENU),
-    CUSTOM_CATEGORIES("controller/ManageCategories.fxml", Component.GAME_TITLE.path(),GameState.MENU),
-    SHOP("controller/Shop.fxml", Component.GAME_TITLE.path(),GameState.SHOP),
 
-    LOBBY("controller/Lobby.fxml", Component.GAME_TITLE.path(),GameState.MULTIPLAYER),
-    MODAL_SETTINGS("controller/Settings.fxml", null, GameState.MODAL),
-    MODAL_JOIN("controller/JoinGame.fxml", null, GameState.MODAL),
-    MODAL_CONFIRM("controller/Confirm.fxml", null, GameState.MODAL),
-    MODAL_LOGIN("controller/Login.fxml", null, GameState.MODAL),
-    MODAL_SIGNUP("controller/Signup.fxml", null, GameState.MODAL),
-    MODAL_HELP("controller/Help.fxml", null, GameState.MODAL),
-    MODAL_ANSWER_FEEDBACK("controller/AnswerScreenPopup.fxml", null, GameState.MODAL),
-    MODAL_ALERT("controller/Alert.fxml",null, GameState.MODAL),
-	;
+    // Game Views
+    GAME_BOARD("view/game/GameBoard.fxml", Component.GAME_TITLE.path(), GameState.GAME),
+    ANSWER_SCREEN("view/game/AnswerScreen.fxml", Component.GAME_TITLE.path(), new AnswerScreen(), GameState.GAME),
+    PRACTICE_ANSWER_SCREEN("view/game/AnswerScreen.fxml", Component.GAME_TITLE.path(), new PracticeAnswerScreen(),
+            GameState.PRACTICE),
+    MULTIPLAYER_ANSWER_SCREEN("view/game/AnswerScreen.fxml", Component.GAME_TITLE.path(), new MultiplayerAnswerScreen(),
+            GameState.MULTIPLAYER),
+    REWARD_SCREEN("view/game/RewardScreen.fxml", Component.GAME_TITLE.path(), GameState.GAME),
+    LOBBY("view/game/Lobby.fxml", Component.GAME_TITLE.path(), GameState.MULTIPLAYER),
+
+    // Menu Views
+    MAIN_MENU("view/menu/MainMenu.fxml", null, GameState.MENU),
+    TROPHY_CASE("view/menu/TrophyCase.fxml", Component.GAME_TITLE.path(), GameState.MENU),
+    LEADERBOARD("view/menu/Leaderboard.fxml", Component.GAME_TITLE.path(), GameState.MENU),
+    SELECT_CATEGORY_GAME("view/menu/CategorySelect.fxml", Component.GAME_TITLE.path(), new CategorySelectGame(),
+            GameState.MENU),
+    SELECT_CATEGORY_PRACTICE("view/menu/CategorySelect.fxml", Component.GAME_TITLE.path(), new CategorySelectPractice(),
+            GameState.MENU),
+    SELECT_CATEGORY_MULTIPLAYER("view/menu/CategorySelect.fxml", Component.GAME_TITLE.path(),
+            new CategorySelectMultiplayer(), GameState.MENU),
+    CUSTOM_CATEGORIES("view/menu/ManageCategories.fxml", Component.GAME_TITLE.path(), GameState.MENU),
+    SHOP("view/menu/Shop.fxml", Component.GAME_TITLE.path(), GameState.SHOP),
+
+    // Modal Views
+    MODAL_SETTINGS("view/modal/Settings.fxml", null, GameState.MODAL),
+    MODAL_JOIN("view/modal/JoinGame.fxml", null, GameState.MODAL),
+    MODAL_CONFIRM("view/modal/Confirm.fxml", null, GameState.MODAL),
+    MODAL_LOGIN("view/modal/Login.fxml", null, GameState.MODAL),
+    MODAL_SIGNUP("view/modal/Signup.fxml", null, GameState.MODAL),
+    MODAL_HELP("view/modal/Help.fxml", null, GameState.MODAL),
+    MODAL_ANSWER_FEEDBACK("view/modal/AnswerScreenPopup.fxml", null, GameState.MODAL),
+    MODAL_ALERT("view/modal/Alert.fxml", null, GameState.MODAL),;
 
     private final String center;
     private final String top;
@@ -59,7 +56,8 @@ public enum View {
     private final Object controller;
     private final GameState gameState;
 
-    private View(String center, String top, String right, String bottom, String left, Object controller, GameState state) {
+    private View(String center, String top, String right, String bottom, String left, Object controller,
+            GameState state) {
         this.center = center;
         this.top = top;
         this.right = right;
@@ -68,6 +66,7 @@ public enum View {
         this.controller = controller;
         this.gameState = state;
     }
+
     private View(String center, String top, GameState state) {
         this.center = center;
         this.top = top;
@@ -77,6 +76,7 @@ public enum View {
         this.controller = null;
         this.gameState = state;
     }
+
     private View(String center, String top, Object controller, GameState state) {
         this.center = center;
         this.top = top;
@@ -106,12 +106,12 @@ public enum View {
     public String getLeft() {
         return left;
     }
-    
+
     public Object getController() {
         return controller;
     }
 
-    public GameState getState(){
-        return gameState;    
+    public GameState getState() {
+        return gameState;
     }
 }

@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXMasonryPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import quinzical.controller.component.GameButton?>
+
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <VBox alignment="TOP_CENTER" minHeight="100.0" minWidth="600.0" spacing="16.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Label fx:id="fxTitle" text="SELECT CATEGORIES" textFill="WHITE">
+               <font>
+                  <Font size="36.0" />
+               </font>
+            </Label>
+            <HBox fx:id="fxContainer" maxHeight="150.0" maxWidth="1.7976931348623157E308" minHeight="80.0" styleClass="panel">
+               <children>
+                  <GridPane fx:id="fxSelected" hgap="8.0" HBox.hgrow="ALWAYS">
+                    <columnConstraints>
+                      <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+                      <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" percentWidth="20.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                      <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                  </GridPane>
+               </children>
+               <padding>
+                  <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+               </padding>
+            </HBox>
+            <AnchorPane>
+               <children>
+                  <GameButton fx:id="fxSubmit" buttonType="RAISED" minWidth="200.0" onClick="#handleSubmit" text="START GAME" AnchorPane.rightAnchor="0.0" />
+                  <HBox layoutX="-15.0" layoutY="-11.0" spacing="16.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <GameButton fx:id="fxClearSelection" buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" onClick="#clearSelected">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icon/reset.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </GameButton>
+                        <GameButton buttonType="RAISED" contentDisplay="GRAPHIC_ONLY" onClick="#selectRandom">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../icon/random.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </GameButton>
+                     </children>
+                  </HBox>
+               </children>
+            </AnchorPane>
+            <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
+               <children>
+                  <ScrollPane fitToWidth="true" hbarPolicy="NEVER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="400.0" prefHeight="0.0" styleClass="panel" vbarPolicy="ALWAYS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <content>
+                        <VBox>
+                           <children>
+                              <HBox style="-fx-background-color: rgba(0,0,0,0.2);">
+                                 <VBox.margin>
+                                    <Insets />
+                                 </VBox.margin>
+                                 <children>
+                                    <Label text="Categories" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="8.0" left="16.0" right="16.0" top="8.0" />
+                                 </padding>
+                              </HBox>
+                              <JFXMasonryPane fx:id="fxBaseCategoryContainer" HSpacing="8.0" VSpacing="8.0" cellHeight="100.0" cellWidth="100.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="NEVER">
+                                 <VBox.margin>
+                                    <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                 </VBox.margin>
+                              </JFXMasonryPane>
+                              <HBox style="-fx-background-color: rgba(0,0,0,0.2);">
+                                 <children>
+                                    <Label text="User Created" textFill="WHITE">
+                                       <font>
+                                          <Font size="18.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="8.0" left="16.0" right="16.0" top="8.0" />
+                                 </padding>
+                              </HBox>
+                              <JFXMasonryPane fx:id="fxUserCategoryContainer" cellHeight="100.0" cellWidth="100.0">
+                                 <VBox.margin>
+                                    <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
+                                 </VBox.margin>
+                              </JFXMasonryPane>
+                           </children>
+                        </VBox>
+                     </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+         </children>
+         <padding>
+            <Insets bottom="50.0" left="100.0" right="100.0" />
+         </padding>
+      </VBox>
+   </children>
+</AnchorPane>
