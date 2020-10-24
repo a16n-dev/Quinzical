@@ -65,9 +65,7 @@ public class App extends Application {
                     "Are you sure you want to quit? This will mark the current question as wrong", f -> {
                     try {
                         Platform.exit();
-                    } catch (Exception e1) {
-                        System.out.println(e1.getStackTrace());
-                    }
+                    } catch (Exception e1) {}
                 });
             } 
             else if (MultiplayerGame.getInstance() != null) {

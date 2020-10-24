@@ -149,7 +149,6 @@ public class Game extends QuinzicalGame implements Serializable {
 
     public void addTime(float time){
         totalTime += time;
-        System.out.println("Total elapsed time " + totalTime);
         persist();
     }
 

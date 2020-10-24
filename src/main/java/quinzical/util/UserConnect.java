@@ -47,7 +47,6 @@ public class UserConnect {
 
         // Send request and handle response
         post("/register", map, (Function<HttpResponse<String>, Void>) (response -> {
-            System.out.println(response.statusCode());
 
             if (response.statusCode() == 200) {
                 // success
@@ -92,7 +91,6 @@ public class UserConnect {
 
         // Send request and handle response
         post("/login", map, (Function<HttpResponse<String>, Void>) (response -> {
-            System.out.println(response.statusCode());
             // Attempt to read response to map
             if (response.statusCode() == 200) {
                 Optional<String> token = response.headers().firstValue("auth-token");
@@ -123,11 +121,6 @@ public class UserConnect {
 
     public static void getLeaderboardData(Function<List<Ranking>, Void> tableHandler,
             Function<Integer, Void> rankHandler) {
-
-        String token = User.getInstance().getToken();
-
-        System.out.println(token);
-
         var request = HttpRequest.newBuilder(URI.create(BASEURL + "/leaderboard"))
                 .header("auth-token", User.getInstance().getToken()).header("Content-Type", "application/json")
                 .header("accept", "application/json").GET().build();
@@ -145,7 +138,6 @@ public class UserConnect {
                         List<Ranking> outputList = new ArrayList<Ranking>();
 
                         for (int i = 0; i < rankingData.length(); i++) {
-                            System.out.println(rankingData.getString(i));
                             JSONObject userRanking = new JSONObject(rankingData.getString(i));
                             Ranking r = new Ranking((i + 1), userRanking.getInt("score"),
                                     userRanking.getString("username"));
@@ -182,11 +174,6 @@ public class UserConnect {
 
         client.sendAsync(request, BodyHandlers.ofString())
                 .thenApply((Function<HttpResponse<String>, Void>) (response -> {
-                    if (response.statusCode() == 200) {
-                        System.out.println("Score updated!");
-                    } else {
-                        System.out.println("Failure!");
-                    }
                     return null;
                 }));
     }

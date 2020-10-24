@@ -20,8 +20,6 @@ public class Router {
     private static Deque<View> history = new ArrayDeque<View>();
 
     public static void navigateBack() {
-        System.out.println(history);
-        System.out.println(history.peekLast());
 
         if (history.peekLast() == null) {
             show(View.MAIN_MENU);
@@ -35,7 +33,6 @@ public class Router {
             return;
         }
         show(lastPage, false); // show last page without adding to history
-        System.out.println(history.peekLast());
     }
 
     /**

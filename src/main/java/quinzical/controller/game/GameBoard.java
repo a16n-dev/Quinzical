@@ -28,7 +28,6 @@ public class GameBoard {
 	 */
 	public void initialize() {
 		game = Game.getInstance();
-		System.out.println(game.getPrettyTimeTaken());
 		user = User.getInstance();
 
 		// Populate the gameboard grid

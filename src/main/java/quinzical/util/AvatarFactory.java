@@ -185,9 +185,7 @@ public class AvatarFactory {
         Image slot = null;
 
         if (item != null) {
-            System.out.println("Loading in " + item);
             slot = ImageLoader.loadImage(RESOURCE_PATH + item.getFile() + "_idle" + ext);
-            System.out.println(slot);
         }
 
         return slot;

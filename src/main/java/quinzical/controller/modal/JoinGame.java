@@ -161,7 +161,7 @@ public class JoinGame {
             }
         });
         connect.onMessage("INVALID_LOBBY", args -> {
-            System.out.println(": (");
+            fxMessage.setText("Invalid Code");
         });
     }
 }

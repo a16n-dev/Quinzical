@@ -61,9 +61,7 @@ public class IOManager {
                                 Question question = new Question(id, difficulty, questionText, questionPrefix, answer);
 
                                 category.addQuestion(question);
-                            } catch (Exception e) {
-                                System.out.println(line + " is not a valid question");
-                            }
+                            } catch (Exception e) {}
                         }
                         br.close();
                         categoryList.put(categoryName,category);

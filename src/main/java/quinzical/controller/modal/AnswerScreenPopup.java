@@ -40,7 +40,6 @@ public class AnswerScreenPopup {
         QuinzicalGame game;
         if(App.getState() == GameState.GAME){
             status = Game.getInstance().getStatus();
-            System.out.println(status);
             game =Game.getInstance();
 
             if(Game.getInstance().getRemainingQuestions() == 0){
