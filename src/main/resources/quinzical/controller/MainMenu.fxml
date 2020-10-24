@@ -122,7 +122,7 @@
                                        </image>
                                     </ImageView>
                                  </graphic></GameButton>
-                              <GameButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onClick="#handleViewTrophyCase" styleClass="menuButton" text="SHOP" HBox.hgrow="ALWAYS">
+                              <GameButton buttonType="RAISED" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onClick="#handleViewShop" styleClass="menuButton" text="SHOP" HBox.hgrow="ALWAYS">
                                  <graphic>
                                     <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
                                        <image>

@@ -41,7 +41,7 @@ public class GameBoardController {
 			// Place label
 			Label label = new Label(category);
 			label.setTextFill(Color.web("#fff"));
-			label.setStyle("-fx-font: 16 arial;");
+			label.setStyle("-fx-font-size: 18px;");
 			fxGrid.add(label, i, 0);
 
 			// Place buttons
