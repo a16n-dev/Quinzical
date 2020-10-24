@@ -2,8 +2,10 @@ package quinzical.controller;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -71,36 +73,45 @@ public class Lobby {
 
         fxNextQuestion.setText(game.hasStarted() ? "Next question" : "Start game");
         // this has to be bound (timer from answer screen too)
-        fxNextQuestion.setVisible(game.mayProgress());
+        fxNextQuestion.visibleProperty().bind(game.mayProgress());
+        System.out.println(game.mayProgress().getValue());
+        System.out.println(game.isHost());
 
         connect = Connect.getInstance();
         connect.onMessage("NEXT_QUESTION", e -> {
-            System.out.println("half ayo");
             Question question = Question.fromJSONObject(e[0].toString());
             game.setCurrentQuestion(question);
-            System.out.println("ayo mate!");
             Router.show(View.MULTIPLAYER_ANSWER_SCREEN);
-            System.out.println("aha matey");
+            game.start();
         });
         connect.onMessage("ROUND_OVER", e -> {
             game.setRoundOver(true);
-            fxNextQuestion.setVisible(game.mayProgress());
+            System.out.println("hmm");
+            System.out.println(game.mayProgress().getValue());
         });
 
+        connect.onMessage("LOBBY_JOINED", args -> {
+            try {
+                JSONObject obj = new JSONObject(args[0].toString());
+                JSONArray membersRaw = obj.getJSONArray("members");
+                
+                ArrayList<Member> members = new ArrayList<Member>();
+                for (int i = 0; i < membersRaw.length(); i++) {
+                    members.add(Member.fromJSONObject(membersRaw.getString(i)));
+                }
+                MultiplayerGame.getInstance().updateMembers(members);
+                Router.show(View.LOBBY);
+                
+            }
+            catch (JSONException e) {
+                e.printStackTrace();
+            }
+        });
         connect.onMessage("GAME_OVER", e -> {
             System.out.println("ah yo man it's over");
         });
 
-<<<<<<< HEAD
-        List<Member> mems = new ArrayList<Member>();
-        mems.add(new Member(new Avatar(Hat.EGG, Accessory.MUSTACHE, Eyes.GLASSES), 69, true));
-
-        renderAvatars(mems);
-=======
-        connect.onMessage("LOBBY_JOINED", e -> {
-            
-        });
->>>>>>> 66ef0100af2f08a03537a8475346c82606e59d0f
+        renderAvatars(game.getMembers());
     }
 
     public void onNextQuestion() {
@@ -115,7 +126,7 @@ public class Lobby {
 
     public void renderAvatars(List<Member> players) {
         // Sort stuff
-
+        System.out.println(Arrays.deepToString(players.toArray()));
         // Render
         for (int i = 1; i <= players.size(); i++) {
             Member m = players.get(i - 1);
