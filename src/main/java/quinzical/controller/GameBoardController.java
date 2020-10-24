@@ -8,7 +8,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
+import quinzical.components.GameBoardItem;
 import quinzical.model.Game;
 import quinzical.model.Question;
 import quinzical.model.User;
@@ -43,33 +45,32 @@ public class GameBoardController {
 
 			// Place buttons
 			ArrayList<Question> questions = game.getQuestionsByCategory(category);
-			int pos = 0;
 			for (int j = 0; j < questions.size(); j++) {
 				final Integer intJ = j;
 				Question question = questions.get(intJ);
 				// Place button
-				Button button = new Button("$" + question.getValue());
+				Region item = GameBoardItem.create(question, () -> {
+								game.setCurrentQuestion(category, intJ);
+								user.attemptQuestion(category, question.getId());
+								Router.show(View.ANSWER_SCREEN, false);
+							});
 
-				button.setStyle("-fx-font: 16 arial;");
-				button.setStyle("-fx-padding: 8px 16px 8px 16px;");
+				// if (!question.isAnswered()) {
+				// 	pos += 1;
+				// 	if (!available) {
+				// 		// Disable button if the question has been attempted
+				// 		button.setDisable(true);
+				// 	} else {
+				// 		available = false;
+				// 		// Add click events
+				// 		button.setOnAction((event) -> {
+				// 			game.setCurrentQuestion(category, intJ);
+				// 			user.attemptQuestion(category, question.getId());
+				// 			Router.show(View.ANSWER_SCREEN, false);
+				// 		});
+				// 	}
 
-				if (!question.isAnswered()) {
-					pos += 1;
-					if (!available) {
-						// Disable button if the question has been attempted
-						button.setDisable(true);
-					} else {
-						available = false;
-						// Add click events
-						button.setOnAction((event) -> {
-							game.setCurrentQuestion(category, intJ);
-							user.attemptQuestion(category, question.getId());
-							Router.show(View.ANSWER_SCREEN, false);
-						});
-					}
-
-					fxGrid.add(button, i, pos);
-				}
+				fxGrid.add(item, i, j+1);
 			}
 		}
 	}

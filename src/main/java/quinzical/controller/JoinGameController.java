@@ -19,7 +19,6 @@ import quinzical.model.MultiplayerGame;
 import quinzical.model.User;
 import quinzical.util.Connect;
 import quinzical.util.Modal;
-import quinzical.util.Multiplayer;
 import quinzical.util.Router;
 import quinzical.model.Member;
 

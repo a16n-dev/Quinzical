@@ -54,7 +54,7 @@ public class Member {
         try {
             // if this raises an error, there is a good chance that you need to convert the argument to a string before passing
             JSONObject obj = new JSONObject(raw);
-            return new Member(Avatar.fromJSONObject(obj.getString("avatar")), obj.getInt("score"), obj.getBoolean("isHost"), obj.getString("username"));
+            return new Member(Avatar.fromJSONObject(obj.getString("avatar")), obj.getInt("score"), obj.getString("username"), obj.getBoolean("isHost"));
         }
         catch (JSONException e) {
             e.printStackTrace();

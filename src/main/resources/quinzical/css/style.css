@@ -116,6 +116,18 @@
     -fx-background-position: center;
 }
 
+.boardItem{
+    -fx-background-color: rgba(0,0,0,0.4);
+    -fx-background-radius: 5; 
+}
+.boardItemFocused{
+    -fx-background-color: radial-gradient(focus-distance 10% , center 50% 30% , radius 80% , #CE725B, #C25955);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 16px;
+    -fx-background-radius: 5; 
+}
+
 .propRock{
     -fx-background-image: url("../images/rock.png");
     -fx-background-repeat: no-repeat;   
