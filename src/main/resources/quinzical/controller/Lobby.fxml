@@ -80,7 +80,7 @@
                               </VBox>
                               <VBox alignment="BOTTOM_RIGHT">
                                  <children>
-                                    <Label fx:id="avatarSpeechBubble4" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e">
+                                    <Label fx:id="avatarSpeechBubble5" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e">
                                        <padding>
                                           <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                        </padding>
@@ -127,7 +127,7 @@
                               </VBox>
                               <VBox alignment="BOTTOM_RIGHT">
                                  <children>
-                                    <Label fx:id="avatarSpeechBubble5" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e">
+                                    <Label fx:id="avatarSpeechBubble4" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e">
                                        <padding>
                                           <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                        </padding>
@@ -182,7 +182,7 @@
                               </VBox>
                               <VBox alignment="BOTTOM_RIGHT">
                                  <children>
-                                    <Label fx:id="avatarSpeechBubble2" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e">
+                                    <Label fx:id="avatarSpeechBubble3" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e">
                                        <padding>
                                           <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                        </padding>
@@ -229,7 +229,7 @@
                               </VBox>
                               <VBox alignment="BOTTOM_RIGHT">
                                  <children>
-                                    <Label fx:id="avatarSpeechBubble3" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e">
+                                    <Label fx:id="avatarSpeechBubble2" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e">
                                        <padding>
                                           <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                        </padding>

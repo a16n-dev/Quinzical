@@ -197,7 +197,6 @@ public class Lobby {
 
             // Map index to size
             int s = (int) Math.ceil((pos - 1.7) / 1.7);
-            System.out.println(s);
             AvatarFactory slot = new AvatarFactory(container, SIZE[s], false);
 
             slot.set(avatar);
@@ -237,12 +236,11 @@ public class Lobby {
     public void setUserAnswerStatus(String username, int score, Answer status, String answer) {
         for (Member member : game.getMembers()) {
             if (member.getUsername().equals(username)) {
-                System.out.println("SETTING THE SCORE");
                 member.setScore(score);
                 member.setStatus(status);
                 member.setAnswer(answer);
+                return;
             }
-            return;
         }
     }
 }
