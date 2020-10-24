@@ -21,13 +21,10 @@ public class Timer {
     private ProgressBar fxProgressRight;
     private Timeline timeline;
     private float totalGameTime;
-    private boolean stoppable;
 
     public static Timer instance;
 
-    private Timer () {
-        stoppable = true;
-    }
+    private Timer () { }
 
     public static Timer getInstance() {
         if (instance == null) {
@@ -71,7 +68,7 @@ public class Timer {
      * Stop the timer and reset the position to the beginning
      */
     public void stop() {
-        if (timeline != null && stoppable) {
+        if (timeline != null) {
             timeline.stop();
             totalGameTime += (maxTime - currentTime);
         }
@@ -102,9 +99,5 @@ public class Timer {
     public float currentScoreMultiplier() {
         float percentage = currentTime / maxTime;
         return percentage > 0.9 ? 1 : percentage;
-    }
-
-    public void setStoppable(boolean stoppable) {
-        this.stoppable = stoppable; 
     }
 }

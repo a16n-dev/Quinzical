@@ -2,6 +2,8 @@ package quinzical.model;
 
 import java.util.ArrayList;
 
+import javafx.beans.property.SimpleBooleanProperty;
+
 public class MultiplayerGame extends QuinzicalGame {
     private ArrayList<Member> members;
     private boolean isHost;
@@ -10,6 +12,7 @@ public class MultiplayerGame extends QuinzicalGame {
     private Member local;
     private boolean hasStarted;
     private boolean roundOver;
+    private SimpleBooleanProperty mayProgress;
     
     private static MultiplayerGame instance;
 
@@ -29,10 +32,14 @@ public class MultiplayerGame extends QuinzicalGame {
         instance.isHost = user.isHost();
         instance.local = user;
         instance.members.add(instance.local);
+        instance.mayProgress = new SimpleBooleanProperty(instance.roundOver && instance.isHost);
     }
 
     public void updateMembers(ArrayList<Member> members) {
         this.members = members;
+    }
+    public ArrayList<Member> getMembers() {
+        return members;
     }
 
     public void setCode(int code) {
@@ -53,15 +60,19 @@ public class MultiplayerGame extends QuinzicalGame {
     public boolean hasStarted() {
         return hasStarted;
     }
+    public void start() {
+        hasStarted = true;
+    }
 
     public void setCurrentQuestion(Question question) {
         super.setCurrentQuestion(question);
     }
     public void setRoundOver(boolean roundOver) {
         this.roundOver = roundOver;
+        mayProgress.setValue(roundOver && isHost);
     }
-    public boolean mayProgress() {
-        return roundOver && isHost;
+    public SimpleBooleanProperty mayProgress() {
+        return mayProgress;
     }
 }
 

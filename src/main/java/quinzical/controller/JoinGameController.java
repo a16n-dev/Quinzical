@@ -117,7 +117,7 @@ public class JoinGameController {
         JSONObject json = new JSONObject();
         try {
             json.put("code", code);
-            json.put("user", user);
+            json.put("user", user.toJSONObject());
         } catch (JSONException e1) {
             e1.printStackTrace();
         }

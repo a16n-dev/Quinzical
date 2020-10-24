@@ -22,24 +22,11 @@ public class MultiplayerAnswerScreen extends BaseAnswerScreen {
         connect = Connect.getInstance();
         game = MultiplayerGame.getInstance();
         game.setStatus(Status.ANSWERING);
-        Timer.getInstance().setStoppable(false);
+        game.setRoundOver(false);
         
-        if (game.isHost()) {
-            Timer.getInstance().setStoppable(false);
-        }
-        
-        connect.onMessage("ROUND_OVER", e -> {
-            System.out.println("Round over");
-        });
-    }
-    
-    @Override
-    protected void timerExpire() {
-        if (Router.currentViewIs(View.MULTIPLAYER_ANSWER_SCREEN)) {
-            forceWrongAnswer(game.getCurrentQuestion(), true);
-        }
-        Timer.getInstance().setStoppable(true);
-        game.setRoundOver(true);
+        // connect.onMessage("ROUND_OVER", e -> {
+        //     game.setRoundOver(true);
+        // });
     }
     
     @Override

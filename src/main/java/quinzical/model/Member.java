@@ -42,7 +42,7 @@ public class Member {
             obj.put("avatar", avatar.toJSONObject());
             obj.put("score", score);
             obj.put("isHost", isHost);
-            obj.put("username", username);
+            obj.put("username", username == null ? "No name" : username);
         }
         catch (JSONException e) {
             e.printStackTrace();

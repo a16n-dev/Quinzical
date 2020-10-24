@@ -88,7 +88,7 @@ public abstract class BaseAnswerScreen {
         timer = Timer.getInstance();
         timer.set(fxProgressLabel, fxProgressLeft, fxProgressRight, 30);
         timer.start(e -> {
-            timerExpire();
+            forceWrongAnswer(question, true);
         });
 
         Platform.runLater(new Runnable() {
@@ -126,10 +126,6 @@ public abstract class BaseAnswerScreen {
                 fxFeedback.setText("Typo");
             }
         }
-    }
-
-    protected void timerExpire() {
-        forceWrongAnswer(question, true);
     }
 
     public void showAlert(EventHandler<Event> event) {
