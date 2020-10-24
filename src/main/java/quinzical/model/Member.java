@@ -46,8 +46,14 @@ public class Member {
     public Answer getStatus() {
         return status;
     }
+    public void setStatus(Answer status) {
+        this.status = status;
+    }
     public String getAnswer() {
         return answer;
+    }
+    public void setAnswer(String answer) {
+        this.answer = answer;
     }
 
     public JSONObject toJSONObject() {

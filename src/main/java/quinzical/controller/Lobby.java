@@ -18,6 +18,7 @@ import quinzical.model.Question;
 import quinzical.avatar.Accessory;
 import quinzical.avatar.Eyes;
 import quinzical.avatar.Hat;
+import quinzical.model.Answer;
 import quinzical.model.Avatar;
 import quinzical.model.Member;
 import quinzical.util.AvatarFactory;
@@ -76,11 +77,25 @@ public class Lobby {
         fxNextQuestion.visibleProperty().bind(game.mayProgress());
 
         connect = Connect.getInstance();
-        connect.onMessage("NEXT_QUESTION", e -> {
-            Question question = Question.fromJSONObject(e[0].toString());
-            game.setCurrentQuestion(question);
-            Router.show(View.MULTIPLAYER_ANSWER_SCREEN, false);
-            game.start();
+        connect.onMessage("NEXT_QUESTION", args -> {
+            try {
+                JSONObject obj = new JSONObject(args[0].toString());
+                Question question = Question.fromJSONObject(obj.getString("question"));
+                JSONArray membersRaw = obj.getJSONArray("members");
+            
+                ArrayList<Member> members = new ArrayList<Member>();
+                for (int i = 0; i < membersRaw.length(); i++) {
+                    members.add(Member.fromJSONObject(membersRaw.getString(i)));
+                }
+                MultiplayerGame.getInstance().updateMembers(members);
+    
+                game.setCurrentQuestion(question);
+                Router.show(View.MULTIPLAYER_ANSWER_SCREEN, false);
+                game.start();
+            }
+            catch (JSONException e) {
+                e.printStackTrace();
+            }
         });
         connect.onMessage("ROUND_OVER", e -> {
             game.setRoundOver(true);
@@ -97,10 +112,15 @@ public class Lobby {
             Modal.alert("Lobby closed", "The lobby has been closed by the host.");
         });
         connect.onMessage("SCORE_UPDATE", args -> {
+            System.out.println("updating the score of a user");
             try {
                 JSONObject obj = new JSONObject(args[0].toString());
                 String username = obj.getString("username");
                 int score = obj.getInt("score");
+                Answer status = Answer.valueOf(obj.getString("status"));
+                String answer = obj.getString("answer");
+
+                setUserAnswerStatus(username, score, status, answer);
 
                 setSubtitle(getUserIndex(username), "Answered: " + score);
             }
@@ -210,5 +230,15 @@ public class Lobby {
             }
         }
         return -1;
+    }
+    public void setUserAnswerStatus(String username, int score, Answer status, String answer) {
+        for (Member member : game.getMembers()) {
+            if (member.getUsername().equals(username)) {
+                member.setScore(score);
+                member.setStatus(status);
+                member.setAnswer(answer);
+            }
+            return;
+        }
     }
 }
