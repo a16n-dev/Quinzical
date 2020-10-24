@@ -53,11 +53,12 @@ public class IOManager {
                         while ((line = br.readLine()) != null) {
                             try {
                                 String[] parts = line.split("\\|");
-                                int difficulty = Integer.parseInt(parts[0]);
-                                String questionText = parts[1];
-                                String questionPrefix = parts[2];
-                                String answer = parts[3];
-                                Question question = new Question(difficulty, questionText, questionPrefix, answer);
+                                String id = parts[0];
+                                int difficulty = Integer.parseInt(parts[1]);
+                                String questionText = parts[2];
+                                String questionPrefix = parts[3];
+                                String answer = parts[4];
+                                Question question = new Question(id, difficulty, questionText, questionPrefix, answer);
 
                                 category.addQuestion(question);
                             } catch (Exception e) {
@@ -85,8 +86,8 @@ public class IOManager {
      * 
      * @param state State to save
      */
-    public static void saveQuestions(HashMap<String, ArrayList<Question>> state) {
-        String directory = "categories";
+    public static void saveQuestions(HashMap<String, Category> state) {
+        String directory = "categoriesnew";
 
         for (String category : state.keySet()) {
             Writer writer = null;
@@ -94,7 +95,7 @@ public class IOManager {
                 writer = new BufferedWriter(
                         new OutputStreamWriter(new FileOutputStream(directory + "/" + category), "utf-8"));
 
-                for (Question question : state.get(category)) {
+                for (Question question : state.get(category).getQuestions()) {
                     writer.write(question.toString() + "\n");
                 }
                 writer.close();

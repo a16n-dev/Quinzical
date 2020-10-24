@@ -36,6 +36,14 @@ public class Question implements Serializable {
         this.id = UUID.randomUUID().toString();
     }
 
+    public Question(String id, int difficulty, String question, String questionPrefix, String answer) {
+        this.difficulty = new SimpleIntegerProperty(difficulty);
+        this.question = new SimpleStringProperty(question);
+        this.questionPrefix = new SimpleStringProperty(questionPrefix);
+        this.answer = new SimpleStringProperty(answer);
+        this.id = id;
+    }
+
     public Question(Question q) {
         this.difficulty = q.difficulty;
         this.question = q.question;
