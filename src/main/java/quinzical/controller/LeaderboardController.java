@@ -1,5 +1,7 @@
 package quinzical.controller;
 
+import java.util.List;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,6 +11,7 @@ import javafx.scene.control.TableView;
 
 import quinzical.model.Ranking;
 import quinzical.model.User;
+import quinzical.util.UserConnect;
 
 public class LeaderboardController {
 
@@ -44,8 +47,10 @@ public class LeaderboardController {
 		fxTotalScore.setText(Integer.toString(score));
 
 		// Make API call
-
-		// Load table into view
+		UserConnect.getLeaderboardData((List<Ranking> l) -> {
+			rankings.addAll(l);
+			return null;
+		});
 
 	}
 

@@ -33,11 +33,11 @@ public class IOManager {
      *               current active game
      * @return The state of the application based on the files
      */
-    public static HashMap<String, Category> loadQuestions(boolean reload) {
+    public static HashMap<String, Category> loadQuestions() {
         HashMap<String, Category> categoryList = new HashMap<>();
 
         // choose the directory
-        String directory = (reload ? "categories" : "categories_current");
+        String directory = "categories";
 
         try {
             // try to load the questions from the file
@@ -86,7 +86,7 @@ public class IOManager {
      * @param state State to save
      */
     public static void saveQuestions(HashMap<String, ArrayList<Question>> state) {
-        String directory = "categories_current";
+        String directory = "categories";
 
         for (String category : state.keySet()) {
             Writer writer = null;

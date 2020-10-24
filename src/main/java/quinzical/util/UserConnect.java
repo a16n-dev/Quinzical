@@ -23,6 +23,7 @@ import java.util.function.Function;
 
 import javax.naming.AuthenticationException;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -37,7 +38,7 @@ import quinzical.model.User;
  */
 public class UserConnect {
 
-    private static final String BASEURL = "http://localhost:3000";
+    private static final String BASEURL = "http://13.210.217.144:3000";
 
     private static final HttpClient client = HttpClient.newBuilder().version(Version.HTTP_1_1).build();
 
@@ -131,8 +132,34 @@ public class UserConnect {
         }));
     }
 
-    public static List<Ranking> getLeaderboardData() {
-        return null;
+    public static void getLeaderboardData(Function<List<Ranking>, Void> handler) {
+
+        String token = User.getInstance().getToken();
+        
+        System.out.println(token);
+
+        var request = HttpRequest.newBuilder(URI.create(BASEURL + "/leaderboard")).header("auth-token", User.getInstance().getToken())
+        .header("Content-Type", "application/json").header("accept", "application/json").GET().build();
+
+        client.sendAsync(request, BodyHandlers.ofString()).thenApply((Function<HttpResponse<String>, Void>) (response -> {
+
+            try {
+                JSONObject obj = new JSONObject(response.body());
+
+                int rank = obj.getInt("yourPlace");
+
+                JSONArray rankingData = obj.getJSONArray("leaderboard");
+
+                for (int i = 0; i < rankingData.length(); i++) {
+                    System.out.println(rankingData.getString(i));
+                }
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+
+            return null;
+        }));
     }
 
     /**

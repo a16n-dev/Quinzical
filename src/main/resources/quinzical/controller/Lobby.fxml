@@ -78,6 +78,21 @@
                                     <Insets bottom="70.0" />
                                  </StackPane.margin>
                               </VBox>
+                              <VBox alignment="BOTTOM_RIGHT">
+                                 <children>
+                                    <Label fx:id="avatarSpeechBubble4" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e">
+                                       <padding>
+                                          <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="260.0" right="120.0" />
+                                 </padding>
+                              </VBox>
                            </children>
                         </StackPane>
                         <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="500.0" HBox.hgrow="ALWAYS" />
@@ -109,6 +124,21 @@
                                  <StackPane.margin>
                                     <Insets bottom="70.0" />
                                  </StackPane.margin>
+                              </VBox>
+                              <VBox alignment="BOTTOM_RIGHT">
+                                 <children>
+                                    <Label fx:id="avatarSpeechBubble5" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e">
+                                       <padding>
+                                          <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="260.0" right="120.0" />
+                                 </padding>
                               </VBox>
                            </children>
                         </StackPane>
@@ -150,6 +180,21 @@
                                     <Insets bottom="100.0" />
                                  </StackPane.margin>
                               </VBox>
+                              <VBox alignment="BOTTOM_RIGHT">
+                                 <children>
+                                    <Label fx:id="avatarSpeechBubble2" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e">
+                                       <padding>
+                                          <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="260.0" right="120.0" />
+                                 </padding>
+                              </VBox>
                            </children>
                         </StackPane>
                         <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minWidth="50.0" HBox.hgrow="ALWAYS" />
@@ -181,6 +226,21 @@
                                  <StackPane.margin>
                                     <Insets bottom="100.0" />
                                  </StackPane.margin>
+                              </VBox>
+                              <VBox alignment="BOTTOM_RIGHT">
+                                 <children>
+                                    <Label fx:id="avatarSpeechBubble3" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e">
+                                       <padding>
+                                          <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="260.0" right="120.0" />
+                                 </padding>
                               </VBox>
                            </children>
                         </StackPane>
@@ -215,11 +275,33 @@
                                           <Font size="14.0" />
                                        </font>
                                     </Label>
-                                    <StackPane fx:id="avatarSlot1" />
+                                    <StackPane fx:id="avatarSlot1">
+                                       <children>
+                                          <ImageView fitHeight="200.0" fitWidth="220.0" pickOnBounds="true" preserveRatio="true">
+                                             <image>
+                                                <Image url="@../avatar/char_idle.png" />
+                                             </image>
+                                          </ImageView>
+                                       </children></StackPane>
                                  </children>
                                  <StackPane.margin>
                                     <Insets bottom="130.0" />
                                  </StackPane.margin>
+                              </VBox>
+                              <VBox alignment="BOTTOM_RIGHT">
+                                 <children>
+                                    <Label fx:id="avatarSpeechBubble1" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e">
+                                       <padding>
+                                          <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
+                                       </padding>
+                                       <font>
+                                          <Font size="14.0" />
+                                       </font>
+                                    </Label>
+                                 </children>
+                                 <padding>
+                                    <Insets bottom="260.0" right="120.0" />
+                                 </padding>
                               </VBox>
                            </children>
                         </StackPane>

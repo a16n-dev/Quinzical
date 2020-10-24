@@ -32,7 +32,7 @@ public class QuestionBank {
 
     // Private constructor
     private QuestionBank() {
-        _questionBank = IOManager.loadQuestions(true);
+        _questionBank = IOManager.loadQuestions();
     }
 
     /**

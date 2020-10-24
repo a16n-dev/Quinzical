@@ -113,7 +113,7 @@ public class Question implements Serializable {
      * file
      */
     public String toString() {
-        return String.join("|", new String[] { Integer.toString(difficulty.get()), question.get(), questionPrefix.get(),
+        return String.join("|", new String[] { id, Integer.toString(difficulty.get()), question.get(), questionPrefix.get(),
                 answer.get() 
         });
     }

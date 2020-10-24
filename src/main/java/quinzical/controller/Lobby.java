@@ -64,6 +64,17 @@ public class Lobby {
     @FXML
     private Label avatarSubtitle5;
 
+    @FXML
+    private Label avatarSpeechBubble1;
+    @FXML
+    private Label avatarSpeechBubble2;
+    @FXML
+    private Label avatarSpeechBubble3;
+    @FXML
+    private Label avatarSpeechBubble4;
+    @FXML
+    private Label avatarSpeechBubble5;
+
     private MultiplayerGame game;
     private Connect connect;
 
@@ -174,8 +185,8 @@ public class Lobby {
             StackPane container = (StackPane) slotField.get(this);
 
             // Map index to size
-            int s = (int) Math.ceil((pos - .7) / 1.7);
-
+            int s = (int) Math.ceil((pos - 1.7) / 1.7);
+            System.out.println(s);
             AvatarFactory slot = new AvatarFactory(container, SIZE[s], false);
 
             slot.set(avatar);
@@ -202,6 +213,17 @@ public class Lobby {
             Label subTitle = (Label) subtitleField.get(this);
 
             subTitle.setText(subtitleMessage);
+        } catch (NoSuchFieldException | SecurityException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void setSpeechBubble(int pos, String text) {
+        try {
+            Field speechBubbleField = getClass().getDeclaredField("avatarSpeechBubble" + pos);
+            Label speechBubble = (Label) speechBubbleField.get(this);
+
+            speechBubble.setText(text);
         } catch (NoSuchFieldException | SecurityException | IllegalAccessException e) {
             e.printStackTrace();
         }
