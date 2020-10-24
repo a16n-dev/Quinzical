@@ -1,5 +1,8 @@
 package quinzical;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
@@ -71,7 +74,14 @@ public class App extends Application {
                 Integer code = MultiplayerGame.getInstance().getCode();
                 if (code != null) {
                     Connect connect = Connect.getInstance();
-                    connect.emit("LEAVE_LOBBY", MultiplayerGame.getInstance().getCode());
+                    JSONObject obj = new JSONObject();
+                    try {
+                        obj.put("code", MultiplayerGame.getInstance().getCode());
+                    }
+                    catch (JSONException err) {
+                        err.printStackTrace();
+                    }
+                    connect.emit("LEAVE_LOBBY", obj);
                 }
             }
             Platform.exit();
