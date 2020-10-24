@@ -101,6 +101,18 @@ public class Lobby {
             Router.show(View.MAIN_MENU);
             Modal.alert("Lobby closed", "The lobby has been closed by the host.");
         });
+        connect.onMessage("SCORE_UPDATE", args -> {
+            try {
+                JSONObject obj = new JSONObject(args[0].toString());
+                String username = obj.getString("username");
+                int score = obj.getInt("score");
+
+                setSubtitle(getUserIndex(username), "Answered: " + score);
+            }
+            catch (JSONException e) {
+                e.printStackTrace();
+            }
+        });
         connect.onMessage("GAME_OVER", e -> {
             System.out.println("ah yo man it's over");
         });
@@ -138,7 +150,7 @@ public class Lobby {
 
     public void renderAvatars(List<Member> players) {
         // Sort stuff
-        System.out.println(Arrays.deepToString(players.toArray()));
+
         // Render
         for (int i = 1; i <= players.size(); i++) {
             Member m = players.get(i - 1);
@@ -154,7 +166,6 @@ public class Lobby {
     }
 
     private void renderSlot(int pos, Avatar avatar) {
-
         final int[] SIZE = { 220, 180, 140 };
 
         try {
@@ -175,7 +186,6 @@ public class Lobby {
     }
 
     private void setTitle(int pos, String titleMessage) {
-
         try {
             Field titleField = getClass().getDeclaredField("avatarTitle" + pos);
             Label title = (Label) titleField.get(this);
@@ -186,8 +196,7 @@ public class Lobby {
         }
     }
 
-    private void setSubtitle(int pos, String subtitleMessage) {
-
+    public void setSubtitle(int pos, String subtitleMessage) {
         try {
             Field subtitleField = getClass().getDeclaredField("avatarSubtitle" + pos);
             Label subTitle = (Label) subtitleField.get(this);
@@ -196,5 +205,15 @@ public class Lobby {
         } catch (NoSuchFieldException | SecurityException | IllegalAccessException e) {
             e.printStackTrace();
         }
+    }
+
+    public int getUserIndex(String username) {
+        for (int i = 0; i < game.getMembers().size(); i++) {
+            Member m = game.getMembers().get(i);
+            if (m.getUsername().equals(username)) {
+                return i + 1;
+            }
+        }
+        return -1;
     }
 }
