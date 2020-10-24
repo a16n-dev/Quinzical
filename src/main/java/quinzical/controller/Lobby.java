@@ -84,10 +84,7 @@ public class Lobby {
         fxCode.setText(Integer.toString(game.getCode()));
 
         fxNextQuestion.setText(game.hasStarted() ? "Next question" : "Start game");
-        // this has to be bound (timer from answer screen too)
         fxNextQuestion.visibleProperty().bind(game.mayProgress());
-        System.out.println(game.mayProgress().getValue());
-        System.out.println(game.isHost());
 
         connect = Connect.getInstance();
         connect.onMessage("NEXT_QUESTION", e -> {
@@ -98,8 +95,6 @@ public class Lobby {
         });
         connect.onMessage("ROUND_OVER", e -> {
             game.setRoundOver(true);
-            System.out.println("hmm");
-            System.out.println(game.mayProgress().getValue());
         });
 
         connect.onMessage("LOBBY_JOINED", args -> {

@@ -2,6 +2,9 @@ package quinzical.components;
 
 import java.io.IOException;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.event.ActionEvent;
@@ -42,7 +45,14 @@ public class GameTopBarController {
 	private void handleGoBack(ActionEvent event) throws IOException {
 		if (Router.currentViewIs(View.LOBBY)) {
 			Connect connect = Connect.getInstance();
-			connect.emit("LEAVE_LOBBY", MultiplayerGame.getInstance().getCode());
+			JSONObject obj = new JSONObject();
+			try {
+				obj.put("code", MultiplayerGame.getInstance().getCode());
+			}
+			catch (JSONException e) {
+				e.printStackTrace();
+			}
+			connect.emit("LEAVE_LOBBY", obj);
 		}
 		Router.navigateBack();
 	}
