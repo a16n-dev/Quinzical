@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.TrophyCase">
+<AnchorPane xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.menu.TrophyCase">
    <children>
       <VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -34,7 +34,7 @@
                            <children>
                               <ImageView fitHeight="201.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/md_bronze.png" />
+                                    <Image url="@../../images/md_bronze.png" />
                                  </image>
                               </ImageView>
                               <Label text="Bronze" textFill="WHITE">
@@ -70,7 +70,7 @@
                            <children>
                               <ImageView fitHeight="201.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/md_silver.png" />
+                                    <Image url="@../../images/md_silver.png" />
                                  </image>
                               </ImageView>
                               <Label text="Silver" textFill="WHITE">
@@ -106,7 +106,7 @@
                            <children>
                               <ImageView fitHeight="201.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/md_gold.png" />
+                                    <Image url="@../../images/md_gold.png" />
                                  </image>
                               </ImageView>
                               <Label text="Gold" textFill="WHITE">
@@ -142,7 +142,7 @@
                            <children>
                               <ImageView fitHeight="200.0" fitWidth="142.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/md_platinum.png" />
+                                    <Image url="@../../images/md_platinum.png" />
                                  </image>
                               </ImageView>
                               <Label text="Platinum" textFill="WHITE">
@@ -178,7 +178,7 @@
                            <children>
                               <ImageView fitHeight="200.0" fitWidth="109.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../images/md_diamond.png" />
+                                    <Image url="@../../images/md_diamond.png" />
                                  </image>
                               </ImageView>
                               <Label text="Diamond" textFill="WHITE">

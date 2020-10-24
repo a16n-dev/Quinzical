@@ -107,7 +107,6 @@ public class MainMenu {
 	@FXML
 	public void handleViewTrophyCase() {
 		Router.show(View.TROPHY_CASE);
-		user.addCoins(500);
 	}
 	
 	@FXML
