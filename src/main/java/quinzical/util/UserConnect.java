@@ -15,6 +15,7 @@ import java.net.http.HttpResponse.BodyHandler;
 import java.net.http.HttpResponse.BodyHandlers;
 import java.net.http.HttpResponse.BodySubscriber;
 import java.net.http.HttpResponse.ResponseInfo;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -39,6 +40,8 @@ import quinzical.model.User;
 public class UserConnect {
 
     private static final String BASEURL = "http://13.210.217.144:3000";
+    // private static final String BASEURL = "http://localhost:3000";
+
 
     private static final HttpClient client = HttpClient.newBuilder().version(Version.HTTP_1_1).build();
 
@@ -63,7 +66,7 @@ public class UserConnect {
 
                 // get response token
                 Optional<String> token = response.headers().firstValue("auth-token");
-                if(token.isPresent()){
+                if (token.isPresent()) {
                     User.getInstance().setToken(token.get());
                     User.getInstance().setName(username);
                     Modal.hide();
@@ -78,8 +81,7 @@ public class UserConnect {
                     Platform.runLater(() -> {
                         feedback.setText(message);
                     });
-                }
-                catch (JSONException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
             }
@@ -106,14 +108,14 @@ public class UserConnect {
             // Attempt to read response to map
             if (response.statusCode() == 200) {
                 Optional<String> token = response.headers().firstValue("auth-token");
-                if(token.isPresent()){
+                if (token.isPresent()) {
                     User.getInstance().setToken(token.get());
                     User.getInstance().setName(username);
                     Modal.hide();
                     Platform.runLater(() -> {
                         Router.show(View.MAIN_MENU, false);
                     });
-                    
+
                 }
             } else if (response.statusCode() == 400) {
                 try {
@@ -122,8 +124,7 @@ public class UserConnect {
                     Platform.runLater(() -> {
                         feedback.setText(message);
                     });
-                }
-                catch (JSONException e) {
+                } catch (JSONException e) {
                     e.printStackTrace();
                 }
                 // Login failed
@@ -132,34 +133,48 @@ public class UserConnect {
         }));
     }
 
-    public static void getLeaderboardData(Function<List<Ranking>, Void> handler) {
+    public static void getLeaderboardData(Function<List<Ranking>, Void> tableHandler,Function<Integer, Void> rankHandler) {
 
         String token = User.getInstance().getToken();
-        
+
         System.out.println(token);
 
-        var request = HttpRequest.newBuilder(URI.create(BASEURL + "/leaderboard")).header("auth-token", User.getInstance().getToken())
-        .header("Content-Type", "application/json").header("accept", "application/json").GET().build();
+        var request = HttpRequest.newBuilder(URI.create(BASEURL + "/leaderboard"))
+                .header("auth-token", User.getInstance().getToken()).header("Content-Type", "application/json")
+                .header("accept", "application/json").GET().build();
 
-        client.sendAsync(request, BodyHandlers.ofString()).thenApply((Function<HttpResponse<String>, Void>) (response -> {
+        client.sendAsync(request, BodyHandlers.ofString())
+                .thenApply((Function<HttpResponse<String>, Void>) (response -> {
 
-            try {
-                JSONObject obj = new JSONObject(response.body());
+                    try {
+                        JSONObject obj = new JSONObject(response.body());
 
-                int rank = obj.getInt("yourPlace");
+                        int rank = obj.getInt("yourPlace");
 
-                JSONArray rankingData = obj.getJSONArray("leaderboard");
+                        JSONArray rankingData = obj.getJSONArray("leaderboard");
 
-                for (int i = 0; i < rankingData.length(); i++) {
-                    System.out.println(rankingData.getString(i));
-                }
+                        List<Ranking> outputList = new ArrayList<Ranking>();
 
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
+                        for (int i = 0; i < rankingData.length(); i++) {
+                            System.out.println(rankingData.getString(i));
+                            JSONObject userRanking = new JSONObject(rankingData.getString(i));
+                            Ranking r = new Ranking((i + 1), userRanking.getInt("score"),
+                                    userRanking.getString("username"));
+                            outputList.add(r);
+                        }
 
-            return null;
-        }));
+                        Platform.runLater(() -> {
+                            tableHandler.apply(outputList);
+                            rankHandler.apply(rank);
+                        });
+
+
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                    return null;
+                }));
     }
 
     /**
@@ -168,12 +183,23 @@ public class UserConnect {
      * 
      * @param user the user instance to get the data from
      */
-    public static void updateUserData(User user) {
-        // Get data from user
-        List<String> unattemptedQuestions;
+    public static void updateUserScore(int score) {
 
-        // Send data to server
+        HashMap<String, String> map = new HashMap<String, String>();
+        map.put("score", Integer.toString(score));
 
+        HttpRequest request = HttpRequest.newBuilder(URI.create(BASEURL + "/updatescore"))
+        .PUT(BodyPublishers.ofString(new JSONObject(map).toString())).header("Content-Type", "application/json")
+        .header("auth-token", User.getInstance().getToken()).header("accept", "application/json").build();
+
+        client.sendAsync(request, BodyHandlers.ofString()).thenApply((Function<HttpResponse<String>, Void>) (response -> {
+            if(response.statusCode() == 200 ){
+                System.out.println("Score updated!");
+            } else {
+                System.out.println("Failure!");
+            }
+            return null;
+        }));
     }
 
     /**
@@ -186,12 +212,20 @@ public class UserConnect {
      */
     private static void post(String route, HashMap<String, String> body, Function<HttpResponse<String>, Void> fn) {
         JSONObject requestBody = new JSONObject(body);
-        // String requestBody = objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(body);
+        // String requestBody =
+        // objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(body);
 
         // create a request
-        var request = HttpRequest.newBuilder(URI.create(BASEURL + route)).POST(BodyPublishers.ofString(requestBody.toString()))
-                .header("Content-Type", "application/json").header("accept", "application/json").build();
-
+        HttpRequest request;
+        if (User.getInstance().getToken() == null) {
+            request = HttpRequest.newBuilder(URI.create(BASEURL + route))
+                    .POST(BodyPublishers.ofString(requestBody.toString())).header("Content-Type", "application/json")
+                    .header("accept", "application/json").build();
+        } else {
+            request = HttpRequest.newBuilder(URI.create(BASEURL + route))
+                    .POST(BodyPublishers.ofString(requestBody.toString())).header("Content-Type", "application/json")
+                    .header("auth-token", User.getInstance().getToken()).header("accept", "application/json").build();
+        }
         // Send request
         client.sendAsync(request, BodyHandlers.ofString()).thenApply(fn);
     }

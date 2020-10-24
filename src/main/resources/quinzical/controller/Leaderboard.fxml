@@ -11,7 +11,7 @@
 
 <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="quinzical.controller.LeaderboardController">
    <children>
-      <VBox alignment="TOP_CENTER" layoutX="260.0" layoutY="49.0" maxWidth="1.7976931348623157E308" spacing="32.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <VBox alignment="CENTER" layoutX="260.0" layoutY="49.0" maxWidth="1.7976931348623157E308" spacing="32.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <Label text="QUINZICAL LEADERBOARD" textFill="WHITE">
                <font>
@@ -56,13 +56,17 @@
                   <Insets />
                </VBox.margin>
                <children>
-                  <TableView fx:id="fxTable" focusTraversable="false" maxWidth="1000.0" minWidth="600.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0">
-                    <columns>
-                      <TableColumn fx:id="fxRankCol" editable="false" maxWidth="1.7976931348623157E308" prefWidth="99.0" sortable="false" text="Ranking" />
-                      <TableColumn fx:id="fxScoreCol" editable="false" prefWidth="76.0" sortable="false" text="Score" />
-                        <TableColumn fx:id="fxNameCol" editable="false" prefWidth="300.0" sortable="false" text="Name" />
-                    </columns>
-                  </TableView>
+                  <VBox alignment="TOP_CENTER" layoutX="100.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="100.0" AnchorPane.rightAnchor="100.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <TableView fx:id="fxTable" focusTraversable="false" maxWidth="1000.0" minWidth="600.0" VBox.vgrow="ALWAYS">
+                          <columns>
+                            <TableColumn fx:id="fxRankCol" editable="false" maxWidth="1.7976931348623157E308" prefWidth="110.0" sortable="false" text="Ranking" />
+                            <TableColumn fx:id="fxScoreCol" editable="false" prefWidth="149.0" sortable="false" text="Score" />
+                              <TableColumn fx:id="fxNameCol" editable="false" prefWidth="216.0" sortable="false" text="Name" />
+                          </columns>
+                        </TableView>
+                     </children>
+                  </VBox>
                </children>
             </AnchorPane>
          </children>

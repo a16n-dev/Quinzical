@@ -8,6 +8,7 @@ import java.util.List;
 import quinzical.util.IOManager;
 import quinzical.util.QuestionBank;
 import quinzical.util.State;
+import quinzical.util.UserConnect;
 
 /**
  * The user model is reponsible for keeping track of all information related
@@ -163,6 +164,10 @@ public class User implements Serializable {
         coins += amount;
         totalCoins += amount;
 
+        //send to server
+        UserConnect.updateUserScore(totalCoins);
+
+        //persist on local file
         persist();
 
         return coins;

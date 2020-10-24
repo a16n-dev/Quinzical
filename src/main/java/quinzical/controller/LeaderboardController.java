@@ -50,6 +50,10 @@ public class LeaderboardController {
 		UserConnect.getLeaderboardData((List<Ranking> l) -> {
 			rankings.addAll(l);
 			return null;
+		},
+		(Integer rank) -> {
+			fxRanking.setText(rank.toString());
+			return null;
 		});
 
 	}
