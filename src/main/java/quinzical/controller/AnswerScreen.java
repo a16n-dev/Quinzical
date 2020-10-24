@@ -73,6 +73,7 @@ public class AnswerScreen extends BaseAnswerScreen {
         @Override
         public void handle(Event event) {
             // Navigate to the 'reward screen' only if all questions are answered
+            game.addTime(Timer.getInstance().getElapsed());
             if (game.getRemainingQuestions() == 0) {
                 Router.show(View.REWARD_SCREEN);
                 game.setStatus(Status.REWARD);

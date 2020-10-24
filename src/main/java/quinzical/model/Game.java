@@ -34,6 +34,8 @@ public class Game extends QuinzicalGame implements Serializable {
 
     private transient int lastScore;
 
+    private float totalTime;
+
     private Game(List<Category> categories) {
         score = new SimpleIntegerProperty();
         questions = new HashMap<String, ArrayList<Question>>();
@@ -143,6 +145,18 @@ public class Game extends QuinzicalGame implements Serializable {
 
     public String getCurrentCategory() {
         return currentCategory;
+    }
+
+    public void addTime(float time){
+        totalTime += time;
+        System.out.println("Total elapsed time " + totalTime);
+        persist();
+    }
+
+    public String getPrettyTimeTaken(){
+        int minutes = (int) (totalTime / 60);
+        int seconds = (int) (totalTime % 60);
+        return minutes + (seconds > 9 ? ":" : ":0") + seconds;
     }
 
     /**

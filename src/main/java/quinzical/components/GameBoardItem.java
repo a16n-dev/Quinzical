@@ -1,12 +1,14 @@
 package quinzical.components;
 
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import quinzical.model.Category;
 import quinzical.model.Question;
 import quinzical.model.User;
+import quinzical.util.ImageLoader;
 import quinzical.util.Router;
 
 import java.io.IOException;
@@ -26,6 +28,8 @@ public class GameBoardItem {
     private Question question;
 
     private Runnable action;
+
+    private boolean active;
 
     /**
      * The different style classes that can be applied to the element to reflect its
@@ -63,11 +67,35 @@ public class GameBoardItem {
     @FXML
     private AnchorPane fxFront;
 
-    private void config(Question question, Runnable f) {
+    @FXML
+    private ImageView fxImageIndicator;
+
+    private void config(Question q, boolean isActive, Runnable f) {
         action = f;
+        active = isActive;
+        question = q;
         fxValue.textProperty().set("$" + question.getValue());
+        fxResult.setText(question.getAnswerStatus());
+        switch(question.getAnswerStatus()){
+            case "Incorrect": 
+                fxImageIndicator.setImage(ImageLoader.loadImage("images/feedback_incorrect.png"));
+                break;
+            case "Correct": 
+                fxImageIndicator.setImage(ImageLoader.loadImage("images/feedback_correct.png"));
+                break;
+            case "Timed out": 
+                fxImageIndicator.setImage(ImageLoader.loadImage("images/feedback_timeout.png"));
+                break;
+        }
+
         if(question.isAnswered()){
-            setStyle(Style.FOCUSED);
+            setStyle(Style.ANSWERED);
+            fxFront.setVisible(false);
+        } else {
+            fxBack.setVisible(false);
+            if(active){
+                setStyle(Style.FOCUSED);
+            }
         }
     }
 
@@ -77,7 +105,9 @@ public class GameBoardItem {
      */
     @FXML
     public void handleButtonPress() {
-        action.run();
+        if(active && !question.isAnswered()){
+            action.run();
+        }
     }
 
     /**
@@ -90,13 +120,13 @@ public class GameBoardItem {
     }
 
 
-    public static Region create(Question question, Runnable f) {
+    public static Region create(Question question, boolean active, Runnable f) {
         FXMLLoader loader = Router.manualLoad("components/GameBoardItem.fxml");
         try {
             Region content = (Region) loader.load();
             GameBoardItem controller = loader.getController();
 
-            controller.config(question, f);
+            controller.config(question, active, f);
             return content;
         } catch (IOException e) {
             return null;

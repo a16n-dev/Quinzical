@@ -30,6 +30,7 @@ public class GameBoardController {
 	 */
 	public void initialize() {
 		game = Game.getInstance();
+		System.out.println(game.getPrettyTimeTaken());
 		user = User.getInstance();
 
 		// Populate the gameboard grid
@@ -44,33 +45,37 @@ public class GameBoardController {
 			fxGrid.add(label, i, 0);
 
 			// Place buttons
+			boolean active = true;
 			ArrayList<Question> questions = game.getQuestionsByCategory(category);
 			for (int j = 0; j < questions.size(); j++) {
 				final Integer intJ = j;
 				Question question = questions.get(intJ);
 				// Place button
-				Region item = GameBoardItem.create(question, () -> {
-								game.setCurrentQuestion(category, intJ);
-								user.attemptQuestion(category, question.getId());
-								Router.show(View.ANSWER_SCREEN, false);
-							});
+				Region item = GameBoardItem.create(question, active, () -> {
+					game.setCurrentQuestion(category, intJ);
+					user.attemptQuestion(category, question.getId());
+					Router.show(View.ANSWER_SCREEN, false);
+				});
+				if (!question.isAnswered()) {
+					active = false;
+				}
 
 				// if (!question.isAnswered()) {
-				// 	pos += 1;
-				// 	if (!available) {
-				// 		// Disable button if the question has been attempted
-				// 		button.setDisable(true);
-				// 	} else {
-				// 		available = false;
-				// 		// Add click events
-				// 		button.setOnAction((event) -> {
-				// 			game.setCurrentQuestion(category, intJ);
-				// 			user.attemptQuestion(category, question.getId());
-				// 			Router.show(View.ANSWER_SCREEN, false);
-				// 		});
-				// 	}
+				// pos += 1;
+				// if (!available) {
+				// // Disable button if the question has been attempted
+				// button.setDisable(true);
+				// } else {
+				// available = false;
+				// // Add click events
+				// button.setOnAction((event) -> {
+				// game.setCurrentQuestion(category, intJ);
+				// user.attemptQuestion(category, question.getId());
+				// Router.show(View.ANSWER_SCREEN, false);
+				// });
+				// }
 
-				fxGrid.add(item, i, j+1);
+				fxGrid.add(item, i, j + 1);
 			}
 		}
 	}

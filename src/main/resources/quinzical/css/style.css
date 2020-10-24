@@ -127,6 +127,14 @@
     -fx-font-size: 16px;
     -fx-background-radius: 5; 
 }
+.boardItemFocused:hover{
+    -fx-background-color: radial-gradient(focus-distance 10% , center 50% 30% , radius 80% , #FFCA9B, #D89252);
+}
+
+.boardItemAnswered{
+    -fx-background-color: rgba(0,0,0,0.1);
+    -fx-background-radius: 5; 
+}
 
 .propRock{
     -fx-background-image: url("../images/rock.png");

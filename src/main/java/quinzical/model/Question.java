@@ -26,6 +26,8 @@ public class Question implements Serializable {
     
     private boolean isAnswered = false;
 
+    private String answerStatus = "Timed out";
+
     public Question(int difficulty, String question, String questionPrefix, String answer) {
         this.difficulty = new SimpleIntegerProperty(difficulty);
         this.question = new SimpleStringProperty(question);
@@ -79,12 +81,14 @@ public class Question implements Serializable {
             int distance = Levenshtein.distance(sanitise(input), sanitise(answer));
 
             if (distance == 0) {
+                answerStatus = "Correct";
                 return Answer.CORRECT;
             }
             else if (distance < 3) {
                 return Answer.TYPO;
             }
         }
+        answerStatus = "Incorrect";
         return Answer.INCORRECT;
     }
 
@@ -98,6 +102,10 @@ public class Question implements Serializable {
      */
     public void setAnswered(boolean answered) {
         isAnswered = answered;
+    }
+
+    public String getAnswerStatus(){
+        return answerStatus;
     }
 
     /**

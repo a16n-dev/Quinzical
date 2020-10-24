@@ -110,8 +110,8 @@
                   </VBox>
                   <HBox spacing="16.0">
                      <children>
-                        <GameButton buttonType="RAISED" maxWidth="1.7976931348623157E308" text="PLAY AGAIN" HBox.hgrow="ALWAYS" />
-                        <GameButton buttonType="RAISED" maxWidth="1.7976931348623157E308" text="BACK TO MAIN MENU" HBox.hgrow="ALWAYS" />
+                        <GameButton buttonType="RAISED" maxWidth="1.7976931348623157E308" onClick="#handlePlayAgain" text="PLAY AGAIN" HBox.hgrow="ALWAYS" />
+                        <GameButton buttonType="RAISED" maxWidth="1.7976931348623157E308" onClick="#handleButtonMenuClick" text="BACK TO MAIN MENU" HBox.hgrow="ALWAYS" />
                      </children>
                   </HBox>
                </children>
@@ -126,7 +126,7 @@
             <Rectangle2D />
          </viewport>
       </ImageView>
-      <StackPane fx:id="avatarContainer" layoutX="10.0" layoutY="10.0" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="20.0">
+      <StackPane fx:id="fxAvatarContainer" layoutX="10.0" layoutY="10.0" AnchorPane.bottomAnchor="30.0" AnchorPane.rightAnchor="20.0">
          <children>
             <ImageView fx:id="fxAvatar" fitHeight="280.0" fitWidth="280.0" pickOnBounds="true" preserveRatio="true">
                <image>

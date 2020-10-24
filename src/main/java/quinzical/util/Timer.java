@@ -20,7 +20,6 @@ public class Timer {
     private ProgressBar fxProgressLeft;
     private ProgressBar fxProgressRight;
     private Timeline timeline;
-    private float totalGameTime;
 
     public static Timer instance;
 
@@ -38,7 +37,6 @@ public class Timer {
         instance.fxProgressLeft = fxProgressLeft;
         instance.fxProgressRight = fxProgressRight;
         instance.maxTime = maxTime;
-        instance.totalGameTime = 0;
     }
 
     /**
@@ -70,7 +68,6 @@ public class Timer {
     public void stop() {
         if (timeline != null) {
             timeline.stop();
-            totalGameTime += (maxTime - currentTime);
         }
     }
 
@@ -92,8 +89,8 @@ public class Timer {
         return currentTime;
     }
 
-    public float getTotalTime(){
-        return totalGameTime;
+    public float getElapsed(){
+        return maxTime - currentTime;
     }
     
     public float currentScoreMultiplier() {

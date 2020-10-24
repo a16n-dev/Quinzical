@@ -61,7 +61,7 @@ public class RewardScreenController {
 		fxScore.setText(Integer.toString(score));
 		fxCoins.setText("+$" + coinsEarned);
 
-		fxTime.setText(Float.toString(Timer.getInstance().getTotalTime()));
+		fxTime.setText(game.getPrettyTimeTaken());
 
 		fxMedalText.setText(reward.name() + " Medal!");
 
@@ -91,13 +91,15 @@ public class RewardScreenController {
 		}
 	}
 
-	public void handleButtonMenuClick(ActionEvent event) {
+	@FXML
+	private void handleButtonMenuClick(ActionEvent event) {
 		// Reset game
 		Game.clearGame();
 		Router.show(View.MAIN_MENU);
 	}
 
-	public void handlePlayAgain(ActionEvent event) {
+	@FXML
+	private void handlePlayAgain(ActionEvent event) {
 		// Reset game
 		Game.clearGame();
 		Router.show(View.SELECT_CATEGORY_GAME);

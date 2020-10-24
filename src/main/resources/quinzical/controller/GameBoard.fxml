@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import quinzical.components.GameButton?>
-<?import java.net.URL?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -15,16 +13,16 @@
    <children>
       <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Label text="Question Board" textFill="WHITE">
+            <Label text="QUESTION BOARD" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font size="48.0" />
                </font>
                <padding>
                   <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                </padding>
             </Label>
             <Label text="Select a question to answer" textFill="WHITE" />
-            <GridPane fx:id="fxGrid" alignment="CENTER" maxHeight="600.0" maxWidth="1000.0" VBox.vgrow="ALWAYS">
+            <GridPane fx:id="fxGrid" alignment="CENTER" hgap="8.0" maxHeight="600.0" maxWidth="1000.0" vgap="8.0" VBox.vgrow="ALWAYS">
               <columnConstraints>
                 <ColumnConstraints halignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
                   <ColumnConstraints halignment="CENTER" maxWidth="1.7976931348623157E308" minWidth="10.0" percentWidth="20.0" prefWidth="100.0" />
@@ -45,6 +43,9 @@
                </padding>
             </GridPane>
          </children>
+         <padding>
+            <Insets bottom="16.0" left="16.0" right="16.0" />
+         </padding>
       </VBox>
    </children>
 </AnchorPane>
