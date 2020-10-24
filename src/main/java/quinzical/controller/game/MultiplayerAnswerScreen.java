@@ -3,7 +3,6 @@ package quinzical.controller.game;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import io.socket.client.Socket;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
@@ -15,7 +14,6 @@ import quinzical.model.Question;
 import quinzical.model.QuinzicalGame.Status;
 import quinzical.util.Connect;
 import quinzical.util.Router;
-import quinzical.util.Timer;
 
 public class MultiplayerAnswerScreen extends BaseAnswerScreen {
     @FXML

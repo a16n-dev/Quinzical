@@ -1,9 +1,7 @@
 package quinzical.controller.game;
 
-import java.awt.Color;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -16,15 +14,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
-import quinzical.model.MultiplayerGame;
-import quinzical.model.Question;
-import quinzical.avatar.Accessory;
-import quinzical.avatar.Eyes;
-import quinzical.avatar.Hat;
 import quinzical.controller.View;
 import quinzical.model.Answer;
 import quinzical.model.Avatar;
 import quinzical.model.Member;
+import quinzical.model.MultiplayerGame;
+import quinzical.model.Question;
 import quinzical.util.AvatarFactory;
 import quinzical.util.Connect;
 import quinzical.util.Modal;

@@ -11,10 +11,12 @@ import quinzical.model.Category;
 import quinzical.model.Question;
 
 /**
- * This allows the user to add their own custom categories and edit the quesitions in them. This handles adding, changing and removing questions
- * and categories. It also ensures that this information is correctly reflected in the table views.
+ * This allows the user to add their own custom categories and edit the
+ * quesitions in them. This handles adding, changing and removing questions and
+ * categories. It also ensures that this information is correctly reflected in
+ * the table views.
  */
-public class ManageCategories{
+public class ManageCategories {
 
     // Define components in view
     @FXML
@@ -40,48 +42,56 @@ public class ManageCategories{
 
     @FXML
     private Button removeCButton;
-    
+
     private void showCategories() {
         // Set cell values
-        
-        // categoryNameCol.setCellValueFactory(cellData -> cellData.getValue().getName());
+
+        // categoryNameCol.setCellValueFactory(cellData ->
+        // cellData.getValue().getName());
         // categoryQCountCol.setCellValueFactory(
-        //         cellData -> (Bindings.size(cellData.getValue().getQuestions())).asObject());
+        // cellData -> (Bindings.size(cellData.getValue().getQuestions())).asObject());
 
         // categoryNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        // categoryTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-        //     if (newValue != null) {
-        //         showQuestions(newValue);
-        //         _category = newValue;
-        //         // Enable buttons
-        //         enableQuestionButtonBar(false);
-        //     } else {
-        //         questionTable.setItems(null);
-        //         enableQuestionButtonBar(true);
-        //     }
+        // categoryTable.getSelectionModel().selectedItemProperty().addListener((observable,
+        // oldValue, newValue) -> {
+        // if (newValue != null) {
+        // showQuestions(newValue);
+        // _category = newValue;
+        // // Enable buttons
+        // enableQuestionButtonBar(false);
+        // } else {
+        // questionTable.setItems(null);
+        // enableQuestionButtonBar(true);
+        // }
         // });
     }
 
     /**
-     * Takes a category and displays all questions in the category in the questionTable view
+     * Takes a category and displays all questions in the category in the
+     * questionTable view
+     * 
      * @param category
      */
     private void showQuestions(Category category) {
         // questionTable.setItems(category.getQuestions());
 
-        // qQuestionCol.setCellValueFactory(cellData -> cellData.getValue().getQuestion());
+        // qQuestionCol.setCellValueFactory(cellData ->
+        // cellData.getValue().getQuestion());
         // qAnswerCol.setCellValueFactory(cellData -> cellData.getValue().getAnswer());
-        // qValCol.setCellValueFactory(cellData -> cellData.getValue().getValue().asObject());
+        // qValCol.setCellValueFactory(cellData ->
+        // cellData.getValue().getValue().asObject());
 
         // qQuestionCol.setCellFactory(TextFieldTableCell.forTableColumn());
         // qAnswerCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        // qValCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        // qValCol.setCellFactory(TextFieldTableCell.forTableColumn(new
+        // IntegerStringConverter()));
 
-        // questionTable.editingCellProperty().addListener((observable, oldValue, newValue) -> {
-        //     if (newValue == null) {
-        //         IOHelper.writeUser(_user);
-        //     }
+        // questionTable.editingCellProperty().addListener((observable, oldValue,
+        // newValue) -> {
+        // if (newValue == null) {
+        // IOHelper.writeUser(_user);
+        // }
         // });
     }
 
@@ -109,19 +119,21 @@ public class ManageCategories{
         // Category c = categoryTable.getSelectionModel().getSelectedItem();
         // // If category contains questions prompt for confirmation
         // if (c.getQuestions().size() > 0) {
-        //     Alert alert = new Alert(AlertType.CONFIRMATION);
-        //     alert.setTitle("Delete " + c.getName().getValue());
-        //     alert.setHeaderText("Are you sure you want to delete " + c.getName().getValue() + "?");
-        //     alert.setContentText("This will also delete all " + c.getQuestions().size() + " questions in the category");
+        // Alert alert = new Alert(AlertType.CONFIRMATION);
+        // alert.setTitle("Delete " + c.getName().getValue());
+        // alert.setHeaderText("Are you sure you want to delete " +
+        // c.getName().getValue() + "?");
+        // alert.setContentText("This will also delete all " + c.getQuestions().size() +
+        // " questions in the category");
 
-        //     Optional<ButtonType> result = alert.showAndWait();
-        //     if (result.get() == ButtonType.OK) {
-        //         _user.removeCategory(c);
-        //         IOHelper.writeUser(_user);
-        //     }
+        // Optional<ButtonType> result = alert.showAndWait();
+        // if (result.get() == ButtonType.OK) {
+        // _user.removeCategory(c);
+        // IOHelper.writeUser(_user);
+        // }
         // } else {
-        //     _user.removeCategory(c);
-        //     IOHelper.writeUser(_user);
+        // _user.removeCategory(c);
+        // IOHelper.writeUser(_user);
         // }
     }
 
@@ -141,8 +153,9 @@ public class ManageCategories{
     }
 
     /**
-     * Helper method to disable and enable multiple buttons
-     * All of these buttons should be disabled when no category is selected
+     * Helper method to disable and enable multiple buttons All of these buttons
+     * should be disabled when no category is selected
+     * 
      * @param b
      */
     private void enableQuestionButtonBar(boolean b) {
