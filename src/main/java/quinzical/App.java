@@ -59,6 +59,13 @@ public class App extends Application {
                 Modal.confirmation("Are you sure",
                         "Are you sure you want to quit? This will mark the current question as wrong", f -> {
                             try {
+                                if (MultiplayerGame.getInstance() != null) {
+                                    Integer code = MultiplayerGame.getInstance().getCode();
+                                    if (code != null) {
+                                        Connect connect = Connect.getInstance();
+                                        connect.emit("LEAVE_LOBBY", MultiplayerGame.getInstance().getCode());
+                                    }
+                                }
                                 Platform.exit();
                             } catch (Exception e1) {
                                 System.out.println(e1.getStackTrace());

@@ -12,6 +12,8 @@ import quinzical.App;
 import quinzical.App.GameState;
 import quinzical.controller.View;
 import quinzical.model.Game;
+import quinzical.model.MultiplayerGame;
+import quinzical.util.Connect;
 import quinzical.util.Modal;
 import quinzical.util.Router;
 
@@ -38,6 +40,10 @@ public class GameTopBarController {
 
 	@FXML
 	private void handleGoBack(ActionEvent event) throws IOException {
+		if (Router.currentViewIs(View.LOBBY)) {
+			Connect connect = Connect.getInstance();
+			connect.emit("LEAVE_LOBBY", MultiplayerGame.getInstance().getCode());
+		}
 		Router.navigateBack();
 	}
 

@@ -45,7 +45,7 @@ public class MultiplayerGame extends QuinzicalGame {
     public void setCode(int code) {
         this.code = code;
     }
-    public int getCode() {
+    public Integer getCode() {
         return code;
     }
     public boolean isHost() {

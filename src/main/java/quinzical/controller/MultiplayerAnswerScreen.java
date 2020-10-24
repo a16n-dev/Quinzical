@@ -40,7 +40,7 @@ public class MultiplayerAnswerScreen extends BaseAnswerScreen {
         game.setStatus(Status.SUCCESS);
         showAlert(onFinished);
         connect.emit("RESULT", createResultJSON(game.getCode(), game.getLocalScore()));
-        Router.show(View.LOBBY);
+        Router.show(View.LOBBY, false);
     }
     
     @Override
@@ -48,7 +48,7 @@ public class MultiplayerAnswerScreen extends BaseAnswerScreen {
         connect.emit("RESULT", createResultJSON(game.getCode(), game.getLocalScore()));
         game.setStatus(Status.FAILURE);
         showAlert(onFinished);
-        Router.show(View.LOBBY);
+        Router.show(View.LOBBY, false);
     }
     
     @Override
@@ -56,7 +56,7 @@ public class MultiplayerAnswerScreen extends BaseAnswerScreen {
         connect.emit("RESULT", createResultJSON(game.getCode(), game.getLocalScore()));
         game.setStatus(Status.FAILURE);
         showAlert(onFinished);
-        Router.show(View.LOBBY);
+        Router.show(View.LOBBY, false);
     }
 
     private EventHandler<Event> onFinished = new EventHandler<Event>() {

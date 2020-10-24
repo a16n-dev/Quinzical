@@ -22,6 +22,7 @@ import quinzical.model.Avatar;
 import quinzical.model.Member;
 import quinzical.util.AvatarFactory;
 import quinzical.util.Connect;
+import quinzical.util.Modal;
 import quinzical.util.Router;
 
 public class Lobby {
@@ -81,7 +82,7 @@ public class Lobby {
         connect.onMessage("NEXT_QUESTION", e -> {
             Question question = Question.fromJSONObject(e[0].toString());
             game.setCurrentQuestion(question);
-            Router.show(View.MULTIPLAYER_ANSWER_SCREEN);
+            Router.show(View.MULTIPLAYER_ANSWER_SCREEN, false);
             game.start();
         });
         connect.onMessage("ROUND_OVER", e -> {
@@ -91,27 +92,38 @@ public class Lobby {
         });
 
         connect.onMessage("LOBBY_JOINED", args -> {
-            try {
-                JSONObject obj = new JSONObject(args[0].toString());
-                JSONArray membersRaw = obj.getJSONArray("members");
-                
-                ArrayList<Member> members = new ArrayList<Member>();
-                for (int i = 0; i < membersRaw.length(); i++) {
-                    members.add(Member.fromJSONObject(membersRaw.getString(i)));
-                }
-                MultiplayerGame.getInstance().updateMembers(members);
-                Router.show(View.LOBBY);
-                
-            }
-            catch (JSONException e) {
-                e.printStackTrace();
-            }
+            processLobbyUpdate(args);
+        });
+        connect.onMessage("LOBBY_LEFT", args -> {
+            processLobbyUpdate(args);
+        });
+        connect.onMessage("LOBBY_CLOSED", args -> {
+            Router.show(View.MAIN_MENU);
+            Modal.alert("Lobby closed", "The lobby has been closed by the host.");
         });
         connect.onMessage("GAME_OVER", e -> {
             System.out.println("ah yo man it's over");
         });
 
         renderAvatars(game.getMembers());
+    }
+
+    public void processLobbyUpdate(Object... args) {
+        try {
+            JSONObject obj = new JSONObject(args[0].toString());
+            JSONArray membersRaw = obj.getJSONArray("members");
+            
+            ArrayList<Member> members = new ArrayList<Member>();
+            for (int i = 0; i < membersRaw.length(); i++) {
+                members.add(Member.fromJSONObject(membersRaw.getString(i)));
+            }
+            MultiplayerGame.getInstance().updateMembers(members);
+            Router.show(View.LOBBY, false);
+            
+        }
+        catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     public void onNextQuestion() {

@@ -146,7 +146,7 @@ public class MainMenuController {
 
 	@FXML
 	public void handleHostMultiplayer(){
-		Router.show(View.SELECT_CATEGORY_MULTIPLAYER);
+		Router.show(View.SELECT_CATEGORY_MULTIPLAYER, false);
 	}
 
 	@FXML
