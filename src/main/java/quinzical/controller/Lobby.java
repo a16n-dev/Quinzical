@@ -1,5 +1,6 @@
 package quinzical.controller;
 
+import java.awt.Color;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -9,6 +10,8 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.property.SimpleStringProperty;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -111,7 +114,6 @@ public class Lobby {
         connect.onMessage("ROUND_OVER", e -> {
             game.setRoundOver(true);
         });
-
         connect.onMessage("LOBBY_JOINED", args -> {
             processLobbyUpdate(args);
         });
@@ -132,8 +134,7 @@ public class Lobby {
                 String answer = obj.getString("answer");
 
                 setUserAnswerStatus(username, score, status, answer);
-
-                setSubtitle(getUserIndex(username), "Answered: " + score);
+                System.out.println("the score right now is: " + score);
             }
             catch (JSONException e) {
                 e.printStackTrace();
@@ -143,6 +144,7 @@ public class Lobby {
             System.out.println("ah yo man it's over");
         });
 
+        bindAnswerDisplays(game.getMembers());
         renderAvatars(game.getMembers());
     }
 
@@ -157,7 +159,6 @@ public class Lobby {
             }
             MultiplayerGame.getInstance().updateMembers(members);
             Router.show(View.LOBBY, false);
-            
         }
         catch (JSONException e) {
             e.printStackTrace();
@@ -183,11 +184,6 @@ public class Lobby {
 
             renderSlot(i, m.getAvatar());
             setTitle(i, m.getUsername());
-            if(game.hasStarted()){
-                setSubtitle(i, "Score: " +  m.getScore());
-            } else {
-                setSubtitle(i, "");
-            }
         }
     }
 
@@ -222,40 +218,26 @@ public class Lobby {
         }
     }
 
-    public void setSubtitle(int pos, String subtitleMessage) {
+    public void bindAnswerDisplays(List<Member> members) {
         try {
-            Field subtitleField = getClass().getDeclaredField("avatarSubtitle" + pos);
-            Label subTitle = (Label) subtitleField.get(this);
-
-            subTitle.setText(subtitleMessage);
-        } catch (NoSuchFieldException | SecurityException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void setSpeechBubble(int pos, String text) {
-        try {
-            Field speechBubbleField = getClass().getDeclaredField("avatarSpeechBubble" + pos);
-            Label speechBubble = (Label) speechBubbleField.get(this);
-
-            speechBubble.setText(text);
-        } catch (NoSuchFieldException | SecurityException | IllegalAccessException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public int getUserIndex(String username) {
-        for (int i = 0; i < game.getMembers().size(); i++) {
-            Member m = game.getMembers().get(i);
-            if (m.getUsername().equals(username)) {
-                return i + 1;
+            for (int i = 1; i <= members.size(); i++) {
+                Member member = members.get(i - 1);
+                Label bubble = (Label) getClass().getDeclaredField("avatarSpeechBubble" + i).get(this);
+                bubble.textProperty().bind(member.getAnswer());
+    
+                Label subtitle = (Label) getClass().getDeclaredField("avatarSubtitle" + i).get(this);
+                subtitle.textProperty().bind(Bindings.concat(new SimpleStringProperty("Score: "), member.getScore().asString()));
             }
         }
-        return -1;
+        catch (NoSuchFieldException | SecurityException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
+
     public void setUserAnswerStatus(String username, int score, Answer status, String answer) {
         for (Member member : game.getMembers()) {
             if (member.getUsername().equals(username)) {
+                System.out.println("SETTING THE SCORE");
                 member.setScore(score);
                 member.setStatus(status);
                 member.setAnswer(answer);

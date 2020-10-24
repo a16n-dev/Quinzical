@@ -3,20 +3,25 @@ package quinzical.model;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+
 public class Member {
     private Avatar avatar;
-    private int score;
+    private SimpleIntegerProperty score;
     private boolean isHost;
     private String username;
 
     private Answer status;
-    private String answer;
+    private SimpleStringProperty answer;
 
     public Member(Avatar avatar, int score, String username) {
         this.avatar = avatar;
-        this.score = score;
+        this.score = new SimpleIntegerProperty(score);
         this.username = username;
         this.isHost = false;
+        this.status = Answer.ANSWERING;
+        this.answer = new SimpleStringProperty("");
     }
     public Member(Avatar avatar, int score, String username, boolean isHost) {
         this(avatar, score, username);
@@ -25,20 +30,20 @@ public class Member {
     public Member(Avatar avatar, int score, String username, boolean isHost, Answer status, String answer) {
         this(avatar, score, username, isHost);
         this.status = status;
-        this.answer = answer;
+        this.answer.setValue(answer);
     }
 
     public Avatar getAvatar() {
         return avatar;
     }
-    public int getScore() {
+    public SimpleIntegerProperty getScore() {
         return score;
     }
     public String getUsername() {
         return username;
     }
     public void setScore(int score) {
-        this.score = score;
+        this.score.setValue(score);
     }
     public boolean isHost() {
         return isHost;
@@ -49,22 +54,22 @@ public class Member {
     public void setStatus(Answer status) {
         this.status = status;
     }
-    public String getAnswer() {
+    public SimpleStringProperty getAnswer() {
         return answer;
     }
     public void setAnswer(String answer) {
-        this.answer = answer;
+        this.answer.setValue(answer);
     }
 
     public JSONObject toJSONObject() {
         JSONObject obj = new JSONObject();
         try {
             obj.put("avatar", avatar.toJSONObject());
-            obj.put("score", score);
+            obj.put("score", score.getValue());
             obj.put("isHost", isHost);
             obj.put("username", username == null ? "No name" : username);
             obj.put("status", status.toString());
-            obj.put("answer", answer);
+            obj.put("answer", answer.getValue());
         }
         catch (JSONException e) {
             e.printStackTrace();
@@ -76,6 +81,7 @@ public class Member {
         try {
             // if this raises an error, there is a good chance that you need to convert the argument to a string before passing
             JSONObject obj = new JSONObject(raw);
+            
             return new Member(
                 Avatar.fromJSONObject(obj.getString("avatar")),
                 obj.getInt("score"),

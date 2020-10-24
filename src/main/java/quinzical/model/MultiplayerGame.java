@@ -52,10 +52,10 @@ public class MultiplayerGame extends QuinzicalGame {
         return isHost;
     }
     public int getLocalScore() {
-        return local.getScore();
+        return local.getScore().getValue();
     }
     public void adjustLocalScore(int score) {
-        local.setScore(local.getScore() + score);
+        local.setScore(local.getScore().getValue() + score);
     }
     public boolean hasStarted() {
         return hasStarted;
