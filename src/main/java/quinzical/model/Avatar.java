@@ -102,9 +102,24 @@ public class Avatar implements Serializable{
             // if this raises an error, there is a good chance that you need to convert the argument to a string before passing
             JSONObject obj = new JSONObject(raw);
 
-            String hat = obj.getString("hat");
-            String accessory = obj.getString("accessory");
-            String eyes = obj.getString("eyes");
+            String hat = null;
+            String accessory = null;
+            String eyes = null;
+            try {
+                hat = obj.getString("hat");
+            }
+            catch (JSONException e) {
+            }
+            try {
+                accessory = obj.getString("accessory");
+            }
+            catch (JSONException e) {
+            }
+            try {
+                eyes = obj.getString("eyes");
+            }
+            catch (JSONException e) {
+            }
 
             Hat slotHat = hat != null && hat.length() > 0 ? Hat.valueOf(hat) : null;
             Accessory slotAccessory = accessory != null && accessory.length() > 0 ? Accessory.valueOf(accessory) : null;
