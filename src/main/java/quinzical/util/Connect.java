@@ -7,6 +7,7 @@ import io.socket.client.Socket;
 import io.socket.emitter.Emitter;
 import javafx.application.Platform;
 import quinzical.controller.View;
+import quinzical.model.User;
 
 public class Connect {
     private static Connect instance;
@@ -32,7 +33,7 @@ public class Connect {
 
     private void makeConnection() {
         try {
-            socket = IO.socket("http://localhost:3000/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjhlNjg1Mzg4NWE4M2Y1MDQxNDA4NjEiLCJ1c2VybmFtZSI6ImhlbGxvQGdtYWlsLmNvbSIsImlhdCI6MTYwMzE3NjU5Nn0.uQIGwTMX8smWEKWEdFPZTjR_5sbvYNLhAHSSCCJiIY0");
+            socket = IO.socket("http://localhost:3000/?token=" + User.getInstance().getToken());
             socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
 
 				@Override
