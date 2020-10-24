@@ -87,9 +87,9 @@ public class Avatar implements Serializable{
     public JSONObject toJSONObject() {
         JSONObject obj = new JSONObject();
         try {
-            obj.put("hat", slotHat == null ? null : slotHat.getFile());
-            obj.put("accessory", slotAccessory == null ? null : slotAccessory.getFile());
-            obj.put("eyes", slotEyes == null ? null : slotEyes.getFile());
+            obj.put("hat", slotHat == null ? null : slotHat.toString());
+            obj.put("accessory", slotAccessory == null ? null : slotAccessory.toString());
+            obj.put("eyes", slotEyes == null ? null : slotEyes.toString());
             
         }
         catch (JSONException e) {
