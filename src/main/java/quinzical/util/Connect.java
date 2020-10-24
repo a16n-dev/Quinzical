@@ -33,7 +33,7 @@ public class Connect {
 
     private void makeConnection() {
         try {
-            socket = IO.socket("http://localhost:3000/?token=" + User.getInstance().getToken());
+            socket = IO.socket("http://13.210.217.144:3000/?token=" + User.getInstance().getToken());
             socket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
 
 				@Override
