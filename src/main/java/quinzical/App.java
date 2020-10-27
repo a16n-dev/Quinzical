@@ -27,14 +27,14 @@ public class App extends Application {
 
     private static GameState gameState;
 
-    private Stage _stage;
+    private Stage stage;
 
     @Override
     public void start(Stage s) {
-        this._stage = s;
-        this._stage.setMinWidth(1000);
-        this._stage.setMinHeight(700);
-        this._stage.setTitle("Quinzical");
+        this.stage = s;
+        this.stage.setMinWidth(1000);
+        this.stage.setMinHeight(700);
+        this.stage.setTitle("Quinzical");
 
         // Set app icon
         s.getIcons().add(new Image(App.class.getResourceAsStream("images/favicon.png")));

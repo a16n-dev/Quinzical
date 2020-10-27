@@ -37,17 +37,19 @@ public class Leaderboard {
 
 	public void initialize() {
 		rankings = FXCollections.observableArrayList();
-
+		rankings.add(new Ranking(1,0,"Loading Leaderboard..."));
 		initTable();
 
 		// Show users own stats
 		int score = User.getInstance().getTotalCoins();
 		fxTotalScore.setText(Integer.toString(score));
 
+		
+
 		// Make API call
 		UserConnect.getLeaderboardData((List<Ranking> l) -> {
 			if(l != null){
-				rankings.addAll(l);
+				rankings.setAll(l);
 			}
 			return null;
 

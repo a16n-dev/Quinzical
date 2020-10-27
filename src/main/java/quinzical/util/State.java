@@ -2,7 +2,7 @@ package quinzical.util;
 
 /**
  * An enum to keep track of all the different state objects that should be
- * persisted
+ * persisted to file
  */
 public enum State {
     GAME("game"), USER("user"), TTS("tts"), MUSIC("music");

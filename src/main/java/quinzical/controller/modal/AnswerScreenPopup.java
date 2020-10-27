@@ -80,6 +80,11 @@ public class AnswerScreenPopup {
             fxMessage.setText("OUT OF TIME!");
             fxAboveText.setText("The correct answer was");
             fxStatusText.setText(game.getCurrentQuestion().getAnswer());
+        } else if (status == Status.SKIP){
+            fxSymbol.setImage(ImageLoader.loadImage("images/feedback_incorrect.png"));
+            fxMessage.setText("SKIPPED");
+            fxAboveText.setText("The correct answer was");
+            fxStatusText.setText(game.getCurrentQuestion().getAnswer());
         }
 
 

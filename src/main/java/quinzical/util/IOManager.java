@@ -80,7 +80,6 @@ public class IOManager {
 
     /**
      * Save the state to the file
-     * 
      * @param state State to save
      */
     public static void saveQuestions(HashMap<String, Category> state) {
@@ -99,43 +98,6 @@ public class IOManager {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }
-    }
-
-    /**
-     * Load the winnings from the file. If the file can't be found, return 0
-     * 
-     * @return The winnings
-     */
-    public static int loadWinnings() {
-        File file = new File(".winnings");
-        if (!file.exists()) {
-            saveWinnings(0);
-        }
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            String winnings = br.readLine();
-            br.close();
-            return Integer.parseInt(winnings);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
-
-    /**
-     * Save the winnings to the file
-     * 
-     * @param winnings The winnings to save
-     */
-    public static void saveWinnings(int winnings) {
-        Writer writer = null;
-        try {
-            writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(".winnings"), "utf-8"));
-            writer.write(Integer.toString(winnings));
-            writer.close();
-        } catch (IOException e) {
-            e.printStackTrace();
         }
     }
 

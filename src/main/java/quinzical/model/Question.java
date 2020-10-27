@@ -26,7 +26,7 @@ public class Question implements Serializable {
     
     private boolean isAnswered = false;
 
-    private String answerStatus = "Timed out";
+    private String answerStatus = "Didnt Answer";
 
     public Question(int difficulty, String question, String questionPrefix, String answer) {
         this.difficulty = new SimpleIntegerProperty(difficulty);
@@ -50,6 +50,8 @@ public class Question implements Serializable {
         this.questionPrefix = q.questionPrefix;
         this.answer = q.answer;
     }
+
+    public Question() {}
 
     // getters
     public int getValue() {

@@ -121,6 +121,7 @@ public class UserConnect {
 
     public static void getLeaderboardData(Function<List<Ranking>, Void> tableHandler,
             Function<Integer, Void> rankHandler) {
+                if(User.getInstance().getToken() != null){
         var request = HttpRequest.newBuilder(URI.create(BASEURL + "/leaderboard"))
                 .header("auth-token", User.getInstance().getToken()).header("Content-Type", "application/json")
                 .header("accept", "application/json").GET().build();
@@ -150,11 +151,12 @@ public class UserConnect {
                         });
 
                     } catch (JSONException e) {
-                        e.printStackTrace();
+                        
                     }
 
                     return null;
                 }));
+            }
     }
 
     /**
@@ -168,14 +170,17 @@ public class UserConnect {
         HashMap<String, String> map = new HashMap<String, String>();
         map.put("score", Integer.toString(score));
 
-        HttpRequest request = HttpRequest.newBuilder(URI.create(BASEURL + "/updatescore"))
-                .PUT(BodyPublishers.ofString(new JSONObject(map).toString())).header("Content-Type", "application/json")
-                .header("auth-token", User.getInstance().getToken()).header("accept", "application/json").build();
+        if(User.getInstance().getToken() != null){
+            HttpRequest request = HttpRequest.newBuilder(URI.create(BASEURL + "/updatescore"))
+            .PUT(BodyPublishers.ofString(new JSONObject(map).toString())).header("Content-Type", "application/json")
+            .header("auth-token", User.getInstance().getToken()).header("accept", "application/json").build();
 
-        client.sendAsync(request, BodyHandlers.ofString())
-                .thenApply((Function<HttpResponse<String>, Void>) (response -> {
-                    return null;
-                }));
+    client.sendAsync(request, BodyHandlers.ofString())
+            .thenApply((Function<HttpResponse<String>, Void>) (response -> {
+                return null;
+            }));
+        }
+        
     }
 
     /**

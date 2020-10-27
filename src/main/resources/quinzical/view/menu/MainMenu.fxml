@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXSpinner?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
@@ -161,13 +160,6 @@
                            <VBox.margin>
                               <Insets bottom="270.0" left="60.0" />
                            </VBox.margin>
-                           <children>
-                              <JFXSpinner>
-                                 <StackPane.margin>
-                                    <Insets bottom="100.0" />
-                                 </StackPane.margin>
-                              </JFXSpinner>
-                           </children>
                         </StackPane>
                      </children>
                   </VBox>

@@ -115,6 +115,7 @@ public abstract class BaseAnswerScreen {
             if (hasTypoed) {
                 onWrongAnswer(question);
             } else {
+                isSubmitted = false;
                 hasTypoed = true;
                 TTS.getInstance().speak("Typo");
                 fxFeedback.setVisible(true);
@@ -143,12 +144,14 @@ public abstract class BaseAnswerScreen {
         if(App.getState() == GameState.GAME){
             if(fxInput.textProperty().get().length() == 0){
                 return;
-            }
-            if(isSubmitted){
+            }else  if(isSubmitted){
                 Modal.hide();
                 return;
+            } else if(hasTypoed){
+                return;
+            } else {
+                isSubmitted = true;
             }
-            isSubmitted = true;
         } else if (App.getState() == GameState.PRACTICE){
             if(fxInput.textProperty().get().length() == 0){
                 return;

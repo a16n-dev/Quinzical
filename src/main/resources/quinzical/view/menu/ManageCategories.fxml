@@ -42,8 +42,8 @@
                                     </TableView>
                                     <ButtonBar prefHeight="40.0" prefWidth="200.0">
                                        <buttons>
-                                          <Button mnemonicParsing="false" onClick="#LoadCategoryFromFile" text="Load from file..." />
-                                          <Button mnemonicParsing="false" onClick="#createCategory" text="New Category" />
+                                          <GameButton mnemonicParsing="false" onClick="#LoadCategoryFromFile" text="Load from file..." />
+                                          <GameButton mnemonicParsing="false" onClick="#createCategory" text="New Category" />
                                        </buttons>
                                     </ButtonBar>
                                  </children>
@@ -66,9 +66,9 @@
                                     </TableView>
                                     <ButtonBar maxHeight="40.0" prefHeight="40.0" prefWidth="200.0">
                                        <buttons>
-                                          <Button fx:id="addQButton" disable="true" mnemonicParsing="false" onClick="#newQuestion" text="New Question..." />
-                                          <Button fx:id="removeQButton" disable="true" mnemonicParsing="false" onClick="#deleteSelectedQuestion" text="Delete Question" />
-                                          <Button fx:id="removeCButton" disable="true" mnemonicParsing="false" onClick="#deleteCategory" text="Delete Category" />
+                                          <GameButton fx:id="addQButton" disable="true" mnemonicParsing="false" onClick="#newQuestion" text="New Question..." />
+                                          <GameButton fx:id="removeQButton" disable="true" mnemonicParsing="false" onClick="#deleteSelectedQuestion" text="Delete Question" />
+                                          <GameButton fx:id="removeCButton" disable="true" mnemonicParsing="false" onClick="#deleteCategory" text="Delete Category" />
                                        </buttons>
                                        <VBox.margin>
                                           <Insets right="5.0" />

@@ -1,5 +1,6 @@
 package quinzical.controller.menu;
 
+import javafx.beans.binding.Bindings;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.fxml.FXML;
@@ -41,7 +42,7 @@ public class MainMenu {
 	/**
 	 * Field to represent if the game has a connection to the internet. If online is false, multiplayer and other buttons are disabled.
 	 */
-	private BooleanProperty online = new SimpleBooleanProperty(true);
+	private BooleanProperty loggedIn = new SimpleBooleanProperty(false);
 
 	@FXML 
 	private Label fxCoinDisplay;
@@ -57,6 +58,9 @@ public class MainMenu {
 			fxResume.setManaged(false);
 		}
 
+		if(user.getToken() != null){
+			loggedIn.set(true);
+		}
 		
 		//Load avatar
 		Avatar avatar = user.getAvatar();
@@ -67,14 +71,12 @@ public class MainMenu {
 		fxCoinDisplay.setText(Integer.toString(user.getCoins()));
 
 		//Show correct button text for login/logout button
-		fxAccountButton.setText(user.getToken() == null ? "LOGIN" : "LOGOUT");
-		fxUserStatus.setText(user.getToken() == null ? "Not logged in" : "Logged in as " + user.getName());
+		fxAccountButton.setText(loggedIn.get() ? "LOGOUT" : "LOGIN");
+		fxUserStatus.setText(loggedIn.get() ? "Logged in as " + user.getName() : "Not logged in");
 
 		//Bind online dependent buttons to be disabled when offline
-		fxJoinGameButton.disableProperty().bind(online.not());
-		fxHostGameButton.disableProperty().bind(online.not());
-		fxLeaderboardButton.disableProperty().bind(online.not());
-		fxAccountButton.disableProperty().bind(online.not());
+		fxJoinGameButton.disableProperty().bind(loggedIn.not());
+		fxHostGameButton.disableProperty().bind(loggedIn.not());
 	}
 
 	// public void handleGameButtonClick(ActionEvent event) throws IOException {
