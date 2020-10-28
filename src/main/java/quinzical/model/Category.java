@@ -34,7 +34,7 @@ public class Category {
      * Any categories created this way will be marked as user created.
      * @param categoryName
      */
-    public Category(String categoryName){
+    public Category(String categoryName ){
         name = categoryName;
         questions = new HashMap<String, Question>();
         userCreated = true;
@@ -46,11 +46,12 @@ public class Category {
      * @param categoryName
      * @param isLocked
      */
-    public Category(String categoryName, boolean isLocked){
+    public Category(String categoryName, boolean isUserCreated){
         name = categoryName;
         questions = new HashMap<String, Question>();
         userCreated = false;
-        locked = isLocked;
+        locked = false;
+        userCreated = isUserCreated;
     }
 
     /**

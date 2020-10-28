@@ -50,7 +50,7 @@ public class IOManager {
      *               current active game
      * @return The state of the application based on the files
      */
-    public static HashMap<String, Category> loadQuestions(String directory) {
+    private static HashMap<String, Category> loadQuestions(String directory, boolean isUserCreated) {
         HashMap<String, Category> categoryList = new HashMap<>();
 
         try {
@@ -61,7 +61,7 @@ public class IOManager {
                     if (file.isFile()) {
                         BufferedReader br = new BufferedReader(new FileReader(file));
                         String categoryName = file.getName();
-                        Category category = new Category(categoryName,false);
+                        Category category = new Category(categoryName, isUserCreated);
                         String line;
                         //Iterate over each question
                         while ((line = br.readLine()) != null) {
@@ -94,11 +94,11 @@ public class IOManager {
     }
 
     public static HashMap<String, Category> getBaseQuestions(){
-        return loadQuestions(Path.BASE_CATEGORIES.getPath());
+        return loadQuestions(Path.BASE_CATEGORIES.getPath(),false);
     }
 
     public static HashMap<String, Category> getUserQuestions(){
-        return loadQuestions(Path.USER_CATEGORIES.getPath());
+        return loadQuestions(Path.USER_CATEGORIES.getPath(),true);
     }
 
     /**
@@ -106,13 +106,16 @@ public class IOManager {
      * @param state State to save
      */
     public static void saveUserQuestions(HashMap<String, Category> state) {
-        String directory = "userCategories";
+
+        try {
+            Files.createDirectories(Paths.get(Path.USER_CATEGORIES.getPath()));
+        } catch (Exception e) {};
 
         for (String category : state.keySet()) {
             Writer writer = null;
             try {
                 writer = new BufferedWriter(
-                        new OutputStreamWriter(new FileOutputStream(directory + "/" + category), "utf-8"));
+                        new OutputStreamWriter(new FileOutputStream(Path.USER_CATEGORIES.getPath() + category), "utf-8"));
 
                 for (Question question : state.get(category).getQuestions()) {
                     writer.write(question.toString() + "\n");
@@ -129,10 +132,8 @@ public class IOManager {
      */
     public static void writeState(State state, Object obj) {
         try {
-            Files.createDirectories(Paths.get(DATAPATH));
-        } catch (Exception e) {
-        }
-        ;
+            Files.createDirectories(Paths.get(Path.USER_DATA.getPath()));
+        } catch (Exception e) {};
 
         try {
             // Saving of object in a file

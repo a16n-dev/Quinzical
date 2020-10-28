@@ -3,6 +3,7 @@ package quinzical.util;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Random;
 import java.util.stream.Collectors;
 
@@ -34,6 +35,7 @@ public class QuestionBank {
     // Private constructor
     private QuestionBank() {
         questionBank = IOManager.getBaseQuestions();
+        userQuestionBank = IOManager.getUserQuestions();
     }
 
     /**
@@ -58,20 +60,20 @@ public class QuestionBank {
         for (int i = 0; i < amount; i++) {
             int difficulty = i + 1;
             // Get all questions with difficulty i
-            if(!allowDuplicates){
+            if (!allowDuplicates) {
                 List<Question> filteredQs = questionList.stream().filter(p -> p.getDifficulty() == difficulty)
-                .collect(Collectors.toList());
+                        .collect(Collectors.toList());
 
-            int index = _rand.nextInt(filteredQs.size());
-            // Get a random question and remove it from the list
+                int index = _rand.nextInt(filteredQs.size());
+                // Get a random question and remove it from the list
 
-            results.add(new Question(filteredQs.get(index)));
+                results.add(new Question(filteredQs.get(index)));
             } else {
-                
-            int index = _rand.nextInt(questionList.size());
-            // Get a random question and remove it from the list
 
-            results.add(new Question(questionList.get(index)));
+                int index = _rand.nextInt(questionList.size());
+                // Get a random question and remove it from the list
+
+                results.add(new Question(questionList.get(index)));
             }
         }
 
@@ -102,10 +104,10 @@ public class QuestionBank {
                     + amount + " was requested. Either add more questions to this category or allow duplicates");
         }
 
-        //If international is locked then remove it from options
-        if(!User.getInstance().getInternationalUnlocked()){
+        // If international is locked then remove it from options
+        if (!User.getInstance().getInternationalUnlocked()) {
             categoryList = categoryList.stream().filter(p -> !p.getName().equals("International"))
-            .collect(Collectors.toList());
+                    .collect(Collectors.toList());
         }
 
         ArrayList<Category> results = new ArrayList<Category>();
@@ -135,8 +137,8 @@ public class QuestionBank {
 
         // Get the list of categories and create a copy of the array so the original is
         // not modified
-        List<Category> categoryList = getCategories().stream()
-                .filter(p -> p.getQuestions().size() >= minimumQuestions).collect(Collectors.toList());
+        List<Category> categoryList = getCategories().stream().filter(p -> p.getQuestions().size() >= minimumQuestions)
+                .collect(Collectors.toList());
 
         // Throw an error if there are not enough unique questions to match the amount
         // specified
@@ -166,14 +168,24 @@ public class QuestionBank {
      * @return a list of all categories
      */
     public ArrayList<Category> getCategories() {
-        return (ArrayList<Category>) questionBank.values()
-        .stream()
-        .collect(Collectors.toList());
+
+        ArrayList<Category> output = new ArrayList<Category>();
+
+        output.addAll(userQuestionBank.values().stream().collect(Collectors.toList()));
+
+        output.addAll(questionBank.values().stream().collect(Collectors.toList()));
+
+        return output;
+
     }
 
-    public ArrayList<Category> getUserCategories(){
-        return (ArrayList<Category>) userQuestionBank.values()
-        .stream()
-        .collect(Collectors.toList());
+    public ArrayList<Category> getUserCategories() {
+        return (ArrayList<Category>) userQuestionBank.values().stream().collect(Collectors.toList());
+    }
+
+    public void setUserCategories(HashMap<String, Category> categories) {
+        userQuestionBank = categories;
+
+        IOManager.saveUserQuestions(categories);
     }
 }

@@ -1,5 +1,7 @@
 package quinzical.controller.menu;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Optional;
 
 import javafx.beans.property.SimpleIntegerProperty;
@@ -15,8 +17,10 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.TextFieldTableCell;
+import quinzical.model.Category;
 import quinzical.model.Question;
 import quinzical.util.Modal;
+import quinzical.util.QuestionBank;
 
 /**
  * This allows the user to add their own custom categories and edit the
@@ -39,15 +43,6 @@ public class ManageCategories {
     private TableColumn<Question, String> fxAnswerCol;
     @FXML
     private TableColumn<Question, Integer> fxValCol;
-
-    @FXML
-    private Button fxAddQButton;
-
-    @FXML
-    private Button fxRemoveQButton;
-
-    @FXML
-    private Button fxRemoveCButton;
 
     @FXML
     private TextArea fxClueInput;
@@ -83,9 +78,18 @@ public class ManageCategories {
     private Question question;
 
     public void initialize() {
-        // Retrieve categories from question bank
+
         questions = FXCollections.observableHashMap();
         categories = FXCollections.observableArrayList();
+
+        // Retrieve categories from question bank
+        for(Category c : QuestionBank.getInstance().getUserCategories()){
+            System.out.println("bruh");
+            questions.put(c.getName(), FXCollections.observableArrayList(c.getQuestions()));
+            categories.add(c.getName());
+        };
+
+
         showCategories();
     }
 
@@ -220,6 +224,16 @@ public class ManageCategories {
         questions.get(category).set(index, q);
 
         // Put logic here to save to question bank
+        HashMap<String, Category> userCategories = new HashMap<String, Category>();
+
+        for (Map.Entry<String, ObservableList<Question>> entry : questions.entrySet()) {
+            Category c = new Category(entry.getKey());
+            c.addQuestion(entry.getValue());
+            userCategories.put(entry.getKey(), c);
+        }
+
+        QuestionBank.getInstance().setUserCategories(userCategories);
+        
     }
 
 }
