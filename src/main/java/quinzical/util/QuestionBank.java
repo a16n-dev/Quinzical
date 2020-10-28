@@ -18,7 +18,8 @@ import quinzical.model.User;
  */
 public class QuestionBank {
 
-    private HashMap<String, Category> _questionBank;
+    private HashMap<String, Category> questionBank;
+    private HashMap<String, Category> userQuestionBank;
     private Random _rand = new Random();
 
     private static QuestionBank instance;
@@ -32,7 +33,7 @@ public class QuestionBank {
 
     // Private constructor
     private QuestionBank() {
-        _questionBank = IOManager.loadQuestions();
+        questionBank = IOManager.getBaseQuestions();
     }
 
     /**
@@ -107,7 +108,6 @@ public class QuestionBank {
             .collect(Collectors.toList());
         }
 
-
         ArrayList<Category> results = new ArrayList<Category>();
 
         for (int i = 0; i < amount; i++) {
@@ -166,7 +166,13 @@ public class QuestionBank {
      * @return a list of all categories
      */
     public ArrayList<Category> getCategories() {
-        return (ArrayList<Category>) _questionBank.values()
+        return (ArrayList<Category>) questionBank.values()
+        .stream()
+        .collect(Collectors.toList());
+    }
+
+    public ArrayList<Category> getUserCategories(){
+        return (ArrayList<Category>) userQuestionBank.values()
         .stream()
         .collect(Collectors.toList());
     }

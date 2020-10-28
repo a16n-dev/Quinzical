@@ -24,7 +24,25 @@ import quinzical.model.Question;
  */
 public class IOManager {
 
-    private static String DATAPATH = "./gamedata/";
+    private static final String DATAPATH = "./gamedata";
+
+    private static enum Path {
+        BASE_CATEGORIES("/categories/"),
+        USER_CATEGORIES("/user/categories/"),
+        USER_DATA("/user/"),
+
+        ;
+        private String path;
+
+        private Path(String path){
+            this.path = path;
+        }
+
+        public String getPath(){
+            return DATAPATH + path;
+        }
+    }
+
     /**
      * Load the questions from the file
      * 
@@ -32,11 +50,8 @@ public class IOManager {
      *               current active game
      * @return The state of the application based on the files
      */
-    public static HashMap<String, Category> loadQuestions() {
+    public static HashMap<String, Category> loadQuestions(String directory) {
         HashMap<String, Category> categoryList = new HashMap<>();
-
-        // choose the directory
-        String directory = "categories";
 
         try {
             // try to load the questions from the file
@@ -78,12 +93,20 @@ public class IOManager {
         return categoryList;
     }
 
+    public static HashMap<String, Category> getBaseQuestions(){
+        return loadQuestions(Path.BASE_CATEGORIES.getPath());
+    }
+
+    public static HashMap<String, Category> getUserQuestions(){
+        return loadQuestions(Path.USER_CATEGORIES.getPath());
+    }
+
     /**
-     * Save the state to the file
+     * Save the users custom questions to file
      * @param state State to save
      */
-    public static void saveQuestions(HashMap<String, Category> state) {
-        String directory = "categoriesnew";
+    public static void saveUserQuestions(HashMap<String, Category> state) {
+        String directory = "userCategories";
 
         for (String category : state.keySet()) {
             Writer writer = null;
@@ -113,7 +136,7 @@ public class IOManager {
 
         try {
             // Saving of object in a file
-            FileOutputStream file = new FileOutputStream(DATAPATH + state.getFileName());
+            FileOutputStream file = new FileOutputStream(Path.USER_DATA + state.getFileName());
             ObjectOutputStream out = new ObjectOutputStream(file);
 
             // Method for serialization of object
@@ -133,7 +156,7 @@ public class IOManager {
     public static <T> T readState(State state) {
         try {
             // Reading the object from a file
-            FileInputStream file = new FileInputStream(DATAPATH + state.getFileName());
+            FileInputStream file = new FileInputStream(Path.USER_DATA + state.getFileName());
             ObjectInputStream in = new ObjectInputStream(file);
 
             // Method for deserialization of object
@@ -156,7 +179,7 @@ public class IOManager {
      */
     public static void clearState(State state) {
         try {
-            File f = new File(DATAPATH + state.getFileName());
+            File f = new File(Path.USER_DATA + state.getFileName());
             f.delete();
             return;
         } catch (Exception e) {

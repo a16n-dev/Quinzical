@@ -239,13 +239,6 @@ Table stylings
     -fx-background-color: transparent;
 }
 
-.table-view .column-resize-line, .table-view .column-drag-header {
-    -fx-background-color: -fx-table-rippler-color;
-}
-
-.table-row-cell{
-    background: purple;
-}
 .table-row-cell > .disclosure-node > .arrow {
     -fx-background-color: -fx-text-fill;
     -fx-padding: 0.333333em 0.229em 0.333333em 0.229em; /* 4 */
@@ -288,14 +281,15 @@ Table stylings
 }
 
 .table-row-cell:filled:selected { 
-    -fx-background: -fx-control-inner-background ;
+    -fx-background: rgba(150,150,150,0.6) ;
     -fx-background-color: -fx-table-cell-border-color, -fx-background ;
     -fx-background-insets: 0, 0 0 1 0 ;
     -fx-table-cell-border-color: derive(-fx-color, 5%);
   }
   .table-row-cell:odd:filled:selected {
-    -fx-background: -fx-control-inner-background-alt ;
+    -fx-background: rgba(150,150,150,0.6) ;
   }
+  
 
 /* Style progress bar */
 .progress-bar > .track{

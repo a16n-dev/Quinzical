@@ -51,7 +51,13 @@ public class Question implements Serializable {
         this.answer = q.answer;
     }
 
-    public Question() {}
+    public Question() {
+        this.difficulty = new SimpleIntegerProperty();
+        this.question = new SimpleStringProperty();
+        this.questionPrefix = new SimpleStringProperty();
+        this.answer = new SimpleStringProperty();
+        this.id = UUID.randomUUID().toString();
+    }
 
     // getters
     public int getValue() {

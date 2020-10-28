@@ -2,10 +2,8 @@ package quinzical.controller.menu;
 
 import java.util.Optional;
 
-import javafx.beans.binding.Bindings;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
@@ -13,11 +11,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.cell.TextFieldTableCell;
-import javafx.util.converter.IntegerStringConverter;
-import quinzical.model.Category;
 import quinzical.model.Question;
+import quinzical.util.Modal;
 
 /**
  * This allows the user to add their own custom categories and edit the
@@ -29,49 +28,77 @@ public class ManageCategories {
 
     // Define components in view
     @FXML
-    private TableView<String> categoryTable;
+    private TableView<String> fxCategoryTable;
     @FXML
-    private TableColumn<String, String> categoryNameCol;
+    private TableColumn<String, String> fxCategoryNameCol;
     @FXML
-    private TableColumn<String, Integer> categoryQCountCol;
+    private TableView<Question> fxQuestionTable;
     @FXML
-    private TableView<Question> questionTable;
+    private TableColumn<Question, String> fxQuestionCol;
     @FXML
-    private TableColumn<Question, String> qQuestionCol;
+    private TableColumn<Question, String> fxAnswerCol;
     @FXML
-    private TableColumn<Question, String> qAnswerCol;
-    @FXML
-    private TableColumn<Question, Integer> qValCol;
+    private TableColumn<Question, Integer> fxValCol;
 
     @FXML
-    private Button addQButton;
+    private Button fxAddQButton;
 
     @FXML
-    private Button removeQButton;
+    private Button fxRemoveQButton;
 
     @FXML
-    private Button removeCButton;
+    private Button fxRemoveCButton;
 
-    private ObservableMap<String, ObservableList<Question>> categories;
+    @FXML
+    private TextArea fxClueInput;
 
+    @FXML
+    private TextField fxPrefixInput;
+
+    @FXML
+    private TextField fxAnswerField;
+
+    @FXML
+    private TextField fxDifficultyField;
+
+    /**
+     * Stores a list of questions in each category, where the key is the category
+     * name
+     */
+    private ObservableMap<String, ObservableList<Question>> questions;
+
+    /**
+     * Stores a list of category names for the categories the user has created
+     */
+    private ObservableList<String> categories;
+
+    /**
+     * Stores the currently selected category
+     */
     private String category;
+
+    /**
+     * Stores the currently selected question
+     */
+    private Question question;
 
     public void initialize() {
         // Retrieve categories from question bank
-        categories = FXCollections.observableHashMap();
-
+        questions = FXCollections.observableHashMap();
+        categories = FXCollections.observableArrayList();
+        showCategories();
     }
 
     private void showCategories() {
-        // Set cell values
+        // Link table
+        fxCategoryTable.setItems(categories);
 
-        categoryNameCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()));
-        categoryQCountCol
-                .setCellValueFactory(cellData -> (Bindings.size(categories.get(cellData.getValue()))).asObject());
+        // Map column to data
+        fxCategoryNameCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue()));
+        fxCategoryNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
 
-        categoryNameCol.setCellFactory(TextFieldTableCell.forTableColumn());
-
-        categoryTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+        // Listener for the user selecting a row
+        fxCategoryTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
                 category = newValue;
                 showQuestions();
@@ -79,76 +106,73 @@ public class ManageCategories {
                 // Enable buttons
                 enableQuestionButtonBar(false);
             } else {
-                questionTable.setItems(null);
+                fxQuestionTable.setItems(null);
                 enableQuestionButtonBar(true);
             }
         });
     }
 
     /**
-     * Takes a category and displays all questions in the category in the
-     * questionTable view
-     * 
-     * @param category
+     * Takes the currently selected category and displays the list of all questions
+     * in that category in the question table
      */
     private void showQuestions() {
-        questionTable.setItems(categories.get(category));
+        // Link table
+        fxQuestionTable.setItems(questions.get(category));
 
-        qQuestionCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHint()));
-        qAnswerCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAnswer()));
-        qValCol.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getValue()).asObject());
+        // Map columns to data
+        fxQuestionCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getHint()));
+        fxAnswerCol.setCellValueFactory(cellData -> new SimpleStringProperty(cellData.getValue().getAnswer()));
+        fxValCol.setCellValueFactory(cellData -> new SimpleIntegerProperty(cellData.getValue().getValue()).asObject());
 
-        qQuestionCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        qAnswerCol.setCellFactory(TextFieldTableCell.forTableColumn());
-        qValCol.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
-
-        questionTable.editingCellProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue == null) {
-                // IOHelper.writeUser(_user);
+        fxQuestionTable.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                question = newValue;
+                showQuestionDetails();
             }
         });
     }
 
+    /**
+     * Creates a new question in the currently selected category
+     */
     @FXML
     private void newQuestion() {
-        categories.get(category).add(new Question());
-        questionTable.getSelectionModel().selectLast();
+        questions.get(category).add(new Question());
+        fxQuestionTable.getSelectionModel().selectLast();
     }
 
+    /**
+     * Deletes the question which is currently selected
+     */
     @FXML
-    private void deleteSelectedQuestion() {
-        Question q = questionTable.getSelectionModel().getSelectedItem();
-        categories.get(category).remove(q);
+    private void deleteQuestion() {
+        Question q = fxQuestionTable.getSelectionModel().getSelectedItem();
+        questions.get(category).remove(q);
     }
 
-    @FXML
-    private void LoadCategoryFromFile() {
-        // IOHelper.loadFromFile(_app);
-    }
-
+    /**
+     * Deletes the category which is currently selected. If the category contains
+     * questions then the user will be prompted to confirm the deletion
+     */
     @FXML
     private void deleteCategory() {
-        // Category c = categoryTable.getSelectionModel().getSelectedItem();
-        // // If category contains questions prompt for confirmation
-        // if (c.getQuestions().size() > 0) {
-        // Alert alert = new Alert(AlertType.CONFIRMATION);
-        // alert.setTitle("Delete " + c.getName().getValue());
-        // alert.setHeaderText("Are you sure you want to delete " +
-        // c.getName().getValue() + "?");
-        // alert.setContentText("This will also delete all " + c.getQuestions().size() +
-        // " questions in the category");
-
-        // Optional<ButtonType> result = alert.showAndWait();
-        // if (result.get() == ButtonType.OK) {
-        // _user.removeCategory(c);
-        // IOHelper.writeUser(_user);
-        // }
-        // } else {
-        // _user.removeCategory(c);
-        // IOHelper.writeUser(_user);
-        // }
+        String c = fxCategoryTable.getSelectionModel().getSelectedItem();
+        // If category contains questions prompt for confirmation
+        if (questions.get(c).size() > 0) {
+            Modal.confirmation("Delete" + c + "?", "This will delete all questions in the category", e -> {
+                questions.remove(c);
+                categories.remove(c);
+            });
+        } else {
+            questions.remove(c);
+            categories.remove(c);
+        }
     }
 
+    /**
+     * Displays a dialog to let the user create a new category
+     */
     @FXML
     private void createCategory() {
         TextInputDialog dialog = new TextInputDialog("Animals");
@@ -158,21 +182,44 @@ public class ManageCategories {
         Optional<String> result = dialog.showAndWait();
 
         result.ifPresent(name -> {
-            categories.put(name, FXCollections.observableArrayList());
-            categoryTable.getSelectionModel().selectLast();
+            questions.put(name, FXCollections.observableArrayList());
+            categories.add(name);
+            fxCategoryTable.getSelectionModel().selectLast();
         });
     }
 
-    /**
-     * Helper method to disable and enable multiple buttons All of these buttons
-     * should be disabled when no category is selected
-     * 
-     * @param b
-     */
     private void enableQuestionButtonBar(boolean b) {
-        addQButton.setDisable(b);
-        removeQButton.setDisable(b);
-        removeCButton.setDisable(b);
+        // addQButton.setDisable(b);
+        // removeQButton.setDisable(b);
+        // removeCButton.setDisable(b);
+    }
+
+    /**
+     * Displays the details of the selected question in the form
+     */
+    @FXML
+    private void showQuestionDetails() {
+        fxClueInput.setText(question.getHint());
+        fxPrefixInput.setText(question.getPrefix());
+        fxAnswerField.setText(question.getAnswer());
+        fxDifficultyField.setText(Integer.toString(question.getDifficulty()));
+    }
+
+    /**
+     * Saves the changes the user has made to the question
+     */
+    @FXML
+    private void saveChanges() {
+        String id = question.getId();
+        String clue = fxClueInput.getText();
+        String prefix = fxPrefixInput.getText();
+        String answer = fxAnswerField.getText();
+        String difficulty = fxDifficultyField.getText();
+        Question q = new Question(id, Integer.parseInt(difficulty), clue, prefix, answer);
+        int index = questions.get(category).indexOf(question);
+        questions.get(category).set(index, q);
+
+        // Put logic here to save to question bank
     }
 
 }
