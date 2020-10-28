@@ -192,7 +192,7 @@
                                  <children>
                                     <VBox alignment="CENTER" fillWidth="false" maxWidth="16.0" minWidth="16.0" prefWidth="16.0" style="-fx-background-radius: 2; -fx-background-color: white; -fx-border-radius: 1; -fx-border-color: #eee;">
                                        <children>
-                                          <Label fx:id="fxMacronLetter" maxHeight="-Infinity" maxWidth="16.0" minHeight="-Infinity" minWidth="20.0" prefHeight="20.0" prefWidth="16.0" text="e">
+                                          <Label fx:id="fxMacronLetter" alignment="CENTER" maxHeight="-Infinity" maxWidth="16.0" minHeight="-Infinity" minWidth="20.0" prefHeight="20.0" prefWidth="16.0" text="e">
                                              <padding>
                                                 <Insets left="4.0" right="4.0" />
                                              </padding>

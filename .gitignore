@@ -30,7 +30,7 @@ hs_err_pid*
 .settings/
 
 #Game data
-gamedata/
+gamedata/user/
 submit/
 runAlex.sh
 

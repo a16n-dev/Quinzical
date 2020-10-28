@@ -136,7 +136,7 @@ public class IOManager {
 
         try {
             // Saving of object in a file
-            FileOutputStream file = new FileOutputStream(Path.USER_DATA + state.getFileName());
+            FileOutputStream file = new FileOutputStream(Path.USER_DATA.getPath() + state.getFileName());
             ObjectOutputStream out = new ObjectOutputStream(file);
 
             // Method for serialization of object
