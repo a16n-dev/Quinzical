@@ -40,7 +40,7 @@
                            <font>
                               <Font name="System Bold" size="18.0" />
                            </font></Label>
-                        <Label fx:id="fxRanking" text="1st" textFill="WHITE">
+                        <Label fx:id="fxRanking" text="Not ranked" textFill="WHITE">
                            <font>
                               <Font size="18.0" />
                            </font></Label>

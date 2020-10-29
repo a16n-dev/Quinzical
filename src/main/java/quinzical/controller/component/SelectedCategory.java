@@ -12,24 +12,24 @@ import javafx.scene.layout.Region;
 import quinzical.model.Category;
 import quinzical.util.Router;
 
+/**
+ * Display a category that has been selected in the select categories screen
+ * This class can also generate placeholders for slots where no category has
+ * been selected
+ * 
+ * @author Alexander Nicholson
+ */
 public class SelectedCategory {
-
-    /**
-     * The category the element represents
-     */
-    private Category category;
-
-    /**
-     * A reference to the list of selected categories that listeners can be
-     * attatched to
-     */
-    private ObservableList<Category> categories;
 
     @FXML
     private Label fxName;
 
     @FXML
     private AnchorPane fxBase;
+
+    private Category category;
+
+    private ObservableList<Category> categories;
 
     /**
      * Configures the controller to correspond to a specific category
@@ -75,6 +75,12 @@ public class SelectedCategory {
         }
     }
 
+    /**
+     * Factory method to create a template for an empty category slot as a
+     * placeholder for a selected category
+     * 
+     * @return A Region containing an javafx element that displays a placeholder
+     */
     public static Node createTemplate() {
         Node content = Router.loadFXML(Component.EMPTY_CATEGORY.getPath());
         return content;

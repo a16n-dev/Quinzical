@@ -28,8 +28,7 @@ import quinzical.model.User;
  */
 public class UserConnect {
 
-    // private static final String BASEURL = "http://13.210.217.144:3000";
-    private static final String BASEURL = "http://localhost:3000";
+    private static final String BASEURL = "http://13.210.217.144:3000";
 
     private static final HttpClient client = HttpClient.newBuilder().version(Version.HTTP_1_1).build();
 

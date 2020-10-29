@@ -18,6 +18,11 @@ import quinzical.avatar.Cosmetic;
 import quinzical.util.ImageLoader;
 import quinzical.util.Router;
 
+/**
+ * Component to display a cosmetic item in the list of items in the shop. The display changes based on if the cosmetic is owned or selected
+ * 
+ * @author Alexander Nicholson
+ */
 public class ShopListItem {
 
     @FXML
@@ -32,6 +37,10 @@ public class ShopListItem {
     @FXML
     private Label fxPrice;
 
+    /**
+     * The different style classes that can be applied to the element to reflect its
+     * state
+     */
     private enum Style {
         DEFAULT("shopListItem"), SELECTED("shopListItemSelected"), OWNED("shopListItemOwned"),;
 
@@ -46,10 +55,18 @@ public class ShopListItem {
         }
     }
 
-    private void config(Cosmetic item, EventHandler<MouseEvent> e, ObjectProperty<Cosmetic> selectedItem,
+    /**
+     * Configures the node with the given data
+     * 
+     * @param item         the cosmetic item to display
+     * @param e            the eventhandler for clicking the item
+     * @param selectedItem the item the user currently has selected in the shop
+     * @param ownedItems   the list of all items owned by the user
+     */
+    private void config(Cosmetic item, EventHandler<MouseEvent> event, ObjectProperty<Cosmetic> selectedItem,
             ObservableList<String> ownedItems) {
         fxText.setText(item.getName());
-        fxBase.setOnMousePressed(e);
+        fxBase.setOnMousePressed(event);
         fxBase.setId(item.getId());
 
         fxPrice.setText("$" + item.getPrice());
@@ -65,13 +82,18 @@ public class ShopListItem {
         });
 
         ownedItems.addListener((ListChangeListener<String>) (c -> {
-            setBadge(ownedItems, item);
+            setDisplay(ownedItems, item);
         }));
 
-        setBadge(ownedItems, item);
+        setDisplay(ownedItems, item);
     }
 
-    private void setBadge(List<String> owned, Cosmetic item) {
+    /**
+     * Sets the display of the item based on if it is owned or not
+     * @param owned a list of owned items 
+     * @param item the item for this slot
+     */
+    private void setDisplay(List<String> owned, Cosmetic item) {
         if (owned.indexOf(item.getId()) != -1) {
             // if owned
             fxBase.setStyle("-fx-background-color: rgba(0,0,0,0.5)");
@@ -86,10 +108,23 @@ public class ShopListItem {
         }
     }
 
+    /**
+     * Sets the style of the element to the given class
+     * 
+     * @param style the style to apply
+     */
     private void setStyle(Style style) {
         fxBase.getStyleClass().set(0, style.toString());
     }
 
+    /**
+     * Static factory method to generate a new intance of GameBoardItem.
+     * 
+     * @param item         the cosmetic item to display
+     * @param e            the eventhandler for clicking the item
+     * @param selectedItem the item the user currently has selected in the shop
+     * @param ownedItems   the list of all items owned by the user
+     */
     public static Region create(Cosmetic item, ObjectProperty<Cosmetic> selectedItem, ObservableList<String> ownedItems,
             EventHandler<MouseEvent> event) {
         FXMLLoader loader = Router.manualLoad(Component.SHOP_LIST_ITEM.getPath());
