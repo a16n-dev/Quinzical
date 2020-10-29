@@ -5,12 +5,10 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
-import quinzical.avatar.Accessory;
 import quinzical.avatar.Cosmetic;
-import quinzical.avatar.Eyes;
-import quinzical.avatar.Hat;
 import quinzical.model.Avatar;
 import quinzical.model.User;
+import quinzical.model.Avatar.Slot;
 
 /**
  * This class handles the user's avatar and is responsible for rendering it
@@ -45,11 +43,11 @@ public class AvatarFactory {
 
     private ImageView fxEyesLayer;
 
-    private Hat savedHat;
+    private Cosmetic savedHat;
 
-    private Accessory savedAccessory;
+    private Cosmetic savedAccessory;
 
-    private Eyes savedEyes;
+    private Cosmetic savedEyes;
 
     private Image fxBase = null;
 
@@ -157,28 +155,34 @@ public class AvatarFactory {
         size.set(scale);
     }
 
-    public void set(Hat hat) {
-        if (! (hat == savedHat)) {
-            fxHat = setSlot(hat);
-            savedHat = hat;
-            fxHatLayer.setImage(fxHat);
-        }
-    }
+    public void set(Cosmetic item, Slot slot) {
+        switch (slot) {
+            case ACCESSORY:
+                if (!(item == savedAccessory)) {
+                    fxBody = setSlot(item);
+                    savedAccessory = item;
+                    fxBodyLayer.setImage(fxBody);
+                }
+                break;
+            case EYES:
+                if (!(item == savedEyes)) {
+                    fxEyes = setSlot(item);
+                    savedEyes = item;
+                    fxEyesLayer.setImage(fxEyes);
+                }
+                break;
+            case HAT:
+                if (!(item == savedHat)) {
+                    fxHat = setSlot(item);
+                    savedHat = item;
+                    fxHatLayer.setImage(fxHat);
+                }
+                break;
+            default:
+                break;
 
-    public void set(Accessory accessory) {
-        if (! (accessory == savedAccessory)) {
-            fxBody = setSlot(accessory);
-            savedAccessory = accessory;
-            fxBodyLayer.setImage(fxBody);
         }
-    }
 
-    public void set(Eyes eyes) {
-        if (!(eyes == savedEyes)) {
-            fxEyes = setSlot(eyes);
-            savedEyes = eyes;
-            fxEyesLayer.setImage(fxEyes);
-        }
     }
 
     private Image setSlot(Cosmetic item) {
@@ -192,8 +196,8 @@ public class AvatarFactory {
     }
 
     public void set(Avatar avatar) {
-        set(avatar.getHat());
-        set(avatar.getAccessory());
-        set(avatar.getEyes());
+        set(avatar.getHat(), Slot.HAT);
+        set(avatar.getAccessory(), Slot.ACCESSORY);
+        set(avatar.getEyes(), Slot.EYES);
     }
 }

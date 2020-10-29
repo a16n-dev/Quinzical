@@ -5,82 +5,73 @@ import java.io.Serializable;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import quinzical.avatar.Accessory;
 import quinzical.avatar.Cosmetic;
-import quinzical.avatar.Eyes;
-import quinzical.avatar.Hat;
 
-public class Avatar implements Serializable{
+public class Avatar implements Serializable {
 
     private static final long serialVersionUID = 1402907673497852680L;
 
-    private Hat slotHat;
+    private Cosmetic slotHat;
 
-    private Accessory slotAccessory;
+    private Cosmetic slotAccessory;
 
-    private Eyes slotEyes;
+    private Cosmetic slotEyes;
 
     private boolean forceDisableAnimation;
 
     public static enum Slot {
-        HAT,
-        ACCESSORY,
-        EYES
+        HAT, ACCESSORY, EYES
     }
 
-    
-    public Avatar(){
+    public Avatar() {
         slotHat = null;
         slotAccessory = null;
         slotEyes = null;
     }
 
-    public Avatar(Hat hat, Accessory accessory, Eyes eyes){
+    public Avatar(Cosmetic hat, Cosmetic accessory, Cosmetic eyes) {
         slotHat = hat;
         slotAccessory = accessory;
         slotEyes = eyes;
     }
 
-    public void setHat(Hat hat){
+    public void setHat(Cosmetic hat) {
         slotHat = hat;
     }
 
-    public Hat getHat(){
-       return slotHat;
+    public Cosmetic getHat() {
+        return slotHat;
     }
 
-    public void setAccessory(Accessory accessory){
+    public void setAccessory(Cosmetic accessory) {
         slotAccessory = accessory;
     }
 
-    public Accessory getAccessory(){
-       return slotAccessory;
+    public Cosmetic getAccessory() {
+        return slotAccessory;
     }
 
-    public void setEyes(Eyes eyes){
+    public void setEyes(Cosmetic eyes) {
         slotEyes = eyes;
     }
 
-    public Eyes getEyes(){
+    public Cosmetic getEyes() {
         return slotEyes;
-     }
+    }
 
-    public boolean isEquipped(Cosmetic c){
-        if(c == null){
+    public boolean isEquipped(Cosmetic c) {
+        if (c == null) {
             return false;
         }
-        return (
-            (slotHat != null && slotHat.equals(c)) ||
-             (slotAccessory != null && slotAccessory.equals(c)) ||
-             (slotEyes != null && slotEyes.equals(c))
-             );
+        return ((slotHat != null && slotHat.equals(c)) || (slotAccessory != null && slotAccessory.equals(c))
+                || (slotEyes != null && slotEyes.equals(c)));
     }
 
-    public void setforceDisableAnimation(boolean b){
+    public void setforceDisableAnimation(boolean b) {
         forceDisableAnimation = b;
     }
 
-    public boolean hasForceDisableAnimation(){
+    public boolean hasForceDisableAnimation() {
         return forceDisableAnimation;
     }
 
@@ -90,16 +81,17 @@ public class Avatar implements Serializable{
             obj.put("hat", slotHat == null ? null : slotHat.toString());
             obj.put("accessory", slotAccessory == null ? null : slotAccessory.toString());
             obj.put("eyes", slotEyes == null ? null : slotEyes.toString());
-            
-        }
-        catch (JSONException e) {
+
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         return obj;
     }
+
     public static Avatar fromJSONObject(String raw) {
         try {
-            // if this raises an error, there is a good chance that you need to convert the argument to a string before passing
+            // if this raises an error, there is a good chance that you need to convert the
+            // argument to a string before passing
             JSONObject obj = new JSONObject(raw);
 
             String hat = null;
@@ -107,27 +99,23 @@ public class Avatar implements Serializable{
             String eyes = null;
             try {
                 hat = obj.getString("hat");
-            }
-            catch (JSONException e) {
+            } catch (JSONException e) {
             }
             try {
                 accessory = obj.getString("accessory");
-            }
-            catch (JSONException e) {
+            } catch (JSONException e) {
             }
             try {
                 eyes = obj.getString("eyes");
-            }
-            catch (JSONException e) {
+            } catch (JSONException e) {
             }
 
-            Hat slotHat = hat != null && hat.length() > 0 ? Hat.valueOf(hat) : null;
-            Accessory slotAccessory = accessory != null && accessory.length() > 0 ? Accessory.valueOf(accessory) : null;
-            Eyes slotEyes = eyes != null && eyes.length() > 0 ? Eyes.valueOf(eyes) : null;
-            
+            Cosmetic slotHat = hat != null && hat.length() > 0 ? Cosmetic.valueOf(hat) : null;
+            Cosmetic slotAccessory = accessory != null && accessory.length() > 0 ? Cosmetic.valueOf(accessory) : null;
+            Cosmetic slotEyes = eyes != null && eyes.length() > 0 ? Cosmetic.valueOf(eyes) : null;
+
             return new Avatar(slotHat, slotAccessory, slotEyes);
-        }
-        catch (JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
             return null;
         }

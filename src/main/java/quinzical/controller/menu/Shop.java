@@ -21,14 +21,12 @@ import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.StackPane;
-import quinzical.avatar.Accessory;
 import quinzical.avatar.Cosmetic;
-import quinzical.avatar.Eyes;
-import quinzical.avatar.Hat;
 import quinzical.controller.component.GameButton;
 import quinzical.controller.component.ShopListItem;
 import quinzical.model.Avatar;
 import quinzical.model.User;
+import quinzical.model.Avatar.Slot;
 import quinzical.util.AvatarFactory;
 import quinzical.util.ImageLoader;
 import quinzical.util.Modal;
@@ -222,13 +220,13 @@ public class Shop {
     public void equip(Cosmetic item) {
         switch (item.getSlot()) {
             case ACCESSORY:
-                avatar.setAccessory((Accessory) item);
+                avatar.setAccessory( item);
                 break;
             case HAT:
-                avatar.setHat((Hat) item);
+                avatar.setHat( item);
                 break;
             case EYES:
-                avatar.setEyes((Eyes) item);
+                avatar.setEyes(item);
                 break;
             default:
                 break;
@@ -322,13 +320,13 @@ public class Shop {
         isPreview.set(true);
         switch (item.getSlot()) {
             case ACCESSORY:
-                avatarfactory.set((Accessory) item);
+                avatarfactory.set(item, Slot.ACCESSORY);
                 break;
             case HAT:
-                avatarfactory.set((Hat) item);
+                avatarfactory.set(item, Slot.HAT);
                 break;
             case EYES:
-                avatarfactory.set((Eyes) item);
+                avatarfactory.set(item, Slot.EYES);
                 break;
             default:
                 break;
@@ -360,13 +358,7 @@ public class Shop {
         ArrayList<Cosmetic> items = new ArrayList<Cosmetic>();
 
         // Get hats
-        items.addAll(Arrays.asList(Hat.values()));
-
-        // Get accessories
-        items.addAll(Arrays.asList(Accessory.values()));
-
-        // Get eyes
-        items.addAll(Arrays.asList(Eyes.values()));
+        items.addAll(Arrays.asList(Cosmetic.values()));
 
         // Sort item list by price
         items.sort((Cosmetic c1, Cosmetic c2) -> c1.getPrice() - (c2.getPrice()));
