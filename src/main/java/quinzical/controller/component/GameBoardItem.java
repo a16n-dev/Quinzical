@@ -14,11 +14,34 @@ import java.io.IOException;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
+/**
+ * Generates a node to display on the gameboard which is what the user presses
+ * to select a question Each gameboarditem references a specific question.
+ * @author Alexander Nicholson
+ */
 public class GameBoardItem {
 
-    /**
-     * The question the element represents
-     */
+    @FXML
+    private StackPane fxBase;
+
+    @FXML
+    private Label fxValue;
+
+    @FXML
+    private Label fxStatus;
+
+    @FXML
+    private Label fxResult;
+
+    @FXML
+    private AnchorPane fxBack;
+
+    @FXML
+    private AnchorPane fxFront;
+
+    @FXML
+    private ImageView fxImageIndicator;
+
     private Question question;
 
     private Runnable action;
@@ -43,51 +66,39 @@ public class GameBoardItem {
         }
     }
 
-    @FXML
-    private StackPane fxBase;
-
-    @FXML
-    private Label fxValue;
-
-    @FXML
-    private Label fxStatus;
-
-    @FXML
-    private Label fxResult;
-
-    @FXML
-    private AnchorPane fxBack;
-
-    @FXML
-    private AnchorPane fxFront;
-
-    @FXML
-    private ImageView fxImageIndicator;
-
+    /**
+     * Configures the node with the given data
+     * 
+     * @param q        the question the gameboard item represents
+     * @param isActive a boolean that indicates if the node should be clickable
+     * @param f        the function to run when the button is pressed
+     */
     private void config(Question q, boolean isActive, Runnable f) {
+
         action = f;
         active = isActive;
         question = q;
+
         fxValue.textProperty().set("$" + question.getValue());
         fxResult.setText(question.getAnswerStatus());
-        switch(question.getAnswerStatus()){
-            case "Incorrect": 
+        switch (question.getAnswerStatus()) {
+            case "Incorrect":
                 fxImageIndicator.setImage(ImageLoader.loadImage("images/feedback_incorrect.png"));
                 break;
-            case "Correct": 
+            case "Correct":
                 fxImageIndicator.setImage(ImageLoader.loadImage("images/feedback_correct.png"));
                 break;
-            case "Timed out": 
+            case "Timed out":
                 fxImageIndicator.setImage(ImageLoader.loadImage("images/feedback_timeout.png"));
                 break;
         }
 
-        if(question.isAnswered()){
+        if (question.isAnswered()) {
             setStyle(Style.ANSWERED);
             fxFront.setVisible(false);
         } else {
             fxBack.setVisible(false);
-            if(active){
+            if (active) {
                 setStyle(Style.FOCUSED);
             }
         }
@@ -99,7 +110,7 @@ public class GameBoardItem {
      */
     @FXML
     public void handleButtonPress() {
-        if(active && !question.isAnswered()){
+        if (active && !question.isAnswered()) {
             action.run();
         }
     }
@@ -113,9 +124,16 @@ public class GameBoardItem {
         fxBase.getStyleClass().set(0, style.toString());
     }
 
-
+    /**
+     * Static factory method to generate a new intance of GameBoardItem.
+     * 
+     * @param q        the question the gameboard item represents
+     * @param isActive a boolean that indicates if the node should be clickable
+     * @param f        the function to run when the button is pressed
+     * @return a region that contains a gameboarditem
+     */
     public static Region create(Question question, boolean active, Runnable f) {
-        FXMLLoader loader = Router.manualLoad("view/component/GameBoardItem.fxml");
+        FXMLLoader loader = Router.manualLoad(Component.GAME_BOARD_ITEM.getPath());
         try {
             Region content = (Region) loader.load();
             GameBoardItem controller = loader.getController();

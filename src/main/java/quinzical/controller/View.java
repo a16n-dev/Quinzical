@@ -16,27 +16,27 @@ import quinzical.controller.menu.CategorySelectPractice;
 public enum View {
 
     // Game Views
-    GAME_BOARD("view/game/GameBoard.fxml", Component.GAME_TITLE.path(), GameState.GAME),
-    ANSWER_SCREEN("view/game/AnswerScreen.fxml", Component.GAME_TITLE.path(), new AnswerScreen(), GameState.GAME),
-    PRACTICE_ANSWER_SCREEN("view/game/AnswerScreen.fxml", Component.GAME_TITLE.path(), new PracticeAnswerScreen(),
+    GAME_BOARD("view/game/GameBoard.fxml", Component.GAME_TITLE.getPath(), GameState.GAME),
+    ANSWER_SCREEN("view/game/AnswerScreen.fxml", Component.GAME_TITLE.getPath(), new AnswerScreen(), GameState.GAME),
+    PRACTICE_ANSWER_SCREEN("view/game/AnswerScreen.fxml", Component.GAME_TITLE.getPath(), new PracticeAnswerScreen(),
             GameState.PRACTICE),
-    MULTIPLAYER_ANSWER_SCREEN("view/game/AnswerScreen.fxml", Component.GAME_TITLE.path(), new MultiplayerAnswerScreen(),
+    MULTIPLAYER_ANSWER_SCREEN("view/game/AnswerScreen.fxml", Component.GAME_TITLE.getPath(), new MultiplayerAnswerScreen(),
             GameState.MULTIPLAYER),
-    REWARD_SCREEN("view/game/RewardScreen.fxml", Component.GAME_TITLE.path(), GameState.GAME),
-    LOBBY("view/game/Lobby.fxml", Component.GAME_TITLE.path(), GameState.MULTIPLAYER),
+    REWARD_SCREEN("view/game/RewardScreen.fxml", Component.GAME_TITLE.getPath(), GameState.GAME),
+    LOBBY("view/game/Lobby.fxml", Component.GAME_TITLE.getPath(), GameState.MULTIPLAYER),
 
     // Menu Views
     MAIN_MENU("view/menu/MainMenu.fxml", null, GameState.MENU),
-    TROPHY_CASE("view/menu/TrophyCase.fxml", Component.GAME_TITLE.path(), GameState.MENU),
-    LEADERBOARD("view/menu/Leaderboard.fxml", Component.GAME_TITLE.path(), GameState.MENU),
-    SELECT_CATEGORY_GAME("view/menu/CategorySelect.fxml", Component.GAME_TITLE.path(), new CategorySelectGame(),
+    TROPHY_CASE("view/menu/TrophyCase.fxml", Component.GAME_TITLE.getPath(), GameState.MENU),
+    LEADERBOARD("view/menu/Leaderboard.fxml", Component.GAME_TITLE.getPath(), GameState.MENU),
+    SELECT_CATEGORY_GAME("view/menu/CategorySelect.fxml", Component.GAME_TITLE.getPath(), new CategorySelectGame(),
             GameState.MENU),
-    SELECT_CATEGORY_PRACTICE("view/menu/CategorySelect.fxml", Component.GAME_TITLE.path(), new CategorySelectPractice(),
+    SELECT_CATEGORY_PRACTICE("view/menu/CategorySelect.fxml", Component.GAME_TITLE.getPath(), new CategorySelectPractice(),
             GameState.MENU),
-    SELECT_CATEGORY_MULTIPLAYER("view/menu/CategorySelect.fxml", Component.GAME_TITLE.path(),
+    SELECT_CATEGORY_MULTIPLAYER("view/menu/CategorySelect.fxml", Component.GAME_TITLE.getPath(),
             new CategorySelectMultiplayer(), GameState.MENU),
-    CUSTOM_CATEGORIES("view/menu/ManageCategories.fxml", Component.GAME_TITLE.path(), GameState.MENU),
-    SHOP("view/menu/Shop.fxml", Component.GAME_TITLE.path(), GameState.SHOP),
+    CUSTOM_CATEGORIES("view/menu/ManageCategories.fxml", Component.GAME_TITLE.getPath(), GameState.MENU),
+    SHOP("view/menu/Shop.fxml", Component.GAME_TITLE.getPath(), GameState.SHOP),
 
     // Modal Views
     MODAL_SETTINGS("view/modal/Settings.fxml", null, GameState.MODAL),

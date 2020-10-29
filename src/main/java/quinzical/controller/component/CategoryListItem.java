@@ -15,37 +15,36 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 
+/**
+ * A javaFX component to display a category in the category selection screen
+ * @author Alexander Nicholson
+ */
 public class CategoryListItem {
 
-    /**
-     * The category the element represents
-     */
+    @FXML
+    private Label fxName;
+
+    @FXML
+    private Label fxCount;
+
+    @FXML
+    private AnchorPane fxBase;
+
+    @FXML
+    private AnchorPane fxLock;
+
     private Category category;
 
-    /**
-     * Boolean indicating if the category is part of the current selection
-     */
     private boolean isSelected;
 
-    /**
-     * Boolean indicating if the element should be disabled and unable to added to
-     * the selection
-     */
     private BooleanProperty disabled;
 
-    /**
-     * 
-     */
     private boolean locked;
 
-    /**
-     * A reference to the list of selected categories that listeners can be
-     * attatched to
-     */
     private ObservableList<Category> categories;
 
     /**
-     * The different style classes that can be applied to the element to reflect its
+     * The different css style classes that can be applied to the element to reflect its
      * state
      */
     private enum Style {
@@ -61,18 +60,6 @@ public class CategoryListItem {
             return className;
         }
     }
-
-    @FXML
-    private Label fxName;
-
-    @FXML
-    private Label fxCount;
-
-    @FXML
-    private AnchorPane fxBase;
-
-    @FXML
-    private AnchorPane fxLock;
 
     /**
      * Configures the controller to correspond to a specific category
@@ -150,7 +137,7 @@ public class CategoryListItem {
      */
     public static Region create(Category category, BooleanProperty isDisabled,
             ObservableList<Category> selectedCategories) {
-        FXMLLoader loader = Router.manualLoad("view/component/CategoryListItem.fxml");
+        FXMLLoader loader = Router.manualLoad(Component.CATEGORY_LIST_ITEM.getPath());
         try {
             Region content = (Region) loader.load();
             CategoryListItem controller = loader.getController();

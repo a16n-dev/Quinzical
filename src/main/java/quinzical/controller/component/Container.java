@@ -7,37 +7,33 @@ import javafx.scene.layout.StackPane;
 import javafx.util.Duration;
 import quinzical.util.Modal;
 
+/**
+ * A container class which all views are placed inside of. This class is
+ * responsible for displaying the background and any animation between screens
+ */
 public class Container {
 
     @FXML
-    public StackPane rootStackPane;
+    private StackPane rootStackPane;
 
     @FXML
     private BorderPane content;
 
-    @FXML
-    public void hideModal() {
-        // Modal.hide();
-    }
-
+    /**
+     * The method to run when the fxml is initialised
+     */
     public void initialize() {
         // Initialise modal
         Modal.init(rootStackPane);
 
-        // Show animation
+        // Show animation for fly-in
         TranslateTransition moveIn = new TranslateTransition();
-
         moveIn.setDuration(Duration.millis(4500));
-
-        // Setting the node for the transition
         moveIn.setNode(content);
-
-        // Setting the value of the transition along the x axis.
         moveIn.setFromY(1500);
         moveIn.setByY(-1500);
 
-        moveIn.play(); 
-
+        moveIn.play();
     }
 
 }

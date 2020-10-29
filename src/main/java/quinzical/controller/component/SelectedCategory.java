@@ -63,7 +63,7 @@ public class SelectedCategory {
      *         a given category
      */
     public static Region create(Category category, ObservableList<Category> selectedCategories) {
-        FXMLLoader loader = Router.manualLoad("view/component/SelectedCategory.fxml");
+        FXMLLoader loader = Router.manualLoad(Component.SELECTED_CATEGORY.getPath());
         try {
             Region content = (Region) loader.load();
             SelectedCategory controller = loader.getController();
@@ -76,7 +76,7 @@ public class SelectedCategory {
     }
 
     public static Node createTemplate() {
-        Node content = Router.loadFXML("view/component/EmptyCategory.fxml");
+        Node content = Router.loadFXML(Component.EMPTY_CATEGORY.getPath());
         return content;
     }
 }

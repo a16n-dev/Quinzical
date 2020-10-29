@@ -92,7 +92,7 @@ public class ShopListItem {
 
     public static Region create(Cosmetic item, ObjectProperty<Cosmetic> selectedItem, ObservableList<String> ownedItems,
             EventHandler<MouseEvent> event) {
-        FXMLLoader loader = Router.manualLoad("view/component/ShopListItem.fxml");
+        FXMLLoader loader = Router.manualLoad(Component.SHOP_LIST_ITEM.getPath());
         try {
             Region content = (Region) loader.load();
             ShopListItem controller = loader.getController();

@@ -10,13 +10,16 @@ import javafx.event.EventHandler;
 import quinzical.util.Sound;
 
 /**
- * A custom button to use that plays a sound when pressed
- * This component has a custom property, onClick. whatever is passed to this
- * will become the onAction property of the button
+ * A custom button to use that plays a sound when pressed This component has a
+ * custom property, onClick. Whatever is passed to this will become the onAction
+ * property of the button
+ * 
+ * @author Alexander Nicholson
  */
 public class GameButton extends JFXButton {
-    
-    //The methods and fields here are setup so that onClick is a valid property, which javaFX uses reflection to determine
+
+    // The methods and fields here are setup so that onClick is a valid property,
+    // which javaFX uses reflection to determine
     private ObjectProperty<EventHandler<ActionEvent>> onClick = new ObjectPropertyBase<EventHandler<ActionEvent>>() {
         @Override
         protected void invalidated() {
@@ -34,10 +37,17 @@ public class GameButton extends JFXButton {
         }
     };
 
+    /**
+     * @return the onClickProperty for the GameButton
+     */
     public final ObjectProperty<EventHandler<ActionEvent>> onClickProperty() {
         return onClick;
     }
 
+    /**
+     * Sets the onclick handler to the specified EventHandler
+     * @param value the EventHanlder to handle the event when the user click the button
+     */
     public final void setOnClick(EventHandler<ActionEvent> value) {
 
         onActionProperty().set(e -> {
@@ -46,6 +56,9 @@ public class GameButton extends JFXButton {
         });
     }
 
+    /**
+     * @return the EventHandler for the onClick event
+     */
     public final EventHandler<ActionEvent> getOnClick() {
         return onActionProperty().get();
     }

@@ -12,12 +12,12 @@ import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 import quinzical.controller.View;
+import quinzical.controller.component.Component;
 import quinzical.model.MultiplayerGame;
 import quinzical.model.User;
 import quinzical.util.Connect;
 import quinzical.util.Modal;
 import quinzical.util.Router;
-import quinzical.util.Sound;
 
 public class App extends Application {
 
@@ -40,7 +40,7 @@ public class App extends Application {
         s.getIcons().add(new Image(App.class.getResourceAsStream("images/favicon.png")));
 
         // Setup router
-        StackPane container = (StackPane) Router.loadFXML("view/component/GameContainer.fxml");
+        StackPane container = (StackPane) Router.loadFXML(Component.GAME_CONTAINER.getPath());
 
         Scene scene = new Scene(container, User.getInstance().getPrefWidth().intValue(),
                 User.getInstance().getPrefHeight().intValue());
