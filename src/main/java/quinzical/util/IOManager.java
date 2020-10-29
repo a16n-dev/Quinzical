@@ -157,7 +157,7 @@ public class IOManager {
     public static <T> T readState(State state) {
         try {
             // Reading the object from a file
-            FileInputStream file = new FileInputStream(Path.USER_DATA + state.getFileName());
+            FileInputStream file = new FileInputStream(Path.USER_DATA.getPath() + state.getFileName());
             ObjectInputStream in = new ObjectInputStream(file);
 
             // Method for deserialization of object

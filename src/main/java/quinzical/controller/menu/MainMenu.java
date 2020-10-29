@@ -42,7 +42,7 @@ public class MainMenu {
 	/**
 	 * Field to represent if the game has a connection to the internet. If online is false, multiplayer and other buttons are disabled.
 	 */
-	private BooleanProperty loggedIn = new SimpleBooleanProperty(false);
+	private BooleanProperty loggedIn = new SimpleBooleanProperty();
 
 	@FXML 
 	private Label fxCoinDisplay;
@@ -60,6 +60,8 @@ public class MainMenu {
 
 		if(user.getToken() != null){
 			loggedIn.set(true);
+		} else {
+			loggedIn.set(false);
 		}
 		
 		//Load avatar
@@ -73,10 +75,6 @@ public class MainMenu {
 		//Show correct button text for login/logout button
 		fxAccountButton.setText(loggedIn.get() ? "LOGOUT" : "LOGIN");
 		fxUserStatus.setText(loggedIn.get() ? "Logged in as " + user.getName() : "Not logged in");
-
-		//Bind online dependent buttons to be disabled when offline
-		fxJoinGameButton.disableProperty().bind(loggedIn.not());
-		fxHostGameButton.disableProperty().bind(loggedIn.not());
 	}
 
 	// public void handleGameButtonClick(ActionEvent event) throws IOException {
@@ -133,6 +131,10 @@ public class MainMenu {
 
 	@FXML
 	public void showJoinGame() {
+		if(user.getToken() == null){
+			Modal.alert("Please log in", "You must be logged in to play multiplayer");
+			return;
+		}
 		Modal.show(View.MODAL_JOIN,600,300);
 	}
 
@@ -143,6 +145,10 @@ public class MainMenu {
 
 	@FXML
 	public void handleHostMultiplayer(){
+		if(user.getToken() == null){
+			Modal.alert("Please log in", "You must be logged in to play multiplayer");
+			return;
+		}
 		Router.show(View.SELECT_CATEGORY_MULTIPLAYER, false);
 	}
 

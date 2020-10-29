@@ -142,6 +142,11 @@ public class User implements Serializable {
         internationalUnlocked = unlock;
     }
 
+    /**
+     * Removes the specified question from the list of unattempted questions for the user
+     * @param category the category to remove the question from
+     * @param id the id of the specific question to remove
+     */
     public void attemptQuestion(String category, String id) {
         unattemptedQuestions.get(category).remove(id);
 
@@ -154,18 +159,17 @@ public class User implements Serializable {
         }
     }
 
-    // Coin system
-    /**
-     * Adds the given amount of coins to the users coins
-     * 
-     * @return the number of coins the user has
-     */
+     /**
+      * Adds the given amount of coins to the users coins
+      * @param amount the number of coins to add
+      * @return the number of coins the user has
+      */
     public int addCoins(int amount) {
         coins += amount;
         totalCoins += amount;
 
         //send to server
-        UserConnect.updateUserScore(totalCoins);
+        UserConnect.updateUserScore(totalCoins, coins);
 
         //persist on local file
         persist();
@@ -175,10 +179,16 @@ public class User implements Serializable {
     }
 
     /**
-     * Removes the given amount of coins from the user.
+     * 
      * 
      * @return the number of coins the user has
      */
+
+     /**
+      * Sets the users coins to the given amount
+      * @param amount the amount of coins to set as the users coins
+      * @return the amount of coins the user has
+      */
     public int setCoins(int amount) {
         coins = amount;
 
@@ -206,12 +216,24 @@ public class User implements Serializable {
     }
 
     /**
+     * Sets the users total coints to the specified amount
+     * @param coins the total number of coins to set for the user
+     */
+    public void setTotalCoins(int coins) {
+        totalCoins = coins;
+    }
+
+    /**
      * @return the avatar for the user, which can be modified
      */
     public Avatar getAvatar() {
         return avatar;
     }
 
+    /**
+     * Sets the users avatar to the specified avatar object
+     * @param a an avatar
+     */
     public void setAvatar(Avatar a) {
         avatar = a;
         persist();
@@ -293,6 +315,7 @@ public class User implements Serializable {
 
     public void setName(String username){
         name = username;
+        persist();
     }
 
     public String getName(){

@@ -6,9 +6,13 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.ToggleButton;
+import quinzical.controller.View;
 import quinzical.model.User;
+import quinzical.util.IOManager;
 import quinzical.util.Modal;
+import quinzical.util.Router;
 import quinzical.util.Sound;
+import quinzical.util.State;
 import quinzical.util.TTS;
 
 public class Settings {
@@ -92,8 +96,9 @@ public class Settings {
 
         Modal.confirmation("Reset Progress", "Are you sure you want to reset your progress? This will remove all your rewards" + alertContent, e -> {
 
-			User.getInstance().clearRewards();
-			User.getInstance().setInternational(false);
+            IOManager.clearState(State.USER);
+            IOManager.clearState(State.GAME);
+            Router.show(View.MAIN_MENU);
         });
     }				
 	

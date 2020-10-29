@@ -151,8 +151,8 @@ public class ManageCategories {
      */
     @FXML
     private void deleteQuestion() {
-        Question q = fxQuestionTable.getSelectionModel().getSelectedItem();
-        questions.get(category).remove(q);
+        questions.get(category).remove(question);
+        updateQuestionBank();
     }
 
     /**
@@ -161,16 +161,20 @@ public class ManageCategories {
      */
     @FXML
     private void deleteCategory() {
-        String c = fxCategoryTable.getSelectionModel().getSelectedItem();
+        if(category == null){
+            return;
+        }
         // If category contains questions prompt for confirmation
-        if (questions.get(c).size() > 0) {
-            Modal.confirmation("Delete" + c + "?", "This will delete all questions in the category", e -> {
-                questions.remove(c);
-                categories.remove(c);
+        if (questions.get(category).size() > 0) {
+            Modal.confirmation("Delete" + category + "?", "This will delete all questions in the category", e -> {
+                questions.remove(category);
+                categories.remove(category);
+                updateQuestionBank();
             });
         } else {
-            questions.remove(c);
-            categories.remove(c);
+            questions.remove(category);
+            categories.remove(category);
+            updateQuestionBank();
         }
     }
 
@@ -223,6 +227,11 @@ public class ManageCategories {
         int index = questions.get(category).indexOf(question);
         questions.get(category).set(index, q);
 
+
+        updateQuestionBank();
+    }
+
+    private void updateQuestionBank(){
         // Put logic here to save to question bank
         HashMap<String, Category> userCategories = new HashMap<String, Category>();
 
@@ -233,7 +242,6 @@ public class ManageCategories {
         }
 
         QuestionBank.getInstance().setUserCategories(userCategories);
-        
     }
 
 }

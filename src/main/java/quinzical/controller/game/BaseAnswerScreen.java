@@ -25,12 +25,10 @@ import quinzical.util.Modal;
 import quinzical.util.TTS;
 import quinzical.util.Timer;
 
+/**
+ * A base class to act as the controller for the answer screen
+ */
 public abstract class BaseAnswerScreen {
-    private Question question;
-    private Timer timer;
-    private boolean isSubmitted;
-
-    // private EventHandler<Event> onFinished;
 
     @FXML
     private Label fxHint;
@@ -38,34 +36,35 @@ public abstract class BaseAnswerScreen {
     private Label fxPrefix;
     @FXML
     private Label fxFeedback;
-
     @FXML
     private TextField fxInput;
     @FXML
     private Label fxMacronLetter;
     @FXML
     private VBox fxMacronPopup;
-
     @FXML
     private ProgressBar fxProgressRight;
     @FXML
     private ProgressBar fxProgressLeft;
     @FXML
     private Label fxProgressLabel;
-
     @FXML
     private GameButton fxSubmit;
-
     @FXML
     private StackPane avatarContainer;
+
+    private boolean hasTypoed;
+
+    private Question question;
+
+    private Timer timer;
+
+    private boolean isSubmitted;
 
     public void initialize() {
 
         isSubmitted = false;
-
-        fxSubmit.disableProperty().bind(Bindings.createBooleanBinding(() -> {
-            return fxInput.textProperty().get().length() == 0;
-        }, fxInput.textProperty()));
+        hasTypoed = false;
 
         // Show avatar
         AvatarFactory avatar = new AvatarFactory(avatarContainer);
@@ -73,6 +72,10 @@ public abstract class BaseAnswerScreen {
 
         onLoad();
         question = setQuestion();
+
+        fxSubmit.disableProperty().bind(Bindings.createBooleanBinding(() -> {
+            return fxInput.textProperty().get().length() == 0;
+        }, fxInput.textProperty()));
 
         fxHint.setText(capitalise(question.getHint()));
         fxPrefix.setText(capitalise(question.getPrefix()));
@@ -92,29 +95,99 @@ public abstract class BaseAnswerScreen {
                 fxInput.requestFocus();
             }
         });
-
-        // timer, category name, value text, random question for practise, attempt count
-        // for practise
     }
 
     abstract void onLoad();
 
     abstract Question setQuestion();
 
-    private boolean hasTypoed = false;
+    /**
+     * Method to be implemented by subclass to handle the user entering the correct
+     * answer
+     * 
+     * @param question the question that was answered correctly
+     */
+    abstract void onCorrectAnswer(Question question);
 
-    private void submit() {
+    /**
+     * Method to be implemented by subclass to handle the user entering the
+     * incorrect answer
+     * 
+     * @param question the question that was answered incorrectly
+     */
+    abstract void onWrongAnswer(Question question);
+
+    /**
+     * Method to be implemented by subclass to handle when the user is forced to be
+     * wrong, either by the timer running out or by selecting dont know
+     * 
+     * @param question       the question
+     * @param wasTimerExpire if the forced answer was due to the timer running out
+     */
+    abstract void forceWrongAnswer(Question question, boolean wasTimerExpire);
+
+    /**
+     * Shows an alert giving the user feedback on how they did for a question
+     * 
+     * @param event the event to be run once the user dismisses the alert
+     */
+    public void showAlert(EventHandler<Event> event) {
+        Modal.show(View.MODAL_ANSWER_FEEDBACK, event);
+        timer.stop();
+    }
+
+    /**
+     * Captialises the first letter of a given string
+     * 
+     * @param s the string to captialise
+     * @return the string with the first letter captialised
+     */
+    private String capitalise(String s) {
+        return s.substring(0, 1).toUpperCase() + s.substring(1);
+    }
+
+    /**
+     * Handle the user submitting their answer
+     */
+    @FXML
+    public void onSubmit() {
+
+        if (fxInput.textProperty().get().length() == 0) {
+            // If input is empty do nothing
+            return;
+        } else if (isSubmitted) {
+            // if answer has already been submitted then hide modal and move on
+            Modal.hide();
+            return;
+        }
+
+        // if user is in practice mode, only mark question as submitted if user is
+        // submitting their 3rd attempt
+        if (App.getState() == GameState.PRACTICE) {
+            if (PracticeGame.getInstance().getRemainingAttempts().get() == 1) {
+                isSubmitted = true;
+            }
+        } else {
+            // else mark question as submitted
+            isSubmitted = true;
+        }
+
         String userAnswer = fxInput.getText();
         Answer answer = question.checkAnswer(userAnswer);
 
         if (answer == Answer.CORRECT) {
+            // if correct
             onCorrectAnswer(question);
         } else if (answer == Answer.INCORRECT) {
+            // if incorrect
             onWrongAnswer(question);
         } else {
+            // if typo
             if (hasTypoed) {
+                // if user has already typoed then submit
                 onWrongAnswer(question);
             } else {
+                // give user a second chance to answer
                 isSubmitted = false;
                 hasTypoed = true;
                 TTS.getInstance().speak("Typo");
@@ -124,56 +197,17 @@ public abstract class BaseAnswerScreen {
         }
     }
 
-    public void showAlert(EventHandler<Event> event) {
-        Modal.show(View.MODAL_ANSWER_FEEDBACK, event);
-        timer.stop();
-    }
-
-    abstract void onCorrectAnswer(Question question);
-
-    abstract void onWrongAnswer(Question question);
-
-    abstract void forceWrongAnswer(Question question, boolean wasTimerExpire);
-
-    private String capitalise(String s) {
-        return s.substring(0, 1).toUpperCase() + s.substring(1);
-    }
-
-    @FXML
-    public void onSubmit(ActionEvent event) {
-        if(App.getState() == GameState.GAME){
-            if(fxInput.textProperty().get().length() == 0){
-                return;
-            }else  if(isSubmitted){
-                Modal.hide();
-                return;
-            } else if(hasTypoed){
-                return;
-            } else {
-                isSubmitted = true;
-            }
-        } else if (App.getState() == GameState.PRACTICE){
-            if(fxInput.textProperty().get().length() == 0){
-                return;
-            }
-            if(isSubmitted){
-                Modal.hide();
-                return;
-            }
-            if(PracticeGame.getInstance().getRemainingAttempts().get() == 1){
-                isSubmitted = true;
-            }
-        }
-
-        
-        submit();
-    }
-
+    /**
+     * Handle the user pressing dont know
+     */
     @FXML
     public void onUnsure() {
         forceWrongAnswer(question, false);
     }
 
+    /**
+     * Repeat the spoken clue to the user
+     */
     @FXML
     public void repeatClue() {
         TTS.getInstance().speak(question.getHint());

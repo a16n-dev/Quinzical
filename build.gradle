@@ -39,9 +39,6 @@ dependencies {
     //Material design components
     compile 'com.jfoenix:jfoenix:9.0.10'
 
-    compile 'com.fasterxml.jackson.core:jackson-core:2.6.3'
-    compile 'com.fasterxml.jackson.core:jackson-databind:2.6.3'
-
     compile ('io.socket:socket.io-client:1.0.0') {
     // excluding org.json which is provided by Android
     // exclude group: 'org.json', module: 'json'
