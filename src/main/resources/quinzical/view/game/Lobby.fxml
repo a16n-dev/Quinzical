@@ -35,7 +35,7 @@
                   </VBox>
                   <VBox alignment="CENTER" maxWidth="250.0" styleClass="panel">
                      <children>
-                        <Label text="The win condition is current a number:" textFill="WHITE" wrapText="true" />
+                        <Label text="Number of rounds:" textFill="WHITE" wrapText="true" />
                         <TextField />
                      </children>
                      <padding>
@@ -80,7 +80,7 @@
                               </VBox>
                               <VBox alignment="BOTTOM_RIGHT">
                                  <children>
-                                    <Label fx:id="avatarSpeechBubble5" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e">
+                                    <Label fx:id="avatarSpeechBubble5" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e" visible="false">
                                        <padding>
                                           <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                        </padding>
@@ -127,7 +127,7 @@
                               </VBox>
                               <VBox alignment="BOTTOM_RIGHT">
                                  <children>
-                                    <Label fx:id="avatarSpeechBubble4" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e">
+                                    <Label fx:id="avatarSpeechBubble4" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e"  visible="false">
                                        <padding>
                                           <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                        </padding>
@@ -182,7 +182,7 @@
                               </VBox>
                               <VBox alignment="BOTTOM_RIGHT">
                                  <children>
-                                    <Label fx:id="avatarSpeechBubble3" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e">
+                                    <Label fx:id="avatarSpeechBubble3" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e"  visible="false">
                                        <padding>
                                           <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                        </padding>
@@ -229,7 +229,7 @@
                               </VBox>
                               <VBox alignment="BOTTOM_RIGHT">
                                  <children>
-                                    <Label fx:id="avatarSpeechBubble2" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e">
+                                    <Label fx:id="avatarSpeechBubble2" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e"  visible="false">
                                        <padding>
                                           <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                        </padding>
@@ -258,7 +258,7 @@
                                  <children>
                                     <ImageView fitHeight="180.0" fitWidth="380.0" pickOnBounds="true" preserveRatio="true">
                                        <image>
-                                          <Image url="@../images/rock_base.png" />
+                                          <Image url="@../../images/rock_base.png" />
                                        </image>
                                     </ImageView>
                                  </children>
@@ -290,7 +290,7 @@
                               </VBox>
                               <VBox alignment="BOTTOM_RIGHT">
                                  <children>
-                                    <Label fx:id="avatarSpeechBubble1" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e">
+                                    <Label fx:id="avatarSpeechBubble1" style="-fx-background-color: white; -fx-background-radius: 5px;" text="e"  visible="false">
                                        <padding>
                                           <Insets bottom="12.0" left="12.0" right="12.0" top="12.0" />
                                        </padding>
