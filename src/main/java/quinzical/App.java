@@ -19,8 +19,18 @@ import quinzical.util.Connect;
 import quinzical.util.Modal;
 import quinzical.util.Router;
 
+/**
+ * The main Application class for quinzical. This class is responsible for
+ * creating the window and initialising things such as the application icon. It
+ * also tracks the current gameState of the game
+ * 
+ * @author Alexander Nicholson, Peter Geodeke
+ */
 public class App extends Application {
 
+    /**
+     * Enum of constants to represent the different states the game can be in
+     */
     public enum GameState {
         MENU, GAME, PRACTICE, MULTIPLAYER, SHOP, MODAL,
     }
@@ -29,6 +39,9 @@ public class App extends Application {
 
     private Stage stage;
 
+    /**
+     * The start method that is called by javaFX to start the application
+     */
     @Override
     public void start(Stage s) {
         this.stage = s;
@@ -51,8 +64,6 @@ public class App extends Application {
         Router.show(View.MAIN_MENU);
         s.show();
 
-        // Sound.getInstance().playSound("ambient");
-
         scene.getWindow().addEventFilter(WindowEvent.WINDOW_CLOSE_REQUEST, e -> {
 
             // When user wants to quit, save their preferred window size
@@ -62,21 +73,20 @@ public class App extends Application {
             if (gameState == GameState.GAME) {
                 e.consume();
                 Modal.confirmation("Are you sure",
-                    "Are you sure you want to quit? This will mark the current question as wrong", f -> {
-                    try {
-                        Platform.exit();
-                    } catch (Exception e1) {}
-                });
-            } 
-            else if (MultiplayerGame.getInstance() != null) {
+                        "Are you sure you want to quit? This will mark the current question as wrong", f -> {
+                            try {
+                                Platform.exit();
+                            } catch (Exception e1) {
+                            }
+                        });
+            } else if (MultiplayerGame.getInstance() != null) {
                 Integer code = MultiplayerGame.getInstance().getCode();
                 if (code != null) {
                     Connect connect = Connect.getInstance();
                     JSONObject obj = new JSONObject();
                     try {
                         obj.put("code", MultiplayerGame.getInstance().getCode());
-                    }
-                    catch (JSONException err) {
+                    } catch (JSONException err) {
                         err.printStackTrace();
                     }
                     connect.emit("LEAVE_LOBBY", obj);
@@ -91,10 +101,18 @@ public class App extends Application {
         launch(args);
     }
 
+    /**
+     * Set the state of the application
+     * 
+     * @param state the gamestate to set the state of the app to
+     */
     public static void setState(GameState state) {
         gameState = state;
     }
 
+    /**
+     * @return the current state that the application is in
+     */
     public static GameState getState() {
         return gameState;
     }
