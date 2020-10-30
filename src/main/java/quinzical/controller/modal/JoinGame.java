@@ -21,42 +21,50 @@ import quinzical.util.Router;
 import quinzical.controller.View;
 import quinzical.model.Member;
 
+/**
+ * Controller for the dialog that allows users to join a multiplayer game
+ * 
+ * @author Alexander Nicholson, Peter Geodeke
+ */
 public class JoinGame {
 
     @FXML
-    public TextField fxSlot1;
+    private TextField fxSlot1;
 
     @FXML
-    public TextField fxSlot2;
+    private TextField fxSlot2;
 
     @FXML
-    public TextField fxSlot3;
+    private TextField fxSlot3;
 
     @FXML
-    public TextField fxSlot4;
+    private TextField fxSlot4;
 
     @FXML
-    public TextField fxSlot5;
+    private TextField fxSlot5;
 
     @FXML
-    public Label fxMessage;
+    private Label fxMessage;
 
+    /**
+     * The method to run when the fxml is initialised
+     */
     public void initialize() {
         fxMessage.setText("");
-        /**
+        /*
          * Credit to:
          * https://stackoverflow.com/questions/15159988/javafx-2-2-textfield-maxlength
+         * This ensures that no text field can ever have more than 1 character in it
          */
         UnaryOperator<Change> modifyChange = (c -> {
             if (c.isContentChange()) {
                 c.setText(c.getControlNewText().toUpperCase());
                 int newLength = c.getControlNewText().length();
                 if (newLength > 1) {
-                    // replace the input text with the last len chars
+
                     String tail = c.getControlNewText().substring(newLength - 1, newLength);
                     c.setText(tail);
-                    // replace the range to complete text
-                    // valid coordinates for range is in terms of old text
+
                     int oldLength = c.getControlText().length();
                     c.setRange(0, oldLength);
 
@@ -81,8 +89,8 @@ public class JoinGame {
                         default:
                             break;
                     }
-                } else if (newLength == 0){
-                    //Move the cursor back one
+                } else if (newLength == 0) {
+                    // Move the cursor back one
                     String elemId = c.getControl().getId();
 
                     switch (elemId) {
@@ -106,6 +114,7 @@ public class JoinGame {
             return c;
         });
 
+        // Apply the formatter to all of the inputs
         fxSlot1.setTextFormatter(new TextFormatter<Change>(modifyChange));
         fxSlot2.setTextFormatter(new TextFormatter<Change>(modifyChange));
         fxSlot3.setTextFormatter(new TextFormatter<Change>(modifyChange));
@@ -113,17 +122,25 @@ public class JoinGame {
         fxSlot5.setTextFormatter(new TextFormatter<Change>(modifyChange));
     }
 
+    /**
+     * Method to handle when the user closes the dialog
+     */
     public void handleClose() {
         Modal.hide();
     }
 
+    /**
+     * Helper method to join the inputs from each of the text fields
+     * 
+     * @return the 5 digit code entered by the user
+     */
     private String getCode() {
         return fxSlot1.textProperty().get() + fxSlot2.textProperty().get() + fxSlot3.textProperty().get()
                 + fxSlot4.textProperty().get() + fxSlot5.textProperty().get();
     }
 
     @FXML
-    public void handleJoin() {
+    private void handleJoin() {
         String codeString = getCode();
         // check if valid
         if (codeString.length() < 5 || Pattern.matches("[a-zA-Z]+", codeString)) {
@@ -146,7 +163,7 @@ public class JoinGame {
             try {
                 JSONObject obj = new JSONObject(args[0].toString());
                 JSONArray membersRaw = obj.getJSONArray("members");
-                
+
                 ArrayList<Member> members = new ArrayList<Member>();
                 for (int i = 0; i < membersRaw.length(); i++) {
                     members.add(Member.fromJSONObject(membersRaw.getString(i)));
@@ -155,8 +172,7 @@ public class JoinGame {
                 MultiplayerGame.startGame(code, user);
                 MultiplayerGame.getInstance().updateMembers(members);
                 Router.show(View.LOBBY);
-            }
-            catch (JSONException e) {
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         });

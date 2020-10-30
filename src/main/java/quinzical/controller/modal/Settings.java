@@ -15,20 +15,44 @@ import quinzical.util.Sound;
 import quinzical.util.State;
 import quinzical.util.TTS;
 
+/**
+ * Controller for the settings modal. This allows the user to change various
+ * settings such as speech volume, speed as well as animation
+ * 
+ * @author Alexander Nicholson
+ */
 public class Settings {
-  public Slider fxSliderVolume;
-  public Slider fxSliderSpeed;
-  public Label fxLabelSpeed;
-  public Label fxLabelVolume;
 
-  public Slider fxMusicVolume;
-  public Label fxMusicLabel;
+    @FXML
+    private Slider fxSliderVolume;
 
-  public Slider fxEffectVolume;
-  public Label fxEffectLabel;
+    @FXML
+    private Slider fxSliderSpeed;
 
-  public ToggleButton fxToggleAnimation;
-	
+    @FXML
+    private Label fxLabelSpeed;
+
+    @FXML
+    private Label fxLabelVolume;
+
+    @FXML
+    private Slider fxMusicVolume;
+
+    @FXML
+    private Label fxMusicLabel;
+
+    @FXML
+    private Slider fxEffectVolume;
+
+    @FXML
+    private Label fxEffectLabel;
+
+    @FXML
+    private ToggleButton fxToggleAnimation;
+
+    /**
+     * The method to run when the fxml is initialised
+     */
     public void initialize() {
         fxSliderVolume.valueProperty().addListener(new ChangeListener<Number>() {
 
@@ -43,17 +67,8 @@ public class Settings {
 
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                TTS.getInstance().setSpeed((int)(newValue.intValue() * 1.6));
+                TTS.getInstance().setSpeed((int) (newValue.intValue() * 1.6));
                 fxLabelSpeed.setText(newValue.intValue() + "%");
-            }
-        });
-
-        fxMusicVolume.valueProperty().addListener(new ChangeListener<Number>() {
-
-            @Override
-            public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                Sound.getInstance().setVolume(newValue.intValue()/100.0);
-                fxMusicLabel.setText(Math.round((newValue.intValue())) + "%");
             }
         });
 
@@ -61,7 +76,7 @@ public class Settings {
 
             @Override
             public void changed(ObservableValue<? extends Number> observable, Number oldValue, Number newValue) {
-                Sound.getInstance().setEffectVolume(newValue.intValue()/100.0);
+                Sound.getInstance().setEffectVolume(newValue.intValue() / 100.0);
                 fxEffectLabel.setText(Math.round((newValue.intValue())) + "%");
             }
         });
@@ -76,31 +91,43 @@ public class Settings {
 
         fxSliderSpeed.setValue(TTS.getInstance().getSpeed() / 1.6);
         fxSliderVolume.setValue(TTS.getInstance().getVolume());
-        fxMusicVolume.setValue(Sound.getInstance().getVolume() * 100);
         fxEffectVolume.setValue(Sound.getInstance().getEffectVolume() * 100);
         fxToggleAnimation.setSelected(!User.getInstance().hasForceDisableAnimation());
     }
 
-    public void speakTest() {
+    /**
+     * Speaks a test message to the user so they can judge the new volume settings
+     */
+    @FXML
+    private void speakTest() {
         TTS.getInstance().clearQueue();
         TTS.getInstance().speak("Test");
     }
 
-    public void handleClose(){
+    /**
+     * Handler for when the user wants to close the dialog
+     */
+    @FXML
+    private void handleClose() {
         Modal.hide();
     }
 
+    /**
+     * Handler for when the user presses the reset progress button
+     */
     @FXML
-	public void handleResetProgress() {
-		String alertContent = (User.getInstance().getInternationalUnlocked()) ? " and lock the international questions." : ".";
+    private void handleResetProgress() {
+        String alertContent = (User.getInstance().getInternationalUnlocked()) ? " and lock the international questions."
+                : ".";
 
-        Modal.confirmation("Reset Progress", "Are you sure you want to reset your progress? This will remove all your rewards" + alertContent, e -> {
+        // Promt the user for confirmation first
+        Modal.confirmation("Reset Progress",
+                "Are you sure you want to reset your progress? This will remove all your rewards" + alertContent, e -> {
 
-            IOManager.clearState(State.USER);
-            IOManager.clearState(State.GAME);
-            Router.show(View.MAIN_MENU);
-        });
-    }				
-	
+                    IOManager.clearState(State.USER);
+                    IOManager.clearState(State.GAME);
+                    Router.show(View.MAIN_MENU);
+                });
+    }
+
 }
-

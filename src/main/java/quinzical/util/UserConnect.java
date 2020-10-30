@@ -167,9 +167,7 @@ public class UserConnect {
 
                         });
 
-                    } catch (JSONException e) {
-
-                    }
+                    } catch (JSONException e) {}
 
                     return null;
                 }));
