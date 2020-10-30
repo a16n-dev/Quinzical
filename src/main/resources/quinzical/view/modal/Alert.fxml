@@ -39,7 +39,7 @@
             </Pane>
             <HBox alignment="TOP_RIGHT" spacing="16.0">
                <children>
-                  <GameButton fx:id="fxConfirm" buttonType="RAISED" onClick="#press" text="OK" />
+                  <GameButton fx:id="fxConfirm" buttonType="RAISED" onClick="#OnAccept" text="OK" />
                </children>
                <VBox.margin>
                   <Insets bottom="16.0" left="16.0" right="16.0" top="16.0" />
