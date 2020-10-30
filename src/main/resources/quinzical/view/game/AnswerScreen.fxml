@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.geometry.Insets?>
 <?import javafx.geometry.Rectangle2D?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -16,7 +16,7 @@
 <?import javafx.scene.text.Font?>
 <?import quinzical.controller.component.GameButton?>
 
-<AnchorPane minWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="600.0" minWidth="1000.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <ImageView fitHeight="360.0" fitWidth="770.0" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="-250.0" AnchorPane.rightAnchor="-200.0">
          <image>
@@ -88,7 +88,7 @@
             </HBox>
             <BorderPane maxHeight="1.7976931348623157E308" maxWidth="-Infinity" prefWidth="600.0" styleClass="panel">
                <center>
-                  <Label fx:id="fxHint" maxHeight="1.7976931348623157E308" prefWidth="400.0" text="&lt;Clue Texteeeeeee eaea dweeeeeere" textAlignment="CENTER" textFill="WHITE" wrapText="true" BorderPane.alignment="CENTER">
+                  <Label fx:id="fxHint" maxHeight="1.7976931348623157E308" prefWidth="400.0" text="&lt;clue text&gt;" textAlignment="CENTER" textFill="WHITE" wrapText="true" BorderPane.alignment="CENTER">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font>
@@ -178,14 +178,11 @@
                   </HBox>
                   <StackPane alignment="CENTER_LEFT" maxWidth="500.0">
                      <children>
-                        <JFXTextField fx:id="fxInput" focusColor="#ce725b" maxWidth="500.0" onAction="#onSubmit" style="-fx-text-fill: white; -fx-background-color: rgba(0,0,0,0.2);" unFocusColor="WHITE">
+                        <TextField fx:id="fxInput" maxWidth="500.0" minHeight="50.0" onAction="#onSubmit" style="-fx-text-fill: white; -fx-background-color: rgba(0,0,0,0.2); -fx-font-size: 18px;">
                            <padding>
                               <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
                            </padding>
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </JFXTextField>
+                        </TextField>
                         <VBox fx:id="fxMacronContainer" maxWidth="500.0" minHeight="20.0" minWidth="20.0" mouseTransparent="true">
                            <children>
                               <VBox fx:id="fxMacronPopup" fillWidth="false">
@@ -217,6 +214,7 @@
                               <Insets left="-5.0" top="-15.0" />
                            </StackPane.margin>
                         </VBox>
+                        <Label fx:id="fxFeedback" alignment="CENTER" maxWidth="1.7976931348623157E308" text="Typo" textFill="WHITE" translateY="20.0" visible="false" />
                      </children>
                   </StackPane>
                </children>
@@ -224,12 +222,11 @@
                   <Insets bottom="16.0" left="8.0" right="8.0" top="8.0" />
                </padding>
             </VBox>
-            <Label fx:id="fxFeedback" text="Typo" visible="false" />
-            <GameButton fx:id="fxSubmit" onAction="#onSubmit" text="SUBMIT" />
-            <GameButton fx:id="fxUnsure" onAction="#onUnsure" text="DON'T KNOW" />
+            <GameButton fx:id="fxSubmit" onClick="#onSubmit" style="-fx-font-size: 20px;" text="SUBMIT" />
+            <GameButton fx:id="fxUnsure" onClick="#onUnsure" text="DON'T KNOW" />
          </children>
          <padding>
-            <Insets left="64.0" right="64.0" />
+            <Insets bottom="16.0" left="64.0" right="64.0" />
          </padding>
       </VBox>
    </children>

@@ -34,6 +34,7 @@ public class Avatar implements Serializable {
         slotHat = null;
         slotAccessory = null;
         slotEyes = null;
+        forceDisableAnimation = true;
     }
 
     /**
@@ -47,6 +48,7 @@ public class Avatar implements Serializable {
         slotHat = hat;
         slotAccessory = accessory;
         slotEyes = eyes;
+        forceDisableAnimation = true;
     }
 
     /**

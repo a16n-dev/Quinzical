@@ -25,7 +25,8 @@ public class Sound implements Serializable{
      */
     public Sound(){
         effectVolume = 1;
-        ac = new AudioClip(App.class.getResource("sound/click.mp3").toString());
+        String path = App.class.getResource("sound/click.mp3").toString();
+        ac = new AudioClip(path);
     }
 
     /**

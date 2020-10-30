@@ -47,7 +47,7 @@ public class AnswerScreen extends BaseAnswerScreen {
     @Override
     void onCorrectAnswer(Question question) {
         TTS.getInstance().speak("That is correct");
-        game.addScore((int) (question.getValue() * Timer.getInstance().currentScoreMultiplier()));
+        game.addScore(question.getValue());
         game.setStatus(Status.SUCCESS);
         showAlert(onFinished);
     }

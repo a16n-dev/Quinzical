@@ -114,13 +114,4 @@ public class Timer {
     public float getElapsed() {
         return maxTime - currentTime;
     }
-
-    /**
-     * 
-     * @return the multiplier based on the current progression of the timer
-     */
-    public float currentScoreMultiplier() {
-        float percentage = currentTime / maxTime;
-        return percentage > 0.9 ? 1 : percentage;
-    }
 }
