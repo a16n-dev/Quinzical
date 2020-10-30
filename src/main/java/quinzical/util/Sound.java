@@ -3,6 +3,7 @@ package quinzical.util;
 import java.io.Serializable;
 
 import javafx.scene.media.AudioClip;
+import javafx.scene.media.MediaException;
 import quinzical.App;
 
 /**
@@ -26,7 +27,12 @@ public class Sound implements Serializable{
     public Sound(){
         effectVolume = 1;
         String path = App.class.getResource("sound/click.mp3").toString();
-        ac = new AudioClip(path);
+        try{
+            ac = new AudioClip(path);
+        }catch (MediaException e){
+            Modal.alert("Sound not supported", "Playing of sounds is not supported by your operating system");
+        }
+
     }
 
     /**
