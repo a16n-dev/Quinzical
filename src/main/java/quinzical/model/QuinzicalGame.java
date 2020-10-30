@@ -8,7 +8,9 @@ import quinzical.util.QuestionBank;
  */
 
 public abstract class QuinzicalGame {
-
+    /**
+     * Enum for the status of the game
+     */
     public enum Status {
         GAME_BOARD,
         ANSWERING,
@@ -21,10 +23,18 @@ public abstract class QuinzicalGame {
 
     private Status status;
 
+    /**
+     * Set the status of the game
+     * @param s
+     */
     public void setStatus(Status s){
         status = s;
     }
 
+    /**
+     * 
+     * @return the status of the game
+     */
     public Status getStatus(){
         return status;
     }

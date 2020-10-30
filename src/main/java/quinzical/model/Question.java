@@ -13,6 +13,9 @@ import org.apache.xmlbeans.impl.common.Levenshtein;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+/**
+ * Question model representing a question in the game
+ */
 public class Question implements Serializable {
 
     private static final long serialVersionUID = -1945949962117279881L;
@@ -28,6 +31,13 @@ public class Question implements Serializable {
 
     private String answerStatus = "Didnt Answer";
 
+    /**
+     * Constructor without id
+     * @param difficulty
+     * @param question
+     * @param questionPrefix
+     * @param answer
+     */
     public Question(int difficulty, String question, String questionPrefix, String answer) {
         this.difficulty = new SimpleIntegerProperty(difficulty);
         this.question = new SimpleStringProperty(question);
@@ -36,6 +46,14 @@ public class Question implements Serializable {
         this.id = UUID.randomUUID().toString();
     }
 
+    /**
+     * Constructor with id
+     * @param id
+     * @param difficulty
+     * @param question
+     * @param questionPrefix
+     * @param answer
+     */
     public Question(String id, int difficulty, String question, String questionPrefix, String answer) {
         this.difficulty = new SimpleIntegerProperty(difficulty);
         this.question = new SimpleStringProperty(question);
@@ -44,6 +62,10 @@ public class Question implements Serializable {
         this.id = id;
     }
 
+    /**
+     * 
+     * @param q
+     */
     public Question(Question q) {
         this.difficulty = q.difficulty;
         this.question = q.question;
@@ -51,6 +73,9 @@ public class Question implements Serializable {
         this.answer = q.answer;
     }
 
+    /**
+     * Constructor for empty question
+     */
     public Question() {
         this.difficulty = new SimpleIntegerProperty();
         this.question = new SimpleStringProperty();
@@ -134,7 +159,11 @@ public class Question implements Serializable {
         });
     }
 
-    // Serializable methods for writing and reading from file
+    /**
+     * Write the question to a file
+     * @param out the output stream to write it to
+     * @throws IOException
+     */
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
 
@@ -152,6 +181,12 @@ public class Question implements Serializable {
 
     };
 
+    /**
+     * Read a question from a file
+     * @param in
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
 
@@ -170,7 +205,6 @@ public class Question implements Serializable {
 
     @Override
     public boolean equals(Object o){
-        
         if (this == o) {  
             return true;  
         } 
@@ -185,10 +219,18 @@ public class Question implements Serializable {
         return false;
     }
 
+    /**
+     * 
+     * @return the id of the question
+     */
     public String getId(){
         return id;
     }
 
+    /**
+     * 
+     * @return the question as a JSONObject
+     */
     public JSONObject toJSONObject() {
         JSONObject obj = new JSONObject();
         try {
@@ -202,6 +244,12 @@ public class Question implements Serializable {
         }
         return obj;
     }
+
+    /**
+     * Static method to create a question object from a JSONObject representing a question
+     * @param raw the JSONObject as a string
+     * @return the question object
+     */
     public static Question fromJSONObject(String raw) {
         try {
             // if this raises an error, there is a good chance that you need to convert the argument to a string before passing

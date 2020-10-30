@@ -63,6 +63,9 @@ public class User implements Serializable {
         return user;
     }
 
+    /**
+     * Singleton constructor
+     */
     private User() {
         internationalUnlocked = false;
         numberAttemptedCategories = 0;
@@ -131,6 +134,10 @@ public class User implements Serializable {
         _rewards = new HashMap<Reward, Integer>();
     }
 
+    /**
+     * 
+     * @return whether the user has unlocked the international section
+     */
     public boolean getInternationalUnlocked() {
         return internationalUnlocked;
     }
@@ -286,38 +293,70 @@ public class User implements Serializable {
         }
     }
 
+    /**
+     * Set the preferred width
+     * @param w
+     */
     public void setPrefWidth(Number w){
         prefWidth = w;
         persist();
     }
 
+    /**
+     * 
+     * @return the preferred width
+     */
     public Number getPrefWidth(){
         return prefWidth;
     }
 
+    /**
+     * Set the preferred height
+     * @param h
+     */
     public void setPrefHeight(Number h){
         prefHeight = h;
         persist();
     }
 
+    /**
+     * 
+     * @return the preferred height
+     */
     public Number getPrefHeight(){
         return prefHeight;
     }
 
+    /**
+     * Set the auth token from the server representing the logged in user
+     * @param authToken
+     */
     public void setToken(String authToken){
         token = authToken;
         persist();
     }
 
+    /**
+     * 
+     * @return the user's login token
+     */
     public String getToken(){
         return token;
     }
 
+    /**
+     * Set the user's name
+     * @param username
+     */
     public void setName(String username){
         name = username;
         persist();
     }
 
+    /**
+     * 
+     * @return the user's name
+     */
     public String getName(){
         return name;
     }

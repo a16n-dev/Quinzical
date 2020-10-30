@@ -36,6 +36,10 @@ public class Game extends QuinzicalGame implements Serializable {
 
     private float totalTime;
 
+    /**
+     * Construct the game with questions corresponding to the categories of the game.
+     * @param categories the categories of the game
+     */
     private Game(List<Category> categories) {
         score = new SimpleIntegerProperty();
         questions = new HashMap<String, ArrayList<Question>>();
@@ -52,16 +56,17 @@ public class Game extends QuinzicalGame implements Serializable {
      * @param amount the amount to add to the score
      */
     public void addScore(int amount) {
-
         float time = Timer.getInstance().getTime();
-
         float multiplier = Math.min(time / 24, 1);
 
         lastScore = Math.round(amount * multiplier);
-
         score.set(score.intValue() + lastScore);
     }
 
+    /**
+     * 
+     * @return the last score
+     */
     public int getLastScore(){
         return lastScore;
     }
@@ -87,6 +92,10 @@ public class Game extends QuinzicalGame implements Serializable {
         persist();
     }
 
+    /**
+     * 
+     * @return the instance
+     */
     public static Game getInstance() {
         if (instance == null) {
             // Attempt to read state from file
@@ -98,6 +107,10 @@ public class Game extends QuinzicalGame implements Serializable {
         return instance;
     }
 
+    /**
+     * 
+     * @return whether the game is in progress
+     */
     public static boolean isInProgress() {
         instance = IOManager.readState(State.GAME);
         if (instance != null) {
@@ -122,10 +135,19 @@ public class Game extends QuinzicalGame implements Serializable {
         persist();
     }
 
+    /**
+     * 
+     * @return the categories of the game
+     */
     public ArrayList<String> getCategories() {
         return new ArrayList<String>(questions.keySet());
     }
 
+    /**
+     * 
+     * @param category the category
+     * @return the questions in a given category
+     */
     public ArrayList<Question> getQuestionsByCategory(String category) {
         return new ArrayList<Question>(questions.get(category));
     }
@@ -143,15 +165,27 @@ public class Game extends QuinzicalGame implements Serializable {
         return count;
     }
 
+    /**
+     * 
+     * @return the current category
+     */
     public String getCurrentCategory() {
         return currentCategory;
     }
 
+    /**
+     * Adds time to the total time taken of the game
+     * @param time the time to add
+     */
     public void addTime(float time){
         totalTime += time;
         persist();
     }
 
+    /**
+     * Gets the time taken in a format showable to the user.
+     * @return pretty time taken
+     */
     public String getPrettyTimeTaken(){
         int minutes = (int) (totalTime / 60);
         int seconds = (int) (totalTime % 60);
@@ -170,6 +204,11 @@ public class Game extends QuinzicalGame implements Serializable {
         }
     }
 
+    /**
+     * Write the object
+     * @param out the output stream to write it to
+     * @throws IOException
+     */
     private void writeObject(ObjectOutputStream out) throws IOException {
         out.defaultWriteObject();
 
@@ -177,6 +216,12 @@ public class Game extends QuinzicalGame implements Serializable {
         out.writeObject(newScore);
     }
 
+    /**
+     * Read the object
+     * @param in the input stream
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
 
