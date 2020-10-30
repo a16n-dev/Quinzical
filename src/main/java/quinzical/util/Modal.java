@@ -44,7 +44,7 @@ public class Modal {
      * @param view the specified view that should be shown
      */
     public static void show(View view) {
-        Region content = (Region) Router.loadFXML(view.getCenter());
+        Region content = (Region) ViewLoader.loadFXML(view.getCenter());
         makeDialog(content, 600, 400);
     }
 
@@ -56,7 +56,7 @@ public class Modal {
      * @param height the height of the dialog box
      */
     public static void show(View view, int width, int height) {
-        Region content = (Region) Router.loadFXML(view.getCenter());
+        Region content = (Region) ViewLoader.loadFXML(view.getCenter());
         makeDialog(content, width, height);
     }
 
@@ -66,7 +66,7 @@ public class Modal {
      * @param view the new view to switch to
      */
     public static void redirect(View view) {
-        Region content = (Region) Router.loadFXML(view.getCenter());
+        Region content = (Region) ViewLoader.loadFXML(view.getCenter());
         frosted.setContent(content);
     }
 
@@ -77,7 +77,7 @@ public class Modal {
      * @param event the handler to run once the modal is closed
      */
     public static void show(View view, EventHandler<Event> event) {
-        Region content = (Region) Router.loadFXML(view.getCenter());
+        Region content = (Region) ViewLoader.loadFXML(view.getCenter());
         JFXDialog d = makeDialog(content, 800, 500);
         d.setOnDialogClosed(event);
 
@@ -119,7 +119,7 @@ public class Modal {
      * @param event   the event handler to run when the user confirms the action
      */
     public static void confirmation(String title, String message, EventHandler<ActionEvent> event) {
-        FXMLLoader loader = Router.manualLoad(View.MODAL_CONFIRM.getCenter());
+        FXMLLoader loader = ViewLoader.manualLoad(View.MODAL_CONFIRM.getCenter());
 
         try {
             Region content = loader.load();
@@ -144,7 +144,7 @@ public class Modal {
      * @param message the alert message to display to the user
      */
     public static void alert(String title, String message) {
-        FXMLLoader loader = Router.manualLoad(View.MODAL_ALERT.getCenter());
+        FXMLLoader loader = ViewLoader.manualLoad(View.MODAL_ALERT.getCenter());
 
         try {
             Region content = loader.load();

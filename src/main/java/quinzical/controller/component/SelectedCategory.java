@@ -10,7 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import quinzical.model.Category;
-import quinzical.util.Router;
+import quinzical.util.ViewLoader;
 
 /**
  * Display a category that has been selected in the select categories screen
@@ -63,7 +63,7 @@ public class SelectedCategory {
      *         a given category
      */
     public static Region create(Category category, ObservableList<Category> selectedCategories) {
-        FXMLLoader loader = Router.manualLoad(Component.SELECTED_CATEGORY.getPath());
+        FXMLLoader loader = ViewLoader.manualLoad(Component.SELECTED_CATEGORY.getPath());
         try {
             Region content = (Region) loader.load();
             SelectedCategory controller = loader.getController();
@@ -82,7 +82,7 @@ public class SelectedCategory {
      * @return A Region containing an javafx element that displays a placeholder
      */
     public static Node createTemplate() {
-        Node content = Router.loadFXML(Component.EMPTY_CATEGORY.getPath());
+        Node content = ViewLoader.loadFXML(Component.EMPTY_CATEGORY.getPath());
         return content;
     }
 }

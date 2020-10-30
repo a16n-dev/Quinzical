@@ -7,7 +7,7 @@ import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import quinzical.model.Question;
 import quinzical.util.ImageLoader;
-import quinzical.util.Router;
+import quinzical.util.ViewLoader;
 
 import java.io.IOException;
 
@@ -133,7 +133,7 @@ public class GameBoardItem {
      * @return a region that contains a gameboarditem
      */
     public static Region create(Question question, boolean active, Runnable f) {
-        FXMLLoader loader = Router.manualLoad(Component.GAME_BOARD_ITEM.getPath());
+        FXMLLoader loader = ViewLoader.manualLoad(Component.GAME_BOARD_ITEM.getPath());
         try {
             Region content = (Region) loader.load();
             GameBoardItem controller = loader.getController();

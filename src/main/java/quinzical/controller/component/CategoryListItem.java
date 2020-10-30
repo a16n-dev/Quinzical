@@ -5,7 +5,7 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.Region;
 import quinzical.model.Category;
 import quinzical.model.User;
-import quinzical.util.Router;
+import quinzical.util.ViewLoader;
 
 import java.io.IOException;
 
@@ -137,7 +137,7 @@ public class CategoryListItem {
      */
     public static Region create(Category category, BooleanProperty isDisabled,
             ObservableList<Category> selectedCategories) {
-        FXMLLoader loader = Router.manualLoad(Component.CATEGORY_LIST_ITEM.getPath());
+        FXMLLoader loader = ViewLoader.manualLoad(Component.CATEGORY_LIST_ITEM.getPath());
         try {
             Region content = (Region) loader.load();
             CategoryListItem controller = loader.getController();

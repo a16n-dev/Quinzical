@@ -18,6 +18,7 @@ import quinzical.model.User;
 import quinzical.util.Connect;
 import quinzical.util.Modal;
 import quinzical.util.Router;
+import quinzical.util.ViewLoader;
 
 /**
  * The main Application class for quinzical. This class is responsible for
@@ -53,7 +54,7 @@ public class App extends Application {
         s.getIcons().add(new Image(App.class.getResourceAsStream("images/favicon.png")));
 
         // Setup router
-        StackPane container = (StackPane) Router.loadFXML(Component.GAME_CONTAINER.getPath());
+        StackPane container = (StackPane) ViewLoader.loadFXML(Component.GAME_CONTAINER.getPath());
 
         Scene scene = new Scene(container, User.getInstance().getPrefWidth().intValue(),
                 User.getInstance().getPrefHeight().intValue());

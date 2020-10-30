@@ -16,7 +16,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import quinzical.avatar.Cosmetic;
 import quinzical.util.ImageLoader;
-import quinzical.util.Router;
+import quinzical.util.ViewLoader;
 
 /**
  * Component to display a cosmetic item in the list of items in the shop. The display changes based on if the cosmetic is owned or selected
@@ -127,7 +127,7 @@ public class ShopListItem {
      */
     public static Region create(Cosmetic item, ObjectProperty<Cosmetic> selectedItem, ObservableList<String> ownedItems,
             EventHandler<MouseEvent> event) {
-        FXMLLoader loader = Router.manualLoad(Component.SHOP_LIST_ITEM.getPath());
+        FXMLLoader loader = ViewLoader.manualLoad(Component.SHOP_LIST_ITEM.getPath());
         try {
             Region content = (Region) loader.load();
             ShopListItem controller = loader.getController();

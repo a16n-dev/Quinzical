@@ -51,7 +51,7 @@ public class GameButton extends JFXButton {
     public final void setOnClick(EventHandler<ActionEvent> value) {
 
         onActionProperty().set(e -> {
-            Platform.runLater(() -> Sound.getInstance().playEffect("click"));
+            Platform.runLater(() -> Sound.getInstance().playEffect());
             value.handle(e);
         });
     }
