@@ -16,6 +16,9 @@ import quinzical.controller.component.GameButton;
 import quinzical.model.Category;
 import quinzical.util.QuestionBank;
 
+/**
+ * The controller for the category select screens
+ */
 public abstract class CategorySelect {
 
     @FXML
@@ -52,21 +55,39 @@ public abstract class CategorySelect {
         }
     }
 
+    /**
+     * 
+     * @return the selected categories
+     */
     public ObservableList<Category> getSelected(){
         return selectedCategories;
     }
 
-    public void disableSelection(boolean b){
+    /**
+     * 
+     * @param b the truth value to set it to
+     */
+    public void setDisableSelection(boolean b){
         disableSelection.set(b);
     }
 
-    public BooleanProperty getDisabled(){
+    /**
+     * 
+     * @return whether selection is disabled
+     */
+    public BooleanProperty getDisableSelection(){
         return disableSelection;
     }
 
+    /**
+     * The action to perform on submission of the category select
+     */
     @FXML
     public abstract void handleSubmit();
 
+    /**
+     * Clear the selection of categories
+     */
     @FXML
     public void clearSelected(){
         selectedCategories.clear();

@@ -13,6 +13,9 @@ import quinzical.model.Ranking;
 import quinzical.model.User;
 import quinzical.util.UserConnect;
 
+/**
+ * Controller for the leaderboard screen
+ */
 public class Leaderboard {
 
 	@FXML
@@ -44,9 +47,7 @@ public class Leaderboard {
 		int score = User.getInstance().getTotalCoins();
 		fxTotalScore.setText(Integer.toString(score));
 
-		
-
-		// Make API call
+		// Make API call to get other users places
 		UserConnect.getLeaderboardData((List<Ranking> l) -> {
 			if(l != null){
 				rankings.setAll(l);
@@ -63,6 +64,9 @@ public class Leaderboard {
 
 	}
 
+	/**
+	 * Initialise the table
+	 */
 	public void initTable() {
 		fxTable.setItems(rankings);
 

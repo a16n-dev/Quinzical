@@ -19,6 +19,9 @@ import quinzical.model.PracticeGame;
 import quinzical.util.QuestionBank;
 import quinzical.util.Router;
 
+/**
+ * The category select controller for the practice mode
+ */
 public class CategorySelectPractice extends CategorySelect{
 
     @FXML
@@ -80,6 +83,10 @@ public class CategorySelectPractice extends CategorySelect{
         Router.show(View.PRACTICE_ANSWER_SCREEN);
     }
 
+    /**
+     * Set the content of a node
+     * @param node the node to set the content of
+     */
     private void setContent(Node node){
         fxSelected.add(node, 0, 0);
         GridPane.setColumnSpan(node, 5);

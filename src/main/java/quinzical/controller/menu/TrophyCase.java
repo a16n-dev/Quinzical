@@ -7,6 +7,9 @@ import javafx.scene.control.Label;
 import quinzical.model.Reward;
 import quinzical.model.User;
 
+/**
+ * Controller for the trophy case screen
+ */
 public class TrophyCase {
     @FXML
     private Label fxDiamond;

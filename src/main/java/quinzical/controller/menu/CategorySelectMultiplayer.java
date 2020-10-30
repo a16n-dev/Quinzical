@@ -20,6 +20,9 @@ import quinzical.util.Connect;
 import quinzical.util.QuestionBank;
 import quinzical.util.Router;
 
+/**
+ * The category select controller for the multiplayer category select
+ */
 public class CategorySelectMultiplayer extends CategorySelect {
 
     @FXML
@@ -40,7 +43,7 @@ public class CategorySelectMultiplayer extends CategorySelect {
 
         selected = getSelected();
 
-        fxSubmit.disableProperty().bind(getDisabled().not());
+        fxSubmit.disableProperty().bind(getDisableSelection().not());
 
         fxSubmit.setText("CREATE LOBBY");
 
@@ -50,9 +53,9 @@ public class CategorySelectMultiplayer extends CategorySelect {
 
         selected.addListener((ListChangeListener<Category>) (c -> {
             if (selected.size() == SLOTS) {
-                disableSelection(true);
+                setDisableSelection(true);
             } else {
-                disableSelection(false);
+                setDisableSelection(false);
             }
 
             fxSelected.getChildren().clear();
@@ -72,18 +75,17 @@ public class CategorySelectMultiplayer extends CategorySelect {
 
     @Override
     public void handleSubmit() {
+        // start the multiplayer game
         Member user = new Member(User.getInstance().getAvatar(), 0, User.getInstance().getName(), true);
         MultiplayerGame.startGame(null, user);
 
-        // ArrayList<JSONObject> questions = new ArrayList<>();
+        // create the json array of categories and the user
         JSONArray questions = new JSONArray();
-
         for (Category category : selected) {
             for (Question question : category.getQuestions()) {
                 questions.put(question.toJSONObject());
             }
         }
-
         JSONObject json = new JSONObject();
         try {
             json.put("questions", questions);
@@ -93,8 +95,8 @@ public class CategorySelectMultiplayer extends CategorySelect {
             e.printStackTrace();
         }
 
+        // connect to the server and create the lobby
         Connect connect = Connect.getInstance();
-        // maybe we want to send the questions a bit later once the user has decided on the number of questions and stuff
         connect.emit("CREATE_LOBBY", json);
         connect.onMessage("LOBBY_ID", args -> {
             try {
@@ -107,6 +109,9 @@ public class CategorySelectMultiplayer extends CategorySelect {
             Router.show(View.LOBBY);
         });
     }
+    /**
+     * Select random categories
+     */
     @FXML
     public void selectRandom(){
         selected.setAll(QuestionBank.getInstance().getRandomCategories(5, false));

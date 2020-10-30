@@ -14,6 +14,9 @@ import quinzical.util.ImageLoader;
 import quinzical.util.Router;
 import quinzical.util.TTS;
 
+/**
+ * Controller for the reward screen
+ */
 public class RewardScreen {
 
 	@FXML
@@ -89,16 +92,21 @@ public class RewardScreen {
 		}
 	}
 
+	/**
+	 * Go to the menu
+	 */
 	@FXML
-	private void handleButtonMenuClick(ActionEvent event) {
+	private void handleButtonMenuClick() {
 		// Reset game
 		Game.clearGame();
 		Router.show(View.MAIN_MENU);
 	}
 
+	/**
+	 * Reset the game and play again
+	 */
 	@FXML
-	private void handlePlayAgain(ActionEvent event) {
-		// Reset game
+	private void handlePlayAgain() {
 		Game.clearGame();
 		Router.show(View.SELECT_CATEGORY_GAME);
 	}

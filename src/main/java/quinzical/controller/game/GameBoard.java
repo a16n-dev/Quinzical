@@ -14,6 +14,9 @@ import quinzical.model.Question;
 import quinzical.model.User;
 import quinzical.util.Router;
 
+/**
+ * Controller for the game board of the regular game option
+ */
 public class GameBoard {
 
 	@FXML
@@ -55,22 +58,6 @@ public class GameBoard {
 				if (!question.isAnswered()) {
 					active = false;
 				}
-
-				// if (!question.isAnswered()) {
-				// pos += 1;
-				// if (!available) {
-				// // Disable button if the question has been attempted
-				// button.setDisable(true);
-				// } else {
-				// available = false;
-				// // Add click events
-				// button.setOnAction((event) -> {
-				// game.setCurrentQuestion(category, intJ);
-				// user.attemptQuestion(category, question.getId());
-				// Router.show(View.ANSWER_SCREEN, false);
-				// });
-				// }
-
 				fxGrid.add(item, i, j + 1);
 			}
 		}

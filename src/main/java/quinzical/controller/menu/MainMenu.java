@@ -14,6 +14,9 @@ import quinzical.util.AvatarFactory;
 import quinzical.util.Modal;
 import quinzical.util.Router;
 
+/**
+ * Controller for the main menu screen
+ */
 public class MainMenu {
 	private User user;
 
@@ -38,9 +41,7 @@ public class MainMenu {
 	@FXML
 	private Label fxUserStatus;
 
-	/**
-	 * Field to represent if the game has a connection to the internet. If online is false, multiplayer and other buttons are disabled.
-	 */
+	// Field to represent if the game has a connection to the internet. If online is false, multiplayer and other buttons are disabled.
 	private BooleanProperty loggedIn = new SimpleBooleanProperty();
 
 	@FXML 
@@ -92,6 +93,8 @@ public class MainMenu {
 			Router.show(View.SELECT_CATEGORY_GAME, false);
 		}
 	}
+
+	// controllers to show the various screens when their respective buttons are clicked
 
 	@FXML
 	public void handleResumeGame() {

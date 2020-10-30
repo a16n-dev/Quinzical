@@ -13,6 +13,9 @@ import quinzical.model.Game;
 import quinzical.util.QuestionBank;
 import quinzical.util.Router;
 
+/**
+ * The category select screen for the regular game module
+ */
 public class CategorySelectGame extends CategorySelect {
 
     @FXML
@@ -30,7 +33,7 @@ public class CategorySelectGame extends CategorySelect {
 
         selected = getSelected();
 
-        fxSubmit.disableProperty().bind(getDisabled().not());
+        fxSubmit.disableProperty().bind(getDisableSelection().not());
 
         for(int i = selected.size(); i < 5; i++){
             fxSelected.add(SelectedCategory.createTemplate(), i, 0);
@@ -38,9 +41,9 @@ public class CategorySelectGame extends CategorySelect {
         
         selected.addListener((ListChangeListener<Category>)(c -> {
             if(selected.size() == SLOTS){
-                disableSelection(true);
+                setDisableSelection(true);
             } else {
-                disableSelection(false);
+                setDisableSelection(false);
             }
 
             fxSelected.getChildren().clear();
@@ -68,7 +71,4 @@ public class CategorySelectGame extends CategorySelect {
     public void selectRandom(){
         selected.setAll(QuestionBank.getInstance().getRandomCategories(5, false));
     }
-
-    
-    
 }
