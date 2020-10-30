@@ -12,12 +12,19 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
+/**
+ * Class which takes a text field and adds macron capability to it, allowing
+ * users to press the up arrow when the cursor is after a vowel to add a macron
+ * to that vowel.
+ */
 public class Macron {
     private static Macron instance;
     private HashMap<Character, Character> pairs;
     private TextField fxInput;
 
+    // singleton
     private Macron() {
+        // characters which can have macrons and their respective macron characters
         pairs = new HashMap<Character, Character>();
         pairs.put('a', 'ā');
         pairs.put('e', 'ē');
@@ -38,19 +45,29 @@ public class Macron {
         return instance;
     }
 
+    /**
+     * Method to add macron support to a given JavaFx input field
+     * 
+     * @param fxInput        the input field
+     * @param fxMacronLetter the element which displays the macron result
+     * @param fxMacronPopup  the element which wraps fxMacronLetter and provides
+     *                       visibility
+     */
     public void bind(TextField fxInput, Label fxMacronLetter, VBox fxMacronPopup) {
         fxMacronPopup.setVisible(false);
         this.fxInput = fxInput;
 
         fxInput.addEventFilter(KeyEvent.ANY, new EventHandler<KeyEvent>() {
-            @Override public void handle(KeyEvent keyEvent) {
+            @Override
+            public void handle(KeyEvent keyEvent) {
                 if (keyEvent.getCode() == KeyCode.UP) {
                     keyEvent.consume();
 
+                    // if get the character at the cursor can have a macron, add it
                     int index = fxInput.getCaretPosition();
                     if (index != 0) {
                         Character atCursor = fxInput.getText().charAt(index - 1);
-                    
+
                         if (pairs.get(atCursor) != null) {
                             fxInput.replaceText(index - 1, index, Character.toString(pairs.get(atCursor)));
                             fxMacronPopup.setVisible(false);
@@ -60,6 +77,8 @@ public class Macron {
             }
         });
 
+        // change the alignment of the macron popup to be above the cursor and display
+        // it if the character at the cursor can have a macron
         fxInput.setOnKeyReleased(e -> {
             int index = fxInput.getCaretPosition();
             Character macron;
@@ -67,8 +86,7 @@ public class Macron {
                 positionGUI(fxMacronPopup, computeTextWidth(fxInput.getText().substring(0, index)) - 4);
                 fxMacronLetter.setText(Character.toString(macron));
                 fxMacronPopup.setVisible(true);
-            }
-            else {
+            } else {
                 fxMacronPopup.setVisible(false);
             }
         });
@@ -77,6 +95,7 @@ public class Macron {
     /**
      * Get the width of JavaFX text. Method taken from:
      * https://stackoverflow.com/questions/41336447/determining-width-and-height-of-a-javafx-font/53206980
+     * 
      * @param text The text to compute the width of
      * @return The width of the text
      */
@@ -97,6 +116,11 @@ public class Macron {
         return textWidth;
     }
 
+    /**
+     * Set the position of the macron display element
+     * @param fxMacronPopup The element to move
+     * @param location The horizontal alignment to set of the macron display
+     */
     private void positionGUI(VBox fxMacronPopup, double location) {
         VBox.setMargin(fxMacronPopup, new Insets(0, 0, 0, location));
     }

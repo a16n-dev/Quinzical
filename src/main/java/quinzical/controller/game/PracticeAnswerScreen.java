@@ -13,6 +13,9 @@ import quinzical.model.QuinzicalGame.Status;
 import quinzical.util.Router;
 import quinzical.util.TTS;
 
+/**
+ * Answer screen controller for the practice mode
+ */
 public class PracticeAnswerScreen extends BaseAnswerScreen {
     @FXML
     private Label fxFeedback;
@@ -84,6 +87,9 @@ public class PracticeAnswerScreen extends BaseAnswerScreen {
         showAlert(onFinished);
     }
 
+    /**
+     * Event handler which triggers once the answer has been submitted and marked
+     */
     private EventHandler<Event> onFinished = new EventHandler<Event>() {
         @Override
         public void handle(Event event) {

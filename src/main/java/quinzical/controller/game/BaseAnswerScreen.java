@@ -96,8 +96,16 @@ public abstract class BaseAnswerScreen {
         });
     }
 
+    /**
+     * The JavaFX initialize method is already defined in this class, so the onLoad
+     * method is provided for subclasses to use instead.
+     */
     abstract void onLoad();
 
+    /**
+     * Set the question of the answer screen
+     * @return the question
+     */
     abstract Question setQuestion();
 
     /**
@@ -167,7 +175,6 @@ public abstract class BaseAnswerScreen {
                 isSubmitted = true;
             }
         } else {
-            // else mark question as submitted
             isSubmitted = true;
         }
 
@@ -175,18 +182,14 @@ public abstract class BaseAnswerScreen {
         Answer answer = question.checkAnswer(userAnswer);
 
         if (answer == Answer.CORRECT) {
-            // if correct
             onCorrectAnswer(question);
         } else if (answer == Answer.INCORRECT) {
-            // if incorrect
             onWrongAnswer(question);
-        } else {
-            // if typo
+        } else if (answer == Answer.TYPO) {
             if (hasTypoed) {
-                // if user has already typoed then submit
                 onWrongAnswer(question);
-            } else {
-                // give user a second chance to answer
+            }
+            else {
                 isSubmitted = false;
                 hasTypoed = true;
                 TTS.getInstance().speak("Typo");
@@ -197,7 +200,7 @@ public abstract class BaseAnswerScreen {
     }
 
     /**
-     * Handle the user pressing dont know
+     * Handle the user pressing don't know
      */
     @FXML
     public void onUnsure() {

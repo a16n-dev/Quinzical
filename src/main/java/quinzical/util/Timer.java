@@ -23,15 +23,26 @@ public class Timer {
 
     public static Timer instance;
 
-    private Timer () { }
+    // singleton
+    private Timer() {
+    }
 
     public static Timer getInstance() {
         if (instance == null) {
             instance = new Timer();
         }
         return instance;
-    } 
+    }
 
+    /**
+     * Provide the timer with the elements it needs to update the display and the
+     * maxTime to count down from.
+     * 
+     * @param fxElement       the element to display the time (in seconds) on
+     * @param fxProgressLeft  the left half of the timer progress bar
+     * @param fxProgressRight the right half of the timer progress bar
+     * @param maxTime         the time to count down from
+     */
     public void set(Label fxElement, ProgressBar fxProgressLeft, ProgressBar fxProgressRight, int maxTime) {
         instance.fxElement = fxElement;
         instance.fxProgressLeft = fxProgressLeft;
@@ -42,7 +53,10 @@ public class Timer {
     /**
      * Restart the timer from the maxTime. Decrements the time value displayed on
      * the Label element possessed by the timer every second until the timer has
-     * finished, at which the provided event is executed
+     * finished, at which the provided event is executed.
+     * 
+     * JavaFX does not support the decrease of a progress bar from both ends, so two
+     * progress bars are used to mock this behaviour.
      * 
      * @param event The event to be executed once the timer finishes
      */
@@ -85,14 +99,26 @@ public class Timer {
         timeline.play();
     }
 
+    /**
+     * 
+     * @return the current time of the timer
+     */
     public float getTime() {
         return currentTime;
     }
 
-    public float getElapsed(){
+    /**
+     * 
+     * @return the time which has elapsed on the current timer cycle
+     */
+    public float getElapsed() {
         return maxTime - currentTime;
     }
-    
+
+    /**
+     * 
+     * @return the multiplier based on the current progression of the timer
+     */
     public float currentScoreMultiplier() {
         float percentage = currentTime / maxTime;
         return percentage > 0.9 ? 1 : percentage;

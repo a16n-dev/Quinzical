@@ -12,6 +12,11 @@ import quinzical.App;
 import quinzical.controller.View;
 import quinzical.controller.menu.CategorySelectGame;
 
+/**
+ * Class to navigate from view to view in the JavaFX application. JavaFX does
+ * not have built in support for changing views which has a nice interface, so
+ * this class acts as an interface to view changing.
+ */
 public class Router {
     // the container containing the entire application
     private static BorderPane container;
@@ -19,8 +24,10 @@ public class Router {
     // Represents the history of the pages the user has visited
     private static Deque<View> history = new ArrayDeque<View>();
 
+    /**
+     * Navigate the user to the last page in history and remove it from the history.
+     */
     public static void navigateBack() {
-
         if (history.peekLast() == null) {
             show(View.MAIN_MENU);
             return;
@@ -36,9 +43,10 @@ public class Router {
     }
 
     /**
-     * Sets the scene to show the specified fxml file
+     * Sets the scene to show the specified fxml file.
      * 
-     * @param fxml the path to the fxml file, relative to App.java
+     * @param fxml         the path to the fxml file, relative to App.java
+     * @param addToHistory whether to add the navigation to the history
      */
     public static void show(View fxml, boolean addToHistory) {
         App.setState(fxml.getState());
@@ -61,16 +69,29 @@ public class Router {
             history.add(fxml);
         }
     }
+
+    /**
+     * Call the show method without adding to history
+     * 
+     * @param fxml
+     */
     public static void show(View fxml) {
         show(fxml, true);
     }
 
+    /**
+     * Check whether the current view is equal to the parameter.
+     * 
+     * @param view the view to compare
+     * @return whether the views are equal
+     */
     public static boolean currentViewIs(View view) {
         return history.peekLast() == view;
     }
 
     /**
      * Sets the container where content should be placed
+     * 
      * @param p A borderPane which should contain the content to display
      */
     public static void setContainer(BorderPane p) {
@@ -79,6 +100,7 @@ public class Router {
 
     /**
      * Loads the specified fxml file
+     * 
      * @param fxml the path to the fxml file
      * @return a javafx node hierarchy
      */
@@ -100,14 +122,17 @@ public class Router {
         }
         return null;
     }
+
     public static Node loadFXML(String fxml) {
         return loadFXML(fxml, null);
     }
-    
+
     /**
      * Used when a reference to the controller is also required
+     * 
      * @param fxml the path to the fxml file
-     * @return the fxmlloader which can then be used to access the fxml as well as the controller object
+     * @return the fxmlloader which can then be used to access the fxml as well as
+     *         the controller object
      */
     public static FXMLLoader manualLoad(String fxml) {
         try {

@@ -7,6 +7,10 @@ import java.util.ArrayDeque;
 
 import javafx.concurrent.Task;
 
+/**
+ * TTS module to allow for the easy and non-overlapping playing of text to
+ * speech text
+ */
 public class TTS implements Serializable {
 
     private static final long serialVersionUID = -7165475779564908787L;
@@ -20,6 +24,7 @@ public class TTS implements Serializable {
     private int speed;
     private transient boolean speaking = false;
 
+    // singleton
     private TTS() {
         processQueue = new ArrayDeque<ProcessBuilder>();
         volume = 100;
@@ -34,7 +39,7 @@ public class TTS implements Serializable {
                 tts = new TTS();
                 persist();
             } else {
-            	tts.init();
+                tts.init();
             }
         }
         return tts;
@@ -52,9 +57,9 @@ public class TTS implements Serializable {
      */
     private void speakNext() {
         if (speaking || processQueue.peek() == null) {
-        	return;
+            return;
         }
-            
+
         speaking = true;
 
         Task<Void> task = new Task<Void>() {
@@ -92,11 +97,12 @@ public class TTS implements Serializable {
      * @param text
      */
     public void speak(String text) {
-    	ProcessBuilder builder = new ProcessBuilder("espeak", "-a", Integer.toString(volume), "-s", Integer.toString(speed), text);
+        ProcessBuilder builder = new ProcessBuilder("espeak", "-a", Integer.toString(volume), "-s",
+                Integer.toString(speed), text);
         processQueue.add(builder);
         if (!speaking) {
-        	speakNext();
-        }       
+            speakNext();
+        }
     }
 
     /**
@@ -107,16 +113,27 @@ public class TTS implements Serializable {
         processQueue.clear();
     }
 
-    // getters and setters
+    /**
+     * Set the volume of the TTS
+     * @param volume
+     */
     public void setVolume(int volume) {
         this.volume = volume;
         persist();
     }
 
+    /**
+     * 
+     * @return the volume
+     */
     public int getVolume() {
         return volume;
     }
 
+    /**
+     * Set the speed of the TTS
+     * @param speed
+     */
     public void setSpeed(int speed) {
         if (speed < 80) {
             this.speed = 80;
@@ -128,6 +145,10 @@ public class TTS implements Serializable {
         persist();
     }
 
+    /**
+     * 
+     * @return the speed
+     */
     public int getSpeed() {
         return speed;
     }
@@ -146,13 +167,13 @@ public class TTS implements Serializable {
     private void readObject(ObjectInputStream in) throws IOException, ClassNotFoundException {
         in.defaultReadObject();
     };
-    
+
     /**
-     * 
+     * Init the TTS object
      */
     private void init() {
-    	processQueue = new ArrayDeque<ProcessBuilder>(); 
-    	speaking = false;
+        processQueue = new ArrayDeque<ProcessBuilder>();
+        speaking = false;
     }
 
 }
