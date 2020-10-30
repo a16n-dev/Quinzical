@@ -22,7 +22,7 @@ import quinzical.util.Router;
 /**
  * The category select controller for the practice mode
  */
-public class CategorySelectPractice extends CategorySelect{
+public class CategorySelectPractice extends CategorySelect {
 
     @FXML
     private GridPane fxSelected;
@@ -53,27 +53,27 @@ public class CategorySelectPractice extends CategorySelect{
 
         setContent(SelectedCategory.createTemplate());
 
-        selected.addListener((ListChangeListener<Category>)(c -> {
-            
-            if(selected.size() == 0){
+        selected.addListener((ListChangeListener<Category>) (c -> {
+
+            if (selected.size() == 0) {
                 disableSubmit.set(true);
             } else {
                 disableSubmit.set(false);
             }
 
-            if(selected.size() > 1){
+            if (selected.size() > 1) {
                 Platform.runLater(() -> selected.remove(0, selected.size() - 1));
             }
 
             fxSelected.getChildren().clear();
 
-            //Display arraylist
-                if(selected.size() > 0){
-                    Region content = SelectedCategory.create(selected.get(0), selected);
-                    setContent(content);
-                }else {
-                    setContent(SelectedCategory.createTemplate());
-                }
+            // Display arraylist
+            if (selected.size() > 0) {
+                Region content = SelectedCategory.create(selected.get(0), selected);
+                setContent(content);
+            } else {
+                setContent(SelectedCategory.createTemplate());
+            }
         }));
     }
 
@@ -85,15 +85,16 @@ public class CategorySelectPractice extends CategorySelect{
 
     /**
      * Set the content of a node
+     * 
      * @param node the node to set the content of
      */
-    private void setContent(Node node){
+    private void setContent(Node node) {
         fxSelected.add(node, 0, 0);
         GridPane.setColumnSpan(node, 5);
     }
 
     @FXML
-    public void selectRandom(){
+    public void selectRandom() {
         selected.setAll(QuestionBank.getInstance().getRandomCategories(1, false));
     }
 }

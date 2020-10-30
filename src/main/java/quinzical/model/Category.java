@@ -93,6 +93,7 @@ public class Category {
 
     /**
      * Set the name of the category
+     * 
      * @param categoryName
      */
     public void setName(String categoryName) {
@@ -109,6 +110,7 @@ public class Category {
 
     /**
      * Add a question to the category
+     * 
      * @param q the question to add
      */
     public void addQuestion(Question q) {
@@ -117,7 +119,8 @@ public class Category {
 
     /**
      * Add a list of questions to the category
-     * @param qList the list of questions 
+     * 
+     * @param qList the list of questions
      */
     public void addQuestion(List<Question> qList) {
         for (Question q : qList) {
@@ -127,6 +130,7 @@ public class Category {
 
     /**
      * Get a question from the list by id
+     * 
      * @param id the id
      * @return the question
      */
@@ -141,9 +145,10 @@ public class Category {
     public List<String> getQuestionIds() {
         return questions.keySet().stream().collect(Collectors.toList());
     }
-    
+
     /**
      * Remove a question from the category by id
+     * 
      * @param id the id of the question to remove
      */
     public void removeQuestion(String id) {

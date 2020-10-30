@@ -20,6 +20,7 @@ import javafx.stage.Stage;
  * https://stackoverflow.com/questions/22622034/frosted-glass-effect-in-javafx
  * This generates a pane which blurs the background behind the specified
  * content.
+ * 
  * @author: Alexander Nicholson
  */
 public class FrostPane extends StackPane {
@@ -41,11 +42,13 @@ public class FrostPane extends StackPane {
     private ReadOnlyDoubleProperty vh;
 
     /**
-     * Creates a frost pane of the given height and width. It blurs the content in backgrond and places the content in front of it
+     * Creates a frost pane of the given height and width. It blurs the content in
+     * backgrond and places the content in front of it
+     * 
      * @param background the node hierarchy to generate the blurred background from
-     * @param content the content to place in front of the blurred background
-     * @param width the width of the pane
-     * @param height the height of the pane
+     * @param content    the content to place in front of the blurred background
+     * @param width      the width of the pane
+     * @param height     the height of the pane
      */
     public FrostPane(Node background, Region content, double width, double height) {
 
@@ -65,7 +68,7 @@ public class FrostPane extends StackPane {
         renderFrost();
         renderFiller();
 
-        //When window size changes the frosted background will need to be repositioned
+        // When window size changes the frosted background will need to be repositioned
         vw.addListener(c -> {
             positionFrost();
         });
@@ -101,7 +104,8 @@ public class FrostPane extends StackPane {
     }
 
     /**
-     * Blurs and scales the background image and places in between the filler and the content
+     * Blurs and scales the background image and places in between the filler and
+     * the content
      */
     private void renderFrost() {
 

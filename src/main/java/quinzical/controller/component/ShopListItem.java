@@ -19,7 +19,8 @@ import quinzical.util.ImageLoader;
 import quinzical.util.ViewLoader;
 
 /**
- * Component to display a cosmetic item in the list of items in the shop. The display changes based on if the cosmetic is owned or selected
+ * Component to display a cosmetic item in the list of items in the shop. The
+ * display changes based on if the cosmetic is owned or selected
  * 
  * @author Alexander Nicholson
  */
@@ -90,8 +91,9 @@ public class ShopListItem {
 
     /**
      * Sets the display of the item based on if it is owned or not
-     * @param owned a list of owned items 
-     * @param item the item for this slot
+     * 
+     * @param owned a list of owned items
+     * @param item  the item for this slot
      */
     private void setDisplay(List<String> owned, Cosmetic item) {
         if (owned.indexOf(item.getId()) != -1) {

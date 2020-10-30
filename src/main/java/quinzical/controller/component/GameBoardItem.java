@@ -17,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 /**
  * Generates a node to display on the gameboard which is what the user presses
  * to select a question Each gameboarditem references a specific question.
+ * 
  * @author Alexander Nicholson
  */
 public class GameBoardItem {

@@ -82,12 +82,12 @@ public class ManageCategories {
         categories = FXCollections.observableArrayList();
 
         // Retrieve categories from question bank
-        for(Category c : QuestionBank.getInstance().getUserCategories()){
+        for (Category c : QuestionBank.getInstance().getUserCategories()) {
             System.out.println("bruh");
             questions.put(c.getName(), FXCollections.observableArrayList(c.getQuestions()));
             categories.add(c.getName());
-        };
-
+        }
+        ;
 
         showCategories();
     }
@@ -160,7 +160,7 @@ public class ManageCategories {
      */
     @FXML
     private void deleteCategory() {
-        if(category == null){
+        if (category == null) {
             return;
         }
         // If category contains questions prompt for confirmation
@@ -226,11 +226,10 @@ public class ManageCategories {
         int index = questions.get(category).indexOf(question);
         questions.get(category).set(index, q);
 
-
         updateQuestionBank();
     }
 
-    private void updateQuestionBank(){
+    private void updateQuestionBank() {
         // Put logic here to save to question bank
         HashMap<String, Category> userCategories = new HashMap<String, Category>();
 

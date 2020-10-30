@@ -40,7 +40,7 @@ public class Leaderboard {
 
 	public void initialize() {
 		rankings = FXCollections.observableArrayList();
-		rankings.add(new Ranking(1,0,"Loading Leaderboard..."));
+		rankings.add(new Ranking(1, 0, "Loading Leaderboard..."));
 		initTable();
 
 		// Show users own stats
@@ -49,14 +49,13 @@ public class Leaderboard {
 
 		// Make API call to get other users places
 		UserConnect.getLeaderboardData((List<Ranking> l) -> {
-			if(l != null){
+			if (l != null) {
 				rankings.setAll(l);
 			}
 			return null;
 
-		},
-		(Integer rank) -> {
-			if(rank != null){
+		}, (Integer rank) -> {
+			if (rank != null) {
 				fxRanking.setText(rank.toString());
 			}
 			return null;

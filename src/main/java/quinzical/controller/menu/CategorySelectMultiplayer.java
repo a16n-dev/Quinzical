@@ -90,8 +90,7 @@ public class CategorySelectMultiplayer extends CategorySelect {
         try {
             json.put("questions", questions);
             json.put("user", user.toJSONObject());
-        }
-        catch (JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
 
@@ -109,11 +108,12 @@ public class CategorySelectMultiplayer extends CategorySelect {
             Router.show(View.LOBBY);
         });
     }
+
     /**
      * Select random categories
      */
     @FXML
-    public void selectRandom(){
+    public void selectRandom() {
         selected.setAll(QuestionBank.getInstance().getRandomCategories(5, false));
     }
 }

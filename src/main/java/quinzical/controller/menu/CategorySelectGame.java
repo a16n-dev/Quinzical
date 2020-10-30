@@ -35,12 +35,12 @@ public class CategorySelectGame extends CategorySelect {
 
         fxSubmit.disableProperty().bind(getDisableSelection().not());
 
-        for(int i = selected.size(); i < 5; i++){
+        for (int i = selected.size(); i < 5; i++) {
             fxSelected.add(SelectedCategory.createTemplate(), i, 0);
         }
-        
-        selected.addListener((ListChangeListener<Category>)(c -> {
-            if(selected.size() == SLOTS){
+
+        selected.addListener((ListChangeListener<Category>) (c -> {
+            if (selected.size() == SLOTS) {
                 setDisableSelection(true);
             } else {
                 setDisableSelection(false);
@@ -48,14 +48,14 @@ public class CategorySelectGame extends CategorySelect {
 
             fxSelected.getChildren().clear();
 
-            //Display arraylist
-            for(int i = 0; i < selected.size(); i++){
+            // Display arraylist
+            for (int i = 0; i < selected.size(); i++) {
                 Category category = selected.get(i);
                 Region content = SelectedCategory.create(category, selected);
                 fxSelected.add(content, i, 0);
             }
 
-            for(int i = selected.size(); i < 5; i++){
+            for (int i = selected.size(); i < 5; i++) {
                 fxSelected.add(SelectedCategory.createTemplate(), i, 0);
             }
         }));
@@ -68,7 +68,7 @@ public class CategorySelectGame extends CategorySelect {
     }
 
     @FXML
-    public void selectRandom(){
+    public void selectRandom() {
         selected.setAll(QuestionBank.getInstance().getRandomCategories(5, false));
     }
 }

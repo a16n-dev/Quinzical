@@ -44,9 +44,9 @@ public abstract class CategorySelect {
 
         // Retrieve list of all categories as an arrayList
         ArrayList<Category> categories = QuestionBank.getInstance().getCategories();
-        for(Category c : categories){
+        for (Category c : categories) {
             Region content = CategoryListItem.create(c, disableSelection, selectedCategories);
-            if(c.isUserCreated()){
+            if (c.isUserCreated()) {
                 fxUserCategoryContainer.getChildren().add(content);
             } else {
                 fxBaseCategoryContainer.getChildren().add(content);
@@ -59,7 +59,7 @@ public abstract class CategorySelect {
      * 
      * @return the selected categories
      */
-    public ObservableList<Category> getSelected(){
+    public ObservableList<Category> getSelected() {
         return selectedCategories;
     }
 
@@ -67,7 +67,7 @@ public abstract class CategorySelect {
      * 
      * @param b the truth value to set it to
      */
-    public void setDisableSelection(boolean b){
+    public void setDisableSelection(boolean b) {
         disableSelection.set(b);
     }
 
@@ -75,7 +75,7 @@ public abstract class CategorySelect {
      * 
      * @return whether selection is disabled
      */
-    public BooleanProperty getDisableSelection(){
+    public BooleanProperty getDisableSelection() {
         return disableSelection;
     }
 
@@ -89,7 +89,7 @@ public abstract class CategorySelect {
      * Clear the selection of categories
      */
     @FXML
-    public void clearSelected(){
+    public void clearSelected() {
         selectedCategories.clear();
     }
 

@@ -12,12 +12,12 @@ public abstract class QuinzicalGame {
      * Enum for the status of the game
      */
     public enum Status {
-        GAME_BOARD,
-        ANSWERING,
+        GAME_BOARD, 
+        ANSWERING, 
         SUCCESS,
-        OUT_OF_TIME,
-        SKIP,
-        FAILURE,
+        OUT_OF_TIME, 
+        SKIP, 
+        FAILURE, 
         REWARD
     }
 
@@ -25,9 +25,10 @@ public abstract class QuinzicalGame {
 
     /**
      * Set the status of the game
+     * 
      * @param s
      */
-    public void setStatus(Status s){
+    public void setStatus(Status s) {
         status = s;
     }
 
@@ -35,7 +36,7 @@ public abstract class QuinzicalGame {
      * 
      * @return the status of the game
      */
-    public Status getStatus(){
+    public Status getStatus() {
         return status;
     }
 

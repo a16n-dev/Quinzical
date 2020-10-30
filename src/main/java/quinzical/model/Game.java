@@ -37,7 +37,9 @@ public class Game extends QuinzicalGame implements Serializable {
     private float totalTime;
 
     /**
-     * Construct the game with questions corresponding to the categories of the game.
+     * Construct the game with questions corresponding to the categories of the
+     * game.
+     * 
      * @param categories the categories of the game
      */
     private Game(List<Category> categories) {
@@ -53,6 +55,7 @@ public class Game extends QuinzicalGame implements Serializable {
 
     /**
      * Adds to the score for the current game
+     * 
      * @param amount the amount to add to the score
      */
     public void addScore(int amount) {
@@ -67,7 +70,7 @@ public class Game extends QuinzicalGame implements Serializable {
      * 
      * @return the last score
      */
-    public int getLastScore(){
+    public int getLastScore() {
         return lastScore;
     }
 
@@ -175,18 +178,20 @@ public class Game extends QuinzicalGame implements Serializable {
 
     /**
      * Adds time to the total time taken of the game
+     * 
      * @param time the time to add
      */
-    public void addTime(float time){
+    public void addTime(float time) {
         totalTime += time;
         persist();
     }
 
     /**
      * Gets the time taken in a format showable to the user.
+     * 
      * @return pretty time taken
      */
-    public String getPrettyTimeTaken(){
+    public String getPrettyTimeTaken() {
         int minutes = (int) (totalTime / 60);
         int seconds = (int) (totalTime % 60);
         return minutes + (seconds > 9 ? ":" : ":0") + seconds;
@@ -206,6 +211,7 @@ public class Game extends QuinzicalGame implements Serializable {
 
     /**
      * Write the object
+     * 
      * @param out the output stream to write it to
      * @throws IOException
      */
@@ -218,6 +224,7 @@ public class Game extends QuinzicalGame implements Serializable {
 
     /**
      * Read the object
+     * 
      * @param in the input stream
      * @throws IOException
      * @throws ClassNotFoundException

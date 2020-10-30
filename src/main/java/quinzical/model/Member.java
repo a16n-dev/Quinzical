@@ -20,8 +20,9 @@ public class Member {
 
     /**
      * Constructor for non-hosts
-     * @param avatar the user's avatar
-     * @param score the user's current score in the game
+     * 
+     * @param avatar   the user's avatar
+     * @param score    the user's current score in the game
      * @param username the user's username
      */
     public Member(Avatar avatar, int score, String username) {
@@ -32,8 +33,10 @@ public class Member {
         this.status = Answer.ANSWERING;
         this.answer = new SimpleStringProperty("");
     }
+
     /**
      * Constructor to assign the user as a host
+     * 
      * @param avatar
      * @param score
      * @param username
@@ -43,8 +46,11 @@ public class Member {
         this(avatar, score, username);
         this.isHost = isHost;
     }
+
     /**
-     * Constructor for users who are already in the game (e.g. someone who joins last)
+     * Constructor for users who are already in the game (e.g. someone who joins
+     * last)
+     * 
      * @param avatar
      * @param score
      * @param username
@@ -65,6 +71,7 @@ public class Member {
     public Avatar getAvatar() {
         return avatar;
     }
+
     /**
      * 
      * @return the user's score
@@ -72,6 +79,7 @@ public class Member {
     public SimpleIntegerProperty getScore() {
         return score;
     }
+
     /**
      * 
      * @return the user's username
@@ -79,13 +87,16 @@ public class Member {
     public String getUsername() {
         return username;
     }
+
     /**
      * Set the user's score
+     * 
      * @param score
      */
     public void setScore(int score) {
         this.score.setValue(score);
     }
+
     /**
      * 
      * @return whether the user is the host
@@ -93,6 +104,7 @@ public class Member {
     public boolean isHost() {
         return isHost;
     }
+
     /**
      * 
      * @return the answer status of the user
@@ -100,13 +112,16 @@ public class Member {
     public Answer getStatus() {
         return status;
     }
+
     /**
      * Set the answer status of the user
+     * 
      * @param status
      */
     public void setStatus(Answer status) {
         this.status = status;
     }
+
     /**
      * 
      * @return the user's answer
@@ -114,6 +129,7 @@ public class Member {
     public SimpleStringProperty getAnswer() {
         return answer;
     }
+
     /**
      * 
      * @param answer the user's answer
@@ -135,33 +151,29 @@ public class Member {
             obj.put("username", username == null ? "No name" : username);
             obj.put("status", status.toString());
             obj.put("answer", answer.getValue());
-        }
-        catch (JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         return obj;
     }
 
     /**
-     * Static method to create a Member object from a JSONObject represnting a member
+     * Static method to create a Member object from a JSONObject represnting a
+     * member
+     * 
      * @param raw the JSONObject as a string
      * @return the member object
      */
     public static Member fromJSONObject(String raw) {
         try {
-            // if this raises an error, there is a good chance that you need to convert the argument to a string before passing
+            // if this raises an error, there is a good chance that you need to convert the
+            // argument to a string before passing
             JSONObject obj = new JSONObject(raw);
-            
-            return new Member(
-                Avatar.fromJSONObject(obj.getString("avatar")),
-                obj.getInt("score"),
-                obj.getString("username"),
-                obj.getBoolean("isHost"),
-                Answer.valueOf(obj.getString("status")),
-                obj.getString("answer")
-            );
-        }
-        catch (JSONException e) {
+
+            return new Member(Avatar.fromJSONObject(obj.getString("avatar")), obj.getInt("score"),
+                    obj.getString("username"), obj.getBoolean("isHost"), Answer.valueOf(obj.getString("status")),
+                    obj.getString("answer"));
+        } catch (JSONException e) {
             e.printStackTrace();
             return null;
         }

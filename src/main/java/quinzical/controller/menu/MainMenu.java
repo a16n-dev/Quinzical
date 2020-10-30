@@ -41,50 +41,51 @@ public class MainMenu {
 	@FXML
 	private Label fxUserStatus;
 
-	// Field to represent if the game has a connection to the internet. If online is false, multiplayer and other buttons are disabled.
+	// Field to represent if the game has a connection to the internet. If online is
+	// false, multiplayer and other buttons are disabled.
 	private BooleanProperty loggedIn = new SimpleBooleanProperty();
 
-	@FXML 
+	@FXML
 	private Label fxCoinDisplay;
 
 	public void initialize() {
 
-		//Store reference to user object
+		// Store reference to user object
 		user = User.getInstance();
-		
-		//Check if resume button should be shown
+
+		// Check if resume button should be shown
 		if (!Game.isInProgress()) {
 			fxResume.setVisible(false);
 			fxResume.setManaged(false);
 		}
 
-		if(user.getToken() != null){
+		if (user.getToken() != null) {
 			loggedIn.set(true);
 		} else {
 			loggedIn.set(false);
 		}
-		
-		//Load avatar
+
+		// Load avatar
 		Avatar avatar = user.getAvatar();
 		AvatarFactory avatarFactory = new AvatarFactory(fxAvatarSlot, 300, true);
 		avatarFactory.set(avatar);
 
-		//Display coins
+		// Display coins
 		fxCoinDisplay.setText(Integer.toString(user.getCoins()));
 
-		//Show correct button text for login/logout button
+		// Show correct button text for login/logout button
 		fxAccountButton.setText(loggedIn.get() ? "LOGOUT" : "LOGIN");
 		fxUserStatus.setText(loggedIn.get() ? "Logged in as " + user.getName() : "Not logged in");
 	}
 
 	// public void handleGameButtonClick(ActionEvent event) throws IOException {
-	// 	Router.show(View.GAME_BOARD);
+	// Router.show(View.GAME_BOARD);
 	// }
 
 	@FXML
 	public void handleNewGame() {
 		if (Game.isInProgress()) {
-			Modal.confirmation("New Game","Are you sure you want to start a new game?", e -> {
+			Modal.confirmation("New Game", "Are you sure you want to start a new game?", e -> {
 				Game.clearGame();
 				Router.show(View.SELECT_CATEGORY_GAME);
 			});
@@ -94,7 +95,8 @@ public class MainMenu {
 		}
 	}
 
-	// controllers to show the various screens when their respective buttons are clicked
+	// controllers to show the various screens when their respective buttons are
+	// clicked
 
 	@FXML
 	public void handleResumeGame() {
@@ -110,7 +112,7 @@ public class MainMenu {
 	public void handleViewTrophyCase() {
 		Router.show(View.TROPHY_CASE);
 	}
-	
+
 	@FXML
 	public void handleViewLeaderboard() {
 		Router.show(View.LEADERBOARD);
@@ -128,26 +130,26 @@ public class MainMenu {
 
 	@FXML
 	public void showSettings() {
-		Modal.show(View.MODAL_SETTINGS,500,600);
+		Modal.show(View.MODAL_SETTINGS, 500, 600);
 	}
 
 	@FXML
 	public void showJoinGame() {
-		if(user.getToken() == null){
+		if (user.getToken() == null) {
 			Modal.alert("Please log in", "You must be logged in to play multiplayer");
 			return;
 		}
-		Modal.show(View.MODAL_JOIN,600,300);
+		Modal.show(View.MODAL_JOIN, 600, 300);
 	}
 
 	@FXML
-	public void showHelp(){
+	public void showHelp() {
 		Modal.show(View.MODAL_HELP, 800, 600);
 	}
 
 	@FXML
-	public void handleHostMultiplayer(){
-		if(user.getToken() == null){
+	public void handleHostMultiplayer() {
+		if (user.getToken() == null) {
 			Modal.alert("Please log in", "You must be logged in to play multiplayer");
 			return;
 		}
@@ -155,18 +157,18 @@ public class MainMenu {
 	}
 
 	@FXML
-	public void handleAccountButtonPress(){
-		if(user.getToken() != null){
-			//If logged in show logout confirmation dialog to logout
+	public void handleAccountButtonPress() {
+		if (user.getToken() != null) {
+			// If logged in show logout confirmation dialog to logout
 			Modal.confirmation("Logout", "Are you sure you want to logout?", e -> {
-				//Logout the user
+				// Logout the user
 				User.getInstance().setToken(null);
 				User.getInstance().setName(null);
 				fxAccountButton.setText("LOGIN");
 				fxUserStatus.setText("Not logged in");
 			});
 		} else {
-			//If not logged in show login box
+			// If not logged in show login box
 			Modal.show(View.MODAL_LOGIN);
 		}
 	}

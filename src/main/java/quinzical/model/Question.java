@@ -26,13 +26,14 @@ public class Question implements Serializable {
     private transient SimpleStringProperty question;
     private transient SimpleStringProperty questionPrefix;
     private transient SimpleStringProperty answer;
-    
+
     private boolean isAnswered = false;
 
     private String answerStatus = "Didnt Answer";
 
     /**
      * Constructor without id
+     * 
      * @param difficulty
      * @param question
      * @param questionPrefix
@@ -48,6 +49,7 @@ public class Question implements Serializable {
 
     /**
      * Constructor with id
+     * 
      * @param id
      * @param difficulty
      * @param question
@@ -124,8 +126,7 @@ public class Question implements Serializable {
             if (distance == 0) {
                 answerStatus = "Correct";
                 return Answer.CORRECT;
-            }
-            else if (distance < 3) {
+            } else if (distance < 3) {
                 return Answer.TYPO;
             }
         }
@@ -145,7 +146,7 @@ public class Question implements Serializable {
         isAnswered = answered;
     }
 
-    public String getAnswerStatus(){
+    public String getAnswerStatus() {
         return answerStatus;
     }
 
@@ -154,13 +155,13 @@ public class Question implements Serializable {
      * file
      */
     public String toString() {
-        return String.join("|", new String[] { id, Integer.toString(difficulty.get()), question.get(), questionPrefix.get(),
-                answer.get() 
-        });
+        return String.join("|", new String[] { id, Integer.toString(difficulty.get()), question.get(),
+                questionPrefix.get(), answer.get() });
     }
 
     /**
      * Write the question to a file
+     * 
      * @param out the output stream to write it to
      * @throws IOException
      */
@@ -183,6 +184,7 @@ public class Question implements Serializable {
 
     /**
      * Read a question from a file
+     * 
      * @param in
      * @throws IOException
      * @throws ClassNotFoundException
@@ -204,14 +206,14 @@ public class Question implements Serializable {
     };
 
     @Override
-    public boolean equals(Object o){
-        if (this == o) {  
-            return true;  
-        } 
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
         if (o instanceof Question) {
             Question q = (Question) o;
 
-            if(this.id.equals(q.id)){
+            if (this.id.equals(q.id)) {
                 return true;
             }
 
@@ -223,7 +225,7 @@ public class Question implements Serializable {
      * 
      * @return the id of the question
      */
-    public String getId(){
+    public String getId() {
         return id;
     }
 
@@ -238,25 +240,27 @@ public class Question implements Serializable {
             obj.put("question", question.getValue());
             obj.put("questionPrefix", questionPrefix.getValue());
             obj.put("answer", answer.getValue());
-        }
-        catch (JSONException e) {
+        } catch (JSONException e) {
             e.printStackTrace();
         }
         return obj;
     }
 
     /**
-     * Static method to create a question object from a JSONObject representing a question
+     * Static method to create a question object from a JSONObject representing a
+     * question
+     * 
      * @param raw the JSONObject as a string
      * @return the question object
      */
     public static Question fromJSONObject(String raw) {
         try {
-            // if this raises an error, there is a good chance that you need to convert the argument to a string before passing
+            // if this raises an error, there is a good chance that you need to convert the
+            // argument to a string before passing
             JSONObject obj = new JSONObject(raw);
-            return new Question(obj.getInt("difficulty"), obj.getString("question"), obj.getString("questionPrefix"), obj.getString("answer"));
-        }
-        catch (JSONException e) {
+            return new Question(obj.getInt("difficulty"), obj.getString("question"), obj.getString("questionPrefix"),
+                    obj.getString("answer"));
+        } catch (JSONException e) {
             e.printStackTrace();
             return null;
         }

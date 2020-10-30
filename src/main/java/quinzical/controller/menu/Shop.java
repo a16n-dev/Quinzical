@@ -32,8 +32,9 @@ import quinzical.util.ImageLoader;
 import quinzical.util.Modal;
 
 /**
- * Controller class for the shop view. This handles allowing the user to preview and purchase new cosmetic items for their avatar, 
- * using coins earned from games. It also allows the user to apply cosmetics they have purchased.
+ * Controller class for the shop view. This handles allowing the user to preview
+ * and purchase new cosmetic items for their avatar, using coins earned from
+ * games. It also allows the user to apply cosmetics they have purchased.
  */
 public class Shop {
 
@@ -99,7 +100,8 @@ public class Shop {
     private AvatarFactory avatarfactory;
 
     /**
-     * Tracks if the user is previewing a cosmetic (ie they are viewing a cosmetic they do not own)
+     * Tracks if the user is previewing a cosmetic (ie they are viewing a cosmetic
+     * they do not own)
      */
     private BooleanProperty isPreview;
     /**
@@ -109,14 +111,14 @@ public class Shop {
 
     /**
      * The number of coins the user has
-    */
+     */
 
     private IntegerProperty coins;
 
     /**
-     * This method runs when the screen is loaded and is responsible for all of the page setup
-     * This includes loading all cosmetics into the shop view and making sure the avatar is displaying
-     * the correct items
+     * This method runs when the screen is loaded and is responsible for all of the
+     * page setup This includes loading all cosmetics into the shop view and making
+     * sure the avatar is displaying the correct items
      */
     public void initialize() {
         // Get data
@@ -213,17 +215,19 @@ public class Shop {
     }
 
     /**
-     * Equips the given cosmetic item onto the users avatar. This will be saved to even once the user leaves the 
-     * shop the item will still be equipped on the avatar
+     * Equips the given cosmetic item onto the users avatar. This will be saved to
+     * even once the user leaves the shop the item will still be equipped on the
+     * avatar
+     * 
      * @param item the cosmetic item to equip
      */
     public void equip(Cosmetic item) {
         switch (item.getSlot()) {
             case ACCESSORY:
-                avatar.setAccessory( item);
+                avatar.setAccessory(item);
                 break;
             case HAT:
-                avatar.setHat( item);
+                avatar.setHat(item);
                 break;
             case EYES:
                 avatar.setEyes(item);
@@ -240,7 +244,9 @@ public class Shop {
     }
 
     /**
-     * Unequips the specified cosmetic item. If the item specified is not currently equipped on the avatar then nothing will happen.
+     * Unequips the specified cosmetic item. If the item specified is not currently
+     * equipped on the avatar then nothing will happen.
+     * 
      * @param item the cosmetic item to remove from the avtar
      */
     public void unequip(Cosmetic item) {
@@ -267,39 +273,46 @@ public class Shop {
      * Sets the avatar display to display only the cosmetics the avatar has equipped
      */
     private void setEquipped() {
-        setViewEquippedItem(avatar.getHat(), fxHatSlot,fxHatEquipped);
-        setViewEquippedItem(avatar.getAccessory(), fxAccessorySlot,fxAccessoryEquipped);
+        setViewEquippedItem(avatar.getHat(), fxHatSlot, fxHatEquipped);
+        setViewEquippedItem(avatar.getAccessory(), fxAccessorySlot, fxAccessoryEquipped);
         setViewEquippedItem(avatar.getEyes(), fxEyesSlot, fxEyesEquipped);
     }
 
     /**
-     * Helper method for @see setEquipped() This sets the equipped item into the specified slot on the avatar. Note this does not equip the item, 
-     * but rather make sure the equipped item display is showing the correct items
-     * @param item the item to equip onto the avatar
-     * @param slot the slot to equip it in
-     * @param equippedSlot the container element for the slot, which handles the click events
+     * Helper method for @see setEquipped() This sets the equipped item into the
+     * specified slot on the avatar. Note this does not equip the item, but rather
+     * make sure the equipped item display is showing the correct items
+     * 
+     * @param item         the item to equip onto the avatar
+     * @param slot         the slot to equip it in
+     * @param equippedSlot the container element for the slot, which handles the
+     *                     click events
      */
-    private void setViewEquippedItem(Cosmetic item, ImageView slot, AnchorPane equippedSlot){
+    private void setViewEquippedItem(Cosmetic item, ImageView slot, AnchorPane equippedSlot) {
         if (item != null) {
             slot.setImage(ImageLoader.loadImage("avatar/" + item.getIcon()));
-            equippedSlot.setOnMouseClicked(e->{selectedItem.set(item);});
-            equippedSlot.getStyleClass().set(1,"equippedItem");
+            equippedSlot.setOnMouseClicked(e -> {
+                selectedItem.set(item);
+            });
+            equippedSlot.getStyleClass().set(1, "equippedItem");
         } else {
             slot.setImage(null);
-            equippedSlot.setOnMouseClicked(e->{});
-            equippedSlot.getStyleClass().set(1,"");
+            equippedSlot.setOnMouseClicked(e -> {
+            });
+            equippedSlot.getStyleClass().set(1, "");
         }
     }
 
     /**
      * Hides all elements in the owned item list that are not owned by the player.
      */
-    private void filterOwnedView(){
-        fxItemGridOwned.getChildren().forEach( n ->{
+    private void filterOwnedView() {
+        fxItemGridOwned.getChildren().forEach(n -> {
             boolean visible = ownedItems.indexOf(n.getId()) != -1;
             n.setVisible(visible);
             n.setManaged(visible);
-        });;
+        });
+        ;
     }
 
     /**
@@ -314,6 +327,7 @@ public class Shop {
 
     /**
      * Allows the user to preview what an item will look like on their avatar.
+     * 
      * @param item the cosmetic item to preview
      */
     private void previewItem(Cosmetic item) {
@@ -334,9 +348,11 @@ public class Shop {
     }
 
     /**
-     * Handler for allowing the user to purchase an item. It will first prompt the user with a confirmation dialog asking
-     * them if they do want to buy the item. If they answer yes the item will be equipped and added to their purchased items and
-     * the correct amount of money will be removed from their balance
+     * Handler for allowing the user to purchase an item. It will first prompt the
+     * user with a confirmation dialog asking them if they do want to buy the item.
+     * If they answer yes the item will be equipped and added to their purchased
+     * items and the correct amount of money will be removed from their balance
+     * 
      * @param item
      */
     private void purchaseItem(Cosmetic item) {
@@ -350,7 +366,9 @@ public class Shop {
     }
 
     /**
-     * Helper function to retrieve a list of cosmetics and then sort them according to price
+     * Helper function to retrieve a list of cosmetics and then sort them according
+     * to price
+     * 
      * @return an array list of all cosmetics, sorted by price
      */
     private ArrayList<Cosmetic> getItemList() {

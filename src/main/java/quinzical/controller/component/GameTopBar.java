@@ -53,7 +53,7 @@ public class GameTopBar {
 	 */
 	@FXML
 	private void handleGoBack(ActionEvent event) {
-		//If player is in multiplayer
+		// If player is in multiplayer
 		if (Router.currentViewIs(View.LOBBY)) {
 			Connect connect = Connect.getInstance();
 			JSONObject obj = new JSONObject();

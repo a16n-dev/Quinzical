@@ -17,6 +17,7 @@ import javafx.fxml.FXMLLoader;
 
 /**
  * A javaFX component to display a category in the category selection screen
+ * 
  * @author Alexander Nicholson
  */
 public class CategoryListItem {
@@ -44,8 +45,8 @@ public class CategoryListItem {
     private ObservableList<Category> categories;
 
     /**
-     * The different css style classes that can be applied to the element to reflect its
-     * state
+     * The different css style classes that can be applied to the element to reflect
+     * its state
      */
     private enum Style {
         DEFAULT("listItem"), SELECTED("listItemSelected"), DISABLED("listItemDisabled");

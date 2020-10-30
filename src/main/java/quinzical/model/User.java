@@ -11,9 +11,9 @@ import quinzical.util.State;
 import quinzical.util.UserConnect;
 
 /**
- * The user model is reponsible for keeping track of all information related
- * to a single user. This includes the users total score, owned items, and
- * also some preferences such as 
+ * The user model is reponsible for keeping track of all information related to
+ * a single user. This includes the users total score, owned items, and also
+ * some preferences such as
  */
 public class User implements Serializable {
 
@@ -150,9 +150,11 @@ public class User implements Serializable {
     }
 
     /**
-     * Removes the specified question from the list of unattempted questions for the user
+     * Removes the specified question from the list of unattempted questions for the
+     * user
+     * 
      * @param category the category to remove the question from
-     * @param id the id of the specific question to remove
+     * @param id       the id of the specific question to remove
      */
     public void attemptQuestion(String category, String id) {
         unattemptedQuestions.get(category).remove(id);
@@ -166,19 +168,20 @@ public class User implements Serializable {
         }
     }
 
-     /**
-      * Adds the given amount of coins to the users coins
-      * @param amount the number of coins to add
-      * @return the number of coins the user has
-      */
+    /**
+     * Adds the given amount of coins to the users coins
+     * 
+     * @param amount the number of coins to add
+     * @return the number of coins the user has
+     */
     public int addCoins(int amount) {
         coins += amount;
         totalCoins += amount;
 
-        //send to server
+        // send to server
         UserConnect.updateUserScore(totalCoins, coins);
 
-        //persist on local file
+        // persist on local file
         persist();
 
         return coins;
@@ -191,11 +194,12 @@ public class User implements Serializable {
      * @return the number of coins the user has
      */
 
-     /**
-      * Sets the users coins to the given amount
-      * @param amount the amount of coins to set as the users coins
-      * @return the amount of coins the user has
-      */
+    /**
+     * Sets the users coins to the given amount
+     * 
+     * @param amount the amount of coins to set as the users coins
+     * @return the amount of coins the user has
+     */
     public int setCoins(int amount) {
         coins = amount;
 
@@ -224,6 +228,7 @@ public class User implements Serializable {
 
     /**
      * Sets the users total coints to the specified amount
+     * 
      * @param coins the total number of coins to set for the user
      */
     public void setTotalCoins(int coins) {
@@ -239,6 +244,7 @@ public class User implements Serializable {
 
     /**
      * Sets the users avatar to the specified avatar object
+     * 
      * @param a an avatar
      */
     public void setAvatar(Avatar a) {
@@ -295,9 +301,10 @@ public class User implements Serializable {
 
     /**
      * Set the preferred width
+     * 
      * @param w
      */
-    public void setPrefWidth(Number w){
+    public void setPrefWidth(Number w) {
         prefWidth = w;
         persist();
     }
@@ -306,15 +313,16 @@ public class User implements Serializable {
      * 
      * @return the preferred width
      */
-    public Number getPrefWidth(){
+    public Number getPrefWidth() {
         return prefWidth;
     }
 
     /**
      * Set the preferred height
+     * 
      * @param h
      */
-    public void setPrefHeight(Number h){
+    public void setPrefHeight(Number h) {
         prefHeight = h;
         persist();
     }
@@ -323,15 +331,16 @@ public class User implements Serializable {
      * 
      * @return the preferred height
      */
-    public Number getPrefHeight(){
+    public Number getPrefHeight() {
         return prefHeight;
     }
 
     /**
      * Set the auth token from the server representing the logged in user
+     * 
      * @param authToken
      */
-    public void setToken(String authToken){
+    public void setToken(String authToken) {
         token = authToken;
         persist();
     }
@@ -340,15 +349,16 @@ public class User implements Serializable {
      * 
      * @return the user's login token
      */
-    public String getToken(){
+    public String getToken() {
         return token;
     }
 
     /**
      * Set the user's name
+     * 
      * @param username
      */
-    public void setName(String username){
+    public void setName(String username) {
         name = username;
         persist();
     }
@@ -357,7 +367,7 @@ public class User implements Serializable {
      * 
      * @return the user's name
      */
-    public String getName(){
+    public String getName() {
         return name;
     }
 

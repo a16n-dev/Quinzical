@@ -8,13 +8,14 @@ import javafx.beans.property.StringProperty;
  */
 public class Ranking {
 	private StringProperty rank;
-	
+
 	private StringProperty score;
-	
+
 	private StringProperty name;
-	
+
 	/**
 	 * Constructor
+	 * 
 	 * @param userRank
 	 * @param userScore
 	 * @param userName
@@ -24,7 +25,7 @@ public class Ranking {
 		score = new SimpleStringProperty(Integer.toString(userScore));
 		name = new SimpleStringProperty(userName);
 	}
-	
+
 	/**
 	 * 
 	 * @return the user's rank
@@ -32,6 +33,7 @@ public class Ranking {
 	public StringProperty getRank() {
 		return rank;
 	}
+
 	/**
 	 * 
 	 * @return the user's score
@@ -39,6 +41,7 @@ public class Ranking {
 	public StringProperty getScore() {
 		return score;
 	}
+
 	/**
 	 * 
 	 * @return the user's name

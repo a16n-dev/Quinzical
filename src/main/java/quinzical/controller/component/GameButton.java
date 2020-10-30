@@ -46,7 +46,9 @@ public class GameButton extends JFXButton {
 
     /**
      * Sets the onclick handler to the specified EventHandler
-     * @param value the EventHanlder to handle the event when the user click the button
+     * 
+     * @param value the EventHanlder to handle the event when the user click the
+     *              button
      */
     public final void setOnClick(EventHandler<ActionEvent> value) {
 

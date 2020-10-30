@@ -11,14 +11,19 @@ import quinzical.model.User;
  * Controller for the trophy case screen
  */
 public class TrophyCase {
+    
     @FXML
     private Label fxDiamond;
+
     @FXML
     private Label fxPlatinum;
+
     @FXML
     private Label fxGold;
+
     @FXML
     private Label fxSilver;
+
     @FXML
     private Label fxBronze;
 
