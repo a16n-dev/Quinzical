@@ -13,6 +13,8 @@ import quinzical.model.Avatar.Slot;
 /**
  * This class handles the user's avatar and is responsible for rendering it
  * correctly
+ * 
+ * @author Alexander Nicholson
  */
 public class AvatarFactory {
 
@@ -21,24 +23,13 @@ public class AvatarFactory {
      */
     private final static String RESOURCE_PATH = "avatar/";
 
-    /**
-     * The stack pane to render the layers onto
-     */
+
     private StackPane fxFrame;
 
-    /**
-     * Represents the base layer of the character
-     */
     private ImageView fxBaseLayer;
 
-    /**
-     * Represents the accessories layer of the character
-     */
     private ImageView fxBodyLayer;
 
-    /**
-     * Represents the hat layer of the character
-     */
     private ImageView fxHatLayer;
 
     private ImageView fxEyesLayer;
@@ -49,13 +40,13 @@ public class AvatarFactory {
 
     private Cosmetic savedEyes;
 
-    private Image fxBase = null;
+    private Image fxBase;
 
-    private Image fxBody = null;
+    private Image fxBody;
 
-    private Image fxHat = null;
+    private Image fxHat;
 
-    private Image fxEyes = null;
+    private Image fxEyes;
 
     /**
      * Sets the image size
@@ -70,6 +61,12 @@ public class AvatarFactory {
      * @param container the StackPane to place the avatar in
      */
     public AvatarFactory(StackPane container) {
+
+         fxBase = null;
+         fxBody = null;
+         fxHat = null;
+         fxEyes = null;
+
         init(container);
     }
 
@@ -185,6 +182,11 @@ public class AvatarFactory {
 
     }
 
+    /**
+     * Loads the specified cosmetic item image, as either a png or gif if it should be animated
+     * @param item the cosmetic item to load
+     * @return a Image of the cosmetic item
+     */
     private Image setSlot(Cosmetic item) {
         Image slot = null;
 
@@ -195,6 +197,10 @@ public class AvatarFactory {
         return slot;
     }
 
+    /**
+     * Sets the avatar for this class to render
+     * @param avatar the avatar to render
+     */
     public void set(Avatar avatar) {
         set(avatar.getHat(), Slot.HAT);
         set(avatar.getAccessory(), Slot.ACCESSORY);

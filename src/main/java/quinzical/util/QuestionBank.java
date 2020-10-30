@@ -15,6 +15,8 @@ import quinzical.model.User;
  * from file and the controller class that wants to access specific questions
  * This class provides lists of questions and handles the 'random selection' of
  * questions
+ * 
+ * @author Alexander Nicholson, Peter Geodeke
  */
 public class QuestionBank {
 
@@ -24,6 +26,10 @@ public class QuestionBank {
 
     private static QuestionBank instance;
 
+    /**
+     * @return the instance of this class, if no instance is found a new instance is
+     *         created
+     */
     public static QuestionBank getInstance() {
         if (instance == null) {
             instance = new QuestionBank();
@@ -87,7 +93,7 @@ public class QuestionBank {
      * @param amount          the number of questions to return.
      * @param allowDuplicates specify if questions can be repeated or if all
      *                        questions must be unique
-     * @return
+     * @return a list of random categories
      */
     public List<Category> getRandomCategories(int amount, boolean allowDuplicates) throws IllegalArgumentException {
         // Get arraylist of categories
@@ -127,8 +133,15 @@ public class QuestionBank {
     }
 
     /**
-     * Overload for getRandomCategories to allow it to only select categories with a
-     * minimum number of questions
+     * 
+     * @param amount           the amount of categories to select
+     * @param allowDuplicates  if categories should be allowed to be selected more
+     *                         than once
+     * @param minimumQuestions the minimum number of questions a category must have
+     *                         to be selectable
+     * @return a list of random categories
+     * @throws IllegalArgumentException if the request could not be satisfied (there
+     *                                  were not enough categories)
      */
     public ArrayList<Category> getRandomCategories(int amount, boolean allowDuplicates, int minimumQuestions)
             throws IllegalArgumentException {
@@ -178,10 +191,18 @@ public class QuestionBank {
 
     }
 
+    /**
+     * @return a list of all categories the user has created
+     */
     public ArrayList<Category> getUserCategories() {
         return (ArrayList<Category>) userQuestionBank.values().stream().collect(Collectors.toList());
     }
 
+    /**
+     * Sets the list of user categories to the specified hashmap
+     * 
+     * @param categories the hashmap of categories that the user has created
+     */
     public void setUserCategories(HashMap<String, Category> categories) {
         userQuestionBank = categories;
 

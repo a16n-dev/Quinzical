@@ -24,7 +24,10 @@ import quinzical.model.Ranking;
 import quinzical.model.User;
 
 /**
- * This a util class to handle communication to the server for user accounts
+ * This a util class to handle communication to the server for user accounts and
+ * leaderboard functionality
+ * 
+ * @author Alexander Nicholson, Peter Geodeke
  */
 public class UserConnect {
 
@@ -33,10 +36,11 @@ public class UserConnect {
     private static final HttpClient client = HttpClient.newBuilder().version(Version.HTTP_1_1).build();
 
     /**
+     * Signs up the user with the given information
      * 
-     * @param username
-     * @param password
-     * @return
+     * @param username the username to sign up with
+     * @param password the password to sign up with
+     * @param feedback the label to display feedback text in
      */
     public static void signUp(String username, String password, Label feedback) {
         // Create map for data to send
@@ -76,10 +80,11 @@ public class UserConnect {
     }
 
     /**
-     * A method to attempt to authenticate the user with the given credentials
+     * logs in the user with the given information
      * 
-     * @param username
-     * @param password
+     * @param username the username to log in with
+     * @param password the password to log in with
+     * @param feedback the label to display feedback text in
      */
     public static void signIn(String username, String password, Label feedback) {
 
@@ -124,6 +129,12 @@ public class UserConnect {
         }));
     }
 
+    /**
+     * Retrieves the list of highest rank users for the leaderboard
+     * 
+     * @param tableHandler event handler to recieve the list of rankings
+     * @param rankHandler  event handler to recieve the authenticated users ranking
+     */
     public static void getLeaderboardData(Function<List<Ranking>, Void> tableHandler,
             Function<Integer, Void> rankHandler) {
         HttpRequest request;
@@ -167,7 +178,8 @@ public class UserConnect {
 
                         });
 
-                    } catch (JSONException e) {}
+                    } catch (JSONException e) {
+                    }
 
                     return null;
                 }));
@@ -175,10 +187,9 @@ public class UserConnect {
     }
 
     /**
-     * This sends the users data to the server The following information is sent to
-     * the server: - total score - coins - avatar - owned items -
-     * 
-     * @param user the user instance to get the data from
+     * Method to update the users score and current coins in the database
+     * @param score the users score to send
+     * @param coins the users current coin balance to send
      */
     public static void updateUserScore(int score, int coins) {
 
