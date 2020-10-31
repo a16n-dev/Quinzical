@@ -11,7 +11,7 @@ import quinzical.App;
  * 
  * @author Alexander Nicholson
  */
-public class Sound implements Serializable{
+public class Sound implements Serializable {
 
     private static final long serialVersionUID = 3339525790584853512L;
 
@@ -24,20 +24,18 @@ public class Sound implements Serializable{
     /**
      * Creates a new sound object
      */
-    public Sound(){
+    public Sound() {
         effectVolume = 1;
-        String path = App.class.getResource("sound/click.mp3").toString();
-        try{
-            ac = new AudioClip(path);
-        }catch (MediaException e){
-            Modal.alert("Sound not supported", "Playing of sounds is not supported by your operating system");
-        }
+        String path = App.class.getResource("sound/click.wav").toString();
+
+        ac = new AudioClip(path);
+
     }
 
     /**
      * Plays the click sound effect
      */
-    public void playEffect(){
+    public void playEffect() {
         ac.setVolume(effectVolume);
         ac.play();
     }
@@ -49,26 +47,25 @@ public class Sound implements Serializable{
         if (sound == null) {
             // Attempt to read state from file
             sound = IOManager.readState(State.MUSIC);
-            
+
             if (sound == null) {
                 sound = new Sound();
                 persist();
             } else {
-                String path = App.class.getResource("sound/click.mp3").toString();
-                try{
-                    ac = new AudioClip(path);
-                }catch (MediaException e){
-                    Modal.alert("Sound not supported", "Playing of sounds is not supported by your operating system");
-                }            }
+                String path = App.class.getResource("sound/click.wav").toString();
+
+                ac = new AudioClip(path);
+            }
         }
         return sound;
     }
 
     /**
      * Set the sound effect volume
+     * 
      * @param volume the new volume
      */
-    public void setEffectVolume(double volume){
+    public void setEffectVolume(double volume) {
         effectVolume = volume;
         persist();
     }
@@ -76,7 +73,7 @@ public class Sound implements Serializable{
     /**
      * @return the current value of the effect volume
      */
-    public double getEffectVolume(){
+    public double getEffectVolume() {
         return effectVolume;
     }
 
