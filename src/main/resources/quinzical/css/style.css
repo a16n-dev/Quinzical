@@ -181,6 +181,7 @@ Table stylings
     -fx-background-radius: 1.4, 0, 0;
     -fx-padding: 1;
 }
+
 .table-view:focused {
     -fx-background-insets: -1.4, 0, 1;
     -fx-background-radius: 1.4, 0, 0;
