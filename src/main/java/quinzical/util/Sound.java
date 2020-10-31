@@ -3,7 +3,6 @@ package quinzical.util;
 import java.io.Serializable;
 
 import javafx.scene.media.AudioClip;
-import javafx.scene.media.MediaException;
 import quinzical.App;
 
 /**
