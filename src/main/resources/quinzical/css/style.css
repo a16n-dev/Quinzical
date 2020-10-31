@@ -208,7 +208,7 @@ Table stylings
     -fx-text-fill: white;
     -fx-font-size: 18;
     -fx-padding: 16 0 16 16;
-    -fx-alignment: left;
+    -fx-alignment: center-left;
 }
 
 .table-view .column-header .arrow, .table-view .column-header .sort-order-dot {

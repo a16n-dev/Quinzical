@@ -32,7 +32,6 @@ public class Sound implements Serializable{
         }catch (MediaException e){
             Modal.alert("Sound not supported", "Playing of sounds is not supported by your operating system");
         }
-
     }
 
     /**
