@@ -25,6 +25,10 @@ import quinzical.util.Connect;
 import quinzical.util.Modal;
 import quinzical.util.Router;
 
+/**
+ * Controller for the lobby of the multiplayer game. This class contains most of
+ * the networking of the multiplayer game mode.
+ */
 public class Lobby {
     @FXML
     private Label fxCode;
@@ -87,23 +91,24 @@ public class Lobby {
         fxNextQuestion.visibleProperty().bind(game.mayProgress());
 
         connect = Connect.getInstance();
+
+        // on next question, refresh the members and then go to the question screen
         connect.onMessage("NEXT_QUESTION", args -> {
             try {
                 JSONObject obj = new JSONObject(args[0].toString());
                 Question question = Question.fromJSONObject(obj.getString("question"));
                 JSONArray membersRaw = obj.getJSONArray("members");
-            
+
                 ArrayList<Member> members = new ArrayList<Member>();
                 for (int i = 0; i < membersRaw.length(); i++) {
                     members.add(Member.fromJSONObject(membersRaw.getString(i)));
                 }
                 MultiplayerGame.getInstance().updateMembers(members);
-    
+
                 game.setCurrentQuestion(question);
                 Router.show(View.MULTIPLAYER_ANSWER_SCREEN, false);
                 game.start();
-            }
-            catch (JSONException e) {
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         });
@@ -120,6 +125,7 @@ public class Lobby {
             Router.show(View.MAIN_MENU);
             Modal.alert("Lobby closed", "The lobby has been closed by the host.");
         });
+        // update the score of a member who has answered the question
         connect.onMessage("SCORE_UPDATE", args -> {
             try {
                 JSONObject obj = new JSONObject(args[0].toString());
@@ -129,35 +135,45 @@ public class Lobby {
                 String answer = obj.getString("answer");
 
                 setUserAnswerStatus(username, score, status, answer);
-            }
-            catch (JSONException e) {
+            } catch (JSONException e) {
                 e.printStackTrace();
             }
         });
         connect.onMessage("GAME_OVER", e -> {
         });
-
+        // make sure displays are bound so that the elements reflect the scores of the
+        // members
         bindAnswerDisplays(game.getMembers());
         renderAvatars(game.getMembers());
     }
 
+    /**
+     * Take a list of members as JSON and update the display of the lobby to use the
+     * new list of members. This is necessary because the backend will often change
+     * details about the list of members and return it as a list.
+     * 
+     * @param args
+     */
     public void processLobbyUpdate(Object... args) {
         try {
             JSONObject obj = new JSONObject(args[0].toString());
             JSONArray membersRaw = obj.getJSONArray("members");
-            
+
             ArrayList<Member> members = new ArrayList<Member>();
             for (int i = 0; i < membersRaw.length(); i++) {
                 members.add(Member.fromJSONObject(membersRaw.getString(i)));
             }
             MultiplayerGame.getInstance().updateMembers(members);
-            Router.show(View.LOBBY, false);
-        }
-        catch (JSONException e) {
+            Router.show(View.LOBBY, false); // reload screen
+        } catch (JSONException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * When the user - must be host - clicks to go to the next question, broadcast
+     * this
+     */
     public void onNextQuestion() {
         JSONObject json = new JSONObject();
         try {
@@ -168,10 +184,12 @@ public class Lobby {
         connect.emit("NEXT_QUESTION", json);
     }
 
+    /**
+     * Render the avatars of the players in the lobby
+     * 
+     * @param players the players
+     */
     public void renderAvatars(List<Member> players) {
-        // Sort stuff
-
-        // Render
         for (int i = 1; i <= players.size(); i++) {
             Member m = players.get(i - 1);
 
@@ -180,6 +198,12 @@ public class Lobby {
         }
     }
 
+    /**
+     * Render a specific avatar within the lobby
+     * 
+     * @param pos    the position in the array
+     * @param avatar the avatar to set to the location on the board
+     */
     private void renderSlot(int pos, Avatar avatar) {
         final int[] SIZE = { 220, 180, 140 };
 
@@ -199,6 +223,13 @@ public class Lobby {
         }
     }
 
+    /**
+     * Set the title of a given avatar slot. This is supposed to represnt the given
+     * user's username.
+     * 
+     * @param pos          the position of the slot
+     * @param titleMessage the username of the user in the slot
+     */
     private void setTitle(int pos, String titleMessage) {
         try {
             Field titleField = getClass().getDeclaredField("avatarTitle" + pos);
@@ -210,25 +241,42 @@ public class Lobby {
         }
     }
 
+    /**
+     * Bind the various elements of the avatar slots to JavaFX beans so that they
+     * will update when the server returns information about the answers of the
+     * different users.
+     * 
+     * @param members the members of the game
+     */
     public void bindAnswerDisplays(List<Member> members) {
         try {
             for (int i = 1; i <= members.size(); i++) {
                 Member member = members.get(i - 1);
                 Label bubble = (Label) getClass().getDeclaredField("avatarSpeechBubble" + i).get(this);
                 bubble.textProperty().bind(member.getAnswer());
+                // don't show answer bubbles before we have answered a question
                 if (game.hasStarted()) {
                     bubble.setVisible(true);
                 }
-    
+
                 Label subtitle = (Label) getClass().getDeclaredField("avatarSubtitle" + i).get(this);
-                subtitle.textProperty().bind(Bindings.concat(new SimpleStringProperty("Score: "), member.getScore().asString()));
+                subtitle.textProperty()
+                        .bind(Bindings.concat(new SimpleStringProperty("Score: "), member.getScore().asString()));
             }
-        }
-        catch (NoSuchFieldException | SecurityException | IllegalAccessException e) {
+        } catch (NoSuchFieldException | SecurityException | IllegalAccessException e) {
             e.printStackTrace();
         }
     }
 
+    /**
+     * Set the answer status of a given user to a value returned from the server.
+     * Sets using the bean interface so that the display updates.
+     * 
+     * @param username the user's username
+     * @param score    the new score of the user
+     * @param status   the new answer status of the user (e.g. correct)
+     * @param answer   the answer the user typed
+     */
     public void setUserAnswerStatus(String username, int score, Answer status, String answer) {
         for (Member member : game.getMembers()) {
             if (member.getUsername().equals(username)) {
