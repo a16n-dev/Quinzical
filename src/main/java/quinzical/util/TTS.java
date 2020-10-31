@@ -24,13 +24,19 @@ public class TTS implements Serializable {
     private int speed;
     private transient boolean speaking = false;
 
-    // singleton
+    /**
+     * Private constructor
+     */
     private TTS() {
         processQueue = new ArrayDeque<ProcessBuilder>();
         volume = 100;
         speed = 160;
     }
 
+    /**
+     * Get the singleton instance of the class
+     * @return instance
+     */
     public static TTS getInstance() {
         if (tts == null) {
             // Attempt to read state from file

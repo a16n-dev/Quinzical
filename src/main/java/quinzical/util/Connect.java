@@ -18,10 +18,15 @@ import quinzical.model.User;
 public class Connect {
     private static Connect instance;
 
-    // singleton class
-    private Connect() {
-    }
+    /**
+     * Private constructor
+     */
+    private Connect() { }
 
+    /**
+     * Get the singleton instance of the class
+     * @return instance
+     */
     public static Connect getInstance() {
         if (instance == null) {
             instance = new Connect();

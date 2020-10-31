@@ -22,7 +22,9 @@ public class Macron {
     private HashMap<Character, Character> pairs;
     private TextField fxInput;
 
-    // singleton
+    /**
+     * Private constructor
+     */
     private Macron() {
         // characters which can have macrons and their respective macron characters
         pairs = new HashMap<Character, Character>();
@@ -38,6 +40,10 @@ public class Macron {
         pairs.put('U', 'Ū');
     }
 
+    /**
+     * Get the singleton instance of the class
+     * @return instance
+     */
     public static Macron getInstance() {
         if (instance == null) {
             instance = new Macron();

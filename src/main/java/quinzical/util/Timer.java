@@ -23,10 +23,15 @@ public class Timer {
 
     public static Timer instance;
 
-    // singleton
-    private Timer() {
-    }
+    /**
+     * Private constructor
+     */
+    private Timer() { }
 
+    /**
+     * Get the singleton instance of the class
+     * @return instance
+     */
     public static Timer getInstance() {
         if (instance == null) {
             instance = new Timer();
