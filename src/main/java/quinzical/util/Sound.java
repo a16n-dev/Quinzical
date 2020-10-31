@@ -54,8 +54,12 @@ public class Sound implements Serializable{
                 sound = new Sound();
                 persist();
             } else {
-                ac = new AudioClip(App.class.getResource("sound/click.mp3").toString());
-            }
+                String path = App.class.getResource("sound/click.mp3").toString();
+                try{
+                    ac = new AudioClip(path);
+                }catch (MediaException e){
+                    Modal.alert("Sound not supported", "Playing of sounds is not supported by your operating system");
+                }            }
         }
         return sound;
     }
