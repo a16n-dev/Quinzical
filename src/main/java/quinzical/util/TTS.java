@@ -74,7 +74,7 @@ public class TTS implements Serializable {
                         speaking = false;
                         speakNext();
                     } catch (InterruptedException e) {
-                        System.out.println(e);
+                        e.printStackTrace();
                     }
                 } catch (IOException e) {
                     e.printStackTrace();

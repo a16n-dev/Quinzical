@@ -83,11 +83,9 @@ public class ManageCategories {
 
         // Retrieve categories from question bank
         for (Category c : QuestionBank.getInstance().getUserCategories()) {
-            System.out.println("bruh");
             questions.put(c.getName(), FXCollections.observableArrayList(c.getQuestions()));
             categories.add(c.getName());
         }
-        ;
 
         showCategories();
     }

@@ -121,7 +121,6 @@ public class Lobby {
             Modal.alert("Lobby closed", "The lobby has been closed by the host.");
         });
         connect.onMessage("SCORE_UPDATE", args -> {
-            System.out.println("updating the score of a user");
             try {
                 JSONObject obj = new JSONObject(args[0].toString());
                 String username = obj.getString("username");
@@ -130,14 +129,12 @@ public class Lobby {
                 String answer = obj.getString("answer");
 
                 setUserAnswerStatus(username, score, status, answer);
-                System.out.println("the score right now is: " + score);
             }
             catch (JSONException e) {
                 e.printStackTrace();
             }
         });
         connect.onMessage("GAME_OVER", e -> {
-            System.out.println("ah yo man it's over");
         });
 
         bindAnswerDisplays(game.getMembers());
@@ -219,6 +216,9 @@ public class Lobby {
                 Member member = members.get(i - 1);
                 Label bubble = (Label) getClass().getDeclaredField("avatarSpeechBubble" + i).get(this);
                 bubble.textProperty().bind(member.getAnswer());
+                if (game.hasStarted()) {
+                    bubble.setVisible(true);
+                }
     
                 Label subtitle = (Label) getClass().getDeclaredField("avatarSubtitle" + i).get(this);
                 subtitle.textProperty().bind(Bindings.concat(new SimpleStringProperty("Score: "), member.getScore().asString()));
