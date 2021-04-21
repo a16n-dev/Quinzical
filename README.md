@@ -1,5 +1,7 @@
 # QUINZICAL
 
+[More info, screenhots, and download here](https://alexn.me/projects/quinzical)
+
  **Authors**  
 Alexander Nicholson  
 Dean Shu  
