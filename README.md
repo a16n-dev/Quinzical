@@ -1,3 +1,5 @@
+![image](https://user-images.githubusercontent.com/39721828/169023700-c08d1053-1cec-4e9f-bbfc-27b23ef58109.png)
+
 # QUINZICAL
 
 [More info, screenhots, and download here](https://alexn.me/projects/quinzical)
